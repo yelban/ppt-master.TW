@@ -2,6 +2,8 @@
 
 本目錄放置 `ppt-master.TW` fork 的可重複執行維護工具。繁體中文化以 `tw_localize.py` 為唯一入口；任何需要長期保留的詞彙修正，請加入 `tw_localize_overrides.json` 或腳本邏輯，不要只做一次性手工修改。
 
+> 使用者面的擴充用法（`--html-deck` 匯出、繁中字型安裝、PDF 路徑、同步檢查清單）見 [`docs/zh/tw-fork-guide.md`](../docs/zh/tw-fork-guide.md)。本檔只記管線內部細節。
+
 ## 上游同步流程
 
 ```bash
