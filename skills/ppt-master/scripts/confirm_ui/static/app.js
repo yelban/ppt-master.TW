@@ -330,15 +330,129 @@
             on: "开",
             option_prefix: "方案",
             error_retry: "出错，请重试"
+        },
+        zhtw: {
+            page_title: "確認設計方案",
+            topbar_hint: "選擇或自定義各項後點「確認」；頁面會關閉，請回到聊天視窗。",
+            stage_anchors: "第一階段 · 方向確認",
+            stage_design: "第二階段 · 設計系統",
+            stage_images: "第三階段 · 圖片與執行方式",
+            loading: "載入中…",
+            load_error: "無法載入推薦檔案，需在啟動前寫入。",
+            btn_confirm: "確認",
+            btn_next: "下一步 →",
+            deriving: "正在根據你的選擇生成下游選項…",
+            already_confirmed: "已確認過一次，重新提交會覆蓋之前的選擇。",
+            confirmed_title: "✓ 已確認",
+            confirmed_hint: "選擇已儲存，可關閉此頁並回到聊天視窗。",
+            lang_toggle_title: "切換語言",
+            sec_canvas: "畫布格式",
+            sec_pages: "頁數",
+            sec_audience: "目標受眾",
+            sec_style: "風格目標",
+            sec_color: "色彩方案",
+            sec_icons: "圖示使用",
+            sec_type: "字型方案",
+            sec_images: "圖片使用",
+            sec_mode: "生成模式",
+            sec_refine: "先精修設計規範",
+            sub_mode: "敘事模式",
+            sub_visual: "視覺風格",
+            sub_divergence: "材料發散度（多大程度重塑，還是貼近源材料）",
+            placeholder_divergence: "用你自己的話寫，例如「嚴格貼著檔案來」/「在源材料範圍內自由重組並展開」。留空則按平衡處理。",
+            custom: "自定義",
+            custom_placeholder: "輸入自定義內容…",
+            recommended: "推薦",
+            placeholder_audience: "這份簡報面向誰？",
+            placeholder_pages: "如：12-15",
+            hex_override: "自定義色值覆蓋：",
+            formula_policy: "公式渲染策略",
+            image_ai_path: "生成配圖來源",
+            image_strategy: "生成圖風格",
+            image_strategy_empty: "還沒有提供生成圖風格候選。",
+            image_strategy_rendering: "渲染風格",
+            image_strategy_palette: "影像調色",
+            image_strategy_visual: "視覺",
+            image_strategy_color: "色彩",
+            image_strategy_mood: "情緒",
+            image_strategy_manual: "自定義",
+            image_strategy_manual_desc: "手動選擇渲染風格和影像調色，也可以使用自定義描述。",
+            image_strategy_custom_prompt: "自定義提示要求",
+            image_strategy_custom_placeholder: "描述生成圖的具體方向、主體、構圖、風格關鍵詞或需要避免的內容。",
+            image_strategy_reference_hint: "參考圖只展示渲染風格 / 用色行為；最終 AI 圖片顏色跟隨上方色彩方案。",
+            image_strategy_color_follow: "使用上方已選色彩方案；影像調色只控制用色比例和行為。",
+            image_strategy_no_reference: "自定義選擇沒有參考圖。",
+            image_usage_notes: "圖片補充要求",
+            image_usage_notes_placeholder: "例如：優先真實洗手場景；不要卡通病菌；產品照片保持原樣。",
+            image_usage_required: "請至少選擇一種圖片使用方式。",
+            image_usage_none_exclusive: "「不使用圖片」不能和其它圖片選項同時選擇。",
+            font_heading: "標題",
+            font_body: "正文",
+            font_body_size: "正文基準字號",
+            font_body_size_hint: "所有字號按這個正文基準推導。",
+            body_size_hint_canvas: "當前畫布建議 ~{lo}–{hi}px（隨畫布高度縮放）。",
+            body_size_hint_purpose: "該交付目的推薦 {def}px（單一固定值，非區間）。",
+            body_size_hint_oor: "（當前數值超出該畫布的常用範圍——請確認單位無誤、是否合適。）",
+            delivery_purpose: "交付目的",
+            delivery_purpose_hint: "近讀型可以小一點；投影型需要更大的字。",
+            size_override: "逐角色字號覆蓋：",
+            size_role_title: "標題",
+            size_role_subtitle: "副標題",
+            size_role_annotation: "註釋",
+            custom_typography: "自定義字型方案",
+            custom_typography_placeholder: "輸入字型方案，如：標題用楷體；正文用Microsoft JhengHei…",
+            custom_color: "自定義配色",
+            custom_color_placeholder: "用文字描述配色，如：深藍主色、暖橙強調、白色背景——或直接貼上 HEX 值…",
+            role_background: "背景",
+            role_secondary_bg: "次級背景",
+            role_primary: "主色",
+            role_accent: "強調",
+            role_secondary_accent: "次強調",
+            role_body_text: "正文文字",
+            cjk: "中文",
+            latin: "西文",
+            sample_heading_cjk: "主題方案標題",
+            sample_heading_latin: "Presentation Title",
+            sample_body_cjk: "關鍵資訊摘要",
+            sample_body_latin: "Key message summary",
+            style_preview_label: "整體形象（配色 + 字型 + 圖示）",
+            style_preview_body: "· 僅大致形象，非實際版式",
+            no_icons: "無圖示",
+            preview_big_title: "大標題",
+            preview_section_title: "章節標題",
+            preview_latin_title: "Section Title",
+            preview_body_intro: "正文內容用於判斷基礎字號、行距和顏色對比。",
+            preview_latin_body: "Body text sample for checking Latin typography.",
+            preview_point_1_title: "正文內容",
+            preview_point_1_text: "這裡展示普通段落的密度和閱讀節奏。",
+            preview_point_2_title: "要點說明",
+            preview_point_2_text: "圖示和文字放在一起，判斷真實使用效果。",
+            preview_point_3_title: "結論建議",
+            preview_point_3_text: "組合效果需要在演示場景下保持清晰可讀。",
+            mode_continuous_desc: "一次性連續生成整份簡報。",
+            mode_split_desc: "寫完設計規範後停止，另開視窗繼續生成頁面。",
+            refine_off_desc: "設計規範一次寫完，流程自動繼續。",
+            refine_on_desc: "寫完設計規範後停下供你審閱或修改，再開始生成。",
+            off_default: "關",
+            on: "開",
+            option_prefix: "方案",
+            error_retry: "出錯，請重試"
         }
     };
+
+    var SUPPORTED_LANGS = { zhtw: true, zh: true, en: true, ja: true };
+
+    function isSupportedLang(lang) {
+        return !!SUPPORTED_LANGS[lang];
+    }
 
     var LANG = (function () {
         try {
             var stored = window.localStorage.getItem("ppt_lang");
-            if (stored === "zh" || stored === "en" || stored === "ja") return stored;
+            if (isSupportedLang(stored)) return stored;
         } catch (e) { /* ignore */ }
         var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+        if (nav.indexOf("zh-tw") === 0 || nav.indexOf("zh-hant") === 0 || nav.indexOf("zh-hk") === 0) return "zhtw";
         if (nav.indexOf("zh") === 0) return "zh";
         if (nav.indexOf("ja") === 0) return "ja";
         return "en";
@@ -349,16 +463,21 @@
         return dict[key] != null ? dict[key] : key;
     }
 
-    // Fallback stays LANG-relative: zh/en users never see Japanese labels,
+    // Fallback stays LANG-relative: Chinese/en users never see Japanese labels,
     // ja pages fall back ja → en → zh.
-    var LANG_FALLBACK = { zh: ["zh", "en", "ja"], en: ["en", "zh", "ja"], ja: ["ja", "en", "zh"] };
+    var LANG_FALLBACK = {
+        zhtw: ["zhtw", "zh", "en", "ja"],
+        zh: ["zh", "en", "ja"],
+        en: ["en", "zh", "ja"],
+        ja: ["ja", "en", "zh"]
+    };
     var IMAGE_COMPARISON_LABELS = {
         rendering: {
             "vector-illustration": { zh: "矢量插画", en: "Vector illustration", ja: "ベクターイラスト" },
             flat: { zh: "扁平插画", en: "Flat illustration", ja: "フラットイラスト" },
             "3d-isometric": { zh: "3D 等距", en: "3D isometric", ja: "3Dアイソメトリック" },
             "digital-dashboard": { zh: "数字仪表盘", en: "Digital dashboard", ja: "デジタルダッシュボード" },
-            "corporate-photo": { zh: "企业摄影", en: "Corporate photo", ja: "企業写真" },
+            "corporate-photo": { zh: "企業攝影", en: "Corporate photo", ja: "企業写真" },
             blueprint: { zh: "蓝图线稿", en: "Blueprint", ja: "ブループリント" },
             editorial: { zh: "编辑杂志", en: "Editorial", ja: "エディトリアル" },
             "sketch-notes": { zh: "手绘笔记", en: "Sketch notes", ja: "スケッチノート" },
@@ -449,13 +568,13 @@
     }
 
     function applyStaticTranslations() {
-        document.documentElement.setAttribute("lang", LANG === "zh" ? "zh-CN" : (LANG === "ja" ? "ja" : "en"));
+        document.documentElement.setAttribute("lang", LANG === "zhtw" ? "zh-TW" : (LANG === "zh" ? "zh-CN" : (LANG === "ja" ? "ja" : "en")));
         document.querySelectorAll("[data-i18n]").forEach(function (node) {
             node.textContent = t(node.getAttribute("data-i18n"));
         });
     }
 
-    var LANG_NAMES = { zh: "中文", en: "English", ja: "日本語" };
+    var LANG_NAMES = { zhtw: "正體中文", zh: "简体中文", en: "English", ja: "日本語" };
 
     function refreshLangToggle(toggleBtn) {
         // Custom dropdown (OS-independent): button shows the CURRENT language.
@@ -2269,7 +2388,7 @@
         var chooseLang = function (v) {
             setMenuOpen(false);
             toggleBtn.focus();
-            if (v !== "ja" && v !== "en" && v !== "zh") return;
+            if (!isSupportedLang(v)) return;
             if (v === LANG) return;
             LANG = v;
             try { window.localStorage.setItem("ppt_lang", LANG); } catch (e2) { /* ignore */ }
@@ -2345,10 +2464,14 @@
             REC = res[1];
             ICON_PREVIEWS = res[2] || {};
             AI_IMAGE_COMPARISON = res[3] || {};
-            if (REC.lang === "zh" || REC.lang === "en" || REC.lang === "ja") {
+            if (isSupportedLang(REC.lang)) {
                 var hasStored = false;
                 try { hasStored = !!window.localStorage.getItem("ppt_lang"); } catch (e) { /* ignore */ }
-                if (!hasStored) { LANG = REC.lang; applyStaticTranslations(); refreshLangToggle(toggleBtn); }
+                if (!hasStored && !(REC.lang === "zh" && LANG === "zhtw")) {
+                    LANG = REC.lang;
+                    applyStaticTranslations();
+                    refreshLangToggle(toggleBtn);
+                }
             }
             initState();
             // stage 1 / 2 / 3 from the recommendations; absent → legacy single-pass.

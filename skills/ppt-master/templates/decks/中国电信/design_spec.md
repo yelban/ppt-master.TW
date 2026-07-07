@@ -1,7 +1,7 @@
 ---
-deck_id: 中国电信
+deck_id: 中國電信
 kind: deck
-summary: China Telecom related briefings, 政企数字化方案, 转型规划, 内部汇报.
+summary: China Telecom related briefings, 政企數字化方案, 轉型規劃, 內部彙報.
 canvas_format: ppt169
 page_count: 5
 primary_color: "#C00000"
@@ -18,7 +18,7 @@ primary_color: "#C00000"
 | Property | Description |
 | --- | --- |
 | **Template Name** | `中国电信` |
-| **Use Cases** | China Telecom related briefings, 政企数字化方案, 转型规划, 内部汇报 |
+| **Use Cases** | China Telecom related briefings, 政企數字化方案, 轉型規劃, 內部彙報 |
 | **Design Tone** | Authoritative, structured, restrained, enterprise-government hybrid |
 | **Theme Mode** | Light theme (white background + telecom red title bar + silver-gray structural lane + restrained brand imagery) |
 
@@ -63,7 +63,7 @@ primary_color: "#C00000"
 
 ### Font Stack
 
-`"Microsoft YaHei", "微软雅黑", "PingFang SC", "Source Han Sans SC", Arial, sans-serif`
+`"Microsoft JhengHei", "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", Arial, sans-serif`
 
 ### Font Size Hierarchy
 

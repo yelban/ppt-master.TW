@@ -121,8 +121,8 @@ def _charset_from_html(raw: bytes) -> str:
 def _decode_quality_score(text: str) -> int:
     """Score obvious decode artifacts; lower is better."""
     mojibake_markers = [
-        "�", "锟", "Ã", "Â", "â€", "â€™", "â€œ", "â€\x9d",
-        "琚", "佸", "鍦", "涓", "鏄", "寤", "骞", "鏈", "鏃", "鈥",
+        "�", "錕", "Ã", "Â", "â€", "â€™", "â€œ", "â€\x9d",
+        "琚", "佸", "鍦", "涓", "鏄", "寤", "騫", "鏈", "鏃", "鈥",
     ]
     marker_hits = sum(text.count(marker) for marker in mojibake_markers)
     control_hits = sum(1 for ch in text if ord(ch) < 32 and ch not in "\t\n\r")
@@ -227,7 +227,7 @@ def fetch_url(url: str) -> str:
     headers = {
         "User-Agent": CONFIG["user_agent"],
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8"
+        "Accept-Language": "zh-TW,zh;q=0.9,en;q=0.8"
     }
 
     try:
@@ -245,7 +245,7 @@ def clean_title(title: str) -> str:
     if not title:
         return ""
     # Remove site name suffixes often found in Chinese titles
-    clean = re.sub(r"[-_|].*?(政府|门户|网站|委员会).*$", "", title)
+    clean = re.sub(r"[-_|].*?(政府|門戶|網站|委員會).*$", "", title)
     return clean.strip()
 
 

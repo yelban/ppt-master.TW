@@ -472,7 +472,7 @@ def score_candidate(candidate: AssetCandidate, request: ImageSearchRequest) -> f
     query_lower = request.query.lower()
     infra_terms = [
         "station", "subway", "metro", "rail", "transit", "airport", "bus",
-        "地铁", "站", "轨道",
+        "地鐵", "站", "軌道",
     ]
 
     if not any(t in query_lower for t in infra_terms):

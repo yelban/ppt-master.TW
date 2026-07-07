@@ -1,127 +1,127 @@
-# 快速入门
+# 快速入門
 
-最快做出第一份 deck 的路径、围绕它的各项能力——模板、实时预览、动画、旁白、声音复刻——以及出问题时去哪里查。章节大致按你真实使用时遇到它们的顺序排列。每节都是精简版,需要细节就点 **完整说明 →** 链接。
+最快做出第一份 deck 的路徑、圍繞它的各項能力——模板、即時預覽、動畫、旁白、聲音復刻——以及出問題時去哪裡查。章節大致按你真實使用時遇到它們的順序排列。每節都是精簡版,需要細節就點 **完整說明 →** 連結。
 
 - [用模板](#用模板)
 - [做出第一份 deck](#做出第一份-deck)
-- [实时预览与可视化修改](#实时预览与可视化修改)
-- [转场与动画](#转场与动画)
-- [旁白与视频](#旁白与视频)
-- [使用复刻音色](#使用复刻音色)
-- [遇到问题怎么办](#遇到问题怎么办)
+- [即時預覽與視覺化修改](#即時預覽與視覺化修改)
+- [轉場與動畫](#轉場與動畫)
+- [旁白與影片](#旁白與影片)
+- [使用復刻音色](#使用復刻音色)
+- [遇到問題怎麼辦](#遇到問題怎麼辦)
 
 ---
 
 ## 用模板
 
-**可选。** 默认走**自由设计**——不需要模板,可以直接跳到下一节。只有当 deck 必须复用一套固定版式或品牌时,才需要模板。
+**可選。** 預設走**自由設計**——不需要模板,可以直接跳到下一節。只有當 deck 必須複用一套固定版式或品牌時,才需要模板。
 
-**复用现成 `.pptx` 有两条路,取决于你想要什么结果:**
+**複用現成 `.pptx` 有兩條路,取決於你想要什麼結果:**
 
-| 你想要… | 路径 | 会发生什么 |
+| 你想要… | 路徑 | 會發生什麼 |
 |---|---|---|
-| **就要这份 deck,换成新内容** | 套模板(template fill) | 挑出合适的页面,把文字 / 表格 / 图表数据直接写回原文件。设计、版式、图片、动画都保留;输出就是同一份 deck,原生可编辑。最快;但受限于现有页面。 |
-| **基于这份 deck 的风格生成新 deck** | create-template | 把 `.pptx` 解析成可复用的风格资产包,再走 SVG 管线**重新生成**——结构自由、页数任意。更灵活;完整重建。 |
+| **就要這份 deck,換成新內容** | 套模板(template fill) | 挑出合適的頁面,把文字 / 表格 / 圖表資料直接寫回原檔案。設計、版式、圖片、動畫都保留;輸出就是同一份 deck,原生可編輯。最快;但受限於現有頁面。 |
+| **基於這份 deck 的風格生成新 deck** | create-template | 把 `.pptx` 解析成可複用的風格資產包,再走 SVG 管線**重新生成**——結構自由、頁數任意。更靈活;完整重建。 |
 
-前者:把 `.pptx` 连同素材(或一个主题)给 AI,说「套模板」——见 [套模板工作流](../../skills/ppt-master/workflows/template-fill-pptx.md)。本节其余部分讲 create-template。
+前者:把 `.pptx` 連同素材(或一個主題)給 AI,說「套模板」——見 [套模板工作流](../../skills/ppt-master/workflows/template-fill-pptx.md)。本節其餘部分講 create-template。
 
-**想基于某份现成 PPT 的风格重新生成 deck,必须显式走 create-template 流程——别直接丢个 `.pptx` 指望 AI 自动处理。** AI 默认走自由设计,不会主动切进创建模板的流程;不显式启动它,生成过程就容易错乱。先用 create-template 把那份 `.pptx` 复刻成 PPT Master 模板:
+**想基於某份現成 PPT 的風格重新生成 deck,必須顯式走 create-template 流程——別直接丟個 `.pptx` 指望 AI 自動處理。** AI 預設走自由設計,不會主動切進建立模板的流程;不顯式啟動它,生成過程就容易錯亂。先用 create-template 把那份 `.pptx` 復刻成 PPT Master 模板:
 
 ```
 你：用 /create-template 把这个复刻成模板：projects/brand/our_deck.pptx
 ```
 
-这会跑 `pptx_template_import.py`,把文件重建成可复用的资产包——版式 SVG + `design_spec.md` + 抽取出的主题色、字体、图片。生成时引用的就是这个资产包。
+這會跑 `pptx_template_import.py`,把檔案重建成可複用的資產包——版式 SVG + `design_spec.md` + 抽取出的主題色、字型、圖片。生成時引用的就是這個資產包。
 
-复刻出的模板可以放在两个位置之一:
+復刻出的模板可以放在兩個位置之一:
 
-| 位置 | 路径 | 说明 |
+| 位置 | 路徑 | 說明 |
 |---|---|---|
-| **注册进 skill 库** | `skills/ppt-master/templates/layouts/<id>/` | 全局,所有项目可复用;跑 `register_template.py` 后,问"有哪些模板"时会被列出来 |
-| **放进项目里** | `projects/<project>/templates/` | 项目本地;给路径即用,无需注册 |
+| **註冊進 skill 庫** | `skills/ppt-master/templates/layouts/<id>/` | 全域性,所有專案可複用;跑 `register_template.py` 後,問"有哪些模板"時會被列出來 |
+| **放進專案裡** | `projects/<project>/templates/` | 專案本地;給路徑即用,無需註冊 |
 
-无论放哪,生成时都靠在对话里给出它的**目录路径**来引用——工作流只认显式路径,绝不认裸模板名:
+無論放哪,生成時都靠在對話裡給出它的**目錄路徑**來引用——工作流只認顯式路徑,絕不認裸模板名:
 
 ```
 你：用 sources/report.pdf 做 deck,模板用 skills/ppt-master/templates/layouts/academic_defense/
 ```
 
-完整说明 → [模板指南](./templates-guide.md)
+完整說明 → [模板指南](./templates-guide.md)
 
 ---
 
 ## 做出第一份 deck
 
-整个流程就三步。先装好环境——只需要 Python,见 [快速开始](../../README_CN.md#快速开始)。
+整個流程就三步。先裝好環境——只需要 Python,見 [快速開始](../../README_CN.md#快速開始)。
 
-1. **把源材料放进** `projects/` —— PDF、DOCX、Markdown、一个网址,或直接要粘贴的文字。
-2. **在对话里告诉 AI** 要把什么做成 deck(如果上面准备了模板,把它的路径一起给;否则就是自由设计):
+1. **把源材料放進** `projects/` —— PDF、DOCX、Markdown、一個網址,或直接要貼上的文字。
+2. **在對話裡告訴 AI** 要把什麼做成 deck(如果上面準備了模板,把它的路徑一起給;否則就是自由設計):
    ```
    你：用 projects/q3-report/sources/report.pdf 做一份 PPT
-   你：把这份内容做成 PPT：<粘贴你的文字>
+   你：把這份內容做成 PPT：<貼上你的文字>
    ```
-3. **拿回可编辑的 `.pptx`**,位于 `exports/<名称>_<时间戳>.pptx` —— 真正的 DrawingML 形状、文本框、图表,在 PowerPoint / Keynote / WPS / LibreOffice 里点开就能改。
+3. **拿回可編輯的 `.pptx`**,位於 `exports/<名称>_<时间戳>.pptx` —— 真正的 DrawingML 形狀、文本框、圖表,在 PowerPoint / Keynote / WPS / LibreOffice 裡點開就能改。
 
-开始前 AI 会先确认一份简短的设计规格(模板、格式、页数……);之后内容分析、排版、配图、SVG 生成、导出都由它完成——这就是其它能力围绕的核心环节。
-
----
-
-## 实时预览与可视化修改
-
-生成过程中会自动打开浏览器预览 `http://localhost:5050`。
-
-- **实时看着每页渲染**出来。
-- **直接改,无需 AI** —— 选中元素后在右栏改文字、颜色、字体、字号;拖拽即可移动,或用方向键微调(`Shift` = 10px),`Ctrl+Z` 撤销。改动即时预览,点 **Apply changes** 写回 `svg_output/`。
-- **或写注解交给 AI** —— 点选元素写一句要改成什么,点 **Submit annotations**,再回对话说"应用注解"(或 "apply my annotations"),AI 会改写那块区域并重新导出 PPTX。
-
-PPT Master 最初是纯对话设计;可视化编辑是在很多用户提出后融入的(建立在 [@WodenJay](https://github.com/WodenJay) 的 [PR #85](https://github.com/hugohe3/ppt-master/pull/85) 之上)。
-
-完整说明 → [实时预览工作流](../../skills/ppt-master/workflows/live-preview.md)
+開始前 AI 會先確認一份簡短的設計規格(模板、格式、頁數……);之後內容分析、排版、配圖、SVG 生成、匯出都由它完成——這就是其它能力圍繞的核心環節。
 
 ---
 
-## 转场与动画
+## 即時預覽與視覺化修改
 
-导出的 deck 自带**页间转场**和**页内元素入场动画**,输出为真正的 OOXML——不是嵌入视频。默认元素进入页面时自动级联入场,无需设置,在 PowerPoint 和 Keynote 中原生播放,无需额外工具。只有当你想要特定顺序、效果或时序时,才需要定制。
+生成過程中會自動開啟瀏覽器預覽 `http://localhost:5050`。
 
-完整说明 → [转场与动画](./animations.md)
+- **即時看著每頁渲染**出來。
+- **直接改,無需 AI** —— 選中元素後在右欄改文字、顏色、字型、字號;拖拽即可移動,或用方向鍵微調(`Shift` = 10px),`Ctrl+Z` 撤銷。改動即時預覽,點 **Apply changes** 寫回 `svg_output/`。
+- **或寫註解交給 AI** —— 點選元素寫一句要改成什麼,點 **Submit annotations**,再回對話說"應用註解"(或 "apply my annotations"),AI 會改寫那塊區域並重新匯出 PPTX。
+
+PPT Master 最初是純對話設計;視覺化編輯是在很多使用者提出後融入的(建立在 [@WodenJay](https://github.com/WodenJay) 的 [PR #85](https://github.com/hugohe3/ppt-master/pull/85) 之上)。
+
+完整說明 → [即時預覽工作流](../../skills/ppt-master/workflows/live-preview.md)
 
 ---
 
-## 旁白与视频
+## 轉場與動畫
 
-把演讲者备注按页生成语音旁白,把音频嵌回 PPTX,再用 PowerPoint 导出带旁白和转场的 MP4——无需第三方工具。
+匯出的 deck 自帶**頁間轉場**和**頁內元素入場動畫**,輸出為真正的 OOXML——不是嵌入影片。預設元素進入頁面時自動級聯入場,無需設定,在 PowerPoint 和 Keynote 中原生播放,無需額外工具。只有當你想要特定順序、效果或時序時,才需要定製。
+
+完整說明 → [轉場與動畫](./animations.md)
+
+---
+
+## 旁白與影片
+
+把演講者備註按頁生成語音旁白,把音訊嵌回 PPTX,再用 PowerPoint 匯出帶旁白和轉場的 MP4——無需第三方工具。
 
 ```
 你：给这个 PPT 生成音频,并把音频嵌回重新导出
 你：给这个 PPT 生成音频
 ```
 
-旁白默认用 `edge-tts`(约 90 种语区);需要更高质量音色可配置云端 provider。AI 会按 deck 语言推荐音色,生成前只问你一次。
+旁白預設用 `edge-tts`(約 90 種語區);需要更高質量音色可配置雲端 provider。AI 會按 deck 語言推薦音色,生成前只問你一次。
 
-完整说明 → [音频旁白与视频导出](./audio-narration.md)
-
----
-
-## 使用复刻音色
-
-用 ElevenLabs / MiniMax / Qwen / CosyVoice 复刻你自己的声音(或在授权前提下复刻演讲者的声音),让整份 deck 用 *你的声音* 念出来。在 provider 控制台复刻一次,把得到的 `voice_id` 传进来,PPT Master 就会用这个音色逐页朗读备注并嵌回 PPTX。
-
-完整说明 → [使用复刻音色](./audio-narration.md#使用复刻音色)
+完整說明 → [音訊旁白與影片匯出](./audio-narration.md)
 
 ---
 
-## 遇到问题怎么办
+## 使用復刻音色
 
-[常见问题(FAQ)](./faq.md) 是持续更新的排查真值——来自真实用户反馈。最常见情况的快速指引:
+用 ElevenLabs / MiniMax / Qwen / CosyVoice 復刻你自己的聲音(或在授權前提下復刻演講者的聲音),讓整份 deck 用 *你的聲音* 念出來。在 provider 控制台復刻一次,把得到的 `voice_id` 傳進來,PPT Master 就會用這個音色逐頁朗讀備註並嵌回 PPTX。
 
-| 情况 | 先试这个 |
+完整說明 → [使用復刻音色](./audio-narration.md#使用復刻音色)
+
+---
+
+## 遇到問題怎麼辦
+
+[常見問題(FAQ)](./faq.md) 是持續更新的排查真值——來自真實使用者反饋。最常見情況的快速指引:
+
+| 情況 | 先試這個 |
 |---|---|
-| AI 跑偏或漏了步骤 | 让它重新读 `skills/ppt-master/SKILL.md`。 |
-| 视觉质量不理想 | 换成大上下文 Claude 模型 + `gpt-image-2`——harness 决定下限,模型决定上限。 |
-| 文字溢出或元素重叠 | 重跑那一页,或用实时预览修;详见 [FAQ](./faq.md)。 |
-| 没有生图 API key | 零配置的网络图片搜索仍可作为兜底;见 [FAQ](./faq.md)。 |
-| 动画或部分效果在别的软件里不对 | 文件是标准 `.pptx`,PowerPoint / Keynote / WPS / LibreOffice 都能打开;元素动画在 PowerPoint 2016+ 和 Keynote 还原最完整,更老的 Office 会把部分效果降级为 Appear。 |
-| 担心长 deck 撑爆上下文 | 生成可走分段模式;详见 [FAQ](./faq.md)。 |
+| AI 跑偏或漏了步驟 | 讓它重新讀 `skills/ppt-master/SKILL.md`。 |
+| 視覺質量不理想 | 換成大上下文 Claude 模型 + `gpt-image-2`——harness 決定下限,模型決定上限。 |
+| 文字溢位或元素重疊 | 重跑那一頁,或用即時預覽修;詳見 [FAQ](./faq.md)。 |
+| 沒有生圖 API key | 零配置的網路圖片搜尋仍可作為兜底;見 [FAQ](./faq.md)。 |
+| 動畫或部分效果在別的軟體裡不對 | 檔案是標準 `.pptx`,PowerPoint / Keynote / WPS / LibreOffice 都能開啟;元素動畫在 PowerPoint 2016+ 和 Keynote 還原最完整,更老的 Office 會把部分效果降級為 Appear。 |
+| 擔心長 deck 撐爆上下文 | 生成可走分段模式;詳見 [FAQ](./faq.md)。 |
 
-模型选择、费用、图表可编辑性、自定义模板等,都在 [FAQ](./faq.md) 里。
+模型選擇、費用、圖表可編輯性、自定義模板等,都在 [FAQ](./faq.md) 裡。

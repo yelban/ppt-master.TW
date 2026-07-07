@@ -11,7 +11,7 @@ PPT Master can turn the speaker notes into per-slide narration via [`edge-tts`](
 ## How it works
 
 1. **Speaker notes are written as pure spoken narration.** PPT Master's notes spec deliberately produces TTS-friendly prose — no bracketed stage markers, no `Key points:` / `Duration:` meta-lines — so what is read aloud is exactly what's on the page.
-2. **AI picks the voice for you.** When you ask for narration, the AI checks the deck's primary language (`zh-CN` / `en-US` / `ja-JP` / `ko-KR` / …), pulls the selected provider's voice catalog, and recommends 3–6 candidates with a one-line tone description for each (e.g. "稳重男声，适合财报"). It also recommends a speaking rate or provider defaults based on notes density.
+2. **AI picks the voice for you.** When you ask for narration, the AI checks the deck's primary language (`zh-TW` / `en-US` / `ja-JP` / `ko-KR` / …), pulls the selected provider's voice catalog, and recommends 3–6 candidates with a one-line tone description for each (e.g. "穩重男聲，適合財報"). It also recommends a speaking rate or provider defaults based on notes density.
 3. **One question, one answer.** You are asked once — voice, rate, and "embed audio back into PPTX (yes/no)" — all with a recommended default. Reply "ok" to accept everything, or just call out the part you want to change.
 4. **Generation runs.** The script writes page-level audio to `audio/`, then (if you kept embedding) re-exports the deck with audio attached. Long-audio import and automatic long-audio splitting are not supported.
 
@@ -38,7 +38,7 @@ The AI handles the rest.
 
 ## Languages
 
-Anything `edge-tts` supports — roughly 90 locales including all major Chinese variants (`zh-CN` / `zh-TW` / `zh-HK` Cantonese), English (US/UK/AU/IN), Japanese, Korean, French, German, Spanish, Portuguese, Russian, Arabic, etc. List voices for any locale yourself with:
+Anything `edge-tts` supports — roughly 90 locales including all major Chinese variants (`zh-TW` / `zh-TW` / `zh-HK` Cantonese), English (US/UK/AU/IN), Japanese, Korean, French, German, Spanish, Portuguese, Russian, Arabic, etc. List voices for any locale yourself with:
 
 ```bash
 python3 skills/ppt-master/scripts/notes_to_audio.py --list-voices --locale ja-JP
@@ -54,7 +54,7 @@ python3 skills/ppt-master/scripts/total_md_split.py <project_path>
 
 # 2A. Generate MP3s with edge-tts (default, no API key)
 python3 skills/ppt-master/scripts/notes_to_audio.py <project_path> \
-  --voice zh-CN-YunjianNeural --rate +0%
+  --voice zh-TW-YunjianNeural --rate +0%
 
 # 2B. Or generate MP3s with ElevenLabs (requires ELEVENLABS_API_KEY)
 export ELEVENLABS_API_KEY="your-elevenlabs-api-key"
@@ -111,9 +111,9 @@ Four cloud providers — **ElevenLabs**, **MiniMax**, **Qwen**, **CosyVoice** �
 | Provider | Where to clone | Sample length |
 |---|---|---|
 | ElevenLabs | [elevenlabs.io](https://elevenlabs.io) → Voices → Add Voice → Instant / Professional Voice Cloning | 1 min (Instant) / 30 min+ (Professional) |
-| MiniMax | [platform.minimaxi.com](https://platform.minimaxi.com) → 语音克隆 (Voice Clone) | ~10 s – 5 min |
-| Qwen TTS | [DashScope console](https://dashscope.console.aliyun.com) → 语音合成 → 声音复刻 | ~10 s – 5 min |
-| CosyVoice | [DashScope console](https://dashscope.console.aliyun.com) → 语音合成 → 音色复刻 | ~10 s – 5 min |
+| MiniMax | [platform.minimaxi.com](https://platform.minimaxi.com) → 語音克隆 (Voice Clone) | ~10 s – 5 min |
+| Qwen TTS | [DashScope console](https://dashscope.console.aliyun.com) → 語音合成 → 聲音復刻 | ~10 s – 5 min |
+| CosyVoice | [DashScope console](https://dashscope.console.aliyun.com) → 語音合成 → 音色復刻 | ~10 s – 5 min |
 
 **How to use it after cloning** — in chat, just say so. The AI will skip the voice-recommendation step and use your `voice_id` directly:
 

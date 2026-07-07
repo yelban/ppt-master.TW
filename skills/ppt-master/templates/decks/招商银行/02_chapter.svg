@@ -13,13 +13,13 @@
   <rect x="96" y="144" width="10" height="320" fill="#FFFFFF" fill-opacity="0.9"/>
   <rect x="122" y="144" width="2" height="320" fill="#FFFFFF" fill-opacity="0.45"/>
 
-  <text x="154" y="258" fill="#FFFFFF" fill-opacity="0.12" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="220" font-weight="700">
+  <text x="154" y="258" fill="#FFFFFF" fill-opacity="0.12" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="220" font-weight="700">
     {{CHAPTER_NUM}}
   </text>
-  <text x="154" y="334" fill="#FFFFFF" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="46" font-weight="700">
+  <text x="154" y="334" fill="#FFFFFF" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="46" font-weight="700">
     {{CHAPTER_TITLE}}
   </text>
-  <text x="154" y="392" fill="#FFFFFF" fill-opacity="0.82" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="20">
+  <text x="154" y="392" fill="#FFFFFF" fill-opacity="0.82" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="20">
     {{CHAPTER_DESC}}
   </text>
   <line x1="154" y1="432" x2="486" y2="432" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.45"/>

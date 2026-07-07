@@ -70,7 +70,7 @@ primary_color: "#004098"
 
 ### Font Stack
 
-**Font Stack**: `"Microsoft YaHei", "微软雅黑", "SimHei", Arial, Calibri, sans-serif`
+**Font Stack**: `"Microsoft JhengHei", "Microsoft JhengHei", "Microsoft JhengHei", Arial, Calibri, sans-serif`
 
 ### Font Size Hierarchy
 

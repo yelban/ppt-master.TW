@@ -29,24 +29,24 @@ INHERITABLE_ATTRS = [
 
 # Known East Asian fonts
 EA_FONTS = {
-    'PingFang SC', 'PingFang TC', 'PingFang HK',
-    'Microsoft YaHei', 'Microsoft JhengHei',
-    'SimSun', 'SimHei', 'FangSong', 'KaiTi', 'STKaiti',
+    'PingFang TC', 'PingFang TC', 'PingFang HK',
+    'Microsoft JhengHei', 'Microsoft JhengHei',
+    'PMingLiU', 'Microsoft JhengHei', 'FangSong', 'KaiTi', 'STKaiti',
     'STHeiti', 'STSong', 'STFangsong', 'STXihei', 'STZhongsong',
-    'Hiragino Sans', 'Hiragino Sans GB', 'Hiragino Mincho ProN',
+    'Hiragino Sans', 'PingFang TC', 'Hiragino Mincho ProN',
     'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro',
     'Hiragino Mincho Pro',
     'Noto Sans SC', 'Noto Sans TC', 'Noto Serif SC', 'Noto Serif TC',
     'Noto Sans JP', 'Noto Serif JP', 'Noto Sans CJK JP',
-    'Source Han Sans SC', 'Source Han Sans TC',
+    'Noto Sans TC', 'Source Han Sans TC',
     'Source Han Serif SC', 'Source Han Serif TC',
     'Source Han Sans JP', 'Source Han Serif JP',
     'WenQuanYi Micro Hei', 'WenQuanYi Zen Hei',
     'YouYuan', 'LiSu', 'HuaWenKaiTi',
     'Songti SC', 'Songti TC',
     # Windows 10/11 + Office default / common Simplified Chinese
-    'DengXian', 'DengXian Light', 'DengXian Bold', 'Microsoft YaHei UI',
-    # Office display Chinese (华文 / 方正) — usually title-only, not on every client
+    'DengXian', 'DengXian Light', 'DengXian Bold', 'Microsoft JhengHei UI',
+    # Office display Chinese (華文 / 方正) — usually title-only, not on every client
     'STXingkai', 'STLiti', 'STXinwei', 'STHupo', 'STCaiyun',
     'FZShuTi', 'FZYaoti',
     # Common Traditional Chinese (Office)
@@ -64,36 +64,36 @@ SYSTEM_FONTS = {'system-ui', '-apple-system', 'BlinkMacSystemFont'}
 
 # macOS/Linux-only fonts -> Windows equivalents
 FONT_FALLBACK_WIN = {
-    'PingFang SC': 'Microsoft YaHei',
+    'PingFang TC': 'Microsoft JhengHei',
     'PingFang TC': 'Microsoft JhengHei',
     'PingFang HK': 'Microsoft JhengHei',
-    'Hiragino Sans': 'Microsoft YaHei',
-    'Hiragino Sans GB': 'Microsoft YaHei',
-    'Hiragino Mincho ProN': 'SimSun',
-    'STHeiti': 'SimHei',
-    'STSong': 'SimSun',
+    'Hiragino Sans': 'Microsoft JhengHei',
+    'PingFang TC': 'Microsoft JhengHei',
+    'Hiragino Mincho ProN': 'PMingLiU',
+    'STHeiti': 'Microsoft JhengHei',
+    'STSong': 'PMingLiU',
     'STKaiti': 'KaiTi',
     'STFangsong': 'FangSong',
-    'STXihei': 'Microsoft YaHei',
-    'STZhongsong': 'SimSun',
-    'Songti SC': 'SimSun',
-    'Songti TC': 'SimSun',
-    'Noto Sans SC': 'Microsoft YaHei',
+    'STXihei': 'Microsoft JhengHei',
+    'STZhongsong': 'PMingLiU',
+    'Songti SC': 'PMingLiU',
+    'Songti TC': 'PMingLiU',
+    'Noto Sans SC': 'Microsoft JhengHei',
     'Noto Sans TC': 'Microsoft JhengHei',
-    'Noto Serif SC': 'SimSun',
-    'Noto Serif TC': 'SimSun',
+    'Noto Serif SC': 'PMingLiU',
+    'Noto Serif TC': 'PMingLiU',
     # Japanese: keep as-is if user specified (PowerPoint will fallback if uninstalled)
     # 'Noto Sans JP': → keep as 'Noto Sans JP' (do not map)
     # 'メイリオ': → keep as 'メイリオ' (Meiryo alias)
     'メイリオ': 'Meiryo',
-    'Source Han Sans SC': 'Microsoft YaHei',
+    'Noto Sans TC': 'Microsoft JhengHei',
     'Source Han Sans TC': 'Microsoft JhengHei',
-    'Source Han Serif SC': 'SimSun',
-    'Source Han Serif TC': 'SimSun',
+    'Source Han Serif SC': 'PMingLiU',
+    'Source Han Serif TC': 'PMingLiU',
     'Source Han Sans JP': 'Noto Sans JP',
     'Source Han Serif JP': 'Noto Serif JP',
-    'WenQuanYi Micro Hei': 'Microsoft YaHei',
-    'WenQuanYi Zen Hei': 'Microsoft YaHei',
+    'WenQuanYi Micro Hei': 'Microsoft JhengHei',
+    'WenQuanYi Zen Hei': 'Microsoft JhengHei',
     # Latin fonts (macOS / Linux / Web -> Windows)
     'SF Pro': 'Segoe UI',
     'SF Pro Display': 'Segoe UI',
@@ -120,10 +120,10 @@ GENERIC_FONT_MAP = {
 }
 
 # When the latin font is serif and no EA font is specified,
-# prefer SimSun (serif CJK) over Microsoft YaHei (sans-serif CJK).
+# prefer PMingLiU (serif CJK) over Microsoft JhengHei (sans-serif CJK).
 _SERIF_LATIN = {
     'Times New Roman', 'Georgia', 'Garamond', 'Palatino', 'Palatino Linotype',
-    'Book Antiqua', 'Cambria', 'SimSun', 'Liberation Serif', 'DejaVu Serif',
+    'Book Antiqua', 'Cambria', 'PMingLiU', 'Liberation Serif', 'DejaVu Serif',
 }
 
 # SVG stroke-dasharray -> DrawingML prstDash
@@ -538,7 +538,7 @@ def parse_font_family(font_family_str: str) -> dict[str, str]:
     Windows. macOS/Linux-only fonts are mapped via FONT_FALLBACK_WIN.
     """
     if not font_family_str:
-        return {'latin': 'Segoe UI', 'ea': 'Microsoft YaHei'}
+        return {'latin': 'Segoe UI', 'ea': 'Microsoft JhengHei'}
 
     fonts = [f.strip().strip("'\"") for f in font_family_str.split(',')]
     latin_font = None
@@ -566,7 +566,7 @@ def parse_font_family(font_family_str: str) -> dict[str, str]:
 
     # EA must always be a CJK-capable font
     if not ea_font:
-        ea_font = 'SimSun' if final_latin in _SERIF_LATIN else 'Microsoft YaHei'
+        ea_font = 'PMingLiU' if final_latin in _SERIF_LATIN else 'Microsoft JhengHei'
 
     return {'latin': final_latin, 'ea': ea_font}
 
@@ -582,13 +582,13 @@ def is_cjk_char(ch: str) -> bool:
 
 def detect_text_lang(text: str) -> str:
     """Return a DrawingML language tag for a text run."""
-    return 'zh-CN' if any(is_cjk_char(ch) for ch in text) else 'en-US'
+    return 'zh-TW' if any(is_cjk_char(ch) for ch in text) else 'en-US'
 
 
 def resolve_text_run_fonts(text: str, fonts: dict[str, str]) -> dict[str, str]:
     """Return DrawingML latin/ea/cs typefaces for one text run."""
     latin = fonts['latin']
-    if detect_text_lang(text) == 'zh-CN':
+    if detect_text_lang(text) == 'zh-TW':
         ea = fonts['ea']
     else:
         ea = latin

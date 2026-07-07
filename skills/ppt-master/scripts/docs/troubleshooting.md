@@ -52,7 +52,7 @@ Do not export directly from `svg_output/` when `svg_final/` exists.
 2. Export with the project-relative audio directory:
 
 ```bash
-python3 scripts/notes_to_audio.py <project_path> --voice zh-CN-XiaoxiaoNeural
+python3 scripts/notes_to_audio.py <project_path> --voice zh-TW-XiaoxiaoNeural
 python3 scripts/svg_to_pptx.py <project_path> --recorded-narration audio
 ```
 

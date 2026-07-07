@@ -1,3 +1,51 @@
+/* ---- Traditional Chinese web fonts ---- */
+@font-face {
+    font-family: "GenSekiGothic2TW";
+    src: url("https://cdn.jsdelivr.net/gh/yelban/font-genseki-tw@latest/GenSekiGothic2TW-Regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "GenSenRounded2TW";
+    src: url("https://cdn.jsdelivr.net/gh/yelban/font-gensen-tw@latest/GenSenRounded2TW-Regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "GenRyuMin2TW";
+    src: url("https://cdn.jsdelivr.net/gh/yelban/font-genryu-tw@latest/GenRyuMin2TW-Regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "LXGWWenKaiTC";
+    src: url("https://cdn.jsdelivr.net/gh/yelban/font-lxgw-wenkai-tc@latest/LXGWWenKaiTC-Regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Iansui";
+    src: url("https://cdn.jsdelivr.net/gh/yelban/font-iansui@latest/Iansui-Regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "JasonHandwriting1";
+    src: url("https://cdn.jsdelivr.net/gh/yelban/font-jason1@latest/JasonHandwriting1-Regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "JasonHandwriting2";
+    src: url("https://cdn.jsdelivr.net/gh/yelban/font-jason2@latest/JasonHandwriting2-Regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+:root {
+    --tw-ui-font-stack: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "GenSekiGothic2TW", "GenSenRounded2TW", "GenRyuMin2TW", "LXGWWenKaiTC", "Iansui", "JasonHandwriting1", "JasonHandwriting2", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+/* ---- End Traditional Chinese web fonts ---- */
+
 /* ============================================================
    PPT Master - SVG Editor  |  Dark theme, three-panel layout
    ============================================================ */
@@ -11,7 +59,7 @@
 
 html, body {
     height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--tw-ui-font-stack);
     font-size: 14px;
     color: #e0e0e0;
     background: #1a1a2e;

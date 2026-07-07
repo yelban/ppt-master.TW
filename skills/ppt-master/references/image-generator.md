@@ -359,8 +359,8 @@ The table below is **a reference for the one case where you want the in-image le
 | `spec_lock typography.font_family` contains | Optional descriptor if you want to echo the SVG body |
 |---|---|
 | `KaiTi` / `FangSong` / `Georgia` / serif families | "elegant serif lettering, refined letterforms" |
-| `Microsoft YaHei` / `PingFang SC` / `Arial` / sans-serif families | "clean geometric sans-serif, modern letterforms" |
-| `SimHei` / `Impact` / `Arial Black` / display families | "bold display lettering, heavy expressive strokes" |
+| `Microsoft JhengHei` / `PingFang TC` / `Arial` / sans-serif families | "clean geometric sans-serif, modern letterforms" |
+| `Microsoft JhengHei` / `Impact` / `Arial Black` / display families | "bold display lettering, heavy expressive strokes" |
 | `Consolas` / `Courier New` / monospace families | "monospace technical lettering, fixed-width" |
 | sketch-notes / ink-notes rendering, or no family specified | "hand-lettered organic strokes, natural variation" |
 
@@ -481,7 +481,7 @@ C (AI-generated) supports three implementation modes sharing one `image_prompts.
    - `api` → **Path A** (`image_gen.py --manifest`).
    - `host-native` → **Path B** (host's native image tool) — skip A and do **not** run `image_gen.py --manifest`, *even if `IMAGE_BACKEND` is configured*.
    - `manual` → **Offline Manual** (write prompts, render the Markdown sidecar, hand off; do **not** run `image_gen.py --manifest`).
-   ("use Codex's image tool" / "走接口生成" in chat = `host-native` / `api`.) If the chosen path turns out unavailable (e.g. `host-native` but the host has no image tool), fall through along the chain below from that point. Only when no source named a path (chat silent, and `image_ai_path` `auto` / absent) does the automatic chain decide.
+   ("use Codex's image tool" / "走介面生成" in chat = `host-native` / `api`.) If the chosen path turns out unavailable (e.g. `host-native` but the host has no image tool), fall through along the chain below from that point. Only when no source named a path (chat silent, and `image_ai_path` `auto` / absent) does the automatic chain decide.
 1. **Try Path A** — if `IMAGE_BACKEND` is configured (env or `.env`), run `image_gen.py --manifest`. If it fails twice in a row, fall to Path B.
 2. **Try Path B** — if `IMAGE_BACKEND` was not configured (A skipped), or A failed, and the host has a native image tool (Codex / Antigravity / Claude Code / similar), the agent invokes the host's image capability directly.
 3. **Fall to C (Offline Manual)** — if B is also unavailable (no host-native tool) or fails, write prompts to `images/image_prompts.json` and hand off to the user.

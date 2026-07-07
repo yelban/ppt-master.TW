@@ -206,7 +206,7 @@ Record the confirmed audio config into `project.json`:
 {
   "audio": {
     "provider": "edge",
-    "voice": "zh-CN-YunjianNeural",
+    "voice": "zh-TW-YunjianNeural",
     "rate": "+0%"
   }
 }

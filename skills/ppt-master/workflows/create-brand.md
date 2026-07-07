@@ -14,7 +14,7 @@ This workflow edits the global brand library, not any specific `projects/<x>/`. 
 
 | User signal | Action |
 |---|---|
-| "set up brand" / "extract brand from this logo" / 建立品牌 / 做品牌规范 | Run this workflow |
+| "set up brand" / "extract brand from this logo" / 建立品牌 / 做品牌規範 | Run this workflow |
 | User provides a brand asset (logo / brand site URL / branded PPTX / brand PDF) and wants it locked across future projects | Run this workflow |
 | User mentions brand color or font once for a single deck only | Skip — handle inline via Strategist h.5 |
 | `templates/brands/<requested_id>/` already exists | Ask: update / replace / use a new id — never silently overwrite |

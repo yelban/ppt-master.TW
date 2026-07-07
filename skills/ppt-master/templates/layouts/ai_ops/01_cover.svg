@@ -13,10 +13,10 @@
   <rect x="60" y="280" width="1220" height="60" fill="#F2F2F2" />
 
   <!-- Title Group -->
-  <text x="640" y="220" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="56" font-weight="bold" fill="#C00000" text-anchor="middle">{{TITLE}}</text>
+  <text x="640" y="220" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="56" font-weight="bold" fill="#C00000" text-anchor="middle">{{TITLE}}</text>
 
   <!-- Subtitle -->
-  <text x="640" y="320" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="22" fill="#666666" text-anchor="middle">{{SUBTITLE}}</text>
+  <text x="640" y="320" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="22" fill="#666666" text-anchor="middle">{{SUBTITLE}}</text>
 
   <!-- Decorative Numbered Badges (referencing architecture style) -->
   <rect x="200" y="400" width="40" height="40" fill="#C00000" />
@@ -36,26 +36,26 @@
 
   <!-- Blue Scenario Tags -->
   <rect x="250" y="400" width="120" height="40" fill="#2E75B6" />
-  <text x="310" y="427" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">智能运维</text>
+  <text x="310" y="427" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">智慧運維</text>
 
   <rect x="450" y="400" width="120" height="40" fill="#2E75B6" />
-  <text x="510" y="427" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">数字员工</text>
+  <text x="510" y="427" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">數字員工</text>
 
   <rect x="650" y="400" width="120" height="40" fill="#2E75B6" />
-  <text x="710" y="427" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">自动化测试</text>
+  <text x="710" y="427" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">自動化測試</text>
 
   <rect x="850" y="400" width="120" height="40" fill="#2E75B6" />
-  <text x="910" y="427" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">故障诊断</text>
+  <text x="910" y="427" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">故障診斷</text>
 
   <rect x="1050" y="400" width="120" height="40" fill="#2E75B6" />
-  <text x="1110" y="427" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">开放共享</text>
+  <text x="1110" y="427" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">開放共享</text>
 
   <!-- Dashed Separator -->
   <line x1="120" y1="480" x2="1160" y2="480" stroke="#E7E6E6" stroke-width="1" stroke-dasharray="5 5" />
 
   <!-- Author & Date -->
-  <text x="640" y="560" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#333333" text-anchor="middle">{{AUTHOR}}</text>
-  <text x="640" y="600" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="18" fill="#999999" text-anchor="middle">{{DATE}}</text>
+  <text x="640" y="560" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="20" fill="#333333" text-anchor="middle">{{AUTHOR}}</text>
+  <text x="640" y="600" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="18" fill="#999999" text-anchor="middle">{{DATE}}</text>
 
   <!-- Bottom Blue Band -->
   <rect x="0" y="690" width="1280" height="30" fill="#2E75B6" />

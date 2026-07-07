@@ -220,7 +220,7 @@ Each `notes` value is **pure spoken narration**: write only what a presenter wou
 | Rule | Detail |
 |---|---|
 | Length | 2–5 natural sentences carrying the page's core message; cover / chapter / ending pages can be one or two sentences |
-| Transitions | Carry page-to-page flow in the opening sentence as natural prose ("在明确了背景之后……" / "Having framed X, let's turn to Y") — never bracketed `[过渡]` / `[Transition]` tags |
+| Transitions | Carry page-to-page flow in the opening sentence as natural prose ("在明確了背景之後……" / "Having framed X, let's turn to Y") — never bracketed `[过渡]` / `[Transition]` tags |
 | Plain prose only | No `#` heading line, no `- ` bullet lists, no `要点：① …` / `Key points:` lines, no `时长：2分钟` / `Duration:` annotations — embedded notes keep them verbatim and TTS would read them aloud |
 | Number readability | Spell out figures when literal TTS pronunciation is awkward (Chinese "百分之六十八" over "68%"; plain English integers and percentages are fine) |
 | One language | Match the deck's language; do not mix languages inside one note |

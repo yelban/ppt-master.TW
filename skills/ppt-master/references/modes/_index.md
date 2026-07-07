@@ -31,8 +31,8 @@ Each mode has its own file with: narrative skeleton, page-structure tendencies, 
 | Strategic decision / analysis / board / investor | `pyramid` | `narrative` |
 | Pitch / case study / origin story / campaign arc | `narrative` | `showcase` |
 | Course / onboarding / how-to / science explainer | `instructional` | `pyramid` |
-| Product launch / brand reveal / event opener / keynote / 发布会 / TED | `showcase` | `narrative` |
-| Status update / reference / catalog / FAQ / meeting pack / 周报 / 参考 | `briefing` | `pyramid` |
+| Product launch / brand reveal / event opener / keynote / 釋出會 / TED | `showcase` | `narrative` |
+| Status update / reference / catalog / FAQ / meeting pack / 週報 / 參考 | `briefing` | `pyramid` |
 
 > No single signal dominates — read the deck's actual purpose from `c. Key Information`. When two modes fit, follow the **primary** intent of the body pages, not the cover. A data review legitimately runs almost entirely `pyramid`; do not force variety.
 

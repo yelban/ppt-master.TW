@@ -1,20 +1,20 @@
-# 模板架构：Brand / Layout / Deck 三分类
+# 模板架構：Brand / Layout / Deck 三分類
 
-> 本文是**架构对齐文档**，定义"模板"在数据模型层面的三种身份、各自的 `design_spec.md` 字段集、以及多路径合成与冲突解决规则。面向贡献者与 AI 工作流，回答"一个模板目录里应该写什么、不写什么；多个模板同时给时怎么合成"。
+> 本文是**架構對齊檔案**，定義"模板"在資料模型層面的三種身份、各自的 `design_spec.md` 欄位集、以及多路徑合成與衝突解決規則。面向貢獻者與 AI 工作流，回答"一個模板目錄裡應該寫什麼、不寫什麼；多個模板同時給時怎麼合成"。
 >
-> 用户视角的用法（怎么触发、怎么选）见 [`templates-guide.md`](./templates-guide.md)；本文不重复。
+> 使用者視角的用法（怎麼觸發、怎麼選）見 [`templates-guide.md`](./templates-guide.md)；本文不重複。
 
 ---
 
-## 一、三分类
+## 一、三分類
 
-| 分类 | 物理目录 | 写什么 | 不写什么 | 出处工作流 |
+| 分類 | 物理目錄 | 寫什麼 | 不寫什麼 | 出處工作流 |
 |---|---|---|---|---|
-| **Brand** | `templates/brands/<id>/` | 仅身份段：color / typography / logo / voice / icon style | 不写 canvas、page structure、SVG roster | `workflows/create-brand.md` |
-| **Layout** | `templates/layouts/<id>/` | 仅结构段：canvas / page structure / page types / SVG roster | 不写品牌身份（无 logo、无品牌色硬约束） | `workflows/create-template.md`（layout 分支）|
-| **Deck** | `templates/decks/<id>/` | 全段：身份段 + 结构段 + 中间段（template overview） | —— | `workflows/create-template.md`（deck 分支，默认）|
+| **Brand** | `templates/brands/<id>/` | 僅身份段：color / typography / logo / voice / icon style | 不寫 canvas、page structure、SVG roster | `workflows/create-brand.md` |
+| **Layout** | `templates/layouts/<id>/` | 僅結構段：canvas / page structure / page types / SVG roster | 不寫品牌身份（無 logo、無品牌色硬約束） | `workflows/create-template.md`（layout 分支）|
+| **Deck** | `templates/decks/<id>/` | 全段：身份段 + 結構段 + 中間段（template overview） | —— | `workflows/create-template.md`（deck 分支，預設）|
 
-三者是**三种并列的 reference bundle**，物理目录与 frontmatter `kind` 字段双向对齐：
+三者是**三種並列的 reference bundle**，物理目錄與 frontmatter `kind` 欄位雙向對齊：
 
 ```yaml
 # templates/brands/anthropic/design_spec.md
@@ -36,27 +36,27 @@ kind: deck
 ---
 ```
 
-### 三段的字段切分
+### 三段的欄位切分
 
-为了让多路径合成能干净覆盖，所有字段按段归属，**段级整段替换是默认粒度**：
+為了讓多路徑合成能幹淨覆蓋，所有欄位按段歸屬，**段級整段替換是預設粒度**：
 
-| 段 | 包含的章节 | 归属（覆盖优先级）|
+| 段 | 包含的章節 | 歸屬（覆蓋優先順序）|
 |---|---|---|
-| **身份段** | Color Scheme / Typography / Logo / Voice & Tone / Icon Style | brand 覆盖 |
-| **结构段** | Canvas Specification / Page Structure / Page Types / SVG Roster | layout 覆盖 |
-| **中间段** | Template Overview（use cases / design intent / page rhythm 等叙事字段）| deck 独有；brand / layout 不写 |
+| **身份段** | Color Scheme / Typography / Logo / Voice & Tone / Icon Style | brand 覆蓋 |
+| **結構段** | Canvas Specification / Page Structure / Page Types / SVG Roster | layout 覆蓋 |
+| **中間段** | Template Overview（use cases / design intent / page rhythm 等敘事欄位）| deck 獨有；brand / layout 不寫 |
 
-### 为什么需要 Deck 这一类
+### 為什麼需要 Deck 這一類
 
-Deck 是一份现存 PPT 的"复刻全息"——SVG 几何为该套配色和字体画的，身份与结构在原 PPT 里已经实战搭配。它的价值是「已验证的整体感」，是 layout + brand 自由拼合未必能达到的成品。
+Deck 是一份現存 PPT 的"復刻全息"——SVG 幾何為該套配色和字型畫的，身份與結構在原 PPT 裡已經實戰搭配。它的價值是「已驗證的整體感」，是 layout + brand 自由拼合未必能達到的成品。
 
-但 Deck **不是"不可篡改的复刻"**——它是"作为默认底图的复刻，可被显式 brand / layout 覆盖"。这给了用户最大自由度：默认拿到一份完整方案，需要时显式换身份或换结构。
+但 Deck **不是"不可篡改的復刻"**——它是"作為預設底圖的復刻，可被顯式 brand / layout 覆蓋"。這給了使用者最大自由度：預設拿到一份完整方案，需要時顯式換身份或換結構。
 
 ---
 
-## 二、各分类的 `design_spec.md` Schema
+## 二、各分類的 `design_spec.md` Schema
 
-字段集只规定**必须写**的部分。「非必要不表明」——当前 schema 没列出的字段，不写。
+欄位集只規定**必須寫**的部分。「非必要不表明」——當前 schema 沒列出的欄位，不寫。
 
 ### Brand schema
 
@@ -71,18 +71,18 @@ primary_color: "<HEX>"
 ---
 ```
 
-**正文章节**（身份段全集）
+**正文章節**（身份段全集）
 
-| 节 | 标题 | 必写字段 |
+| 節 | 標題 | 必寫欄位 |
 |---|---|---|
 | I | Brand Overview | Brand Name / Use Cases / Tone |
-| II | Color Scheme | role / HEX / provenance（`fact` 官方真值 \| `approx` 推导）/ notes |
+| II | Color Scheme | role / HEX / provenance（`fact` 官方真值 \| `approx` 推導）/ notes |
 | III | Typography | role / family / weight |
-| IV | Logo | file / form / usage + clearspace 与组合规则 |
+| IV | Logo | file / form / usage + clearspace 與組合規則 |
 | V | Voice & Tone | formality / person / emoji / abbreviation 策略 |
-| VI | Icon Style | preference（stroke / filled / duotone …）+ 推荐字库 |
+| VI | Icon Style | preference（stroke / filled / duotone …）+ 推薦字型檔 |
 
-**不允许出现**：canvas viewBox、page types、SVG roster——这些是 layout 的职责。
+**不允許出現**：canvas viewBox、page types、SVG roster——這些是 layout 的職責。
 
 ### Layout schema
 
@@ -99,17 +99,17 @@ page_types: [<cover, toc, chapter, content, ending, ...>]
 ---
 ```
 
-**正文章节**（结构段全集 + Template Overview）
+**正文章節**（結構段全集 + Template Overview）
 
-| 节 | 标题 | 必写字段 |
+| 節 | 標題 | 必寫欄位 |
 |---|---|---|
-| I | Template Overview | Use Cases / Design Intent / Page Rhythm 建议 |
+| I | Template Overview | Use Cases / Design Intent / Page Rhythm 建議 |
 | II | Canvas Specification | Format / Dimensions / viewBox / Margins / Content Area |
-| III | Page Structure | General Layout Grid / Decorative DNA / Navigation 规则 |
-| IV | Page Types | 每种页面的角色（cover / toc / chapter / content / ending …）与变体说明 |
-| V | SVG Page Roster | 文件清单 + 用途，每个文件对应 III/IV 哪一类 |
+| III | Page Structure | General Layout Grid / Decorative DNA / Navigation 規則 |
+| IV | Page Types | 每種頁面的角色（cover / toc / chapter / content / ending …）與變體說明 |
+| V | SVG Page Roster | 檔案清單 + 用途，每個檔案對應 III/IV 哪一類 |
 
-**不允许出现**：品牌 logo、品牌 voice & tone、官方真值色（`provenance: fact`）——这些是 brand 的职责。Layout 自身没有兜底色/字体（这是定义：layout 不写身份段；色彩与字体在 策略师确认阶段现场决策）。
+**不允許出現**：品牌 logo、品牌 voice & tone、官方真值色（`provenance: fact`）——這些是 brand 的職責。Layout 自身沒有兜底色/字型（這是定義：layout 不寫身份段；色彩與字型在 策略師確認階段現場決策）。
 
 ### Deck schema
 
@@ -126,28 +126,28 @@ primary_color: "<HEX>"
 ---
 ```
 
-**正文章节**（身份段全部 + 结构段全部 + 中间段）
+**正文章節**（身份段全部 + 結構段全部 + 中間段）
 
-| 节 | 标题 | 归属段 |
+| 節 | 標題 | 歸屬段 |
 |---|---|---|
-| I | Template Overview | 中间段 |
-| II | Canvas Specification | 结构段 |
+| I | Template Overview | 中間段 |
+| II | Canvas Specification | 結構段 |
 | III | Color Scheme（含 provenance）| 身份段 |
 | IV | Typography | 身份段 |
 | V | Logo | 身份段 |
 | VI | Voice & Tone | 身份段 |
 | VII | Icon Style | 身份段 |
-| VIII | Page Structure | 结构段 |
-| IX | Page Types | 结构段 |
-| X | SVG Page Roster | 结构段 |
+| VIII | Page Structure | 結構段 |
+| IX | Page Types | 結構段 |
+| X | SVG Page Roster | 結構段 |
 
-> Deck 是身份段 + 结构段全字段的并集，无可选段。这样合成时段级替换粒度统一。
+> Deck 是身份段 + 結構段全欄位的並集，無可選段。這樣合成時段級替換粒度統一。
 
 ---
 
-## 三、三套 index 文件
+## 三、三套 index 檔案
 
-每个 index 跟物理目录一一对应，字段按需精简（参照 [[project-charts-index-full-read-intentional]] 的"meta + summary"模式，但保留对 Strategist 选型有用的结构化元数据）。
+每個 index 跟物理目錄一一對應，欄位按需精簡（參照 [[project-charts-index-full-read-intentional]] 的"meta + summary"模式，但保留對 Strategist 選型有用的結構化後設資料）。
 
 ### `templates/brands/brands_index.json`
 
@@ -160,8 +160,8 @@ primary_color: "<HEX>"
 }
 ```
 
-- 保留 `primary_color` —— Strategist 选 brand 时第一眼就要知道主色
-- 去掉 keywords —— summary 自带英文等价词，AI 用自然语言匹配（沿用 charts 经验）
+- 保留 `primary_color` —— Strategist 選 brand 時第一眼就要知道主色
+- 去掉 keywords —— summary 自帶英文等價詞，AI 用自然語言匹配（沿用 charts 經驗）
 
 ### `templates/layouts/layouts_index.json`
 
@@ -176,8 +176,8 @@ primary_color: "<HEX>"
 }
 ```
 
-- 加 `canvas_format` / `page_count` / `page_types` —— Strategist 选 layout 时要快速判断"页面骨架能不能装下我的 deck"
-- 无 `primary_color` —— layout 无身份
+- 加 `canvas_format` / `page_count` / `page_types` —— Strategist 選 layout 時要快速判斷"頁面骨架能不能裝下我的 deck"
+- 無 `primary_color` —— layout 無身份
 
 ### `templates/decks/decks_index.json`
 
@@ -192,37 +192,37 @@ primary_color: "<HEX>"
 }
 ```
 
-- 含 `primary_color`（deck 自带身份）+ 结构元数据
-- 不展开 `page_types` —— deck 的页面类型与 layout 的相同集合，不冗余记录
+- 含 `primary_color`（deck 自帶身份）+ 結構後設資料
+- 不展開 `page_types` —— deck 的頁面型別與 layout 的相同集合，不冗餘記錄
 
 ---
 
-## 四、多路径合成与冲突解决
+## 四、多路徑合成與衝突解決
 
-### 合成优先级（隐式触发）
+### 合成優先順序（隱式觸發）
 
-用户在第一条消息里给出一组路径，Step 3 按以下表合成 `<project>/templates/design_spec.md`：
+使用者在第一條訊息裡給出一組路徑，Step 3 按以下表合成 `<project>/templates/design_spec.md`：
 
-| 用户路径 | 合成行为 |
+| 使用者路徑 | 合成行為 |
 |---|---|
-| 无 | 跳过 Step 3，走自由设计 |
-| 只 brand | 复制 brand 全部，结构走自由设计 |
-| 只 layout | 复制 layout 全部，身份走自由设计（策略师确认阶段 e/f/g 决策） |
-| 只 deck | 复制 deck 全部 |
-| brand + layout | brand 提供身份段 + layout 提供结构段，沿用 SKILL.md 现有 fusion 表 |
-| brand + deck | brand 段级覆盖 deck 的身份段，结构段与中间段从 deck 拿 |
-| layout + deck | layout 段级覆盖 deck 的结构段，身份段与中间段从 deck 拿 |
-| brand + layout + deck | brand 覆盖身份 + layout 覆盖结构 + deck 提供中间段；身份/结构段的 deck 原值整段丢弃 |
+| 無 | 跳過 Step 3，走自由設計 |
+| 只 brand | 複製 brand 全部，結構走自由設計 |
+| 只 layout | 複製 layout 全部，身份走自由設計（策略師確認階段 e/f/g 決策） |
+| 只 deck | 複製 deck 全部 |
+| brand + layout | brand 提供身份段 + layout 提供結構段，沿用 SKILL.md 現有 fusion 表 |
+| brand + deck | brand 段級覆蓋 deck 的身份段，結構段與中間段從 deck 拿 |
+| layout + deck | layout 段級覆蓋 deck 的結構段，身份段與中間段從 deck 拿 |
+| brand + layout + deck | brand 覆蓋身份 + layout 覆蓋結構 + deck 提供中間段；身份/結構段的 deck 原值整段丟棄 |
 
-### 段级整段替换（默认粒度）
+### 段級整段替換（預設粒度）
 
-合成默认是**段级整段替换**——例如 deck + brand 时，整个 Color Scheme / Typography / Logo / Voice / Icon Style 五段从 brand 拿，**不做字段级混搭**（即不会发生"primary 从 brand 拿、secondary 从 deck 拿"这类隐式混合）。
+合成預設是**段級整段替換**——例如 deck + brand 時，整個 Color Scheme / Typography / Logo / Voice / Icon Style 五段從 brand 拿，**不做欄位級混搭**（即不會發生"primary 從 brand 拿、secondary 從 deck 拿"這類隱式混合）。
 
-字段级微调走 策略师确认阶段这条已有路径——用户在 chat 里说"用 anthropic brand，但 primary 改成 #FF0000"，由 Strategist 在 e/g 现场调整，不在 Step 3 的 fusion 层加字段级语法。
+欄位級微調走 策略師確認階段這條已有路徑——使用者在 chat 裡說"用 anthropic brand，但 primary 改成 #FF0000"，由 Strategist 在 e/g 現場調整，不在 Step 3 的 fusion 層加欄位級語法。
 
-### 同类多份 = git 冲突解决
+### 同類多份 = git 衝突解決
 
-用户给 `brands/anthropic` + `brands/google`（同类多份的任意排列组合）：
+使用者給 `brands/anthropic` + `brands/google`（同類多份的任意排列組合）：
 
 ```
 AI: 你给了两个 brand，检测到段级冲突：
@@ -235,14 +235,14 @@ AI: 你给了两个 brand，检测到段级冲突：
     要 (a) 全部按 Anthropic / (b) 全部按 Google / (c) 逐段挑？
 ```
 
-- 默认无隐式顺序，所有冲突都问
-- 仅在用户选 (c) 才进入逐段问答；不做字段级冲突解决
-- `layout × 2`、`deck × 2`、`brand × 2` 同处理
-- 三类各最多两份（再多让用户先在 chat 里收敛）
+- 預設無隱式順序，所有衝突都問
+- 僅在使用者選 (c) 才進入逐段問答；不做欄位級衝突解決
+- `layout × 2`、`deck × 2`、`brand × 2` 同處理
+- 三類各最多兩份（再多讓使用者先在 chat 裡收斂）
 
-### Provenance 记录
+### Provenance 記錄
 
-合成后的 `<project>/templates/design_spec.md` 顶部必须加：
+合成後的 `<project>/templates/design_spec.md` 頂部必須加：
 
 ```markdown
 > **Fused from:**
@@ -252,43 +252,43 @@ AI: 你给了两个 brand，检测到段级冲突：
 > - conflicts resolved: Color Scheme from anthropic（用户选 a）
 ```
 
-让 AI 和人类都能回溯每段来自哪。
+讓 AI 和人類都能回溯每段來自哪。
 
 ---
 
-## 五、与 SKILL.md Step 3 的关系
+## 五、與 SKILL.md Step 3 的關係
 
-**触发规则不变** —— 仍然是「显式目录路径才触发」（见 [[feedback-template-explicit-path-only]]）。`kind` 字段决定**触发后 AI 怎么处理**：
+**觸發規則不變** —— 仍然是「顯式目錄路徑才觸發」（見 [[feedback-template-explicit-path-only]]）。`kind` 欄位決定**觸發後 AI 怎麼處理**：
 
-| 用户路径指向 | Step 3 行为（按 kind 分支）|
+| 使用者路徑指向 | Step 3 行為（按 kind 分支）|
 |---|---|
-| `kind: brand` | design_spec + 非图片资产 → `<project>/templates/`；logo / 插画 / 图标**位图** → `<project>/images/` |
-| `kind: layout` | design_spec + SVG roster → `<project>/templates/`；**位图**资产 → `<project>/images/` |
-| `kind: deck` | design_spec + 模板 SVG → `<project>/templates/`；logo / 背景 / 其它**位图** → `<project>/images/` |
-| 多路径 | 按上表合成单份 `design_spec.md`；SVG 进 `templates/`、位图进 `images/` 合并复制 |
+| `kind: brand` | design_spec + 非圖片資產 → `<project>/templates/`；logo / 插畫 / 圖示**點陣圖** → `<project>/images/` |
+| `kind: layout` | design_spec + SVG roster → `<project>/templates/`；**點陣圖**資產 → `<project>/images/` |
+| `kind: deck` | design_spec + 模板 SVG → `<project>/templates/`；logo / 背景 / 其它**點陣圖** → `<project>/images/` |
+| 多路徑 | 按上表合成單份 `design_spec.md`；SVG 進 `templates/`、點陣圖進 `images/` 合併複製 |
 
-> 位图统一进项目 `images/`（和 AI / 网络 / 用户图片同一个运行期图片池，SVG 里走 `../images/`）；`templates/` 只放 spec 和模板 SVG 等供 Strategist/Executor 阅读、不被直接渲染的参考材料。
-| 同类多份 | 按上节"git 冲突解决"问答，得到合成结果 |
+> 點陣圖統一進專案 `images/`（和 AI / 網路 / 使用者圖片同一個執行期圖片池，SVG 裡走 `../images/`）；`templates/` 只放 spec 和模板 SVG 等供 Strategist/Executor 閱讀、不被直接渲染的參考材料。
+| 同類多份 | 按上節"git 衝突解決"問答，得到合成結果 |
 
-### 策略师确认阶段在不同 kind 下的收窄
+### 策略師確認階段在不同 kind 下的收窄
 
-Deck 路径下用户已经拿到完整方案，策略师确认阶段收窄到"目标受众 / 页数 / 大纲 / 调性微调"等 deck 内容相关字段；其他字段直接从锁定值复用。具体收窄规则落在 `references/strategist.md` 与 `spec_lock_reference.md`。
+Deck 路徑下使用者已經拿到完整方案，策略師確認階段收窄到"目標受眾 / 頁數 / 大綱 / 調性微調"等 deck 內容相關欄位；其他欄位直接從鎖定值複用。具體收窄規則落在 `references/strategist.md` 與 `spec_lock_reference.md`。
 
 ---
 
-## 六、与 workflows 的关系
+## 六、與 workflows 的關係
 
-| 工作流 | 产出 |
+| 工作流 | 產出 |
 |---|---|
-| `workflows/create-brand.md` | brand 目录（identity-only），从品牌资产逆向提取 |
-| `workflows/create-template.md` | layout 或 deck 目录，内部按 kind 分支：默认走 deck（用户给了一份现存 PPT，提取完整身份 + 结构）；用户明说"只要结构 / 丢掉品牌色"时走 layout |
+| `workflows/create-brand.md` | brand 目錄（identity-only），從品牌資產逆向提取 |
+| `workflows/create-template.md` | layout 或 deck 目錄，內部按 kind 分支：預設走 deck（使用者給了一份現存 PPT，提取完整身份 + 結構）；使用者明說"只要結構 / 丟掉品牌色"時走 layout |
 
-产出后 frontmatter `kind` 字段决定文件落到 `templates/brands/` / `templates/layouts/` / `templates/decks/`。
+產出後 frontmatter `kind` 欄位決定檔案落到 `templates/brands/` / `templates/layouts/` / `templates/decks/`。
 
 ---
 
-## 七、不做（与本文 framing 配套的拒绝列表）
+## 七、不做（與本文 framing 配套的拒絕列表）
 
-- **不在 fusion 层支持字段级覆盖语法** —— 字段级微调走 策略师确认阶段这条已有路径
-- **不为同类三份及以上设计批量冲突解决** —— 用户先在 chat 里收敛到两份
-- **不引入双名映射表** —— 模板命名按其品牌/场景母语（中文模板用中文名，英文模板用 snake_case），不强制统一
+- **不在 fusion 層支援欄位級覆蓋語法** —— 欄位級微調走 策略師確認階段這條已有路徑
+- **不為同類三份及以上設計批次衝突解決** —— 使用者先在 chat 裡收斂到兩份
+- **不引入雙名對映表** —— 模板命名按其品牌/場景母語（中文模板用中文名，英文模板用 snake_case），不強制統一

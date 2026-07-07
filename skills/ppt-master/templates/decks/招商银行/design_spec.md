@@ -1,7 +1,7 @@
 ---
-deck_id: 招商银行
+deck_id: 招商銀行
 kind: deck
-summary: 交易银行产品介绍、销售收款方案汇报、客户案例拆解、分行培训材料.
+summary: 交易銀行產品介紹、銷售收款方案彙報、客戶案例拆解、分行培訓材料.
 canvas_format: ppt169
 page_count: 5
 primary_color: "#C8152D"
@@ -13,9 +13,9 @@ primary_color: "#C8152D"
 
 | Property | Description |
 | --- | --- |
-| **Template Name** | 招商银行 |
+| **Template Name** | 招商銀行 |
 | **Display Name** | China Merchants Bank Transaction Banking Template |
-| **Use Cases** | 交易银行产品介绍、销售收款方案汇报、客户案例拆解、分行培训材料 |
+| **Use Cases** | 交易銀行產品介紹、銷售收款方案彙報、客戶案例拆解、分行培訓材料 |
 | **Design Tone** | Brand-consistent, structured, product-focused, refined finance |
 | **Theme Mode** | Hybrid theme (brand-red cover/chapter/ending + light content pages) |
 
@@ -56,7 +56,7 @@ Reference slides read before generation: `1, 2, 3, 4, 6, 9, 11, 13, 16, 18`.
 | **Caption** | Metadata / footer | 12px | Regular |
 | **Display Number** | Chapter numeral | 220px | Bold |
 
-**Font Stack**: `"Microsoft YaHei", "PingFang SC", Arial, sans-serif`
+**Font Stack**: `"Microsoft JhengHei", "PingFang TC", Arial, sans-serif`
 
 ## V. Page Structure
 
@@ -191,14 +191,14 @@ Reference slides read before generation: `1, 2, 3, 4, 6, 9, 11, 13, 16, 18`.
 | --- | --- |
 | `cover_bg.png` | Cover / ending brand background (dark pages) |
 | `logo_white.png` | White brand logo for red and dark pages |
-| `logo_dark.png` | 「招商银行 \| 公司金融」dark logo for light page headers |
+| `logo_dark.png` | 「招商銀行 \| 公司金融」dark logo for light page headers |
 
 ### Optional Assets
 
 | Asset | Purpose |
 | --- | --- |
 | `page_header_bg.png` | Full-page header background reference (red accent + logo) |
-| `logo_crm_banner.png` | 「招商银行 \| CRM 4.0」red banner (product-specific, use when applicable) |
+| `logo_crm_banner.png` | 「招商銀行 \| CRM 4.0」red banner (product-specific, use when applicable) |
 | `ref_content_bg.png` | Content page reference layout (with building illustration, for design reference only) |
 
 ### Usage Rule

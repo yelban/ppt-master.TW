@@ -42,7 +42,7 @@ except ImportError:
             'aspect_ratio': '2.35:1'
         },
         'xiaohongshu': {
-            'name': '小红书',
+            'name': '小紅書',
             'dimensions': '1242×1660',
             'viewbox': '0 0 1242 1660',
             'aspect_ratio': '3:4'
@@ -78,7 +78,7 @@ CANVAS_FORMAT_ALIASES = {
     'wechat_moment': 'moments',
     'wechat-moment': 'moments',
     '朋友圈': 'moments',
-    '小红书': 'xiaohongshu',
+    '小紅書': 'xiaohongshu',
 }
 
 

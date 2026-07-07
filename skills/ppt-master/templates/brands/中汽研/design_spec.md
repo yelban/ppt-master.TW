@@ -37,9 +37,9 @@ primary_color: "#004098"
 
 | Role | Family | Weight |
 |---|---|---|
-| title | `"Microsoft YaHei", "微软雅黑", "SimHei", Arial, Calibri, sans-serif` | 700 |
-| body | `"Microsoft YaHei", "微软雅黑", Arial, Calibri, sans-serif` | 400 |
-| data | `Arial, "Microsoft YaHei", sans-serif` | 600-700 |
+| title | `"Microsoft JhengHei", "Microsoft JhengHei", "Microsoft JhengHei", Arial, Calibri, sans-serif` | 700 |
+| body | `"Microsoft JhengHei", "Microsoft JhengHei", Arial, Calibri, sans-serif` | 400 |
+| data | `Arial, "Microsoft JhengHei", sans-serif` | 600-700 |
 
 Use clear PowerPoint-safe CJK fonts. Keep numbers, certification codes, and technical abbreviations in Arial for legibility.
 
@@ -60,7 +60,7 @@ CATARC uses separate large and header lockups. Choose the large logo for brand m
 ## V. Voice & Tone
 
 - Formality: formal-neutral
-- Person: organization-first, "we / 我们" only when speaking as CATARC
+- Person: organization-first, "we / 我們" only when speaking as CATARC
 - Emoji: avoid
 - Abbreviations: CATARC is acceptable; spell out Chinese entity names on first use
 - Style: emphasize certification credibility, testing rigor, technical evidence, automotive industry insight, and trusted advisory authority

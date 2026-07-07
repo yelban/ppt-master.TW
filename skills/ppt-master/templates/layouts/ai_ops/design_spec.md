@@ -168,7 +168,7 @@ This template emulates the visual language of telecom technical reports. The cor
 ```xml
 <!-- Red vertical bar + title -->
 <rect x="30" y="20" width="10" height="40" fill="#C00000" />
-<text x="50" y="55" font-family="Microsoft YaHei, sans-serif" font-size="36" font-weight="bold" fill="#C00000">Page Title</text>
+<text x="50" y="55" font-family="Microsoft JhengHei, sans-serif" font-size="36" font-weight="bold" fill="#C00000">Page Title</text>
 ```
 
 ### Number Badge
@@ -184,7 +184,7 @@ This template emulates the visual language of telecom technical reports. The cor
 ```xml
 <!-- Blue label bar -->
 <rect x="120" y="310" width="220" height="40" fill="#2E75B6" />
-<text x="230" y="336" font-family="Microsoft YaHei, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Fault Boundary Identification</text>
+<text x="230" y="336" font-family="Microsoft JhengHei, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Fault Boundary Identification</text>
 ```
 
 ### Metric Card
@@ -192,7 +192,7 @@ This template emulates the visual language of telecom technical reports. The cor
 ```xml
 <!-- White metric card (values highlighted in red) -->
 <rect x="120" y="215" width="140" height="35" fill="#FFFFFF" stroke="#F2F2F2" stroke-width="2" />
-<text x="190" y="239" font-family="Microsoft YaHei, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">Fault tickets reduced by<tspan fill="#C00000">30%</tspan></text>
+<text x="190" y="239" font-family="Microsoft JhengHei, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">Fault tickets reduced by<tspan fill="#C00000">30%</tspan></text>
 ```
 
 ### Dashed Zone Frame
@@ -207,7 +207,7 @@ This template emulates the visual language of telecom technical reports. The cor
 ```xml
 <!-- Full-width warm gray overview/summary bar -->
 <rect x="30" y="80" width="1220" height="60" fill="#F2F2F2" />
-<text x="640" y="115" font-family="Microsoft YaHei, sans-serif" font-size="16" fill="#000000" text-anchor="middle">Overview text content...</text>
+<text x="640" y="115" font-family="Microsoft JhengHei, sans-serif" font-size="16" fill="#000000" text-anchor="middle">Overview text content...</text>
 ```
 
 ### Warm Gray Panel
@@ -222,7 +222,7 @@ This template emulates the visual language of telecom technical reports. The cor
 ```xml
 <!-- Feature module card -->
 <rect x="160" y="450" width="240" height="30" fill="#5B9BD5" />
-<text x="280" y="471" font-family="Microsoft YaHei, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">AI One-Click Troubleshooting Assistant</text>
+<text x="280" y="471" font-family="Microsoft JhengHei, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">AI One-Click Troubleshooting Assistant</text>
 ```
 
 ### Gray Capability Base Card
@@ -230,7 +230,7 @@ This template emulates the visual language of telecom technical reports. The cor
 ```xml
 <!-- Foundational capability card -->
 <rect x="120" y="630" width="80" height="40" fill="#F2F2F2" stroke="#D9D9D9" stroke-width="1" />
-<text x="160" y="655" font-family="Microsoft YaHei, sans-serif" font-size="14" fill="#000000" text-anchor="middle">Core Network</text>
+<text x="160" y="655" font-family="Microsoft JhengHei, sans-serif" font-size="14" fill="#000000" text-anchor="middle">Core Network</text>
 ```
 
 ---

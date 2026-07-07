@@ -37,10 +37,10 @@ The first three rows are the official triad; the accent / surface / border / mut
 
 | Role | Family | Weight |
 |---|---|---|
-| title | `"Styrene A", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif` | 600–700 |
-| body | `"Anthropic Sans", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif` | 400 |
+| title | `"Styrene A", "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif` | 600–700 |
+| body | `"Anthropic Sans", "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif` | 400 |
 
-> Anthropic's official typefaces are `Styrene A` (titles) and `Anthropic Sans` (body) — both proprietary and unlikely to be installed on viewer machines. Decks should either embed the fonts into the PPTX or accept the `Helvetica Neue` → `Arial` / `Microsoft YaHei` fallback chain. When locking, Strategist notes "official Anthropic typefaces require install or PPTX embed".
+> Anthropic's official typefaces are `Styrene A` (titles) and `Anthropic Sans` (body) — both proprietary and unlikely to be installed on viewer machines. Decks should either embed the fonts into the PPTX or accept the `Helvetica Neue` → `Arial` / `Microsoft JhengHei` fallback chain. When locking, Strategist notes "official Anthropic typefaces require install or PPTX embed".
 
 ## IV. Logo
 
@@ -60,7 +60,7 @@ Anthropic uses a six-petal star **mark** that is most commonly seen locked up wi
 ## V. Voice & Tone
 
 - Formality: professional-neutral
-- Person: we / you (English), 我们 / 你 (Chinese)
+- Person: we / you (English), 我們 / 你 (Chinese)
 - Emoji: avoid
 - Abbreviations: spell-out-first-use
 

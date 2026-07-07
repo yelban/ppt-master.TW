@@ -155,7 +155,7 @@ replication_mode: standard | fidelity | mirror
 - HEX values with role labels (primary / accent / background / text / etc.)
 - Brand-specific application rules when present (e.g. "KPI cards rotate blue→green→red→yellow")
 
-## III. Typography (omit when using the default `Arial, "Microsoft YaHei", sans-serif` stack)
+## III. Typography (omit when using the default `Arial, "Microsoft JhengHei", sans-serif` stack)
 - Per-role font stacks ONLY when the template intentionally diverges (display serif title, brand typeface, etc.)
 - Font-install or embedding requirement when a non-preinstalled font leads any stack
 - Body baseline px (informational; `spec_lock.md` owns the actual values per project)
@@ -181,7 +181,7 @@ Sections to **omit** from template `design_spec.md` (sourced elsewhere — listi
 |---|---|
 | SVG technical constraints / Mandatory rules / Prohibited elements | `shared-standards.md` §1 |
 | PPT compatibility rules (`<g opacity>`, inline-styles-only, etc.) | `shared-standards.md` |
-| Generic layout pattern library (centered card / 三栏 / timeline / …) | `design_spec_reference.md` §V |
+| Generic layout pattern library (centered card / 三欄 / timeline / …) | `design_spec_reference.md` §V |
 | Generic spacing bands (margin 40-60px, card gap 20-32px, etc.) | `design_spec_reference.md` §V |
 | Generic font-size hierarchy (cover 2.5-5x body, page title 1.5-2x, …) | `design_spec_reference.md` §IV |
 | Canonical placeholder table (`{{TITLE}}`, `{{PAGE_NUM}}`, …) | §4 below |

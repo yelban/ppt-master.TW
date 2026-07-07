@@ -34,10 +34,10 @@ The four primary brand colors (Blue / Green / Yellow / Red) carry equal weight i
 
 | Role | Family | Weight |
 |---|---|---|
-| title | `Google Sans, Roboto, "Microsoft YaHei", sans-serif` | 500–700 |
-| body | `Roboto, "Microsoft YaHei", sans-serif` | 400 |
+| title | `Google Sans, Roboto, "Microsoft JhengHei", sans-serif` | 500–700 |
+| body | `Roboto, "Microsoft JhengHei", sans-serif` | 400 |
 
-> `Google Sans` is a proprietary brand font; decks rendering on machines without it installed should either embed it into the PPTX or accept the `Roboto` / `Microsoft YaHei` fallback. When locking, Strategist notes "requires install or PPTX embed".
+> `Google Sans` is a proprietary brand font; decks rendering on machines without it installed should either embed it into the PPTX or accept the `Roboto` / `Microsoft JhengHei` fallback. When locking, Strategist notes "requires install or PPTX embed".
 
 ## IV. Logo
 
@@ -55,7 +55,7 @@ Google uses a dual-lockup brand system — pick by context, never combine on the
 ## V. Voice & Tone
 
 - Formality: neutral
-- Person: we / you (English), 我们 / 你 (Chinese)
+- Person: we / you (English), 我們 / 你 (Chinese)
 - Emoji: allowed
 - Abbreviations: common-abbrev-allowed
 

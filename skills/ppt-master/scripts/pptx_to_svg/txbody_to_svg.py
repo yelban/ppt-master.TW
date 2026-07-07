@@ -823,7 +823,7 @@ def _char_width(ch: str, font_size: float, bold: bool) -> float:
         w = font_size * 0.55
     # Bold Latin generally expands a little. CJK glyphs keep their em advance
     # in common PPT fonts; applying the bold multiplier causes short Chinese
-    # titles such as "少年强国说" to wrap even though PowerPoint keeps them on
+    # titles such as "少年強國說" to wrap even though PowerPoint keeps them on
     # one line.
     if bold and not _is_cjk(ch):
         w *= 1.05

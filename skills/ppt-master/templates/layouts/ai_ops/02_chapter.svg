@@ -21,14 +21,14 @@
   <text x="640" y="340" font-family="Arial, sans-serif" font-size="160" font-weight="bold" fill="#F2F2F2" text-anchor="middle">{{CHAPTER_NUM}}</text>
 
   <!-- Chapter Title -->
-  <text x="640" y="420" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="48" font-weight="bold" fill="#000000" text-anchor="middle">{{CHAPTER_TITLE}}</text>
+  <text x="640" y="420" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="48" font-weight="bold" fill="#000000" text-anchor="middle">{{CHAPTER_TITLE}}</text>
 
   <!-- Decorative Lines -->
   <line x1="480" y1="450" x2="800" y2="450" stroke="#C00000" stroke-width="3" />
   <line x1="520" y1="458" x2="760" y2="458" stroke="#2E75B6" stroke-width="1" />
 
   <!-- Chapter Description -->
-  <text x="640" y="510" font-family="'Microsoft YaHei', Arial, sans-serif" font-size="20" fill="#666666" text-anchor="middle">{{CHAPTER_DESC}}</text>
+  <text x="640" y="510" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="20" fill="#666666" text-anchor="middle">{{CHAPTER_DESC}}</text>
 
   <!-- Bottom Accent -->
   <rect x="0" y="690" width="1280" height="30" fill="#2E75B6" />

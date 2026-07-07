@@ -95,7 +95,7 @@
 
 > **Per-role families are expected, not optional.** Title / Body / Emphasis / Code may each use a different family (e.g., display serif title + geometric sans body). One family throughout is not required. See [strategist.md §g — Font Combinations](../references/strategist.md) for starting directions; you may propose a combination not listed.
 >
-> **⚠️ PPT-safe stack discipline (HARD rule).** PPTX stores concrete exported Latin / EA typefaces per run — no runtime fallback. Every stack's exported Latin / EA typefaces MUST resolve to cross-platform pre-installed fonts: `"Microsoft YaHei"` / `SimSun` / `Arial` / `"Times New Roman"` / `Consolas`. Stacks that export non-preinstalled typefaces (Inter / Google Fonts / brand typefaces) are allowed only when this spec notes the font-install or embedding requirement.
+> **⚠️ PPT-safe stack discipline (HARD rule).** PPTX stores concrete exported Latin / EA typefaces per run — no runtime fallback. Every stack's exported Latin / EA typefaces MUST resolve to Traditional-Chinese-safe fonts: `"Microsoft JhengHei"` / `"PingFang TC"` / `"Noto Sans TC"` / `PMingLiU` / `Arial` / `"Times New Roman"` / `Consolas`. Free TW fonts such as `GenSekiGothic2TW`, `GenSenRounded2TW`, and `GenRyuMin2TW` are allowed when the spec notes the install or embedding requirement. Stacks that export non-preinstalled typefaces (Inter / Google Fonts / brand typefaces) are allowed only when this spec notes the font-install or embedding requirement.
 
 **Typography direction**: [Fill in one phrase, e.g., "modern CJK sans" / "academic serif" / "brand-specific: McKinsey Bower (requires font install)"]
 
@@ -108,21 +108,21 @@ Two views on the same font decisions — fill both, keep them consistent:
 
 | Role | Chinese | English | Fallback tail |
 | ---- | ------- | ------- | ------------- |
-| **Title** | [e.g., `"Microsoft YaHei"`, or `"Microsoft YaHei", "PingFang SC"` for macOS preview nicety] | [e.g., `Georgia`] | [e.g., `serif`] |
-| **Body** | [e.g., `"Microsoft YaHei", "PingFang SC"`] | [e.g., `Arial`] | [e.g., `sans-serif`] |
-| **Emphasis** | [e.g., `SimSun`, or `—` for Latin-only] | [e.g., `Georgia`] | [e.g., `serif`] |
+| **Title** | [e.g., `"Microsoft JhengHei"`, or `"Microsoft JhengHei", "PingFang TC", "Noto Sans TC", "GenSekiGothic2TW"` for TC preview nicety] | [e.g., `Georgia`] | [e.g., `serif`] |
+| **Body** | [e.g., `"Microsoft JhengHei", "PingFang TC", "Noto Sans TC", "GenSekiGothic2TW"`] | [e.g., `Arial`] | [e.g., `sans-serif`] |
+| **Emphasis** | [e.g., `PMingLiU`, or `—` for Latin-only] | [e.g., `Georgia`] | [e.g., `serif`] |
 | **Code** | — | [e.g., `Consolas, "Courier New"`] | [e.g., `monospace`] |
 
 **Per-role font stacks** (CSS `font-family` strings, one per role — arrange the table's pieces in the order your design intends):
 
-- Title: `[Fill in stack, e.g. Georgia, "Microsoft YaHei", serif for Latin-led; or "Microsoft YaHei", "PingFang SC", Georgia, serif for CJK-led]`
+- Title: `[Fill in stack, e.g. Georgia, "Microsoft JhengHei", serif for Latin-led; or "Microsoft JhengHei", "PingFang TC", Georgia, serif for CJK-led]`
 - Body: `[Fill in stack — may be same as Title]`
 - Emphasis: `[Fill in stack, or write "same as Body" to omit the override]`
 - Code: `[Fill in monospace stack, e.g. Consolas, "Courier New", monospace]`
 
 > **Stack ordering — why it matters**: CSS `font-family` falls back font-by-font (not char-by-char) — the browser uses the **first installed** font for everything it can render, skipping to the next only when a glyph is missing. So:
-> - `Georgia, "Microsoft YaHei", serif` → Latin in Georgia (elegant serif), CJK falls through to Microsoft YaHei. **Use when Latin typography is the primary design statement** (academic / editorial / Latin-heavy covers).
-> - `"Microsoft YaHei", Georgia, serif` → Everything in Microsoft YaHei (Latin uses YaHei's Latin glyphs — a different design tone). **Use when the deck is CJK-primary and Latin is incidental**.
+> - `Georgia, "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", serif` → Latin in Georgia (elegant serif), CJK falls through to Microsoft JhengHei. **Use when Latin typography is the primary design statement** (academic / editorial / Latin-heavy covers).
+> - `"Microsoft JhengHei", "PingFang TC", "Noto Sans TC", Georgia, serif` → Everything in Microsoft JhengHei (Latin uses YaHei's Latin glyphs — a different design tone). **Use when the deck is CJK-primary and Latin is incidental**.
 >
 > The converter (`drawingml/utils.py parse_font_family`) maps these to PPTX `<a:latin>` / `<a:ea>` regardless of order — but browser preview and SVG native rendering reflect stack order. Pick the order matching your design intent.
 

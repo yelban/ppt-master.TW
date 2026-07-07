@@ -193,7 +193,7 @@ CANVAS_FORMATS = {
         'use_case': 'WeChat article cover images'
     },
     'xiaohongshu': {
-        'name': '小红书',
+        'name': '小紅書',
         'dimensions': '1242×1660',
         'viewbox': '0 0 1242 1660',
         'width': 1242,
@@ -412,7 +412,7 @@ INDUSTRY_COLORS = {
 
 FONTS = {
     'system_ui': "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-    'sans_serif': "'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif",
+    'sans_serif': "'Helvetica Neue', Arial, 'PingFang TC', 'Microsoft JhengHei', sans-serif",
     'monospace': "'SF Mono', Monaco, Consolas, 'Liberation Mono', monospace"
 }
 

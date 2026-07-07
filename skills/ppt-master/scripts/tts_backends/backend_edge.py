@@ -7,20 +7,20 @@ from pathlib import Path
 
 
 COMMON_VOICES = [
-    ("zh-CN", "zh-CN-XiaoxiaoNeural", "女声，普通话，清晰自然，默认推荐"),
-    ("zh-CN", "zh-CN-XiaoyiNeural", "女声，普通话，明亮"),
-    ("zh-CN", "zh-CN-YunjianNeural", "男声，普通话，稳重"),
-    ("zh-CN", "zh-CN-YunxiNeural", "男声，普通话，年轻"),
-    ("zh-CN", "zh-CN-YunxiaNeural", "男声，普通话，少年感"),
-    ("zh-CN", "zh-CN-YunyangNeural", "男声，普通话，播报感"),
-    ("zh-HK", "zh-HK-HiuGaaiNeural", "女声，粤语"),
-    ("zh-HK", "zh-HK-WanLungNeural", "男声，粤语"),
-    ("zh-TW", "zh-TW-HsiaoChenNeural", "女声，台湾普通话"),
-    ("zh-TW", "zh-TW-YunJheNeural", "男声，台湾普通话"),
-    ("en-US", "en-US-JennyNeural", "女声，美式英语"),
-    ("en-US", "en-US-GuyNeural", "男声，美式英语"),
-    ("en-GB", "en-GB-SoniaNeural", "女声，英式英语"),
-    ("en-GB", "en-GB-RyanNeural", "男声，英式英语"),
+    ("zh-TW", "zh-TW-XiaoxiaoNeural", "女聲，普通話，清晰自然，預設推薦"),
+    ("zh-TW", "zh-TW-XiaoyiNeural", "女聲，普通話，明亮"),
+    ("zh-TW", "zh-TW-YunjianNeural", "男聲，普通話，穩重"),
+    ("zh-TW", "zh-TW-YunxiNeural", "男聲，普通話，年輕"),
+    ("zh-TW", "zh-TW-YunxiaNeural", "男聲，普通話，少年感"),
+    ("zh-TW", "zh-TW-YunyangNeural", "男聲，普通話，播報感"),
+    ("zh-HK", "zh-HK-HiuGaaiNeural", "女聲，粵語"),
+    ("zh-HK", "zh-HK-WanLungNeural", "男聲，粵語"),
+    ("zh-TW", "zh-TW-HsiaoChenNeural", "女聲，臺灣普通話"),
+    ("zh-TW", "zh-TW-YunJheNeural", "男聲，臺灣普通話"),
+    ("en-US", "en-US-JennyNeural", "女聲，美式英語"),
+    ("en-US", "en-US-GuyNeural", "男聲，美式英語"),
+    ("en-GB", "en-GB-SoniaNeural", "女聲，英式英語"),
+    ("en-GB", "en-GB-RyanNeural", "男聲，英式英語"),
 ]
 
 

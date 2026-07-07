@@ -1,5 +1,5 @@
 ---
-deck_id: 重庆大学
+deck_id: 重慶大學
 kind: deck
 summary: Academic defense, research reports, teaching presentations, scholarly exchange.
 canvas_format: ppt169
@@ -7,7 +7,7 @@ page_count: 5
 primary_color: "#006BB7"
 ---
 
-# Chongqing University (重庆大学) Template - Design Specification
+# Chongqing University (重慶大學) Template - Design Specification
 
 > A distinctive design blending the layered imagery of the Mountain City with modern academic elegance.
 
@@ -17,7 +17,7 @@ primary_color: "#006BB7"
 
 | Property           | Description                                                          |
 | ------------------ | -------------------------------------------------------------------- |
-| **Template Name**  | Chongqing University (重庆大学)                                      |
+| **Template Name**  | Chongqing University (重慶大學)                                      |
 | **Use Cases**      | Academic defense, research reports, teaching presentations, scholarly exchange |
 | **Design Tone**    | Academically grounded · Mountain City charm · Modern minimalism      |
 | **Design Inspiration** | Chongqing's layered terrain + the gravitas of historic campus buildings + modern academic professionalism |
@@ -78,7 +78,7 @@ Gold gradient: #C49A3D → #D4A84B → #E8C675 (decorative use)
 
 ### Font Stack
 
-**Font Stack**: `"Microsoft YaHei", "微软雅黑", "PingFang SC", Arial, sans-serif`
+**Font Stack**: `"Microsoft JhengHei", "Microsoft JhengHei", "PingFang TC", Arial, sans-serif`
 
 ### Font Size Hierarchy
 

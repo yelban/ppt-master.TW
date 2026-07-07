@@ -16,9 +16,9 @@ Re-lays-out an existing `.pptx`: the text is preserved **verbatim**, the source 
 
 | Pattern | Example |
 |---|---|
-| Existing `.pptx` + beautify intent | "把这份 PPT 美化一下" / "make this deck look better" |
-| Existing `.pptx` + re-layout intent | "重新排版这份 PPT，内容别动" / "re-layout this, keep the wording" |
-| Existing `.pptx` + paste-back intent | "重排后我要把元素贴回原来的模板" |
+| Existing `.pptx` + beautify intent | "把這份 PPT 美化一下" / "make this deck look better" |
+| Existing `.pptx` + re-layout intent | "重新排版這份 PPT，內容別動" / "re-layout this, keep the wording" |
+| Existing `.pptx` + paste-back intent | "重排後我要把元素貼回原來的模板" |
 
 **Hard rule — content is frozen**: every text string from the source is preserved exactly (no add / remove / reword / reorder). Beautification freedom lives only in layout, hierarchy, spacing, and visual rhythm.
 

@@ -75,7 +75,7 @@ Two independent layers, each locks one catalog item. Output: `d. Mode: <mode> + 
 The deck's **narrative + persuasion skeleton** — how the argument is organized and advanced. Lock **one** of `pyramid` / `narrative` / `instructional` / `showcase` / `briefing` (closed set; full catalog in the index).
 
 **Source**:
-- User supplied their own outline / structure → it is authoritative. Transcribe it into `§IX` as given (page order + titles preserved); still lock a mode, but for register / voice and page-internal treatment, **not** to reshape — never reorder the user's pages or rewrite their given titles. Note in `design_spec.md` that the structure is user-authored. `briefing` imposes the least if no particular "讲法" is intended.
+- User supplied their own outline / structure → it is authoritative. Transcribe it into `§IX` as given (page order + titles preserved); still lock a mode, but for register / voice and page-internal treatment, **not** to reshape — never reorder the user's pages or rewrite their given titles. Note in `design_spec.md` that the structure is user-authored. `briefing` imposes the least if no particular "講法" is intended.
 - Beautify / re-layout workflow ([`beautify-pptx.md`](../workflows/beautify-pptx.md)) → the extracted source content is authoritative and **verbatim**, one step stricter than the user-outline case above. Each source slide becomes exactly one `§IX` page in source order; transcribe every content block word-for-word — never reshape / re-primary / condense / merge / split / reword. Lock `mode: briefing`; color (e) and typography (g) are whatever the user confirmed in the beautify plan — the source identity (theme or observed) by default, or a content / brand-aware alternative the beautify plan offered and the user picked — locked as truth (the beautify plan already ran the recommendation through the confirm UI, so do not re-recommend here). Charts / tables / images are regenerated from their extracted data in the inherited style (route chart/table data to §VII, pictures to §VIII) — data values stay frozen, the rendering is the deck's own; never carried over verbatim. Layout, hierarchy, rhythm, and visual rendering are what gets redesigned.
 - A bespoke direction the five don't give — a nameable cadence (dialectic 正反合, myth-vs-reality, countdown, Socratic), a multi-act fusion of modes, or the user's own feel (confrontational here, detached there). Either the user asks, **or you recommend it** when a fusion / bespoke direction genuinely serves the deck better than a single preset (a recommendation the user confirms, like every lock). The *kind* doesn't matter → `mode: custom` + a `mode_behavior:` paragraph that **crystallizes the intent** (act sequence or posture shifts, title voice, page rhythm, register) concretely enough for the Executor to follow per page; it reads only `spec_lock.md`, never the chat. One deck locks **one** value — a fusion is one `custom` describing the acts, never several modes. Avoid only the *dodge*: don't default to `custom` when a preset genuinely fits, and prefer a dominant mode + page-level variation when one mode leads.
 - No user structure or cadence → recommend by the index's auto-selection table (content / audience signal → mode) plus the deck's stated purpose; the mode does the structural lifting. Present as a recommendation; the user may override.
@@ -169,14 +169,14 @@ See [`../templates/icons/README.md`](../templates/icons/README.md) for the curre
 
 ### g. Typography Plan Confirmation (Font + Size)
 
-🚧 **GATE — read the locked style's type character first**: `read_file` the visual-style file locked at §d Layer 2 (`visual-styles/<visual_style>.md`) and pull its **§2 Typography character** (you only read the catalog index there; the per-style character lives in the file). Both combinations below MUST realize it, and the **title carries the personality** — the CJK body may stay a neutral pre-installed sans, but the title leads with the character the style asks for (e.g. `ink-wash` → calligraphic `KaiTi` / `FangSong`; `brutalist` / `memphis` / `vintage-poster` / `zine` → display `SimHei` / `Impact`; `editorial` / `data-journalism` / `photo-editorial` → serif `Georgia` / `Cambria` / `SimSun`; `dark-tech` / `blueprint` → clean sans + `Consolas` mono; `swiss-minimal` / `soft-rounded` → grotesque / friendly sans). For `visual_style: custom`, realize its `visual_style_behavior` character instead. Letting the title default to a neutral sans when the style asks for character is the failure mode to avoid.
+🚧 **GATE — read the locked style's type character first**: `read_file` the visual-style file locked at §d Layer 2 (`visual-styles/<visual_style>.md`) and pull its **§2 Typography character** (you only read the catalog index there; the per-style character lives in the file). Both combinations below MUST realize it, and the **title carries the personality** — the CJK body may stay a neutral pre-installed sans, but the title leads with the character the style asks for (e.g. `ink-wash` → calligraphic `KaiTi` / `FangSong`; `brutalist` / `memphis` / `vintage-poster` / `zine` → display `Microsoft JhengHei` / `Impact`; `editorial` / `data-journalism` / `photo-editorial` → serif `Georgia` / `Cambria` / `PMingLiU`; `dark-tech` / `blueprint` → clean sans + `Consolas` mono; `swiss-minimal` / `soft-rounded` → grotesque / friendly sans). For `visual_style: custom`, realize its `visual_style_behavior` character instead. Letting the title default to a neutral sans when the style asks for character is the failure mode to avoid.
 
 #### Font Combinations
 
-> Same-deck fonts must form **contrast** (different family, weight, or proportion) or **concord** (one family throughout). "Similar but not identical" pairings *across roles* are forbidden — see blacklist below. *Within one stack*, pairing a Windows font with a macOS counterpart (e.g. `Microsoft YaHei` + `PingFang SC`) is a browser-preview nicety; converter writes resolved Latin / EA typefaces into PPTX, not the CSS fallback tail.
+> Same-deck fonts must form **contrast** (different family, weight, or proportion) or **concord** (one family throughout). "Similar but not identical" pairings *across roles* are forbidden — see blacklist below. *Within one stack*, pairing a Windows font with a macOS counterpart (e.g. `Microsoft JhengHei` + `PingFang TC`) is a browser-preview nicety; converter writes resolved Latin / EA typefaces into PPTX, not the CSS fallback tail.
 
 > **⚠️ PPT-safe font discipline (HARD rule).** PPTX has no runtime fallback — missing fonts substitute to Calibri. Each stack's exported Latin / EA typefaces MUST resolve to pre-installed fonts:
-> - CJK → `"Microsoft YaHei"` / `SimHei` / `SimSun` / `FangSong` / `KaiTi`
+> - CJK → `"Microsoft JhengHei"` / `Microsoft JhengHei` / `PMingLiU` / `FangSong` / `KaiTi`
 > - Latin sans → `Arial` / `Calibri` / `Segoe UI` / `Verdana` / `Trebuchet MS`
 > - Latin serif → `"Times New Roman"` / `Georgia` / `Cambria` / `Palatino` / `Garamond`
 > - Mono → `Consolas` / `"Courier New"`
@@ -186,8 +186,8 @@ See [`../templates/icons/README.md`](../templates/icons/README.md) for the curre
 
 **Forbidden — similar-but-not-identical pairings across roles** (do not split title vs body across these; within one stack as cross-platform fallback they remain encouraged):
 
-- `Microsoft YaHei` ↔ `PingFang SC` ↔ `Heiti SC`
-- `SimSun` ↔ `Songti SC` ↔ `STSong`
+- `Microsoft JhengHei` ↔ `PingFang TC` ↔ `Heiti SC`
+- `PMingLiU` ↔ `Songti SC` ↔ `STSong`
 - `Arial` ↔ `Helvetica Neue` ↔ `Segoe UI`
 - `"Times New Roman"` ↔ `Times`
 - `Georgia` ↔ `Cambria`
@@ -200,35 +200,35 @@ See [`../templates/icons/README.md`](../templates/icons/README.md) for the curre
 
 | Category | Safe families |
 |----------|--------------|
-| CJK sans | Microsoft YaHei, SimHei, PingFang SC, Heiti SC |
-| CJK serif | SimSun, FangSong, KaiTi, Songti SC |
+| CJK sans | Microsoft JhengHei, Microsoft JhengHei, PingFang TC, Heiti SC |
+| CJK serif | PMingLiU, FangSong, KaiTi, Songti SC |
 | Latin sans | Arial, Calibri, Segoe UI, Verdana, Trebuchet MS, Helvetica Neue |
 | Latin serif | Times New Roman, Georgia, Cambria, Palatino, Garamond, Book Antiqua |
 | Mono | Consolas, Courier New |
 | Display | Impact, Arial Black |
 
-**Seed combinations** (all PPT-safe; first column is the contrast axis, not a scenario) — starting points, not the allowed set. Any client-preinstalled family is fair game; non-pre-installed expressive faces go title-only (see note below). Let the locked style's §2 character pick the axis and the title lead; the `Microsoft YaHei` body cells are the **neutral default, not a requirement** — a styled deck still varies the title even when the CJK body stays a neutral sans.
+**Seed combinations** (all PPT-safe; first column is the contrast axis, not a scenario) — starting points, not the allowed set. Any client-preinstalled family is fair game; non-pre-installed expressive faces go title-only (see note below). Let the locked style's §2 character pick the axis and the title lead; the `Microsoft JhengHei` body cells are the **neutral default, not a requirement** — a styled deck still varies the title even when the CJK body stays a neutral sans.
 
 | Contrast axis | Title stack | Body stack | Code stack |
 |---|---|---|---|
-| Serif × sans | `Georgia, KaiTi, serif` | `"Microsoft YaHei", "PingFang SC", sans-serif` | — |
-| Kai × hei | `KaiTi, Georgia, serif` | `"Microsoft YaHei", "PingFang SC", sans-serif` | — |
-| Fangsong × hei | `FangSong, "Times New Roman", serif` | `SimHei, "Microsoft YaHei", sans-serif` | — |
-| Double serif | `Palatino, FangSong, serif` | `Cambria, SimSun, serif` | — |
-| Same family, weight contrast (900 / 300) | `"Microsoft YaHei", "PingFang SC", sans-serif` | same | — |
-| Display × neutral | `Impact, "Arial Black", SimHei, sans-serif` | `Arial, "Microsoft YaHei", sans-serif` | — |
-| Cool serif (academic) | `Cambria, SimSun, serif` | `"Times New Roman", SimSun, serif` | — |
-| Hei × song (政务) | `SimHei, "Microsoft YaHei", sans-serif` | `SimSun, serif` | — |
-| Tech / developer | `Arial, "Microsoft YaHei", sans-serif` | same | `Consolas, "Courier New", monospace` |
+| Serif × sans | `Georgia, KaiTi, serif` | `"Microsoft JhengHei", "PingFang TC", sans-serif` | — |
+| Kai × hei | `KaiTi, Georgia, serif` | `"Microsoft JhengHei", "PingFang TC", sans-serif` | — |
+| Fangsong × hei | `FangSong, "Times New Roman", serif` | `Microsoft JhengHei, "Microsoft JhengHei", sans-serif` | — |
+| Double serif | `Palatino, FangSong, serif` | `Cambria, PMingLiU, serif` | — |
+| Same family, weight contrast (900 / 300) | `"Microsoft JhengHei", "PingFang TC", sans-serif` | same | — |
+| Display × neutral | `Impact, "Arial Black", Microsoft JhengHei, sans-serif` | `Arial, "Microsoft JhengHei", sans-serif` | — |
+| Cool serif (academic) | `Cambria, PMingLiU, serif` | `"Times New Roman", PMingLiU, serif` | — |
+| Hei × song (政務) | `Microsoft JhengHei, "Microsoft JhengHei", sans-serif` | `PMingLiU, serif` | — |
+| Tech / developer | `Arial, "Microsoft JhengHei", sans-serif` | same | `Consolas, "Courier New", monospace` |
 | Concord (single family — pick the family by subject + `visual_style`) | `<family by subject>, …, sans-serif / serif` | same | — |
 
-> **Stack length discipline (soft rule).** ≤4 fonts per stack. The exported CJK / Latin typefaces MUST be pre-installed after converter resolution ([`drawingml/utils.py parse_font_family`](../scripts/svg_to_pptx/drawingml/utils.py)). Choose those exported faces from the safe set **by the locked style's character**: `Microsoft YaHei` / `Arial` are the *neutral* members — perfect as the tail fallback and as the lead only when the style is plain-sans, but **not the automatic lead for every deck**. For a styled title, lead with `SimHei` / `KaiTi` / `FangSong` / `SimSun` / `Georgia` / `Cambria` / `Impact` / `Consolas` as the character asks. Keep at most **one** macOS-exclusive family (typically `"PingFang SC"`); macOS→Windows fallback is auto-mapped via `FONT_FALLBACK_WIN`.
+> **Stack length discipline (soft rule).** ≤4 fonts per stack. The exported CJK / Latin typefaces MUST be pre-installed after converter resolution ([`drawingml/utils.py parse_font_family`](../scripts/svg_to_pptx/drawingml/utils.py)). Choose those exported faces from the safe set **by the locked style's character**: `Microsoft JhengHei` / `Arial` are the *neutral* members — perfect as the tail fallback and as the lead only when the style is plain-sans, but **not the automatic lead for every deck**. For a styled title, lead with `Microsoft JhengHei` / `KaiTi` / `FangSong` / `PMingLiU` / `Georgia` / `Cambria` / `Impact` / `Consolas` as the character asks. Keep at most **one** macOS-exclusive family (typically `"PingFang TC"`); macOS→Windows fallback is auto-mapped via `FONT_FALLBACK_WIN`.
 
 > **Non-pre-installed directions** (require install or PPTX embed; note the constraint in Design Spec):
 > - **Retro / pixel** — Press Start 2P / VT323 / Silkscreen
 > - **Rounded friendly** — Nunito / Quicksand / M PLUS Rounded / OPPO Sans (closest safe substitute: `Trebuchet MS` / `Verdana`)
 > - **Modern web sans** — Inter / HarmonyOS Sans / Source Han Sans / Noto Sans
-> - **Calligraphic display** — 隶书 LiSu / 华文行楷 STXingkai / 华文新魏 STXinwei (closest safe substitute: `KaiTi` / `FangSong`); cover / section / hero titles only, never body
+> - **Calligraphic display** — 隸書 LiSu / 華文行楷 STXingkai / 華文新魏 STXinwei (closest safe substitute: `KaiTi` / `FangSong`); cover / section / hero titles only, never body
 > - **Brand-specific** — McKinsey Bower, corporate VI typefaces
 
 #### Font Size Ramp (px throughout)
@@ -434,7 +434,7 @@ After the candidates, append one line:
 | HEX values in `Color` line MUST be e.'s real values | Palette contributes only the 60-30-10 ratio + role assignment. Never substitute the palette's typical HEX. |
 | Span a personality spectrum | Typically: one conservative-default (industry norm), one shifted-tone (same fit, 1-2 ticks different), one bold-contrast (more expressive, may challenge default). No near-duplicates. |
 | `Mood` line MUST include a real-world analogy | Company / publication / event the user can picture. Adjective stacks alone are forbidden. |
-| Adapt labels to chat language | Schema is English by default. Chinese chat → render as 「方案 A / 视觉 / 色彩 / 情绪」. Structure stays the same; only the labels translate. |
+| Adapt labels to chat language | Schema is English by default. Chinese chat → render as 「方案 A / 視覺 / 色彩 / 情緒」. Structure stays the same; only the labels translate. |
 | Skip presentation when user has specified | User-named rendering or palette (chat / brand / template), **or a Confirm UI pick in `result.json.image_strategy`** (same shape as color / typography honoring their confirmed candidate), bypasses the candidate flow — lock *that chosen candidate's* `rendering` + `palette` directly per the truth-precedence rule; do not re-pick. |
 | `custom` is a tail-case, not a default | When no preset fits, a candidate may set `rendering: custom` and / or `palette: custom` (rules: [`image-renderings/_index.md`](./image-renderings/_index.md) §1.5, [`image-palettes/_index.md`](./image-palettes/_index.md) §2). At most one candidate per dimension may carry `custom`; one candidate may carry both dimensions as `custom`. `Visual` / `Color` lines describe the behavior in prose, never by naming a competing preset. |
 
@@ -491,30 +491,30 @@ The tables below are source data Strategist reads when constructing the three ca
 | `d. Style` signal | Recommended rendering | Alternates |
 |---|---|---|
 | Strategic / MBB / board | `editorial` or `vector-illustration` | `blueprint`, `minimalist-swiss` |
-| Corporate report / analysis / 学术答辩 | `vector-illustration` | `flat`, `editorial` |
-| High-end consulting / luxury / 高端 / design-firm | `minimalist-swiss` | `editorial`, `vector-illustration` |
-| Tech / SaaS / AI / 架构 | `3d-isometric`, `blueprint`, `digital-dashboard` | `flat` |
+| Corporate report / analysis / 學術答辯 | `vector-illustration` | `flat`, `editorial` |
+| High-end consulting / luxury / 高階 / design-firm | `minimalist-swiss` | `editorial`, `vector-illustration` |
+| Tech / SaaS / AI / 架構 | `3d-isometric`, `blueprint`, `digital-dashboard` | `flat` |
 | Modern SaaS / fintech / health-tech / premium app | `glassmorphism` | `digital-dashboard`, `flat` |
 | Product launch / brand / marketing | `flat`, `3d-isometric`, `corporate-photo` | `vector-illustration` |
-| Education / training / 教学 / 培训 | `sketch-notes` | `vector-illustration`, `paper-cut` |
-| Children / storybook / 儿童 / 治愈 | `fantasy-animation` | `paper-cut`, `watercolor`, `sketch-notes` |
-| Cultural / folk / festival / 文化 / 节日 | `paper-cut` | `vintage-poster`, `screen-print` |
-| Methodology / Before-After / 方法论 / manifesto | `ink-notes` | `editorial` |
-| Government / formal / 政务 | `editorial` or `corporate-photo` | `vector-illustration` |
-| Finance / journalism / 财经 | `editorial`, `digital-dashboard` | `vector-illustration` |
-| Personal story / 个人成长 / lifestyle | `watercolor`, `warm-scene` | `corporate-photo`, `paper-cut` |
+| Education / training / 教學 / 培訓 | `sketch-notes` | `vector-illustration`, `paper-cut` |
+| Children / storybook / 兒童 / 治癒 | `fantasy-animation` | `paper-cut`, `watercolor`, `sketch-notes` |
+| Cultural / folk / festival / 文化 / 節日 | `paper-cut` | `vintage-poster`, `screen-print` |
+| Methodology / Before-After / 方法論 / manifesto | `ink-notes` | `editorial` |
+| Government / formal / 政務 | `editorial` or `corporate-photo` | `vector-illustration` |
+| Finance / journalism / 財經 | `editorial`, `digital-dashboard` | `vector-illustration` |
+| Personal story / 個人成長 / lifestyle | `watercolor`, `warm-scene` | `corporate-photo`, `paper-cut` |
 | Cultural / media / opinion / cinematic | `screen-print`, `vintage-poster` | `editorial`, `warm-scene` |
-| Brand heritage / hospitality / 老字号 / 周年 | `vintage-poster` | `screen-print`, `editorial` |
-| Gaming / retro / 复古 / 像素 | `pixel-art` | `vintage-poster` |
-| Environment / wellness / 环保 | `nature` | `watercolor`, `paper-cut` |
-| Classroom / blackboard / 课堂 | `chalkboard` | `sketch-notes` |
+| Brand heritage / hospitality / 老字號 / 週年 | `vintage-poster` | `screen-print`, `editorial` |
+| Gaming / retro / 復古 / 畫素 | `pixel-art` | `vintage-poster` |
+| Environment / wellness / 環保 | `nature` | `watercolor`, `paper-cut` |
+| Classroom / blackboard / 課堂 | `chalkboard` | `sketch-notes` |
 | Team / company / product photo | `corporate-photo` | — |
 
 **Palette recommendation** (soft — user may override):
 
 | Content vibe / industry | Recommended palette | Alternates |
 |---|---|---|
-| Consulting / finance / B2B / corporate / 学术答辩 | `cool-corporate` | `editorial-classic`, `frost-ice` |
+| Consulting / finance / B2B / corporate / 學術答辯 | `cool-corporate` | `editorial-classic`, `frost-ice` |
 | Tech / SaaS / AI | `tech-neon` | `cool-corporate`, `dark-cinematic` |
 | Modern SaaS / fintech / health-tech | `frost-ice` | `cool-corporate`, `tech-neon` |
 | Health / medical / beauty / skincare | `frost-ice` | `nature-organic`, `earthy-dusty` |
@@ -686,7 +686,7 @@ The most common Strategist failure mode is missing the structural half — treat
 > 3. One primary visualization per page; a supporting layout may accompany it.
 > 4. List selections in Design Spec section VII; section IX only notes the visualization type name per page.
 >
-> **Source vocabulary mismatch** — the catalog is in English. When source content uses Chinese / industry jargon ("中台", "架构图", "述职", "管道", "前后端"), translate the intent first, then match against summaries. The catalog deliberately keeps no keyword index — full-read forces semantic matching rather than lexical grep.
+> **Source vocabulary mismatch** — the catalog is in English. When source content uses Chinese / industry jargon ("中臺", "架構圖", "述職", "管道", "前後端"), translate the intent first, then match against summaries. The catalog deliberately keeps no keyword index — full-read forces semantic matching rather than lexical grep.
 >
 > **Read-audit (mandatory, section VII format)** — single combined table; `summary-quote` column is the anti-fabrication audit, `path` + `usage` serve Executor lookup. Format defined in [`templates/design_spec_reference.md`](../templates/design_spec_reference.md) §VII:
 > ```

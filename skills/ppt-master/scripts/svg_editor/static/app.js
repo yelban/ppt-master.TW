@@ -231,15 +231,97 @@
             nav_last: "末页 (End)",
             nav_counter: "{current} / {total}",
             nav_empty: "— / —"
+        },
+        zhtw: {
+            page_title: "PPT Master - 即時預覽",
+            panel_slides: "幻燈片",
+            panel_annotations: "標註",
+            panel_edit_annotate: "編輯 / 標註",
+            placeholder_select_slide: "在左側選擇一張幻燈片開始",
+            label_selected_element: "已選元素",
+            empty_selected_element: "點選幻燈片中的元素進行選擇",
+            btn_select_group: "選擇父級組",
+            label_batch_edit: "批次編輯",
+            label_group_edit: "組編輯",
+            section_geometry: "幾何",
+            section_style: "樣式",
+            section_text_style: "文本",
+            section_raw_attrs: "原始屬性",
+            label_edit_instruction: "修改說明",
+            pending_none: "沒有待應用修改",
+            pending_summary: "{edits} 條直接修改、{annotations} 個頁面有 AI 標註待應用",
+            pending_pages: "頁面：{pages}",
+            quick_align: "對齊/移動",
+            quick_resize: "調整大小",
+            quick_replace_image: "換圖",
+            quick_copy: "改文案",
+            quick_relayout: "重排此區域",
+            placeholder_annotation: "描述希望 AI 如何修改該元素……",
+            placeholder_annotation_multi: "描述希望如何修改所選 {count} 個元素……",
+            btn_add_annotation: "新增標註",
+            label_annotations_on_slide: "本頁標註",
+            btn_submit_annotations: "應用修改",
+            btn_exit_preview: "退出預覽",
+            modal_submit: "提交",
+            modal_cancel: "取消",
+            empty_waiting_slides: "正在等待生成幻燈片……",
+            empty_no_slides: "未找到幻燈片",
+            placeholder_live_ready: "即時預覽已就緒,生成的幻燈片會在這裡出現。",
+            placeholder_slide_writing: "幻燈片仍在寫入,等待下次重新整理……",
+            empty_annotations: "暫無標註",
+            tooltip_remove_annotation: "刪除標註",
+            multi_selected: "已選 {count} 個元素",
+            multi_mixed: "混合",
+            err_load_slides: "載入幻燈片失敗:",
+            err_load_slide: "載入幻燈片失敗:",
+            err_add_annotation: "新增標註失敗:",
+            err_remove_annotation: "刪除標註失敗:",
+            err_save: "儲存失敗:",
+            err_edit: "編輯失敗:",
+            label_direct_edit: "物件屬性(點選應用修改後寫入)",
+            prop_multiline_hint: "多行文本——選中單行(tspan)編輯文字",
+            edit_saved_hint: "修改已暫存。點選“應用修改”後寫入 svg_output。",
+            btn_undo: "撤銷",
+            undo_done: "已撤銷上一條暫存修改",
+            undo_empty: "沒有可撤銷的暫存修改",
+            overlap_caption: "此處重疊元素——點選選擇",
+            err_empty_svg: "幻燈片已載入但畫布為空。SVG 可能損壞或缺少根 <svg> 元素。",
+            warn_icon_inline: "{count} 個圖示渲染失敗:{names}",
+            warn_matrix_transform: "本次幾何修改會以 transform matrix 儲存。預覽是準確的；PPTX 匯出需要使用支援 matrix 的當前匯出器。",
+            modal_matrix_transform_note: "\n\n提示：至少有一條暫存幾何修改使用了 transform matrix。請用當前 PPTX 匯出器重新匯出，確保 matrix 被應用。",
+            slide_error_tooltip: "該幻燈片解析失敗:",
+            reload_banner: "當前頁已在磁碟上更新,點此重新載入。",
+            modal_confirm_submit: "確認將暫存的直接修改和 AI 標註寫入磁碟?\n\n預覽服務會繼續執行。需要關閉時請點選退出預覽。",
+            modal_success_submit: "修改已儲存到 svg_output。\n\n預覽服務仍在執行。",
+            modal_success_direct_only: "修改已儲存到 svg_output。\n\n直接修改已經寫入 SVG 原始檔；需要重新整理 PPTX 時，請回到對話視窗要求重新匯出。預覽服務仍在執行。",
+            modal_success_annotations_only: "標註已儲存到 svg_output。\n\n需要 AI 理解並執行這些標註時，請回到對話視窗要求應用標註。預覽服務仍在執行。",
+            modal_success_mixed: "直接修改和標註已儲存到 svg_output。\n\n請回到對話視窗先應用需要 AI 判斷的標註，確認後再重新匯出 PPTX。預覽服務仍在執行。",
+            modal_confirm_exit: "退出預覽並停止本地服務?\n\n未應用的屬性修改和標註將被丟棄。",
+            modal_success_exit: "預覽已停止。\n\n可以關閉本標籤頁並回到對話視窗。",
+            modal_stopping: "正在停止預覽服務……",
+            lang_toggle_title: "切換語言",
+            nav_first: "第一頁 (Home)",
+            nav_prev: "上一頁 (←)",
+            nav_next: "下一頁 (→)",
+            nav_last: "末頁 (End)",
+            nav_counter: "{current} / {total}",
+            nav_empty: "— / —"
         }
     };
+
+    var SUPPORTED_LANGS = { zhtw: true, zh: true, en: true, ja: true };
+
+    function isSupportedLang(lang) {
+        return !!SUPPORTED_LANGS[lang];
+    }
 
     var LANG = (function () {
         try {
             var stored = window.localStorage.getItem("ppt_lang");
-            if (stored === "zh" || stored === "en" || stored === "ja") return stored;
+            if (isSupportedLang(stored)) return stored;
         } catch (e) { /* ignore */ }
         var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+        if (nav.indexOf("zh-tw") === 0 || nav.indexOf("zh-hant") === 0 || nav.indexOf("zh-hk") === 0) return "zhtw";
         if (nav.indexOf("zh") === 0) return "zh";
         if (nav.indexOf("ja") === 0) return "ja";
         return "en";
@@ -259,7 +341,7 @@
     }
 
     function applyI18n() {
-        document.documentElement.setAttribute("lang", LANG === "zh" ? "zh-CN" : (LANG === "ja" ? "ja" : "en"));
+        document.documentElement.setAttribute("lang", LANG === "zhtw" ? "zh-TW" : (LANG === "zh" ? "zh-CN" : (LANG === "ja" ? "ja" : "en")));
         document.title = t("page_title");
         document.querySelectorAll("[data-i18n]").forEach(function (el) {
             el.textContent = t(el.getAttribute("data-i18n"));
@@ -273,7 +355,7 @@
         updateNavLabel();
     }
 
-    var LANG_NAMES = { zh: "中文", en: "English", ja: "日本語" };
+    var LANG_NAMES = { zhtw: "正體中文", zh: "简体中文", en: "English", ja: "日本語" };
 
     function refreshLangUI(lang) {
         // Custom dropdown (OS-independent): button shows the CURRENT language.
@@ -289,7 +371,7 @@
     }
 
     function setLang(lang) {
-        if (lang !== "zh" && lang !== "en" && lang !== "ja") return;
+        if (!isSupportedLang(lang)) return;
         LANG = lang;
         try { window.localStorage.setItem("ppt_lang", lang); } catch (e) { /* ignore */ }
         applyI18n();

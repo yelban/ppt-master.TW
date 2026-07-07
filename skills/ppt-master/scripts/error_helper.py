@@ -268,7 +268,7 @@ class ErrorHelper:
             'solutions': [
                 'Remove @font-face declarations',
                 'Use font-family stacks that export PPT-safe pre-installed typefaces',
-                'Example: font-family: "Microsoft YaHei", Arial, sans-serif'
+                'Example: font-family: "Microsoft JhengHei", Arial, sans-serif'
             ],
             'severity': 'error'
         },
@@ -294,7 +294,7 @@ class ErrorHelper:
             'message': 'Font stack exports non-PPT-safe typefaces to PPTX',
             'solutions': [
                 'Use stacks whose exported Latin / EA typefaces are pre-installed',
-                'CJK: "Microsoft YaHei", sans-serif  |  SimSun, serif',
+                'CJK: "Microsoft JhengHei", sans-serif  |  PMingLiU, serif',
                 'Latin: Arial, sans-serif  |  "Times New Roman", serif',
                 'Mono: Consolas, "Courier New", monospace',
                 'See strategist.md §g for the full PPT-safe discipline'

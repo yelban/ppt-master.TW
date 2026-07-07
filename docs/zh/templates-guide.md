@@ -1,183 +1,183 @@
-# 模板指南：选用、派生与边界
+# 模板指南：選用、派生與邊界
 
-PPT Master 的"模板"是一份**结构 + 风格**的预设包：包含若干页面布局 SVG（封面/章节/目录/内容/结尾及其变体）、`design_spec.md` 设计规范，以及配套素材（logo、背景、装饰图）。它不是 PPTX 母版，也不是单纯的配色方案——而是一组可被工作流直接复用的页面骨架。
+PPT Master 的"模板"是一份**結構 + 風格**的預設包：包含若干頁面佈局 SVG（封面/章節/目錄/內容/結尾及其變體）、`design_spec.md` 設計規範，以及配套素材（logo、背景、裝飾圖）。它不是 PPTX 母版，也不是單純的配色方案——而是一組可被工作流直接複用的頁面骨架。
 
-本文回答三个问题：
+本文回答三個問題：
 
-1. [怎么用已有模板？](#一选用已有模板)
-2. [怎么把别人的 PPT / 自己的品牌做成模板？（重点）](#二派生新模板重点)
-3. [模板的边界是什么？](#三模板的边界)
+1. [怎麼用已有模板？](#一選用已有模板)
+2. [怎麼把別人的 PPT / 自己的品牌做成模板？（重點）](#二派生新模板重點)
+3. [模板的邊界是什麼？](#三模板的邊界)
 
 ---
 
-## 一、选用已有模板
+## 一、選用已有模板
 
-### 触发方式
+### 觸發方式
 
-工作流**默认走自由设计**——不会主动问你要不要用模板，也不会基于内容主动推荐模板。模板是 opt-in 的，**只接受显式目录路径**：你在第一条消息里把模板目录的路径写出来。
+工作流**預設走自由設計**——不會主動問你要不要用模板，也不會基於內容主動推薦模板。模板是 opt-in 的，**只接受顯式目錄路徑**：你在第一條訊息裡把模板目錄的路徑寫出來。
 
-### 怎么触发模板流程
+### 怎麼觸發模板流程
 
-在对话里把模板目录的路径写进去（位置不重要，只要明确即可）：
+在對話裡把模板目錄的路徑寫進去（位置不重要，只要明確即可）：
 
-> "用这个模板做：`skills/ppt-master/templates/layouts/academic_defense/`" ✅
-> "用上次那个模板：`projects/last_deck/template/`" ✅
-> "做一份产品介绍，模板用 `/Users/me/Desktop/our_brand_v3/`" ✅
+> "用這個模板做：`skills/ppt-master/templates/layouts/academic_defense/`" ✅
+> "用上次那個模板：`projects/last_deck/template/`" ✅
+> "做一份產品介紹，模板用 `/Users/me/Desktop/our_brand_v3/`" ✅
 
-AI 会把这个目录里的 SVG、`design_spec.md` 和素材复制到项目目录，然后进入 Strategist 阶段。路径可以是任意位置——内置库的 `skills/ppt-master/templates/layouts/` 下、上一个项目的 `template/` 文件夹、或者磁盘上其他任何地方都行。
+AI 會把這個目錄裡的 SVG、`design_spec.md` 和素材複製到專案目錄，然後進入 Strategist 階段。路徑可以是任意位置——內建庫的 `skills/ppt-master/templates/layouts/` 下、上一個專案的 `template/` 資料夾、或者磁碟上其他任何地方都行。
 
-### 什么**不会**触发模板流程
+### 什麼**不會**觸發模板流程
 
-- **只写模板名、不给路径**："用 academic_defense 模板" / "做一份 招商银行 模板的产品介绍" → 走自由设计。AI 不会替你把名字解析成路径。要用模板，请直接给路径。
-- **风格描述**："麦肯锡风格" / "Google style" / "麦肯锡那种" / "极简风" / "Keynote 风" → 走自由设计。这些描述会顺着对话流到 Strategist 那边作为风格说明使用，但**不会复制任何模板文件**。
-- **模糊意图**："想用个模板" / "选一个吧"——没给路径 → 走自由设计。
+- **只寫模板名、不給路徑**："用 academic_defense 模板" / "做一份 招商銀行 模板的產品介紹" → 走自由設計。AI 不會替你把名字解析成路徑。要用模板，請直接給路徑。
+- **風格描述**："麥肯錫風格" / "Google style" / "麥肯錫那種" / "極簡風" / "Keynote 風" → 走自由設計。這些描述會順著對話流到 Strategist 那邊作為風格說明使用，但**不會複製任何模板檔案**。
+- **模糊意圖**："想用個模板" / "選一個吧"——沒給路徑 → 走自由設計。
 
-这是有意的——AI 永远**不做模糊 / 解释性判断**，不替你把名字解析成路径。要用模板，直接给路径。
+這是有意的——AI 永遠**不做模糊 / 解釋性判斷**，不替你把名字解析成路徑。要用模板，直接給路徑。
 
-想知道内置库里有哪些模板，问一句"有哪些模板可以用？"——AI 会从发现索引里列出名字和对应路径。单纯列出并不进入模板流程，需要你**把其中一条路径**再发回来才会触发 Step 3。
+想知道內建庫裡有哪些模板，問一句"有哪些模板可以用？"——AI 會從發現索引裡列出名字和對應路徑。單純列出並不進入模板流程，需要你**把其中一條路徑**再發回來才會觸發 Step 3。
 
-### 现有模板一览
+### 現有模板一覽
 
-模板按三种身份分目录：
+模板按三種身份分目錄：
 
-- [`templates/brands/README.md`](../../skills/ppt-master/templates/brands/README.md) — 仅身份预设（color / typography / logo / voice / icon style），无 SVG 页面；Anthropic、Google
-- [`templates/layouts/README.md`](../../skills/ppt-master/templates/layouts/README.md) — 仅结构样板（canvas / page structure / page types / SVG roster），无身份；academic_defense、government_blue/red、ai_ops、medical_university、pixel_retro、psychology_attachment
-- [`templates/decks/README.md`](../../skills/ppt-master/templates/decks/README.md) — 完整 PPT 复刻（身份 + 结构 + 中间段）；招商银行、中国电建_*、中汽研_*、重庆大学、中国电信
+- [`templates/brands/README.md`](../../skills/ppt-master/templates/brands/README.md) — 僅身份預設（color / typography / logo / voice / icon style），無 SVG 頁面；Anthropic、Google
+- [`templates/layouts/README.md`](../../skills/ppt-master/templates/layouts/README.md) — 僅結構樣板（canvas / page structure / page types / SVG roster），無身份；academic_defense、government_blue/red、ai_ops、medical_university、pixel_retro、psychology_attachment
+- [`templates/decks/README.md`](../../skills/ppt-master/templates/decks/README.md) — 完整 PPT 復刻（身份 + 結構 + 中間段）；招商銀行、中國電建_*、中汽研_*、重慶大學、中國電信
 
-完整数据模型与三类的合成 / 冲突解决规则见 [`templates-architecture.md`](./templates-architecture.md)。
+完整資料模型與三類的合成 / 衝突解決規則見 [`templates-architecture.md`](./templates-architecture.md)。
 
-### 自由设计 vs 模板
+### 自由設計 vs 模板
 
-自由设计不是"没有风格"，而是 AI 根据你的内容**为这一份 deck 现场设计**视觉系统；模板则是**沿用一套已经定型的结构和风格**。两条路都不会少做"设计"，区别只在于风格是即兴还是预设。
+自由設計不是"沒有風格"，而是 AI 根據你的內容**為這一份 deck 現場設計**視覺系統；模板則是**沿用一套已經定型的結構和風格**。兩條路都不會少做"設計"，區別只在於風格是即興還是預設。
 
-> 经验：内容方向明确、品牌或场景有强约束（咨询报告、政府汇报、答辩）→ 用模板。内容偏散文式、视觉氛围更重要（杂志风、纪录式叙事）→ 自由设计往往效果更好。
+> 經驗：內容方向明確、品牌或場景有強約束（諮詢報告、政府彙報、答辯）→ 用模板。內容偏散文式、視覺氛圍更重要（雜誌風、紀錄式敘事）→ 自由設計往往效果更好。
 
-### 风格不是模板
+### 風格不是模板
 
-**风格**是一种描述（"极简风" / "Keynote 风" / "杂志风"）——你在对话里打几个字。**模板**是一份要复制粘贴的资产包（SVG + design_spec + 素材），只在你给出**显式目录路径**时由工作流安装到项目里。
+**風格**是一種描述（"極簡風" / "Keynote 風" / "雜誌風"）——你在對話裡打幾個字。**模板**是一份要複製貼上的資產包（SVG + design_spec + 素材），只在你給出**顯式目錄路徑**時由工作流安裝到專案裡。
 
-| | 模板 | 风格 |
+| | 模板 | 風格 |
 |---|---|---|
-| 怎么触发 | 消息里给出明确的目录路径 | 消息里写自由描述 |
-| 发生什么 | 文件复制到项目；layouts 继承自模板 SVG | 描述流到 Strategist；色彩 / 字体 / 调性在策略师确认阶段里推荐 |
-| 数值锁定 | 是 — 来源于模板的 `design_spec.md` | 否 — Strategist 现场推适合 deck 的具体值 |
-| 适用场景 | 品牌锁定的 deck；强视觉约定的场景 | 心里有感觉但没有具体品牌承诺 |
+| 怎麼觸發 | 訊息裡給出明確的目錄路徑 | 訊息裡寫自由描述 |
+| 發生什麼 | 檔案複製到專案；layouts 繼承自模板 SVG | 描述流到 Strategist；色彩 / 字型 / 調性在策略師確認階段裡推薦 |
+| 數值鎖定 | 是 — 來源於模板的 `design_spec.md` | 否 — Strategist 現場推適合 deck 的具體值 |
+| 適用場景 | 品牌鎖定的 deck；強視覺約定的場景 | 心裡有感覺但沒有具體品牌承諾 |
 
-风格描述可能看起来像模板名（比如 "学术风" 听上去像 `academic_defense/` 模板目录），但走的是**两套机制**——模板需要你给一个真实可复制的路径，风格描述是解释性语言。字面接近，落地完全是两条路。
+風格描述可能看起來像模板名（比如 "學術風" 聽上去像 `academic_defense/` 模板目錄），但走的是**兩套機制**——模板需要你給一個真實可複製的路徑，風格描述是解釋性語言。字面接近，落地完全是兩條路。
 
-### 常见风格描述
+### 常見風格描述
 
-三条轴自由组合（"暗色科技 + 极简" 或 "杂志风 + 新中式" 都行）：
+三條軸自由組合（"暗色科技 + 極簡" 或 "雜誌風 + 新中式" 都行）：
 
-**美学路线**
+**美學路線**
 
-| 风格 | 一句话特征 |
+| 風格 | 一句話特徵 |
 |---|---|
-| **极简风 / Minimalist** | 高留白、2-3 色、单焦点、几乎零装饰 |
-| **信息密集 / Information-dense** | 麦肯锡派结构化表格、密度高、conclusion-first |
-| **Keynote 风** | 单页 Hero 文字、premium 留白、Apple 感 |
-| **杂志风 / Editorial** | 大图当主体、不对称版式、字体反差强 |
-| **文艺手绘** | 暖色、手绘质感、像 zine |
+| **極簡風 / Minimalist** | 高留白、2-3 色、單焦點、幾乎零裝飾 |
+| **資訊密集 / Information-dense** | 麥肯錫派結構化表格、密度高、conclusion-first |
+| **Keynote 風** | 單頁 Hero 文字、premium 留白、Apple 感 |
+| **雜誌風 / Editorial** | 大圖當主體、不對稱版式、字型反差強 |
+| **文藝手繪** | 暖色、手繪質感、像 zine |
 
-**行业 / 场景**
+**行業 / 場景**
 
-| 风格 | 一句话特征 |
+| 風格 | 一句話特徵 |
 |---|---|
-| **商务咨询风** | 数据驱动、专业克制、蓝/灰主调 |
-| **学术答辩风** | 严谨层级、citation-heavy、清晰朴素 |
-| **政府汇报风** | 红/蓝、庄重对称、标题加粗 |
-| **产品发布风** | 视觉冲击、营销大胆、Hero 单图 |
-| **教学课件风** | 清晰层级、友好亲和、配色明亮 |
-| **路演/BP 风** | 叙事驱动、金句配图、conclusion-bold |
+| **商務諮詢風** | 資料驅動、專業剋制、藍/灰主調 |
+| **學術答辯風** | 嚴謹層級、citation-heavy、清晰樸素 |
+| **政府彙報風** | 紅/藍、莊重對稱、標題加粗 |
+| **產品釋出風** | 視覺衝擊、營銷大膽、Hero 單圖 |
+| **教學課件風** | 清晰層級、友好親和、配色明亮 |
+| **路演/BP 風** | 敘事驅動、金句配圖、conclusion-bold |
 
-**视觉调性**
+**視覺調性**
 
-| 风格 | 一句话特征 |
+| 風格 | 一句話特徵 |
 |---|---|
-| **暗色科技风** | 深蓝/黑底、霓虹强调、未来感 |
-| **像素复古** | 8-bit、扫描线、游戏机美学 |
-| **新中式** | 留白、传统纹样克制使用、墨色/朱砂 |
-| **北欧极简** | 浅色、原木自然、字号克制 |
-| **孟菲斯/波普风** | 高饱和大色块、几何图形、80 年代 |
-| **赛博朋克/蒸汽波** | 霓虹紫粉、网格、迷幻 |
+| **暗色科技風** | 深藍/黑底、霓虹強調、未來感 |
+| **畫素復古** | 8-bit、掃描線、遊戲機美學 |
+| **新中式** | 留白、傳統紋樣剋制使用、墨色/硃砂 |
+| **北歐極簡** | 淺色、原木自然、字號剋制 |
+| **孟菲斯/波普風** | 高飽和大色塊、幾何圖形、80 年代 |
+| **賽博朋克/蒸汽波** | 霓虹紫粉、網格、迷幻 |
 
-你描述风格时，AI **不会基于这些词去挑模板**——它把这些词解释为对应的色彩 / 字体 / 版式建议，放到 策略师确认阶段里 `d` 项的第二层（视觉风格），然后驱动 e/f/g/h（色彩 / 图标 / 字体 / 图片）。你可以确认或调整。如果你想要的风格刚好对上库里某个模板（如 `academic_defense` / `pixel_retro` / `psychology_attachment`），有两条路可选：把模板的目录路径发出来锁定值，或描述风格让 AI 现场推适配你内容的值。
+你描述風格時，AI **不會基於這些詞去挑模板**——它把這些詞解釋為對應的色彩 / 字型 / 版式建議，放到 策略師確認階段裡 `d` 項的第二層（視覺風格），然後驅動 e/f/g/h（色彩 / 圖示 / 字型 / 圖片）。你可以確認或調整。如果你想要的風格剛好對上庫裡某個模板（如 `academic_defense` / `pixel_retro` / `psychology_attachment`），有兩條路可選：把模板的目錄路徑發出來鎖定值，或描述風格讓 AI 現場推適配你內容的值。
 
 ---
 
-## 二、派生新模板（重点）
+## 二、派生新模板（重點）
 
-把你自己喜欢的 PPT、品牌指南、或一份现成的 PPTX，做成 PPT Master 可调用的模板。这是本文的核心。
+把你自己喜歡的 PPT、品牌指南、或一份現成的 PPTX，做成 PPT Master 可呼叫的模板。這是本文的核心。
 
 ### 入口：`/create-template` 工作流
 
-完整规范见 [`workflows/create-template.md`](../../skills/ppt-master/workflows/create-template.md)。本节是面向用户的简要版本——你只需要在 IDE 对话里说：
+完整規範見 [`workflows/create-template.md`](../../skills/ppt-master/workflows/create-template.md)。本節是面向使用者的簡要版本——你只需要在 IDE 對話裡說：
 
 ```
 请用 /create-template 工作流，基于下面的参考材料生成一个新模板。
 ```
 
-接下来工作流会**强制**先和你确认一份模板简报（不允许跳过）。
+接下來工作流會**強制**先和你確認一份模板簡報（不允許跳過）。
 
-### 第一步：准备参考材料
+### 第一步：準備參考材料
 
-**强烈推荐：直接给原始 `.pptx` 文件。** 当前的 PPTX 导入管线已经做到接近高保真还原——工作流会用 [`pptx_template_import.py`](../../skills/ppt-master/scripts/pptx_template_import.py) 直接读取 OOXML，提取主题色、字体、每个 master 的主题摘要、母版/版式结构、placeholder 元数据和可复用图片资源。它会输出作为机器事实源的 layered `svg/`，以及用于视觉预览的自包含 `svg-flat/`，再交给 Template_Designer 重建出干净可维护的 SVG。封面、章节、装饰繁复的页面都能稳定还原，这是目前最靠谱的派生路径。
+**強烈推薦：直接給原始 `.pptx` 檔案。** 當前的 PPTX 匯入管線已經做到接近高保真還原——工作流會用 [`pptx_template_import.py`](../../skills/ppt-master/scripts/pptx_template_import.py) 直接讀取 OOXML，提取主題色、字型、每個 master 的主題摘要、母版/版式結構、placeholder 後設資料和可複用圖片資源。它會輸出作為機器事實源的 layered `svg/`，以及用於視覺預覽的自包含 `svg-flat/`，再交給 Template_Designer 重建出乾淨可維護的 SVG。封面、章節、裝飾繁複的頁面都能穩定還原，這是目前最靠譜的派生路徑。
 
-也可以基于品牌指南从零设计：提供 logo、主色 HEX、字体、调性描述、几张氛围参考图，AI 会现场设计页面骨架。适合品牌方还没有成型 PPT、只有 VI 手册的场景。
+也可以基於品牌指南從零設計：提供 logo、主色 HEX、字型、調性描述、幾張氛圍參考圖，AI 會現場設計頁面骨架。適合品牌方還沒有成型 PPT、只有 VI 手冊的場景。
 
-> **没有源 PPTX 时的兜底**：截图集（`cover.png` / `chapter.png` / `content.png` / `closing.png` 等）也能跑，但保真度会明显下降——装饰、字体、版式细节都靠 AI 视觉推断。能拿到 `.pptx` 就尽量用 `.pptx`。截图更适合作为标注辅助（"这页是我想要的样子"）混进 PPTX 一起给。
+> **沒有源 PPTX 時的兜底**：截圖集（`cover.png` / `chapter.png` / `content.png` / `closing.png` 等）也能跑，但保真度會明顯下降——裝飾、字型、版式細節都靠 AI 視覺推斷。能拿到 `.pptx` 就儘量用 `.pptx`。截圖更適合作為標註輔助（"這頁是我想要的樣子"）混進 PPTX 一起給。
 
-### 第二步：模板简报（强制确认环节）
+### 第二步：模板簡報（強制確認環節）
 
-工作流不会偷偷推断——它会在动手前向你列出以下条目，等你确认或补全：
+工作流不會偷偷推斷——它會在動手前向你列出以下條目，等你確認或補全：
 
-| 字段 | 说明 |
+| 欄位 | 說明 |
 |------|------|
-| **模板 ID** | 目录名 / 索引键。优先 ASCII slug，如 `acme_consulting`；中文品牌名也行，但要文件系统安全 |
-| **显示名称** | 文档中的人类可读名 |
-| **类别** | `brand` / `general` / `scenario` / `government` / `special` 五选一 |
-| **适用场景** | 年报 / 咨询 / 答辩 / 政府汇报…… |
-| **调性概要** | 一句话，如"现代克制、数据驱动" |
-| **主题模式** | 浅色 / 深色 / 渐变…… |
-| **画布格式** | 默认 `ppt169`（16:9），其他格式需提前指定 |
-| **复刻模式** | `standard`（默认 5 页基本套）/ `fidelity`（按 PPTX 源里"视觉上真正不同"的版式簇各开一个变体——数量由源决定）/ `mirror`（每张源页 1:1 原样复制，零抽象、不插占位符）—— `fidelity` 和 `mirror` 都必须有 `.pptx` 源 |
-| **保真级别** | （`standard` / `fidelity` 有源时必填）`literal`（按原样复刻几何/装饰/精灵图裁剪）/ `adapted`（借结构和调性、允许设计演化）。封面 / 章节 / 结尾通常用 `literal`。**`mirror` 模式不询问**——隐含 literal |
-| **关键词** | 3–5 个标签，用于索引检索 |
-| 主题色 / 设计风格 / 素材清单 | 可选，可让 AI 从源里自动提取 |
+| **模板 ID** | 目錄名 / 索引鍵。優先 ASCII slug，如 `acme_consulting`；中文品牌名也行，但要檔案系統安全 |
+| **顯示名稱** | 檔案中的人類可讀名 |
+| **類別** | `brand` / `general` / `scenario` / `government` / `special` 五選一 |
+| **適用場景** | 年報 / 諮詢 / 答辯 / 政府彙報…… |
+| **調性概要** | 一句話，如"現代剋制、資料驅動" |
+| **主題模式** | 淺色 / 深色 / 漸變…… |
+| **畫布格式** | 預設 `ppt169`（16:9），其他格式需提前指定 |
+| **復刻模式** | `standard`（預設 5 頁基本套）/ `fidelity`（按 PPTX 源裡"視覺上真正不同"的版式簇各開一個變體——數量由源決定）/ `mirror`（每張源頁 1:1 原樣複製，零抽象、不插佔位符）—— `fidelity` 和 `mirror` 都必須有 `.pptx` 源 |
+| **保真級別** | （`standard` / `fidelity` 有源時必填）`literal`（按原樣復刻幾何/裝飾/精靈圖裁剪）/ `adapted`（借結構和調性、允許設計演化）。封面 / 章節 / 結尾通常用 `literal`。**`mirror` 模式不詢問**——隱含 literal |
+| **關鍵詞** | 3–5 個標籤，用於索引檢索 |
+| 主題色 / 設計風格 / 素材清單 | 可選，可讓 AI 從源裡自動提取 |
 
-确认后，工作流会回显一份完整简报并写入标记 `[TEMPLATE_BRIEF_CONFIRMED]`，从这一刻起后续步骤才会启动。**这是一个硬门——简报没确认，不会开始生成**。
+確認後，工作流會回顯一份完整簡報並寫入標記 `[TEMPLATE_BRIEF_CONFIRMED]`，從這一刻起後續步驟才會啟動。**這是一個硬門——簡報沒確認，不會開始生成**。
 
-> 为什么这么严？因为模板是入库资产，未来会被复用。一次说清楚，比生成完再返工便宜得多。
+> 為什麼這麼嚴？因為模板是入庫資產，未來會被複用。一次說清楚，比生成完再返工便宜得多。
 
-### 第三步：选 standard、fidelity 还是 mirror？
+### 第三步：選 standard、fidelity 還是 mirror？
 
-这是派生模板里最容易混淆的决策。
+這是派生模板裡最容易混淆的決策。
 
 | | **standard** | **fidelity** | **mirror** |
 |---|---|---|---|
-| 输出页数 | 5 页（封面/章节/目录/内容/结尾） | 视觉上真正不同的版式簇各一个变体——数量由源决定 | 每张源页 1:1 一页 |
-| 抽象程度 | 高 —— 干净可复用骨架 | 中 —— 聚类后清理 | **零** —— 原样复制 |
-| 是否插占位符 | 是（`{{TITLE}}`、`{{CONTENT_AREA}}` 等） | 是 | **否** —— Executor 直接在 SVG 里就地编辑文字 |
-| 适合场景 | 你只需要"调性 + 基本骨架"，未来用模板生成全新 deck | 源 PPTX 本身就是高度定制的版式库 | 别人的精装 deck 直接好用、想把每页都当参考页 |
-| 典型例子 | 给品牌做基础模板 | 复刻一套政府汇报的 20 种章节版式 | 把一份 50 页的麦肯锡风格 deck 整套用作模板 |
-| 必须有 PPTX 源吗 | 否 | **是** | **是** |
-| 装饰复杂度 | 通常较简洁 | 需要保留精灵图（sprite sheet）裁剪等结构 | 源页啥样就啥样，逐字节继承 |
+| 輸出頁數 | 5 頁（封面/章節/目錄/內容/結尾） | 視覺上真正不同的版式簇各一個變體——數量由源決定 | 每張源頁 1:1 一頁 |
+| 抽象程度 | 高 —— 乾淨可複用骨架 | 中 —— 聚類後清理 | **零** —— 原樣複製 |
+| 是否插佔位符 | 是（`{{TITLE}}`、`{{CONTENT_AREA}}` 等） | 是 | **否** —— Executor 直接在 SVG 裡就地編輯文字 |
+| 適合場景 | 你只需要"調性 + 基本骨架"，未來用模板生成全新 deck | 源 PPTX 本身就是高度定製的版式庫 | 別人的精裝 deck 直接好用、想把每頁都當參考頁 |
+| 典型例子 | 給品牌做基礎模板 | 復刻一套政府彙報的 20 種章節版式 | 把一份 50 頁的麥肯錫風格 deck 整套用作模板 |
+| 必須有 PPTX 源嗎 | 否 | **是** | **是** |
+| 裝飾複雜度 | 通常較簡潔 | 需要保留精靈圖（sprite sheet）裁剪等結構 | 源頁啥樣就啥樣，逐位元組繼承 |
 
-**关于精灵图**：PPTX 导出的素材常常是**一张大图 + 多页通过 viewBox 裁剪不同区域**。`fidelity` 和 `mirror` 模式下必须保留这层嵌套 `<svg viewBox=...>` 包装，不能扁平化为单张 `<image>`——否则裁剪信息丢失，画面会错位。工作流会自动校验这一点。
+**關於精靈圖**：PPTX 匯出的素材常常是**一張大圖 + 多頁通過 viewBox 裁剪不同區域**。`fidelity` 和 `mirror` 模式下必須保留這層巢狀 `<svg viewBox=...>` 包裝，不能扁平化為單張 `<image>`——否則裁剪資訊丟失，畫面會錯位。工作流會自動校驗這一點。
 
-**`mirror` 模板怎么消费**：mirror 模板里没有 `{{}}` 占位符——Strategist 根据 `design_spec.md §V Page Roster` 的逐页描述为每个项目页选一张参考页，Executor 把那张参考 SVG 拷过去，**仅在原位修改文字内容**，所有装饰、精灵图裁剪、几何坐标全部保留。库资产保持 100% 原样；针对项目的修改只存在于 `projects/<project>/svg_output/`。
+**`mirror` 模板怎麼消費**：mirror 模板裡沒有 `{{}}` 佔位符——Strategist 根據 `design_spec.md §V Page Roster` 的逐頁描述為每個專案頁選一張參考頁，Executor 把那張參考 SVG 拷過去，**僅在原位修改文字內容**，所有裝飾、精靈圖裁剪、幾何座標全部保留。庫資產保持 100% 原樣；針對專案的修改只存在於 `projects/<project>/svg_output/`。
 
-### 第四步：注册与发现
+### 第四步：註冊與發現
 
-模板生成完，工作流会：
+模板生成完，工作流會：
 
-1. 跑 [`svg_quality_checker.py`](../../skills/ppt-master/scripts/svg_quality_checker.py) 验证（硬门，不通过不入库）
-2. 把模板 ID 注册到 [`layouts_index.json`](../../skills/ppt-master/templates/layouts/layouts_index.json)
+1. 跑 [`svg_quality_checker.py`](../../skills/ppt-master/scripts/svg_quality_checker.py) 驗證（硬門，不通過不入庫）
+2. 把模板 ID 註冊到 [`layouts_index.json`](../../skills/ppt-master/templates/layouts/layouts_index.json)
 3. 同步 [`templates/layouts/README.md`](../../skills/ppt-master/templates/layouts/README.md) 表格
 
-注册让模板**可被发现**——下次有人问"有哪些模板可用？"时，AI 会从索引里把它列出来。要在新项目里用它，仍然按 SKILL.md Step 3 的规则：在第一条消息里把目录路径写出来，例如 `用这个模板：skills/ppt-master/templates/layouts/<your_template_id>/`。
+註冊讓模板**可被發現**——下次有人問"有哪些模板可用？"時，AI 會從索引裡把它列出來。要在新專案裡用它，仍然按 SKILL.md Step 3 的規則：在第一條訊息裡把目錄路徑寫出來，例如 `用这个模板：skills/ppt-master/templates/layouts/<your_template_id>/`。
 
-### 派生后的目录长什么样
+### 派生後的目錄長什麼樣
 
 ```
 skills/ppt-master/templates/layouts/<your_template_id>/
@@ -192,9 +192,9 @@ skills/ppt-master/templates/layouts/<your_template_id>/
 └── bg_pattern.jpg
 ```
 
-`standard` 和 `fidelity` 模式下的页面 SVG 里使用统一的占位符约定（`{{TITLE}}`、`{{CHAPTER_TITLE}}`、`{{PAGE_TITLE}}`、`{{CONTENT_AREA}}` 等），策略师阶段会按内容填充。
+`standard` 和 `fidelity` 模式下的頁面 SVG 裡使用統一的佔位符約定（`{{TITLE}}`、`{{CHAPTER_TITLE}}`、`{{PAGE_TITLE}}`、`{{CONTENT_AREA}}` 等），策略師階段會按內容填充。
 
-`mirror` 模板按源页序号每页一张 SVG，**SVG 内部没有占位符**：
+`mirror` 模板按源頁序號每頁一張 SVG，**SVG 內部沒有佔位符**：
 
 ```
 skills/ppt-master/templates/layouts/<your_template_id>/
@@ -209,32 +209,32 @@ skills/ppt-master/templates/layouts/<your_template_id>/
 └── *.png / *.jpg
 ```
 
-### 项目级一次性定制 vs 全局模板
+### 專案級一次性定製 vs 全域性模板
 
-二者别搞混：
+二者別搞混：
 
-- **派生新模板** = 入全局库，在 `skills/ppt-master/templates/layouts/` 下，未来所有项目都能调用
-- **项目级定制** = 只在 `projects/<project>/templates/` 里改这一份 deck 的页面，不入库、不影响其他项目
+- **派生新模板** = 入全域性庫，在 `skills/ppt-master/templates/layouts/` 下，未來所有專案都能呼叫
+- **專案級定製** = 只在 `projects/<project>/templates/` 裡改這一份 deck 的頁面，不入庫、不影響其他專案
 
-`/create-template` 工作流只做前者。后者直接在项目目录里改 SVG 即可，不需要走这个流程。
-
----
-
-## 三、模板的边界
-
-避免常见误解：
-
-- **模板 ≠ 母版（Slide Master）**。PPT Master 的输出是原生 DrawingML 形状，不依赖 PowerPoint 母版机制。模板是 SVG 骨架，最终在导出阶段被翻译为 PPTX 形状
-- **模板不是"风格皮肤"**。它包含结构（页面有几块、信息层级如何分布）+ 风格（配色、字体、装饰），两者不可分割。试图只换"皮肤"不换结构，往往会让信息架构和视觉打架
-- **模板不会替你做内容决策**。策略师仍然会按内容判断每页用哪个版式、要不要扩展为变体，模板提供候选，不预设结果
-- **`fidelity` 模式不等于像素级搬运**。即便是 `literal` 保真，AI 仍会把杂质和不必要的重复结构清理掉——载体保留几何，但不照抄冗余
-- **`mirror` 模式确实是像素级搬运——但它继承源 PPT 的导入限制**。图表、SmartArt、OLE 对象、EMF / WMF 媒体如果在 `pptx_template_import.py` 里 round-trip 失败，mirror 也会同样失败。flat SVG 是事实源——`<workspace>/svg-flat/` 里看着断了，mirror 模板也会断
+`/create-template` 工作流只做前者。後者直接在專案目錄裡改 SVG 即可，不需要走這個流程。
 
 ---
 
-## 相关文档
+## 三、模板的邊界
 
-- [`workflows/create-template.md`](../../skills/ppt-master/workflows/create-template.md) — 完整工作流规范（面向 AI 执行）
-- [`templates/layouts/README.md`](../../skills/ppt-master/templates/layouts/README.md) — 现有模板一览
-- [`references/template-designer.md`](../../skills/ppt-master/references/template-designer.md) — 模板设计师角色定义和 SVG 技术约束
-- [常见问题：如何制作自定义模板](./faq.md#q-如何制作自定义模板) — FAQ 简版
+避免常見誤解：
+
+- **模板 ≠ 母版（Slide Master）**。PPT Master 的輸出是原生 DrawingML 形狀，不依賴 PowerPoint 母版機制。模板是 SVG 骨架，最終在匯出階段被翻譯為 PPTX 形狀
+- **模板不是"風格皮膚"**。它包含結構（頁面有幾塊、資訊層級如何分佈）+ 風格（配色、字型、裝飾），兩者不可分割。試圖只換"皮膚"不換結構，往往會讓資訊架構和視覺打架
+- **模板不會替你做內容決策**。策略師仍然會按內容判斷每頁用哪個版式、要不要擴充套件為變體，模板提供候選，不預設結果
+- **`fidelity` 模式不等於畫素級搬運**。即便是 `literal` 保真，AI 仍會把雜質和不必要的重複結構清理掉——載體保留幾何，但不照抄冗餘
+- **`mirror` 模式確實是畫素級搬運——但它繼承源 PPT 的匯入限制**。圖表、SmartArt、OLE 物件、EMF / WMF 媒體如果在 `pptx_template_import.py` 裡 round-trip 失敗，mirror 也會同樣失敗。flat SVG 是事實源——`<workspace>/svg-flat/` 裡看著斷了，mirror 模板也會斷
+
+---
+
+## 相關檔案
+
+- [`workflows/create-template.md`](../../skills/ppt-master/workflows/create-template.md) — 完整工作流規範（面向 AI 執行）
+- [`templates/layouts/README.md`](../../skills/ppt-master/templates/layouts/README.md) — 現有模板一覽
+- [`references/template-designer.md`](../../skills/ppt-master/references/template-designer.md) — 模板設計師角色定義和 SVG 技術約束
+- [常見問題：如何製作自定義模板](./faq.md#q-如何製作自定義模板) — FAQ 簡版

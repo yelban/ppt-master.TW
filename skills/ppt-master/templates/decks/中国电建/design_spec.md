@@ -1,5 +1,5 @@
 ---
-deck_id: 中国电建
+deck_id: 中國電建
 kind: deck
 summary: Engineering project reports, technical proposal presentations, business negotiations, corporate promotion, annual summaries.
 canvas_format: ppt169
@@ -7,7 +7,7 @@ page_count: 5
 primary_color: "#00418D"
 ---
 
-# POWERCHINA (中国电建) Standard Template - Design Specification
+# POWERCHINA (中國電建) Standard Template - Design Specification
 
 > Suitable for PowerChina (China Power Construction Corporation) project reports, engineering showcases, business negotiations, corporate promotion, and similar scenarios.
 
@@ -17,7 +17,7 @@ primary_color: "#00418D"
 
 | Property       | Description                                                      |
 | -------------- | ---------------------------------------------------------------- |
-| **Template Name** | 中国电建                                                     |
+| **Template Name** | 中國電建                                                     |
 | **Use Cases**  | Engineering project reports, technical proposal presentations, business negotiations, corporate promotion, annual summaries |
 | **Design Tone** | Professional, composed, international, state-owned enterprise style |
 | **Theme Mode** | Light theme (white background + POWERCHINA blue accent)          |
@@ -71,7 +71,7 @@ primary_color: "#00418D"
 
 ### Font Stack
 
-**Font Stack**: `"Microsoft YaHei", "微软雅黑", "SimHei", Arial, sans-serif`
+**Font Stack**: `"Microsoft JhengHei", "Microsoft JhengHei", "Microsoft JhengHei", Arial, sans-serif`
 
 ### Font Size Hierarchy
 
@@ -225,4 +225,4 @@ primary_color: "#00418D"
 
 1. **Logo Adaptation**: Cover and ending pages use inverted (white) Logo; content page upper-right uses color or inverted Logo.
 2. **Image Assets**: Ensure the `images/` folder under the template directory contains necessary Logo files.
-3. **Fonts**: Recommend installing "Microsoft YaHei" for optimal display.
+3. **Fonts**: Recommend installing "Microsoft JhengHei" for optimal display.

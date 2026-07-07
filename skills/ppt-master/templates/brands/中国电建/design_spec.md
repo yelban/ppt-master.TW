@@ -1,11 +1,11 @@
 ---
-brand_id: 中国电建
+brand_id: 中國電建
 kind: brand
 summary: POWERCHINA brand identity for engineering project reports, technical proposals, business negotiations, and corporate promotion
 primary_color: "#00418D"
 ---
 
-# POWERCHINA (中国电建) Brand Specification
+# POWERCHINA (中國電建) Brand Specification
 
 > Identity-only preset. No SVG page roster; pages are composed freely under these brand constraints.
 
@@ -13,7 +13,7 @@ primary_color: "#00418D"
 
 | Property | Value |
 |---|---|
-| Brand Name | POWERCHINA / 中国电建 |
+| Brand Name | POWERCHINA / 中國電建 |
 | Use Cases | Engineering project reports, technical proposal presentations, business negotiations, corporate promotion, annual summaries |
 | Tone | Professional, composed, international, state-owned enterprise style |
 
@@ -36,9 +36,9 @@ primary_color: "#00418D"
 
 | Role | Family | Weight |
 |---|---|---|
-| title | `"Microsoft YaHei", "微软雅黑", "SimHei", Arial, sans-serif` | 700 |
-| body | `"Microsoft YaHei", "微软雅黑", Arial, sans-serif` | 400 |
-| data | `Arial, "Microsoft YaHei", sans-serif` | 600-700 |
+| title | `"Microsoft JhengHei", "Microsoft JhengHei", "Microsoft JhengHei", Arial, sans-serif` | 700 |
+| body | `"Microsoft JhengHei", "Microsoft JhengHei", Arial, sans-serif` | 400 |
+| data | `Arial, "Microsoft JhengHei", sans-serif` | 600-700 |
 
 Use PowerPoint-safe CJK fonts by default. Keep English technical labels in Arial when they function as engineering annotations or dashboard labels.
 
@@ -61,7 +61,7 @@ POWERCHINA templates may use the group brand logo or subsidiary logos depending 
 ## V. Voice & Tone
 
 - Formality: formal
-- Person: organization-first, "we / 我们" when speaking as the company
+- Person: organization-first, "we / 我們" when speaking as the company
 - Emoji: avoid
 - Abbreviations: spell out Chinese organization names on first use; POWERCHINA is acceptable after first mention
 - Style: emphasize engineering reliability, delivery capability, safety, scale, and public-sector credibility

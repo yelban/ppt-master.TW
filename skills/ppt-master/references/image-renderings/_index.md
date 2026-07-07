@@ -87,22 +87,22 @@ Match `design_spec.md d` (mode + `visual_style`) against this table. First match
 |---|---|---|
 | Strategic / MBB / board | `editorial` or `vector-illustration` | `blueprint`, `minimalist-swiss` |
 | Corporate report / analysis | `vector-illustration` | `flat`, `digital-dashboard` |
-| High-end consulting / luxury / 高端 / design-firm | `minimalist-swiss` | `editorial`, `vector-illustration` |
+| High-end consulting / luxury / 高階 / design-firm | `minimalist-swiss` | `editorial`, `vector-illustration` |
 | Tech / SaaS / AI / system / architecture | `3d-isometric`, `blueprint`, or `digital-dashboard` | `flat`, `vector-illustration` |
 | Modern SaaS / fintech / health-tech / premium app | `glassmorphism` | `digital-dashboard`, `flat` |
 | Product launch / brand / marketing | `flat`, `3d-isometric`, or `corporate-photo` | `vector-illustration` |
-| Education / training / onboarding / 教学 | `sketch-notes` | `vector-illustration` (if school is corporate), `paper-cut` |
-| Children / story / storybook / 儿童 | `fantasy-animation` | `paper-cut`, `watercolor`, `sketch-notes` |
-| Cultural / folk / festival / 文化 / 节日 | `paper-cut` | `vintage-poster`, `screen-print` |
-| Methodology / Before-After / manifesto / 方法论 | `ink-notes` | `editorial` |
+| Education / training / onboarding / 教學 | `sketch-notes` | `vector-illustration` (if school is corporate), `paper-cut` |
+| Children / story / storybook / 兒童 | `fantasy-animation` | `paper-cut`, `watercolor`, `sketch-notes` |
+| Cultural / folk / festival / 文化 / 節日 | `paper-cut` | `vintage-poster`, `screen-print` |
+| Methodology / Before-After / manifesto / 方法論 | `ink-notes` | `editorial` |
 | Government / formal / official report | `editorial` or `corporate-photo` | `vector-illustration` |
-| Finance / data journalism / 财经 | `editorial` or `digital-dashboard` | `vector-illustration` |
-| Personal story / 个人成长 / lifestyle | `watercolor`, `warm-scene` | `corporate-photo`, `paper-cut` |
+| Finance / data journalism / 財經 | `editorial` or `digital-dashboard` | `vector-illustration` |
+| Personal story / 個人成長 / lifestyle | `watercolor`, `warm-scene` | `corporate-photo`, `paper-cut` |
 | Cultural / media / opinion / cinematic | `screen-print`, `vintage-poster` | `editorial`, `warm-scene` |
-| Brand heritage / hospitality / 老字号 / 周年 | `vintage-poster` | `screen-print`, `editorial` |
-| Gaming / retro / 8-bit / 复古 | `pixel-art` | `vintage-poster` |
-| Environment / wellness / 环保 / 户外 | `nature` | `watercolor`, `paper-cut` |
-| Classroom / blackboard / 课堂 | `chalkboard` | `sketch-notes` |
+| Brand heritage / hospitality / 老字號 / 週年 | `vintage-poster` | `screen-print`, `editorial` |
+| Gaming / retro / 8-bit / 復古 | `pixel-art` | `vintage-poster` |
+| Environment / wellness / 環保 / 戶外 | `nature` | `watercolor`, `paper-cut` |
+| Classroom / blackboard / 課堂 | `chalkboard` | `sketch-notes` |
 | Team / company / product photo | `corporate-photo` | — |
 
 ---

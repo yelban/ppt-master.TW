@@ -1,0 +1,83 @@
+{
+  "_comment": "Ordered replacements applied by tools/tw_localize.py outside protected en/ja, URL, path, and command ranges. Keep this file append-only where possible so upstream sync fixes are reproducible.",
+  "replacements": [
+    {
+      "from": "zh-CN",
+      "to": "zh-TW"
+    },
+    {
+      "from": "微软雅黑",
+      "to": "Microsoft JhengHei"
+    },
+    {
+      "from": "微軟雅黑",
+      "to": "Microsoft JhengHei"
+    },
+    {
+      "from": "Microsoft YaHei",
+      "to": "Microsoft JhengHei"
+    },
+    {
+      "from": "SimHei",
+      "to": "Microsoft JhengHei"
+    },
+    {
+      "from": "SimSun",
+      "to": "PMingLiU"
+    },
+    {
+      "from": "PingFang SC",
+      "to": "PingFang TC"
+    },
+    {
+      "from": "Hiragino Sans GB",
+      "to": "PingFang TC"
+    },
+    {
+      "from": "Source Han Sans SC",
+      "to": "Noto Sans TC"
+    },
+    {
+      "from": "思源黑体",
+      "to": "思源黑體"
+    },
+    {
+      "from": "思源宋体",
+      "to": "思源宋體"
+    },
+    {
+      "from": "佔點陣圖形",
+      "to": "佔位圖形"
+    },
+    {
+      "from": "佔點陣圖片",
+      "to": "佔位圖片"
+    },
+    {
+      "from": "嚴格貼著文件來",
+      "to": "嚴格貼著檔案來"
+    }
+  ],
+  "protected_key_suffixes": [
+    "_en",
+    "_ja"
+  ],
+  "protected_keys": [
+    "en",
+    "ja",
+    "english",
+    "japanese",
+    "name_en",
+    "name_ja",
+    "label_en",
+    "label_ja",
+    "desc_en",
+    "desc_ja",
+    "note_en",
+    "note_ja",
+    "group_en",
+    "group_ja",
+    "use_en",
+    "use_ja"
+  ]
+}

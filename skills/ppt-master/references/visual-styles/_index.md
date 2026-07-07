@@ -67,22 +67,22 @@ Each style has its own file with: shape & decoration, typography character, colo
 |---|---|---|
 | High-end consulting / architecture / luxury / minimal | `swiss-minimal` | `editorial` |
 | Finance / journalism / research / long-form analysis | `editorial` | `data-journalism` |
-| Photography-led / architecture / design / fashion / 大图 | `photo-editorial` | `editorial` |
-| Data report / market review / 财经 / Bloomberg / Economist | `data-journalism` | `editorial` |
+| Photography-led / architecture / design / fashion / 大圖 | `photo-editorial` | `editorial` |
+| Data report / market review / 財經 / Bloomberg / Economist | `data-journalism` | `editorial` |
 | Product / SaaS / training / consumer / friendly | `soft-rounded` | `editorial` |
 | Modern SaaS / fintech / health-tech / premium app | `glassmorphism` | `dark-tech` |
 | Tech / AI / dev tools / data / futuristic | `dark-tech` | `glassmorphism` |
-| Cultural / philosophy / heritage / 新中式 / 东方 | `ink-wash` | `editorial` |
+| Cultural / philosophy / heritage / 新中式 / 東方 | `ink-wash` | `editorial` |
 | Engineering / systems / architecture walkthrough | `blueprint` | `dark-tech` |
 | Annual review / manifesto / max-density editorial | `brutalist` | `editorial` |
 | Festival / consumer brand / youth / loud launch | `memphis` | `soft-rounded` |
 | Indie publishing / design / culture / printed feel | `zine` | `editorial` |
-| Heritage / hospitality / retro brand / 老字号 / 周年 | `vintage-poster` | `zine` |
+| Heritage / hospitality / retro brand / 老字號 / 週年 | `vintage-poster` | `zine` |
 | Cultural / folk / festival / children / sustainability | `paper-cut` | `sketch-notes` |
-| Education / training / onboarding / 教学 | `sketch-notes` | `paper-cut` |
-| Methodology / before-after / manifesto / 方法论 | `ink-notes` | `editorial` |
-| Classroom / tutorial / academic / 课堂 | `chalkboard` | `sketch-notes` |
-| Gaming / retro / 8-bit / 复古游戏 | `pixel-art` | `vintage-poster` |
+| Education / training / onboarding / 教學 | `sketch-notes` | `paper-cut` |
+| Methodology / before-after / manifesto / 方法論 | `ink-notes` | `editorial` |
+| Classroom / tutorial / academic / 課堂 | `chalkboard` | `sketch-notes` |
+| Gaming / retro / 8-bit / 復古遊戲 | `pixel-art` | `vintage-poster` |
 
 > When the deck has AI images, align style with rendering: a `swiss-minimal` layout reads best with a `minimalist-swiss` rendering, so page and illustrations share one aesthetic. The "Paired rendering" column is the default pairing; override when content demands.
 >

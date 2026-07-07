@@ -58,7 +58,7 @@ The whole loop is three steps. Install first — you only need Python; see [Quic
 2. **Tell the AI in chat** what to turn into a deck (add a template path if you set one up above; otherwise it's free design):
    ```
    You: Make a deck from projects/q3-report/sources/report.pdf
-   You: 把这份内容做成 PPT：<paste your text>
+   You: 把這份內容做成 PPT：<paste your text>
    ```
 3. **Get an editable `.pptx`** at `exports/<name>_<timestamp>.pptx` — real DrawingML shapes, text boxes, and charts you can click and edit in PowerPoint, Keynote, WPS, or LibreOffice.
 

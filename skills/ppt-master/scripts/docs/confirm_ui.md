@@ -120,8 +120,8 @@ The AI launches Stage 1 (`--daemon --wait`), reads the stage-1 result, **re-deri
       { "name": "...", "note": "...",
         "sample_heading": "主题标题示例", "sample_heading_latin": "Topic Title",
         "sample_body": "关键信息摘要", "sample_body_latin": "Key message summary",
-        "heading": { "cjk": "思源黑体", "latin": "Inter", "css": "'Source Han Sans SC','Inter',sans-serif" },
-        "body":    { "cjk": "思源黑体", "latin": "Inter", "css": "..." },
+        "heading": { "cjk": "思源黑體", "latin": "Inter", "css": "'Noto Sans TC','Inter',sans-serif" },
+        "body":    { "cjk": "思源黑體", "latin": "Inter", "css": "..." },
         "body_size": 20 }
     ]
   },
