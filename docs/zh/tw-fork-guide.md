@@ -11,6 +11,42 @@
 | 匯出擴充 | `--html-deck` / `--embed-fonts`：輸出可離線瀏覽的 HTML 投影片 | `scripts/svg_to_pptx/pptx_package/html_deck.py` |
 | 檔案 | 繁中 README（`README_TW.md`，由管線衍生）、本指南 | `README_TW.md`、`docs/zh/tw-fork-guide.md` |
 
+## 環境安裝（macOS ＋ uv）
+
+大部分工具只用 Python 標準庫，其餘依功能可選，完整清單見 [`requirements.txt`](../../requirements.txt)。
+
+### Python 環境
+
+本 repo 用 `requirements.txt`（非 `pyproject.toml`），以 uv 建立獨立虛擬環境：
+
+```bash
+uv venv --python 3.12          # 在 repo 根目錄建立 .venv
+source .venv/bin/activate
+uv pip install -r requirements.txt
+```
+
+之後每次使用前 `source .venv/bin/activate` 即可；或用 `uv run python3 <script>` 免啟用直接跑。
+
+### 系統工具
+
+以下是 Python 套件之外、由 script 透過 subprocess 呼叫的外部工具。標「必要」者缺了對應功能會失效，「可選」者只在特定情境用到。
+
+| 工具 | 安裝指令 | 用途 | 必要性 |
+|------|----------|------|--------|
+| **LibreOffice** | `brew install --cask libreoffice` | PPTX → PDF（`soffice --headless --convert-to pdf`） | 可選（要出 PDF 時） |
+| **librsvg** | `brew install librsvg` | SVG → PDF／PNG（`rsvg-convert`），與螢幕預覽一致 | 可選（要出 PDF 時） |
+| **ffmpeg** | `brew install ffmpeg` | 旁白音訊自動換頁計時（`ffprobe` 讀音長） | 可選（用 audio 旁白時必要） |
+| **pandoc** | `brew install pandoc` | 小眾來源格式轉 Markdown（.doc/.odt/.rtf/.tex/.rst/.org/.typ） | 可選（用到這些格式時） |
+| **OpenCC** | `brew install opencc` | 繁化管線 `tw_localize.py` 的核心（`s2twp`） | 必要（維護 fork 時） |
+| **cairo ＋ CairoSVG** | `brew install cairo` ＋ `uv pip install cairosvg` | 舊版 Office 的高品質 PNG fallback | 可選（預設用 svglib，多數情況不需要） |
+| **fonttools ＋ brotli** | `uv pip install fonttools brotli` | 本機安裝繁中字型時把 woff2 解成 sfnt（見下節） | 可選（裝字型時） |
+
+> **PNG fallback 二選一**：`requirements.txt` 已含 `svglib`＋`reportlab`（輕量，多數情況足夠）。只有需要更精準的漸層／濾鏡 PNG fallback 時才改裝 CairoSVG（需先 `brew install cairo`）。兩者擇一即可。
+
+### 還缺什麼？
+
+核心生成流程（來源轉 Markdown → SVG → PPTX）只要裝好 `requirements.txt` 就能跑。上表的系統工具都是**特定功能才用到的加值項**，不是每個人都需要。按你的用途挑：要出 PDF → LibreOffice／librsvg；要旁白 → ffmpeg；要吃 .doc/.odt 等冷門格式 → pandoc；維護 fork 繁化 → OpenCC。其餘無需額外安裝。
+
 ## 匯出 HTML 投影片（`--html-deck`）
 
 `svg_to_pptx.py` 在既有的 PPTX 匯出之外，可額外輸出一份把每頁 SVG inline 進去的自足 HTML，開啟即可用鍵盤瀏覽，不需伺服器、不經過 PPTX。
