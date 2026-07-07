@@ -646,6 +646,7 @@ python3 ${SKILL_DIR}/scripts/svg_to_pptx.py <project_path>
 #   exports/<project_name>_<timestamp>_svg.pptx      ← SVG preview pptx (reads svg_final/)
 # Add --native-objects to emit real editable chart/table objects instead of flattened shapes:
 #   exports/<project_name>_<timestamp>_native_charts.pptx  ← native chart/table objects (data-pptx-native markers)
+# Add --html-deck to also emit an inline-SVG HTML deck; add --embed-fonts to inject Traditional Chinese webfont @font-face rules into that HTML.
 ```
 
 > The native pptx consumes `svg_output/` directly so the converter can preserve

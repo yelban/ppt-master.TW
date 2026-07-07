@@ -28,6 +28,7 @@ if __package__ in {None, ''}:
 from .dimensions import CANVAS_FORMATS, get_project_info, get_viewbox_dimensions
 from .discovery import find_svg_files, find_notes_files
 from .builder import create_pptx_with_native_svg
+from .html_deck import build_html_deck
 from .narration import NARRATION_EXTENSIONS, find_narration_files, probe_audio_duration
 from .slide_xml import TRANSITIONS
 from ..animation_config import load_animation_config, validate_animation_config
@@ -91,6 +92,7 @@ def main(argv: list[str] | None = None) -> int:
 Examples:
     %(prog)s examples/ppt169_demo                         # Default: native pptx -> exports/, svg_output -> backup/<ts>/
     %(prog)s examples/ppt169_demo --svg-snapshot         # Also emit SVG-rendered snapshot pptx
+    %(prog)s examples/ppt169_demo --html-deck            # Also emit browsable inline-SVG HTML
     %(prog)s examples/ppt169_demo --only legacy          # Only SVG image version (skips native)
     %(prog)s examples/ppt169_demo -o out.pptx            # Explicit path (no backup/)
 
@@ -198,6 +200,12 @@ Recorded narration:
                              'already provides the SVG visual reference. '
                              'Note: the svg_output/ source snapshot is always written to backup/<ts>/ '
                              'regardless of this flag.')
+    parser.add_argument('--html-deck', action='store_true', default=False,
+                        help='Also emit a self-contained browsable HTML deck '
+                             'with inline SVG slides.')
+    parser.add_argument('--embed-fonts', action='store_true', default=False,
+                        help='When used with --html-deck, inject Traditional '
+                             'Chinese webfont @font-face rules into the HTML.')
     parser.add_argument('--no-image-optimize', action='store_true',
                         help='Disable native PPTX raster image optimization; embeds original image bytes.')
     parser.add_argument('--image-max-dimension', type=int, default=2560,
@@ -349,9 +357,11 @@ Recorded narration:
 
     backup_dir: Path | None = None
     legacy_path: Path | None = None
+    html_path: Path | None = None
     if args.output:
         output_base = Path(args.output)
         native_path = output_base
+        html_path = output_base.with_suffix('.html')
         if gen_legacy:
             stem = output_base.stem
             legacy_path = output_base.parent / f"{stem}_svg{output_base.suffix}"
@@ -365,6 +375,7 @@ Recorded narration:
         # predictable; an explicit -o keeps the caller's exact name untouched.
         native_tag = "_native_charts" if args.native_objects else ""
         native_path = exports_dir / f"{project_name}_{timestamp}{native_tag}.pptx"
+        html_path = exports_dir / f"{project_name}_{timestamp}.html"
         # svg_output/ snapshot always goes under backup/<ts>/ in default-flow
         # mode (no -o). --svg-snapshot only controls the optional legacy
         # SVG-rendered pptx, which now sits alongside the native pptx in
@@ -673,6 +684,23 @@ Recorded narration:
                     print(f"  [warn] svg_output backup skipped: {exc}")
         elif verbose:
             print(f"  [info] svg_output/ not found, backup skipped")
+
+    if success and args.html_deck:
+        html_files = sorted((project_path / 'svg_final').glob('*.svg'))
+        if not html_files:
+            html_files = ref_files
+            fallback_dir = native_source_dir or legacy_source_dir or 'selected SVG source'
+            print(
+                f"  [warn] svg_final/ not found for HTML deck; using {fallback_dir}. "
+                "Images/icons may not be embedded."
+            )
+        try:
+            written_html = build_html_deck(project_path, html_files, html_path, args.embed_fonts)
+        except Exception as exc:
+            print(f"Error: Failed to write HTML deck: {exc}", file=sys.stderr)
+            success = False
+        else:
+            print(f"  HTML deck: {written_html}")
 
     if success and cache_dir is not None and cache_dir.is_dir() and not args.keep_cache:
         try:

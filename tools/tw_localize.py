@@ -78,19 +78,19 @@ UI_FONT_STACK = (
 FONT_FACE_BLOCK = f"""{FONT_FACE_MARKER_START}
 @font-face {{
     font-family: "GenSekiGothic2TW";
-    src: url("https://cdn.jsdelivr.net/gh/yelban/font-genseki-tw@latest/GenSekiGothic2TW-Regular.woff2") format("woff2");
+    src: url("https://cdn.jsdelivr.net/gh/yelban/font-genseki-tw@latest/GenSekiGothic2TW-R.woff2") format("woff2");
     font-display: swap;
 }}
 
 @font-face {{
     font-family: "GenSenRounded2TW";
-    src: url("https://cdn.jsdelivr.net/gh/yelban/font-gensen-tw@latest/GenSenRounded2TW-Regular.woff2") format("woff2");
+    src: url("https://cdn.jsdelivr.net/gh/yelban/font-gensen-tw@latest/GenSenRounded2TW-R.woff2") format("woff2");
     font-display: swap;
 }}
 
 @font-face {{
     font-family: "GenRyuMin2TW";
-    src: url("https://cdn.jsdelivr.net/gh/yelban/font-genryu-tw@latest/GenRyuMin2TW-Regular.woff2") format("woff2");
+    src: url("https://cdn.jsdelivr.net/gh/yelban/font-genryu-tw@latest/GenRyuMin2TW-R.woff2") format("woff2");
     font-display: swap;
 }}
 

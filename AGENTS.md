@@ -83,6 +83,7 @@ python3 skills/ppt-master/scripts/native_enhance_pptx.py apply <project_path>
 python3 skills/ppt-master/scripts/total_md_split.py <project_path>
 python3 skills/ppt-master/scripts/finalize_svg.py <project_path>
 python3 skills/ppt-master/scripts/svg_to_pptx.py <project_path>
+# Add --html-deck to emit an inline-SVG HTML deck; add --embed-fonts to inject Traditional Chinese webfonts into that HTML.
 # Mergeable dy-stacked paragraph blocks collapse into one editable text frame by default; add --no-merge to keep every line as its own frame (strict line fidelity). See SKILL.md Step 7.3.
 ```
 
