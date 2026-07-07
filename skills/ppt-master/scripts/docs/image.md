@@ -64,6 +64,7 @@ python3 scripts/image_gen.py "A cinematic portrait" --backend minimax
 python3 scripts/image_gen.py "A product launch hero image" --backend qwen
 python3 scripts/image_gen.py "科技感背景图" --backend zhipu
 python3 scripts/image_gen.py "A product KV in cinematic style" --backend volcengine
+python3 scripts/image_gen.py "A flat editorial illustration" --backend codex
 ```
 
 Configuration sources:
@@ -141,6 +142,34 @@ Recommendation:
 - Default to the Core tier for routine PPT work
 - Use Extended only when you need a specific model style
 - Treat Experimental backends as opt-in
+
+Codex CLI backend:
+
+```bash
+npm install -g @openai/codex
+codex login
+
+IMAGE_BACKEND=codex python3 scripts/image_gen.py \
+  "A minimalist flat illustration of a lighthouse" \
+  --aspect_ratio 16:9 -o projects/demo/images
+```
+
+The Codex backend spawns local `codex exec --json --sandbox danger-full-access`
+and asks Codex to call its built-in `image_gen` tool. It uses the user's
+Codex / ChatGPT subscription through `codex login`; it does not read
+`OPENAI_API_KEY`.
+
+Codex supports a smaller aspect-ratio set: `1:1`, `16:9`, `9:16`, `4:3`, and
+`2.35:1`. The backend maps `21:9` to `2.35:1` with an explicit console note;
+other ratios fail loudly instead of silently producing the wrong shape.
+`--image_size`, quality-style settings, and `--model` are informational only:
+Codex chooses pixel dimensions and the active image model from the CLI runtime.
+
+Codex CLI is slower than direct API backends, commonly 5-10x on uncached runs.
+Each backend invocation produces one image. For manifest work, keep
+`--concurrency 1` unless you intentionally want to queue several slow Codex
+executions; the backend also serializes in-process calls to avoid simultaneous
+`codex exec` runs.
 
 Example `.env` for MiniMax image backend:
 

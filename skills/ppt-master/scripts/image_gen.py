@@ -19,6 +19,7 @@ Backend selection (`IMAGE_BACKEND` in `.env` or the current process environment)
   IMAGE_BACKEND=fal         -> fal.ai backend
   IMAGE_BACKEND=replicate   -> Replicate backend
   IMAGE_BACKEND=openrouter  -> OpenRouter backend
+  IMAGE_BACKEND=codex       -> Codex CLI backend (codex login, no API key)
 
 Configuration source (process env wins, `.env` is the fallback layer):
   1. Current process environment variables
@@ -36,6 +37,7 @@ Supported keys:
     OPENAI_API_KEY / OPENAI_MODEL / OPENAI_BASE_URL
     QWEN_API_KEY / QWEN_MODEL / QWEN_BASE_URL
     ZHIPU_API_KEY / ZHIPU_MODEL / ZHIPU_BASE_URL
+    CODEX_IMAGE_TIMEOUT_MS / CODEX_IMAGE_RETRIES
 
 Usage:
   python3 image_gen.py "prompt" --aspect_ratio 16:9 --image_size 1K -o images/
@@ -78,6 +80,7 @@ IMAGE_ENV_PREFIXES = (
     "FAL_",
     "REPLICATE_",
     "OPENROUTER_",
+    "CODEX_",
 )
 DEPRECATED_IMAGE_KEYS = {
     "IMAGE_API_KEY",
@@ -89,6 +92,7 @@ DEPRECATED_IMAGE_KEYS = {
 # (each backend validates its own subset internally)
 ALL_ASPECT_RATIOS = [
     "1:1", "1:4", "1:8",
+    "2.35:1",
     "2:3", "3:2", "3:4", "4:1", "4:3",
     "4:5", "5:4", "8:1", "9:16", "16:9", "21:9"
 ]
@@ -204,6 +208,14 @@ BACKEND_REGISTRY = {
         "label": "OpenRouter",
         "default_model": "google/gemini-3.1-flash-image-preview",
         "key_hint": "OPENROUTER_API_KEY",
+    },
+    "codex": {
+        "module": "backend_codex",
+        "tier": "experimental",
+        "label": "Codex CLI image_gen",
+        "default_model": "codex-image-gen",
+        "key_hint": "codex login (subscription; no API key)",
+        "aliases": ["codex-cli"],
     },
 }
 

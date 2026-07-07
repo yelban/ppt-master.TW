@@ -47,6 +47,25 @@ For each row with `Status: Pending`:
 
 > Lazy load: an all-`web` deck never reads `image-generator.md`, and vice versa.
 
+### 3.1 Codex CLI Backend
+
+**Trigger**: Use only when `IMAGE_BACKEND=codex` or `--backend codex` is explicitly selected.
+
+| Requirement | Command / Behavior |
+|---|---|
+| Install CLI | `npm install -g @openai/codex` |
+| Login | `codex login` |
+| Backend selection | `IMAGE_BACKEND=codex` |
+| Credential model | Uses the logged-in Codex / ChatGPT subscription; no API key is read |
+| Aspect ratios | `1:1`, `16:9`, `9:16`, `4:3`, `2.35:1`; `21:9` maps explicitly to `2.35:1` |
+| Size / quality | `--image_size`, quality-style settings, and `--model` are ignored with a console note; Codex chooses pixels from aspect ratio |
+| Speed | Expect 5-10x direct API latency on uncached runs |
+| Output count | One image per Codex backend invocation |
+
+**Hard rule**: Unsupported aspect ratios must fail loudly or map with an explicit console note. Do not silently coerce to a nearby shape.
+
+**Default — manifest pacing (may override for a deliberate queue)**: Use `--concurrency 1` with Codex. The backend serializes in-process `codex exec` calls because Codex CLI image generation is a slow single-image workflow.
+
 ---
 
 ## 4. Analysis Phase
