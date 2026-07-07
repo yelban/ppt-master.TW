@@ -9,7 +9,8 @@
 | 繁化管線 | OpenCC `s2twp` ＋ 覆蓋表，全 repo 可重複執行繁化 | `tools/tw_localize.py`、`tools/tw_localize_overrides.json` |
 | 預覽 UI | 語系選單新增「正體中文」；繁中 webfont（jsDelivr CDN） | `scripts/confirm_ui/`、`scripts/svg_editor/` |
 | 匯出擴充 | `--html-deck` / `--embed-fonts`：輸出可離線瀏覽的 HTML 投影片 | `scripts/svg_to_pptx/pptx_package/html_deck.py` |
-| 檔案 | 繁中 README（`README_TW.md`，由管線衍生）、本指南 | `README_TW.md`、`docs/zh/tw-fork-guide.md` |
+| 產圖後端 | `IMAGE_BACKEND=codex`：spawn 本機 `codex` CLI 的內建 `image_gen` 產圖，走 Codex 訂閱、免 API key（experimental，別名 `codex-cli`） | `scripts/image_backends/backend_codex.py`、`scripts/image_gen.py`（registry） |
+| 檔案 | 繁中 README（`README_TW.md`，由管線衍生）、本指南、上游同步 runbook | `README_TW.md`、`docs/zh/tw-fork-guide.md`、`docs/zh/upstream-sync-runbook.md` |
 
 ## 環境安裝（macOS ＋ uv）
 
@@ -140,6 +141,8 @@ done
 
 ## 上游同步檢查清單
 
+> 完整的逐步執行手冊（含衝突分流規則、回歸驗證、停下問人的時機）見 [`upstream-sync-runbook.md`](upstream-sync-runbook.md)，交給 AI agent 執行時請直接指定該檔。本節只留最短流程備忘。
+
 ```bash
 git fetch upstream && git merge upstream/main   # 首次先 git remote add upstream https://github.com/yelban/ppt-master.git
 # 解決衝突後：
@@ -152,4 +155,5 @@ git diff                                          # 檢視
 
 - **UI 若新增字串**：上游在 `MESSAGES.zh` 加了新 key → 繁化自動衍生 `zhtw`，但若出現需要臺灣在地化的用語，加進 `tw_localize_overrides.json`。
 - **匯出 CLI 若被上游改動**：確認 `--html-deck` / `--embed-fonts` 的接線（`scripts/svg_to_pptx/pptx_package/cli.py`）與 `html_deck.py` 仍相容。
+- **產圖分派若被上游改動**：確認 `image_gen.py` 的 `BACKEND_REGISTRY` 仍含 `codex` 條目、`--list-backends` 輸出正常。
 - **字型清單若調整**：`FONT_FACE_BLOCK` 的 woff2 檔名須對得上 jsDelivr 實際檔案（`-R.woff2` vs `-Regular.woff2` 曾出錯）。

@@ -6,6 +6,8 @@
 
 ## 上游同步流程
 
+> 交給 AI agent 執行的完整逐步手冊（衝突分流、回歸驗證、暫停時機）見 [`docs/zh/upstream-sync-runbook.md`](../docs/zh/upstream-sync-runbook.md)。
+
 ```bash
 git remote add upstream https://github.com/yelban/ppt-master.git
 git fetch upstream
