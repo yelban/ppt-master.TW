@@ -1,6 +1,6 @@
 # .TW Fork 擴充與維護指南
 
-本檔案集中記錄 `ppt-master.TW` 相對上游 [`yelban/ppt-master`](https://github.com/yelban/ppt-master) 的**所有新增功能與差異**，同時當作上游同步時的檢查清單。管線內部細節（覆蓋表、雙中文字典、README 衍生）見 [`tools/README.md`](../../tools/README.md)，本檔案不重複，只補使用者面的用法。
+本檔案集中記錄 `ppt-master.TW` 相對上游 [`hugohe3/ppt-master`](https://github.com/hugohe3/ppt-master) 的**所有新增功能與差異**，同時當作上游同步時的檢查清單。管線內部細節（覆蓋表、雙中文字典、README 衍生）見 [`tools/README.md`](../../tools/README.md)，本檔案不重複，只補使用者面的用法。
 
 ## 這個 fork 加了什麼
 
@@ -8,7 +8,7 @@
 |------|----------|------|
 | 繁化管線 | OpenCC `s2twp` ＋ 覆蓋表，全 repo 可重複執行繁化 | `tools/tw_localize.py`、`tools/tw_localize_overrides.json` |
 | 預覽 UI | 語系選單新增「正體中文」；繁中 webfont（jsDelivr CDN） | `scripts/confirm_ui/`、`scripts/svg_editor/` |
-| 匯出擴充 | `--html-deck` / `--embed-fonts`：輸出可離線瀏覽的 HTML 投影片 | `scripts/svg_to_pptx/pptx_package/html_deck.py` |
+| 匯出擴充 | `--html-deck` / `--embed-fonts`：輸出可離線瀏覽的 HTML 投影片 | `scripts/svg_to_pptx/pptx_package/html_deck.py`（本體）、同目錄 `cli.py`（旗標接線，共 6 處新增）、`workflows/generate-pptx.md`（用法說明一行） |
 | 產圖後端 | `IMAGE_BACKEND=codex`：spawn 本機 `codex` CLI 的內建 `image_gen` 產圖，走 Codex 訂閱、免 API key（experimental，別名 `codex-cli`） | `scripts/image_backends/backend_codex.py`、`scripts/image_gen.py`（registry） |
 | 檔案 | 繁中 README（`README_TW.md`，由管線衍生）、本指南、上游同步 runbook | `README_TW.md`、`docs/zh/tw-fork-guide.md`、`docs/zh/upstream-sync-runbook.md` |
 
@@ -144,7 +144,7 @@ done
 > 完整的逐步執行手冊（含衝突分流規則、回歸驗證、停下問人的時機）見 [`upstream-sync-runbook.md`](upstream-sync-runbook.md)，交給 AI agent 執行時請直接指定該檔。本節只留最短流程備忘。
 
 ```bash
-git fetch upstream && git merge upstream/main   # 首次先 git remote add upstream https://github.com/yelban/ppt-master.git
+git fetch upstream && git merge upstream/main   # 首次先 git remote add upstream https://github.com/hugohe3/ppt-master.git
 # 解決衝突後：
 python3 tools/tw_localize.py                     # 全 repo 繁化 + 衍生 zhtw 字典 + README_TW.md
 python3 tools/tw_localize.py --check             # 必須 PASS: 殘留 0 檔
