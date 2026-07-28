@@ -35,10 +35,10 @@ The four primary brand colors (Blue / Green / Yellow / Red) carry equal weight i
 
 | Role | Family | Weight |
 |---|---|---|
-| title | `Google Sans, Roboto, "Microsoft JhengHei", sans-serif` | 500–700 |
-| body | `Roboto, "Microsoft JhengHei", sans-serif` | 400 |
+| title | `"Segoe UI", "Microsoft YaHei", sans-serif` | 500–700 |
+| body | `"Segoe UI", "Microsoft YaHei", sans-serif` | 400 |
 
-> `Google Sans` is proprietary. PPT Master does not bundle or automatically embed it; use the `Roboto` / `Microsoft JhengHei` fallback unless the user supplies an installed/approved font workflow.
+> `Google Sans` and `Roboto` are references. PPT Master neither auto-embeds fonts nor follows CSS tails in PowerPoint. The rows above are the default Windows/Office export; replace them only with a user-confirmed target-installed face.
 
 ## IV. Logo
 
@@ -57,7 +57,7 @@ Google uses a dual-lockup brand system — pick by context, never combine on the
 ## V. Voice & Tone
 
 - Formality: neutral
-- Person: we / you (English), 我們 / 你 (Chinese)
+- Person: we / you (English), 我们 / 你 (Chinese)
 - Emoji: allowed
 - Abbreviations: common-abbrev-allowed
 
