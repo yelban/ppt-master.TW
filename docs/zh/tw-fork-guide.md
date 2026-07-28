@@ -9,8 +9,8 @@
 | 繁化管線 | OpenCC `s2twp` ＋ 覆蓋表，全 repo 可重複執行繁化 | `tools/tw_localize.py`、`tools/tw_localize_overrides.json` |
 | 預覽 UI | 語系選單新增「正體中文」；繁中 webfont（jsDelivr CDN） | `scripts/confirm_ui/`、`scripts/svg_editor/`（`MESSAGES.zhtw` 字典、語系切換接線、選單條目、webfont 全由 `tw_localize.py` 注入，勿手改） |
 | 匯出擴充 | `--html-deck` / `--embed-fonts`：輸出可離線瀏覽的 HTML 投影片 | `scripts/svg_to_pptx/pptx_package/html_deck.py`（本體）、同目錄 `cli.py`（旗標接線，共 6 處新增）、`workflows/generate-pptx.md`（用法說明一行） |
-| 產圖後端 | `IMAGE_BACKEND=codex`：spawn 本機 `codex` CLI 的內建 `image_gen` 產圖，走 Codex 訂閱、免 API key（experimental，別名 `codex-cli`） | `scripts/image_backends/backend_codex.py`、`scripts/image_gen.py`（registry） |
-| 檔案 | 繁中 README（`README_TW.md`，由管線衍生）、本指南、上游同步 runbook | `README_TW.md`、`docs/zh/tw-fork-guide.md`、`docs/zh/upstream-sync-runbook.md` |
+| 產圖後端 | `IMAGE_BACKEND=codex`：spawn 本機 `codex` CLI 的內建 `image_gen` 產圖，走 Codex 訂閱、免 API key（experimental，別名 `codex-cli`）。**注意**：此後端不服從提示詞中的構圖分區指令，且長寬比僅支援 `1:1`／`16:9`／`9:16`／`4:3`／`2.35:1`；需要精確控制圖形落點時改用 `openai` + `gpt-image-2`，見 [`deck-production-playbook.md`](deck-production-playbook.md) §6 | `scripts/image_backends/backend_codex.py`、`scripts/image_gen.py`（registry） |
+| 檔案 | 繁中 README（`README_TW.md`，由管線衍生）、本指南、上游同步 runbook、實戰產出手冊 | `README_TW.md`、`docs/zh/tw-fork-guide.md`、`docs/zh/upstream-sync-runbook.md`、`docs/zh/deck-production-playbook.md` |
 
 ## 環境安裝（macOS ＋ uv）
 
