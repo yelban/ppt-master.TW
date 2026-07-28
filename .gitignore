@@ -27,7 +27,10 @@ $RECYCLE.BIN/
 # VSCode
 .vscode/
 .claude/
+.cursor/
 .spec-workflow/
+# Local MCP server config (machine-specific; never committed)
+.mcp.json
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

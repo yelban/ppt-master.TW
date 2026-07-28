@@ -7,7 +7,7 @@ fork 差異的完整清單（哪些檔案是本 fork 的功能）見 [`tw-fork-g
 ## 第 0 步：前置檢查
 
 ```bash
-git status --short          # 必須乾淨（untracked 的本機檔如 .mcp.json 可忽略）
+git status --short          # 必須乾淨（本機設定檔 .mcp.json、.cursor/ 已由 .gitignore 排除）
 git branch --show-current   # 必須在 main
 git remote -v               # 需有 upstream；沒有就加：
 # git remote add upstream https://github.com/hugohe3/ppt-master.git
@@ -101,7 +101,22 @@ python3 tools/tw_localize.py --check
 
 ```bash
 git status --short && git diff --stat main   # 檢視總量
-git add -A && git commit -m "chore(sync): merge upstream <上游版本或短 hash>＋重跑繁化管線"
+git add -u && git commit -m "chore(sync): merge upstream <上游版本或短 hash>＋重跑繁化管線"
+```
+
+**用 `git add -u`，不要用 `git add -A`。** 繁化管線只會修改既有檔案，`-u` 剛好涵蓋；`-A` 會把工作區的本機設定檔（`.mcp.json`、`.cursor/` 等）一起收進 commit。2026-07-29 那次就是這樣誤收，切回 `main` 時 git 把 `.cursor/` 當「該分支沒有的追蹤檔」刪除，`.mcp.json` 則因工作區有未追蹤版本而擋住 merge（`Please move or remove them before you merge`）。
+
+若管線真的新增了檔案（例如上游帶進的新檔需要繁化衍生物），逐一 `git add <路徑>`，不要圖省事用 `-A`。
+
+誤收的補救（沙箱通常禁止刪 `.mcp.json`，所以不要在主工作區硬解）：
+
+```bash
+git worktree add "$TMPDIR/fixwt" sync/upstream-<日期>
+git -C "$TMPDIR/fixwt" rm -r --cached .cursor .mcp.json
+git -C "$TMPDIR/fixwt" commit --amend --no-edit
+git worktree remove "$TMPDIR/fixwt" --force
+# amend 前的舊 commit 用 `git reflog` 或 `git log -g sync/upstream-<日期>` 查
+git checkout <amend 前的舊 commit> -- .cursor && git rm -r --cached .cursor   # 還原被刪的本機檔，改回 untracked
 ```
 
 commit 後回報使用者：上游帶進哪些主要變更、衝突分流各分類幾個檔、驗證五條的實際輸出。**由使用者確認後才合回 main 與 push**，agent 不自行 push：
