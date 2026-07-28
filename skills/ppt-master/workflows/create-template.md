@@ -371,7 +371,7 @@ Compose one concise natural-language proposal that states the template the AI in
 
 **Language adaptation rule**: write the Step 2 proposal in the user's language and describe the intended result in ordinary language. Technical IDs may appear only in a compact implementation note when they are useful for audit or correction; do not require the user to understand them.
 
-**Natural-language planning rule**: present one recommended creation plan, not a menu of template modes, fidelity levels, or content-policy checklists. Translate requests such as “原样还原”, “提取成可复用母版和版式”, “保留风格但重新设计”, or any equivalent prose directly into the plan. Ask a follow-up only when a missing decision would materially change the artifact and cannot be inferred safely. The user may correct any sentence in the proposal.
+**Natural-language planning rule**: present one recommended creation plan, not a menu of template modes, fidelity levels, or content-policy checklists. Translate requests such as “原樣還原”, “提取成可複用母版和版式”, “保留風格但重新設計”, or any equivalent prose directly into the plan. Ask a follow-up only when a missing decision would materially change the artifact and cannot be inferred safely. The user may correct any sentence in the proposal.
 
 | Field | Must show |
 |---|---|

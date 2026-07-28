@@ -29,13 +29,13 @@
     data-pptx-bounds="180 398 920 86">
     <text id="section-title-carrier" data-pptx-carrier="true"
       x="640" y="454" text-anchor="middle" fill="#FFFFFF"
-      font-family="Microsoft YaHei, SimHei, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="48" font-weight="700">{{CHAPTER_TITLE}}</text>
   </g>
   <g id="section-subtitle-slot" data-pptx-placeholder="subtitle" data-pptx-idx="2"
     data-pptx-bounds="240 494 800 50">
     <text id="section-subtitle-carrier" data-pptx-carrier="true"
       x="640" y="528" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.72"
-      font-family="Arial, Microsoft YaHei, sans-serif" font-size="24">{{CHAPTER_SUBTITLE}}</text>
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="24">{{CHAPTER_SUBTITLE}}</text>
   </g>
 </svg>

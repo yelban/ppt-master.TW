@@ -14,7 +14,7 @@ Conditional extension for applying an installed Brand/Layout/Deck workspace to S
 
 **Legacy template boundary**: A template containing `native_structure.json`, `source_template.pptx`, missing root Master identity, direct atomic placeholders, or old `baseline` / `preserve` / distillation metadata is not a Generate Step 3 input. Create a current workspace through [`create-template`](../workflows/create-template.md), preferably from the original PPTX when native topology matters. Do not mutate the input in place.
 
-**No template-mode confirmation**: Never ask the user to select `template_reuse_scope`, `template_adherence`, `mirror`, `layout`, `style`, `strict`, or `adaptive`. These are internal execution values for the current exporter. The user communicates intent in natural language; explicit instructions such as “全部原样保留”, “从中选合适的页面”, “可以重组”, or “只参考视觉” are authoritative. Without an explicit instruction, Strategist decides.
+**No template-mode confirmation**: Never ask the user to select `template_reuse_scope`, `template_adherence`, `mirror`, `layout`, `style`, `strict`, or `adaptive`. These are internal execution values for the current exporter. The user communicates intent in natural language; explicit instructions such as “全部原樣保留”, “從中選合適的頁面”, “可以重組”, or “只參考視覺” are authoritative. Without an explicit instruction, Strategist decides.
 
 Immediately before authoring the Stage-2 solution, load each relevant template
 resource once per path + SHA and inspect:

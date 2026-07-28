@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720"
-     font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+     font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
      font-size="12">
     <!--
     Box Plot Template
@@ -231,7 +231,7 @@
             <text x="70" y="140"
                   fill="#F43F5E">Outlier</text>
         </g>
-        <text x="15" y="220" fill="#94A3B8">IQR = Q3 - Q1<tspan x="15" dy="12">异常值 &gt; Q3+1.5*IQR</tspan></text>
+        <text x="15" y="220" fill="#94A3B8">IQR = Q3 - Q1<tspan x="15" dy="12">異常值 &gt; Q3+1.5*IQR</tspan></text>
     </g>
     <!-- Stats Summary -->
     <g id="statsSummary" transform="translate(1040, 390)" data-pptx-bounds="1040 390 200 160">

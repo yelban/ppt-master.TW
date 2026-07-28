@@ -11,7 +11,7 @@
     href="../images/footer_ribbon.png" preserveAspectRatio="xMidYMid slice"
     data-pptx-layer="master" data-pptx-editable="false"/>
   <text id="brand-master-footer-label" x="72" y="650" fill="#FFFFFF"
-    font-family="Arial, Microsoft YaHei, sans-serif" font-size="14"
+    font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="14"
     data-pptx-layer="master" data-pptx-editable="false">CHINA TELECOM</text>
 
   <image id="closing-logo" x="72" y="34" width="214" height="58" href="../images/logo.png"
@@ -33,20 +33,20 @@
     data-pptx-bounds="96 226 620 72">
     <text id="closing-title-carrier" data-pptx-carrier="true"
       x="96" y="274" fill="#111827"
-      font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="40" font-weight="700">{{THANK_YOU}}</text>
   </g>
   <g id="closing-subtitle-slot" data-pptx-placeholder="subtitle" data-pptx-idx="1"
     data-pptx-bounds="96 300 620 40">
     <text id="closing-subtitle-carrier" data-pptx-carrier="true"
       x="96" y="328" fill="#6B7280"
-      font-family="Arial, Microsoft YaHei, sans-serif" font-size="18">{{ENDING_SUBTITLE}}</text>
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="18">{{ENDING_SUBTITLE}}</text>
   </g>
   <g id="closing-contact-slot" data-pptx-placeholder="body" data-pptx-idx="2"
     data-pptx-bounds="96 388 620 64">
     <text id="closing-contact-carrier" data-pptx-carrier="true"
       x="96" y="420" fill="#2B2F33"
-      font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="18">{{CONTACT_INFO}}</text>
   </g>
   <g id="closing-slide-number-slot" data-pptx-placeholder="slide-number"

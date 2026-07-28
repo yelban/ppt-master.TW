@@ -32,14 +32,14 @@
     data-pptx-bounds="130 32 920 48">
     <text id="content-title-carrier" data-pptx-carrier="true"
       x="130" y="65" fill="#333333"
-      font-family="Microsoft YaHei, SimHei, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="28" font-weight="700">{{PAGE_TITLE}}</text>
   </g>
   <g id="content-object-slot" data-pptx-placeholder="object" data-pptx-idx="2"
     data-pptx-bounds="88 138 1104 494">
     <text id="content-object-carrier" data-pptx-carrier="true"
       x="88" y="172" fill="#7890A8"
-      font-family="Microsoft YaHei, Arial, sans-serif" font-size="18">{{CONTENT_AREA}}</text>
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="18">{{CONTENT_AREA}}</text>
   </g>
   <g id="content-slide-number-slot" data-pptx-placeholder="slide-number"
     data-pptx-idx="3" data-pptx-bounds="1140 682 80 24">

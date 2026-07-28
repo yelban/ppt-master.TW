@@ -13,7 +13,7 @@ description: Main-pipeline editor stage for starting live preview and applying s
 - **Start (Step 1)** — preview service is not currently running and the user wants to look at the deck or click an element. Typical cases: post-export re-entry in a fresh chat, or the user clicked **Exit preview** earlier and now wants it back.
 - **Apply annotations (Step 2)** — Step 7 has produced at least one PPTX, and the user signals that submitted annotations should now be applied. Triggers include:
   - quoting the browser prompt (`Changes saved to svg_output...` / `修改已保存到 svg_output...`)
-  - saying `apply my annotations` / `apply my edits` / `应用注解` / `开始应用` / 等价表达
+  - saying `apply my annotations` / `apply my edits` / `应用注解` / `开始应用` / 等價表達
 
 ## When NOT to Run
 
@@ -37,7 +37,7 @@ python3 ${SKILL_DIR}/scripts/svg_editor/server.py <project_path> --daemon
 The launcher binds `127.0.0.1:5050` (or the next free port), starts the server in the background, waits for `GET /api/health` to prove the server is accepting requests, writes runtime files under `<project_path>/live_preview/`, opens the browser on a local desktop when possible, and edits `<project_path>/svg_output/` in place. After it prints the running URL, tell the user in their language, in one short message:
 
 - editor is at the URL reported by the launcher, e.g. `http://127.0.0.1:5050`
-- **Direct edit** (deterministic tweaks — wording, color, coordinates, SVG attributes): select an element → change the controls in the right panel → preview updates immediately, but nothing is written to `svg_output/` until **Apply changes**. `Ctrl+Z` or the **Undo** button drops staged edits step by step; applied changes are logged to `<project>/live_preview/edits.jsonl`. Re-export stays chat-driven and separate: say "re-export" / "重新导出" to refresh the PPTX.
+- **Direct edit** (deterministic tweaks — wording, color, coordinates, SVG attributes): select an element → change the controls in the right panel → preview updates immediately, but nothing is written to `svg_output/` until **Apply changes**. `Ctrl+Z` or the **Undo** button drops staged edits step by step; applied changes are logged to `<project>/live_preview/edits.jsonl`. Re-export stays chat-driven and separate: say "re-export" / "重新匯出" to refresh the PPTX.
 - **Annotate** (changes that need AI judgement / re-layout): select an element → write the instruction, optionally starting from a quick type such as move / resize / replace image / copy / relayout → click **Add annotation** to stage it → click **Apply changes** to write annotation markers → return to the chat and say `apply my annotations` (or quote the browser prompt)
 - to skip the editor, just describe the change in chat
 

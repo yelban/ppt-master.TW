@@ -131,7 +131,7 @@ either `{ "style": "none" }` or
 `{ "style": "solid", "color": "#RRGGBB", "width": <positive-px> }`.
 Per-side borders are cell-only; legacy uniform `border_color` / `border_width`
 remain supported as defaults that an individual side may override.
-When `lang` is absent, export derives `zh-CN` for CJK text and `en-US`
+When `lang` is absent, export derives `zh-TW` for CJK text and `en-US`
 otherwise. `style.band_row: false` disables both `<a:tblPr bandRow>` and
 materialized alternating row fills. Native table typography mirrors the
 visible SVG fallback: put `style.font_family` and `style.font_size` on the

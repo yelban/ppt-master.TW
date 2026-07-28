@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720"
-     font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+     font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
      font-size="12">
     <!--
     Pyramid Isometric Chart Template (3D variant)
@@ -121,7 +121,7 @@
 
     <!-- ==================== Tier Number Labels (left slope, tilted ~14.66°) ==================== -->
     <!-- Numbers sit on the left side-face of each tier, tilted along the slope. -->
-    <g id="tier-numbers" data-pptx-bounds="470 145 178 446" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="800" fill="#FFFFFF" fill-opacity="0.92">
+    <g id="tier-numbers" data-pptx-bounds="470 145 178 446" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-weight="800" fill="#FFFFFF" fill-opacity="0.92">
         <text transform="rotate(14.66 607.51 210.91)" x="588" y="226" font-size="56"><tspan>1</tspan></text>
         <text transform="rotate(14.66 577.71 316.99)" x="559" y="333" font-size="56"><tspan>2</tspan></text>
         <text transform="rotate(14.66 547.9 423.07)" x="529" y="439" font-size="56"><tspan>3</tspan></text>

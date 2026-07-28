@@ -1,149 +1,149 @@
-# 常见问题
+# 常見問題
 
 [English](../faq.md) | [中文](./faq.md)
 
 ---
 
-## Q: PPT Master 支持哪些源文件格式？
+## Q: PPT Master 支援哪些原始檔格式？
 
-几乎所有常见格式都支持：**PDF**、**DOCX**、**PPTX**、**EPUB**、**HTML**、**LaTeX**、**RST**、**网页链接**（包括微信公众号文章）、**Markdown**，或者直接在对话中粘贴文字内容。AI 代理会自动将源材料转换为 Markdown 后再生成幻灯片。
+幾乎所有常見格式都支援：**PDF**、**DOCX**、**PPTX**、**EPUB**、**HTML**、**LaTeX**、**RST**、**網頁連結**（包括微信公眾號文章）、**Markdown**，或者直接在對話中貼上文字內容。AI 代理會自動將源材料轉換為 Markdown 後再生成幻燈片。
 
-## Q: 只有一个主题或想法、没有任何资料，也能生成吗？
+## Q: 只有一個主題或想法、沒有任何資料，也能生成嗎？
 
-可以。直接告诉 AI 你想做的主题或场景（如"做一个关于宫崎骏的 PPT"、"介绍我们公司新产品"），Generate PPTX 路线会运行 **topic-research 阶段**，补齐规划所需的事实基础与来源记录。已有部分材料时，只补实现用户目标仍缺少的事实；如果用户要求只使用原材料，则不做外部补充。图片由 Strategist 在规划中选定，并且只在最终确认后获取。
+可以。直接告訴 AI 你想做的主題或場景（如"做一個關於宮崎駿的 PPT"、"介紹我們公司新產品"），Generate PPTX 路線會執行 **topic-research 階段**，補齊規劃所需的事實基礎與來源記錄。已有部分材料時，只補實現使用者目標仍缺少的事實；如果使用者要求只使用原材料，則不做外部補充。圖片由 Strategist 在規劃中選定，並且只在最終確認後獲取。
 
-效果取决于公开网页的覆盖度。如果你已有专业资料（论文、内部文档），直接把文件给 AI 比联网检索更准。
+效果取決於公開網頁的覆蓋度。如果你已有專業資料（論文、內部檔案），直接把檔案給 AI 比聯網檢索更準。
 
-## Q: 除了 PPT 还能生成其他格式吗？
+## Q: 除了 PPT 還能生成其他格式嗎？
 
-可以。除了标准的 **16:9** 和 **4:3** 演示文稿格式，PPT Master 还内置了社交媒体和营销类格式：
+可以。除了標準的 **16:9** 和 **4:3** 簡報格式，PPT Master 還內建了社交媒體和營銷類格式：
 
-| 格式 | 适用场景 |
+| 格式 | 適用場景 |
 |------|----------|
-| 小红书 3:4 | 图文分享、知识帖 |
-| 微信朋友圈 / IG 1:1 | 方形海报、品牌展示 |
-| Story / 抖音 9:16 | 竖版故事、短视频封面 |
-| 微信文章头图 | 公众号文章封面 |
-| A4 印刷 | 印刷海报、传单 |
+| 小紅書 3:4 | 圖文分享、知識帖 |
+| 微信朋友圈 / IG 1:1 | 方形海報、品牌展示 |
+| Story / 抖音 9:16 | 豎版故事、短影片封面 |
+| 微信文章頭圖 | 公眾號文章封面 |
+| A4 印刷 | 印刷海報、傳單 |
 
-创建项目时指定格式即可（如 `--format xhs`）。输出仍然是包含原生形状的 `.pptx` 文件。
+建立專案時指定格式即可（如 `--format xhs`）。輸出仍然是包含原生形狀的 `.pptx` 檔案。
 
-## Q: PPT Master 支持哪些 AI 工具？
+## Q: PPT Master 支援哪些 AI 工具？
 
-PPT Master 可以在任何能读取文件和执行命令、支持 Agent 的 AI 工具中运行——**Claude Code**（CLI / VS Code / JetBrains / Web）、**VS Code Copilot**、**Codex** 等均可使用。不同工具的使用成本可参考下方的费用对比。
+PPT Master 可以在任何能讀取檔案和執行命令、支援 Agent 的 AI 工具中執行——**Claude Code**（CLI / VS Code / JetBrains / Web）、**VS Code Copilot**、**Codex** 等均可使用。不同工具的使用成本可參考下方的費用對比。
 
-## Q: 我下载过旧版本，怎么更新到最新版？
+## Q: 我下載過舊版本，怎麼更新到最新版？
 
-看你当时怎么安装：
+看你當時怎麼安裝：
 
-| 安装方式 | 更新方式 |
+| 安裝方式 | 更新方式 |
 |---|---|
-| Git clone | 在 `ppt-master` 目录运行 `python3 skills/ppt-master/scripts/update_repo.py` |
-| Download ZIP | 重新下载最新版 ZIP，解压到新目录；把旧目录里的 `.env` 和 `projects/` 复制过去；再运行 `pip install -r requirements.txt` |
-| Skill marketplace | 用对应的 marketplace / skills 工具重新安装或更新 |
+| Git clone | 在 `ppt-master` 目錄執行 `python3 skills/ppt-master/scripts/update_repo.py` |
+| Download ZIP | 重新下載最新版 ZIP，解壓到新目錄；把舊目錄裡的 `.env` 和 `projects/` 複製過去；再執行 `pip install -r requirements.txt` |
+| Skill marketplace | 用對應的 marketplace / skills 工具重新安裝或更新 |
 
-长期使用建议用 Git clone。ZIP 适合快速体验，但没有 Git 历史，不能自动 `git pull`。
+長期使用建議用 Git clone。ZIP 適合快速體驗，但沒有 Git 歷史，不能自動 `git pull`。
 
-如果不确定自己是哪种安装方式，可以让 AI 在项目目录里运行：
+如果不確定自己是哪種安裝方式，可以讓 AI 在專案目錄裡執行：
 
 ```bash
 python3 skills/ppt-master/scripts/update_repo.py
 ```
 
-如果当前目录不是 Git clone 版本，脚本会提示你按 ZIP 方式迁移。
+如果當前目錄不是 Git clone 版本，指令碼會提示你按 ZIP 方式遷移。
 
-## Q: 仓库超过 1 GB，skills 工具下载直接失败——能只拿 skill 吗？
+## Q: 倉庫超過 1 GB，skills 工具下載直接失敗——能只拿 skill 嗎？
 
-可以。完整仓库确实很大（Git 历史，加上内置的示例 deck 及其素材），而且这个体积是写进历史里的——在不破坏已有大量 fork 的前提下没法瘦身。如果你只想要 skill、不需要完整仓库，用下面的轻量方式：
+可以。完整倉庫確實很大（Git 歷史，加上內建的示例 deck 及其素材），而且這個體積是寫進歷史裡的——在不破壞已有大量 fork 的前提下沒法瘦身。如果你只想要 skill、不需要完整倉庫，用下面的輕量方式：
 
-- **Marketplace CLI**：`npx skills add hugohe3/ppt-master`，或 Claude Code 里的 `/plugin install`，都只拉取 skill 文件（见 README 的「开始设置」一节）。
-- **手动下载**：到 [Releases](https://github.com/hugohe3/ppt-master/releases) 页面下载 `ppt-master-skill-*.zip`——只含 skill 文件（约 50 MB），无需 clone 完整仓库。
+- **Marketplace CLI**：`npx skills add hugohe3/ppt-master`，或 Claude Code 裡的 `/plugin install`，都只拉取 skill 檔案（見 README 的「開始設定」一節）。
+- **手動下載**：到 [Releases](https://github.com/hugohe3/ppt-master/releases) 頁面下載 `ppt-master-skill-*.zip`——只含 skill 檔案（約 50 MB），無需 clone 完整倉庫。
 
-两种方式装好后，都要在安装目录跑 `pip install -r requirements.txt`，后处理脚本才能工作。
+兩種方式裝好後，都要在安裝目錄跑 `pip install -r requirements.txt`，後處理指令碼才能工作。
 
-这两条路径都不带 `.git` 目录，`git describe` 查不到版本。已安装的版本记录在 skill 自身 `SKILL.md` frontmatter 的 `metadata.version` 字段里。
+這兩條路徑都不帶 `.git` 目錄，`git describe` 查不到版本。已安裝的版本記錄在 skill 自身 `SKILL.md` frontmatter 的 `metadata.version` 欄位裡。
 
-中国大陆地区访问 GitHub 下载不便的话，完整仓库在 [AtomGit](https://atomgit.com/hugohe3/ppt-master) 也有镜像（clone 或下载 ZIP）；1 GB 出头的体积在中国大陆地区网络下载一般没问题。
+中國大陸地區訪問 GitHub 下載不便的話，完整倉庫在 [AtomGit](https://atomgit.com/hugohe3/ppt-master) 也有映象（clone 或下載 ZIP）；1 GB 出頭的體積在中國大陸地區網路下載一般沒問題。
 
-## Q: 能用 AI 生成配图吗？
+## Q: 能用 AI 生成配圖嗎？
 
-可以。PPT Master 内置了图片生成脚本，支持多个供应商（Gemini、OpenAI、FLUX、通义千问、智谱等）。在策略师阶段选择"AI 生图"方案后，流程会根据内容自动生成配图。你也可以使用自己的图片——只需放到项目的 `images/` 目录下即可。
+可以。PPT Master 內建了圖片生成指令碼，支援多個供應商（Gemini、OpenAI、FLUX、通義千問、智譜等）。在策略師階段選擇"AI 生圖"方案後，流程會根據內容自動生成配圖。你也可以使用自己的圖片——只需放到專案的 `images/` 目錄下即可。
 
-## Q: 没有生图 API Key，还能配图吗？
+## Q: 沒有生圖 API Key，還能配圖嗎？
 
-可以——在策略师的"图片方案"步骤选择"网络图片"。PPT Master 内置了零配置的 `image_search.py`，在 Openverse 和 Wikimedia Commons 中搜索可商用的开放许可图片（无需 API Key）。零配置搜索适合作为兜底：能直接用，但图片质量不稳定，容易出现普通用户上传、构图随意、清晰度一般的素材。
+可以——在策略師的"圖片方案"步驟選擇"網路圖片"。PPT Master 內建了零配置的 `image_search.py`，在 Openverse 和 Wikimedia Commons 中搜索可商用的開放許可圖片（無需 API Key）。零配置搜尋適合作為兜底：能直接用，但圖片質量不穩定，容易出現普通使用者上傳、構圖隨意、清晰度一般的素材。
 
-如果想要更现代的商业风照片，建议在 `.env` 里设置 `PEXELS_API_KEY` 和/或 `PIXABAY_API_KEY`（都是免费申请）。搜索会自动纳入 Pexels / Pixabay，人物、办公、生活方式、产品和插画类图片质量通常会明显更稳定。两种路径可以在同一份 deck 里混用（比如 hero 图用 AI 生成、团队照片用网络搜索）；如果选中的图片需要署名，Executor 会在该幻灯片自动添加就地小字署名。
+如果想要更現代的商業風照片，建議在 `.env` 裡設定 `PEXELS_API_KEY` 和/或 `PIXABAY_API_KEY`（都是免費申請）。搜尋會自動納入 Pexels / Pixabay，人物、辦公、生活方式、產品和插畫類圖片質量通常會明顯更穩定。兩種路徑可以在同一份 deck 裡混用（比如 hero 圖用 AI 生成、團隊照片用網路搜尋）；如果選中的圖片需要署名，Executor 會在該幻燈片自動新增就地小字署名。
 
-要清楚一点：**网络搜索只负责「找到一张相关、可下载、授权合规的图」，并不保证它在这一页里好看或贴切**——排序只看文字元数据，看不到画面。生成时多模态模型会读一份缩略图自查、不合适会重搜；但**要真正高质量，最可靠的还是你自己去搜**：在任何来源找到更合适的图，把链接给 AI，它会用 `image_search.py --from-url <链接>` 直接下载替换（记为手动来源、版权由你把关）。换图随时能做——生成途中或在实时预览里都行，不会打断流程。简而言之：把网络搜索当「兜底占位」，把人工挑图当「精修」。
+要清楚一點：**網路搜尋只負責「找到一張相關、可下載、授權合規的圖」，並不保證它在這一頁裡好看或貼切**——排序只看文字後設資料，看不到畫面。生成時多模態模型會讀一份縮圖自查、不合適會重搜；但**要真正高質量，最可靠的還是你自己去搜**：在任何來源找到更合適的圖，把連結給 AI，它會用 `image_search.py --from-url <链接>` 直接下載替換（記為手動來源、版權由你把關）。換圖隨時能做——生成途中或在即時預覽裡都行，不會打斷流程。簡而言之：把網路搜尋當「兜底佔位」，把人工挑圖當「精修」。
 
-## Q: 生成的 PPT 可以编辑吗？
+## Q: 生成的 PPT 可以編輯嗎？
 
-可以。SVG 管线统一由项目转换器读取 `svg_output/` 并生成原生 DrawingML `.pptx`；文字、图形和颜色无需额外转换即可编辑，文件以时间戳命名保存至 `exports/`。在正式交付流程中，Executor 的原始 SVG 源（`svg_output/` 副本）会镜像到 `backup/<timestamp>/svg_output/`，便于归档或基于该版重跑 `finalize_svg → svg_to_pptx` 重建 PPTX，无需再走 LLM。
+可以。SVG 管線統一由專案轉換器讀取 `svg_output/` 並生成原生 DrawingML `.pptx`；文字、圖形和顏色無需額外轉換即可編輯，檔案以時間戳命名儲存至 `exports/`。在正式交付流程中，Executor 的原始 SVG 源（`svg_output/` 副本）會映象到 `backup/<timestamp>/svg_output/`，便於歸檔或基於該版重跑 `finalize_svg → svg_to_pptx` 重建 PPTX，無需再走 LLM。
 
-正式交付的 Step 7 仍会强制生成 `svg_final/`。其中每页都是自包含的视觉预览 SVG，可直接在浏览器或 IDE 中打开，也可作为 SVG 图片手动插入 PowerPoint；显式快速测试会跳过预览和备份产物。项目只保证 `svg_final/` 作为预览或图片显示，不保证 PowerPoint 手工“转换为形状”后的结果。需要可编辑形状时，请使用 `exports/` 中由项目转换器生成的原生 PPTX。
+正式交付的 Step 7 仍會強制生成 `svg_final/`。其中每頁都是自包含的視覺預覽 SVG，可直接在瀏覽器或 IDE 中開啟，也可作為 SVG 圖片手動插入 PowerPoint；顯式快速測試會跳過預覽和備份產物。專案只保證 `svg_final/` 作為預覽或圖片顯示，不保證 PowerPoint 手工“轉換為形狀”後的結果。需要可編輯形狀時，請使用 `exports/` 中由專案轉換器生成的原生 PPTX。
 
-## Q: 为什么一段正文被拆成了好几个文本框？能不能一段一个文本框？
+## Q: 為什麼一段正文被拆成了好幾個文本框？能不能一段一個文本框？
 
-默认会把可合并的正文段落导出成一个可编辑的 PowerPoint 文本框，内部保留多个段落。**拉伸框时文字会在框内自动重排**。
+預設會把可合併的正文段落匯出成一個可編輯的 PowerPoint 文本框，內部保留多個段落。**拉伸框時文字會在框內自動重排**。
 
-如果你需要严格保持逐行版式，重新导出时加上 `--no-merge`：
+如果你需要嚴格保持逐行版式，重新匯出時加上 `--no-merge`：
 
 ```bash
 python3 skills/ppt-master/scripts/svg_to_pptx.py <project_path> --no-merge
 ```
 
-使用 `--no-merge` 时，SVG 里的每一视觉行都会变成一个独立的 PowerPoint 文本框。这样能**逐像素保留 SVG 的版式**，适合封面、图表、表格、以及任何对版式精度敏感的页面。
+使用 `--no-merge` 時，SVG 裡的每一視覺行都會變成一個獨立的 PowerPoint 文本框。這樣能**逐畫素保留 SVG 的版式**，適合封面、圖表、表格、以及任何對版式精度敏感的頁面。
 
-**代价**：默认合并会保留一个可编辑文本框和原始视觉行边界；只有需要让每一视觉行都能单独移动时才使用 `--no-merge`。判定足够保守——非段落型 `<text>` 会自动落回按行拆框路径。
+**代價**：預設合併會保留一個可編輯文本框和原始視覺行邊界；只有需要讓每一視覺行都能單獨移動時才使用 `--no-merge`。判定足夠保守——非段落型 `<text>` 會自動落回按行拆框路徑。
 
-跟 AI 对话时也可以直接说："这个页面要严格保持逐行版式" —— AI 重新导出时会加上 `--no-merge`。
+跟 AI 對話時也可以直接說："這個頁面要嚴格保持逐行版式" —— AI 重新匯出時會加上 `--no-merge`。
 
-## Q: 字号为什么用 px 不是 pt？导出后字号会变吗？
+## Q: 字號為什麼用 px 不是 pt？匯出後字號會變嗎？
 
-PPT Master 内部**全程只用 px**（无单位像素）——确认页、`spec_lock.md`、SVG 都是 px，没有 pt 这一层。原因是 SVG 画布本身就是 1280×720 px，px 是真正的排版/执行单位；只用一个单位，能避免「确认时说 20pt、写进 SVG 又变成另一个数」这类单位混淆导致整套字号偏差。
+PPT Master 內部**全程只用 px**（無單位畫素）——確認頁、`spec_lock.md`、SVG 都是 px，沒有 pt 這一層。原因是 SVG 畫布本身就是 1280×720 px，px 是真正的排版/執行單位；只用一個單位，能避免「確認時說 20pt、寫進 SVG 又變成另一個數」這類單位混淆導致整套字號偏差。
 
-PowerPoint 最终显示的是 pt，所以**导出时**自动把 px 换成 pt（`pt = px × 0.75`，保留 1 位小数）。例如正文 `24px` 导出后是 `18pt`、标题 `42px` 是 `31.5pt`。所以你在 PowerPoint 里看到 `13.5pt`、`31.5pt` 这种非整数是**正常的、有意的**，不是 bug——字号算出来是多少就是多少，不再强行凑成整数或半磅。
+PowerPoint 最終顯示的是 pt，所以**匯出時**自動把 px 換成 pt（`pt = px × 0.75`，保留 1 位小數）。例如正文 `24px` 匯出後是 `18pt`、標題 `42px` 是 `31.5pt`。所以你在 PowerPoint 裡看到 `13.5pt`、`31.5pt` 這種非整數是**正常的、有意的**，不是 bug——字號算出來是多少就是多少，不再強行湊成整數或半磅。
 
-正文基准按**阅读模式**固定取值（不是区间）。它控制阅读距离与信息密度，与开放式沟通意图是两条独立轴：
+正文基準按**閱讀模式**固定取值（不是區間）。它控制閱讀距離與資訊密度，與開放式溝通意圖是兩條獨立軸：
 
-| 阅读模式 | 正文 px | ≈ 导出 pt |
+| 閱讀模式 | 正文 px | ≈ 匯出 pt |
 |---|---|---|
-| `text` 文字型（近读：报告 / 资料） | 20px | 15pt |
-| `balanced` 均衡（默认：路演 / 评审） | 24px | 18pt |
-| `presentation` 展示型（投影 / 发布） | 32px | 24pt |
+| `text` 文字型（近讀：報告 / 資料） | 20px | 15pt |
+| `balanced` 均衡（預設：路演 / 評審） | 24px | 18pt |
+| `presentation` 展示型（投影 / 釋出） | 32px | 24pt |
 
-标题、副标题、脚注等其它角色按比例从正文派生，并取整洁偶数 px。你在确认页可以手动覆盖任何角色的 px 值。
+標題、副標題、腳註等其它角色按比例從正文派生，並取整潔偶數 px。你在確認頁可以手動覆蓋任何角色的 px 值。
 
-## Q: PPT Master 怎么确定演示的风格？
+## Q: PPT Master 怎麼確定演示的風格？
 
-在第 d 项确认时锁定两个独立维度：
+在第 d 項確認時鎖定兩個獨立維度：
 
-- **Mode（怎么讲）**：`pyramid` / `narrative` / `instructional` / `showcase` / `briefing` —— 见 `references/modes/`
-- **Visual style（长什么样）**：`swiss-minimal` / `editorial` / `soft-rounded` / `dark-tech` … + `custom` —— 见 `references/visual-styles/`
+- **Mode（怎麼講）**：`pyramid` / `narrative` / `instructional` / `showcase` / `briefing` —— 見 `references/modes/`
+- **Visual style（長什麼樣）**：`swiss-minimal` / `editorial` / `soft-rounded` / `dark-tech` … + `custom` —— 見 `references/visual-styles/`
 
-任意 mode 可与任意 visual style 自由组合。
+任意 mode 可與任意 visual style 自由組合。
 
-## Q: 用 PPT Master 做 PPT 贵吗？
+## Q: 用 PPT Master 做 PPT 貴嗎？
 
-PPT Master 本身免费开源，唯一的成本来自你自己的 AI 模型用量。
+PPT Master 本身免費開源，唯一的成本來自你自己的 AI 模型用量。
 
-目前主流 AI 工具都已转向按量计费——用多少付多少。PPT Master 天然契合这一模型：不需要额外订阅 PPT 平台、没有专有积分、没有按人头收费的演示工具费用。
+目前主流 AI 工具都已轉向按量計費——用多少付多少。PPT Master 天然契合這一模型：不需要額外訂閱 PPT 平臺、沒有專有積分、沒有按人頭收費的演示工具費用。
 
-而且它跑在编程 agent 里：走固定月费的订阅套餐，就能在套餐额度内多做 deck 而不额外多花钱；走 API 直连、按 token 计费则是另一种价格结构——由你选。无论走哪条，PPT Master 都不会在你的 AI 支出之外再加一层自己的费用。
+而且它跑在程式設計 agent 裡：走固定月費的訂閱套餐，就能在套餐額度內多做 deck 而不額外多花錢；走 API 直連、按 token 計費則是另一種價格結構——由你選。無論走哪條，PPT Master 都不會在你的 AI 支出之外再加一層自己的費用。
 
-## Q: 生成的图表可以编辑数据吗？
+## Q: 生成的圖表可以編輯資料嗎？
 
-默认情况下，图表以**自定义设计的 SVG 图形**形式渲染，转换为原生 PowerPoint 形状——形状级别完全可编辑（移动、改色、改文字、调样式）。默认不用 Excel 驱动的图表对象是有意为之：PowerPoint 默认图表样式陈旧、视觉受限于固定模板。SVG 图表则提供出版物级的视觉质量，可以在 PowerPoint 中直接精修，且在 PowerPoint / Keynote / LibreOffice / WPS 间像素一致。
+預設情況下，圖表以**自定義設計的 SVG 圖形**形式渲染，轉換為原生 PowerPoint 形狀——形狀級別完全可編輯（移動、改色、改文字、調樣式）。預設不用 Excel 驅動的圖表物件是有意為之：PowerPoint 預設圖表樣式陳舊、視覺受限於固定模板。SVG 圖表則提供出版物級的視覺質量，可以在 PowerPoint 中直接精修，且在 PowerPoint / Keynote / LibreOffice / WPS 間畫素一致。
 
-如果你的工作流明确需要 Excel 驱动的数据编辑或 PowerPoint 的图表/表格专属控制，导出时加 `--native-charts-and-tables`：受支持的数据图表和纯文本表格会以**带数据源的 PowerPoint 原生 Chart / Table 对象**形式导出（保存为 `exports/<name>_<timestamp>_native_charts_tables.pptx`，并保留这份 deck 自己的配色，而不是套用 PowerPoint 默认主题）。默认 SVG fallback 同样会转换成可编辑 DrawingML shape，但不具备图表数据工作簿或图表/表格对象模型。原生对象在 PowerPoint / Keynote / LibreOffice / WPS 间可能略有差异，因此形状路线仍是视觉稳定性的默认选择。
+如果你的工作流明確需要 Excel 驅動的資料編輯或 PowerPoint 的圖表/表格專屬控制，匯出時加 `--native-charts-and-tables`：受支援的資料圖表和純文本表格會以**帶資料來源的 PowerPoint 原生 Chart / Table 物件**形式匯出（儲存為 `exports/<name>_<timestamp>_native_charts_tables.pptx`，並保留這份 deck 自己的配色，而不是套用 PowerPoint 預設主題）。預設 SVG fallback 同樣會轉換成可編輯 DrawingML shape，但不具備圖表資料工作簿或圖表/表格物件模型。原生物件在 PowerPoint / Keynote / LibreOffice / WPS 間可能略有差異，因此形狀路線仍是視覺穩定性的預設選擇。
 
-## Q: 页面切换和元素动画可以调吗？
+## Q: 頁面切換和元素動畫可以調嗎？
 
-可以。页间转场默认开（`fade` 0.4s），页内元素对象动画**默认关**——翻到
-一页时整页一次性呈现，不会自动逐个级联。两者都通过 `svg_to_pptx.py` 的
-参数控制：`-t/--transition` 控制页级，`-a/--animation` 控制元素级。对象
-注册表已经包含进入、强调、动作路径和退出效果。
+可以。頁間轉場預設開（`fade` 0.4s），頁內元素物件動畫**預設關**——翻到
+一頁時整頁一次性呈現，不會自動逐個級聯。兩者都通過 `svg_to_pptx.py` 的
+引數控制：`-t/--transition` 控制頁級，`-a/--animation` 控制元素級。物件
+登入檔已經包含進入、強調、動作路徑和退出效果。
 
 ```bash
 python3 skills/ppt-master/scripts/svg_to_pptx.py <project> -t push       # 换转场效果
@@ -155,130 +155,130 @@ python3 skills/ppt-master/scripts/pptx_animations.py --list             # 完整
 python3 skills/ppt-master/scripts/svg_to_pptx.py <project> -a auto --animation-trigger on-click   # 单击触发，演讲者控制节奏
 ```
 
-`on-click` 适合现场演示。通过 `--recorded-narration` 做旁白/视频导出时会拒绝它，因为 PPT Master 只写页面级计时，不生成对象级点击计时；带旁白的 deck 请使用 `after-previous` 或 `with-previous`。
+`on-click` 適合現場演示。通過 `--recorded-narration` 做旁白/影片匯出時會拒絕它，因為 PPT Master 只寫頁面級計時，不生成物件級點選計時；帶旁白的 deck 請使用 `after-previous` 或 `with-previous`。
 
-常用命令、Start 模式选择与对象级自定义见[转场与动画](./animations.md)；精确效果与校验行为由其中链接的执行规范维护。
+常用命令、Start 模式選擇與物件級自定義見[轉場與動畫](./animations.md)；精確效果與校驗行為由其中連結的執行規範維護。
 
-## Q: 推荐用什么 AI 模型？
+## Q: 推薦用什麼 AI 模型？
 
-**Claude**（Opus / Sonnet）是推荐且测试最充分的模型。SVG 排版本质上是在绝对坐标系中做精确的数学计算（字号 x 字数 x 容器宽度），Claude 在这方面表现明显优于其他模型。
+**Claude**（Opus / Sonnet）是推薦且測試最充分的模型。SVG 排版本質上是在絕對座標系中做精確的數學計算（字號 x 字數 x 容器寬度），Claude 在這方面表現明顯優於其他模型。
 
-**GPT 系列**早期版本排版问题较多——文字超出容器、元素错位、坐标计算失误。较新的版本（如 GPT-5.5）在这方面已有明显进步，实际效果可以接受；如果遇到问题，可以告知 AI 修正具体页面。
+**GPT 系列**早期版本排版問題較多——文字超出容器、元素錯位、座標計算失誤。較新的版本（如 GPT-5.5）在這方面已有明顯進步，實際效果可以接受；如果遇到問題，可以告知 AI 修正具體頁面。
 
-其他模型（Gemini、GLM、MiniMax 等）效果参差不齐。总体来说，前端/视觉能力越强的模型，生成效果越好。
+其他模型（Gemini、GLM、MiniMax 等）效果參差不齊。總體來說，前端/視覺能力越強的模型，生成效果越好。
 
-## Q: 有人说 PPT Master "只是个玩具"——这个评价准确吗？
+## Q: 有人說 PPT Master "只是個玩具"——這個評價準確嗎？
 
-不准确。PPT Master 是演示文稿工作流，不是模型，也不是完整 agent。它提供演示文稿专用的推理、合同、项目状态、确定性转换与质量门；最终质量上限仍由所选模型决定。用弱模型或小上下文窗口来评价这套工作流，就好比挂着一档开跑车然后说它跑不快。
+不準確。PPT Master 是簡報工作流，不是模型，也不是完整 agent。它提供簡報專用的推理、合同、專案狀態、確定性轉換與質量門；最終質量上限仍由所選模型決定。用弱模型或小上下文視窗來評價這套工作流，就好比掛著一檔開跑車然後說它跑不快。
 
-**发挥完整实力的组合：**
+**發揮完整實力的組合：**
 
-- **Claude 大上下文窗口**（推荐 ~100 万 token 级别）：大上下文让 Executor 在同一个会话里看到全部已生成页面，在不拆分运行的前提下保持整份 deck 的视觉一致性。上下文不足时被迫走拆分模式，两段之间会出现明显的风格漂移。
-- **AI 生图，推荐 `gpt-image-2`**（或同等质量）：配图水平是 deck 整体观感的最大变量。用占位级的网络图片和用真正贴合内容的 AI 生成图，视觉效果完全是两个量级。
+- **Claude 大上下文視窗**（推薦 ~100 萬 token 級別）：大上下文讓 Executor 在同一個會話裡看到全部已生成頁面，在不拆分執行的前提下保持整份 deck 的視覺一致性。上下文不足時被迫走拆分模式，兩段之間會出現明顯的風格漂移。
+- **AI 生圖，推薦 `gpt-image-2`**（或同等質量）：配圖水平是 deck 整體觀感的最大變數。用佔位級的網路圖片和用真正貼合內容的 AI 生成圖，視覺效果完全是兩個量級。
 
-如果你看到的效果差强人意，先对照以下几点检查你的配置，再下结论：用的什么模型？上下文开了多大？有没有接入图片生成 API？同样的工作流，Claude Opus 配 100 万 token 上下文配 `gpt-image-2` 的结果，和小参数开源模型配零配置的结果，是截然不同的体验。
+如果你看到的效果差強人意，先對照以下幾點檢查你的配置，再下結論：用的什麼模型？上下文開了多大？有沒有接入圖片生成 API？同樣的工作流，Claude Opus 配 100 萬 token 上下文配 `gpt-image-2` 的結果，和小引數開源模型配零配置的結果，是截然不同的體驗。
 
-> **没有 Claude 渠道？** 本项目赞助商 [PackyCode](https://www.packyapi.com/register?aff=ppt-master) 提供 Claude 及其他主流模型的按量付费接入——无需订阅，无需境外信用卡，支持国内支付，开箱即用。充值时填写优惠码 **`ppt-master`** 享 9 折。
+> **沒有 Claude 渠道？** 本專案贊助商 [PackyCode](https://www.packyapi.com/register?aff=ppt-master) 提供 Claude 及其他主流模型的按量付費接入——無需訂閱，無需境外信用卡，支援國內支付，開箱即用。充值時填寫優惠碼 **`ppt-master`** 享 9 折。
 
-最后再说一句：这是一个免费、个人维护的开源项目。合用就用，能帮到你我很高兴；不合用，换个工具就好。真诚的反馈与建议始终欢迎——这也是项目一点点变好的方式。
+最後再說一句：這是一個免費、個人維護的開源專案。合用就用，能幫到你我很高興；不合用，換個工具就好。真誠的反饋與建議始終歡迎——這也是專案一點點變好的方式。
 
-## Q: 文字超出边框 / 元素错位怎么办？
+## Q: 文字超出邊框 / 元素錯位怎麼辦？
 
-原因取决于偏差出现在哪一层。如果源 SVG 本身已经溢出或错位，通常属于创作 / 排版问题：模型需要准确计算坐标、字体度量和容器尺寸。如果 SVG 预览正确、导出的 PPTX 却不同，则可能是转换器或渲染器问题，应连同两份产物一起反馈。
+原因取決於偏差出現在哪一層。如果源 SVG 本身已經溢位或錯位，通常屬於創作 / 排版問題：模型需要準確計算座標、字型度量和容器尺寸。如果 SVG 預覽正確、匯出的 PPTX 卻不同，則可能是轉換器或渲染器問題，應連同兩份產物一起反饋。
 
-**解决办法**：
-1. 对比 `svg_output/` 中的页面与导出 PPTX，先区分创作问题和转换问题
-2. 告诉 AI 哪一页有问题、具体是什么问题——它可以单独重新生成某一页
-3. 如果 SVG 本身持续出错，换更强的模型，或让 AI 直接修正坐标
-4. 记住：生成的 PPTX 是**高质量、可编辑的草稿**，不是封闭的最终成品——在 PowerPoint 中做少量收尾是正常的
+**解決辦法**：
+1. 對比 `svg_output/` 中的頁面與匯出 PPTX，先區分創作問題和轉換問題
+2. 告訴 AI 哪一頁有問題、具體是什麼問題——它可以單獨重新生成某一頁
+3. 如果 SVG 本身持續出錯，換更強的模型，或讓 AI 直接修正座標
+4. 記住：生成的 PPTX 是**高質量、可編輯的草稿**，不是封閉的最終成品——在 PowerPoint 中做少量收尾是正常的
 
 ## Q: 生成一份 PPT 要多久？
 
-一份典型的 10–15 页 PPT 大约需要 **10–20 分钟**（使用吞吐较快的模型）。生成流程是**故意串行的**（逐页生成），这样才能保持前后页面的视觉一致性——并行生成方案曾经测试过，结果是各画各的、缺乏整体观。
+一份典型的 10–15 頁 PPT 大約需要 **10–20 分鐘**（使用吞吐較快的模型）。生成流程是**故意序列的**（逐頁生成），這樣才能保持前後頁面的視覺一致性——並行生成方案曾經測試過，結果是各畫各的、缺乏整體觀。
 
-如果感觉生成很慢，检查一下模型的 token 吞吐速度。瓶颈通常在模型的输出速度，而不是脚本本身。
+如果感覺生成很慢，檢查一下模型的 token 吞吐速度。瓶頸通常在模型的輸出速度，而不是指令碼本身。
 
-## Q: 临时测试几页 PPT，可以走快速模式吗？
+## Q: 臨時測試幾頁 PPT，可以走快速模式嗎？
 
-可以。请明确说明这是一次**快速测试**，并给出少量、固定、自包含的页面清单。Generate 路线会启用 [`quick-test` profile](../../skills/ppt-master/workflows/profiles/quick-test.md)：AI 直接手写 `svg_output/`，随后调用测试专用的直接导出器。
+可以。請明確說明這是一次**快速測試**，並給出少量、固定、自包含的頁面清單。Generate 路線會啟用 [`quick-test` profile](../../skills/ppt-master/workflows/profiles/quick-test.md)：AI 直接手寫 `svg_output/`，隨後呼叫測試專用的直接匯出器。
 
-该模式只产出 SVG 页面和一个 PPTX；不会做源文件转换、事实研究、策略师规划与确认、模板套用、素材获取、Live Preview、质量报告、讲稿、`svg_final/`、备份、动画或旁白。正式交付、需要事实或源文件、依赖外部素材/模板/原生图表表格，或要求复用时，仍走标准流程。
+該模式只產出 SVG 頁面和一個 PPTX；不會做原始檔轉換、事實研究、策略師規劃與確認、模板套用、素材獲取、Live Preview、質量報告、講稿、`svg_final/`、備份、動畫或旁白。正式交付、需要事實或原始檔、依賴外部素材/模板/原生圖表表格，或要求複用時，仍走標準流程。
 
-## Q: 长 PPT 一次生成会不会上下文爆掉？
+## Q: 長 PPT 一次生成會不會上下文爆掉？
 
-默认推荐**一次性连续生成**——10–15 页的 deck 在 200K 上下文窗口下完全够用，跨页视觉一致性也最好（Executor 看到前几页 SVG 后会主动对齐风格、字号、节奏）。
+預設推薦**一次性連續生成**——10–15 頁的 deck 在 200K 上下文視窗下完全夠用，跨頁視覺一致性也最好（Executor 看到前幾頁 SVG 後會主動對齊風格、字號、節奏）。
 
-只有信号偏重的场景（页数 ≥ 18 / 源材料很厚 / 走过 topic-research 累积大量 web 抓取），AI 才会在策略师阶段给出**拆分模式**的可选提示：规划会话（策略师确认阶段 + 图片获取）结束后停止当前对话；你新开聊天窗口，输入 `继续生成 projects/<项目名>` 进入执行会话（SVG 生成 + 导出）。新会话从磁盘重新加载 `design_spec` / `spec_lock` / `sources` / `images` 继续执行。
+只有訊號偏重的場景（頁數 ≥ 18 / 源材料很厚 / 走過 topic-research 累積大量 web 抓取），AI 才會在策略師階段給出**拆分模式**的可選提示：規劃會話（策略師確認階段 + 圖片獲取）結束後停止當前對話；你新開聊天視窗，輸入 `继续生成 projects/<项目名>` 進入執行會話（SVG 生成 + 匯出）。新會話從磁碟重新載入 `design_spec` / `spec_lock` / `sources` / `images` 繼續執行。
 
-两段式是**折中方案**——新会话需付出重载 Generate 权威文档与必需执行引用的固定成本，但可丢弃规划会话噪声，并把节省下来的窗口空间用于主动重读 `sources/` 做内容增稠。**信号正常时不需要**，提示也不会出现；用户随时可以忽略提示，走默认连续模式。
+兩段式是**折中方案**——新會話需付出過載 Generate 權威檔案與必需執行引用的固定成本，但可丟棄規劃會話噪聲，並把節省下來的視窗空間用於主動重讀 `sources/` 做內容增稠。**訊號正常時不需要**，提示也不會出現；使用者隨時可以忽略提示，走預設連續模式。
 
-## Q: 能在导出前预览或修正某一页吗？
+## Q: 能在匯出前預覽或修正某一頁嗎？
 
-可以。你可以**随时中断工作流**——前几页生成后就可以查看并反馈意见。AI 可以根据你的意见重新生成特定页面，不需要等到全部完成再修改。
+可以。你可以**隨時中斷工作流**——前幾頁生成後就可以檢視並反饋意見。AI 可以根據你的意見重新生成特定頁面，不需要等到全部完成再修改。
 
-生成后的修正也一样简单，直接告诉 AI："第 3 页布局有问题——标题和图表重叠了"，它会修正那个特定的 SVG。
+生成後的修正也一樣簡單，直接告訴 AI："第 3 頁佈局有問題——標題和圖表重疊了"，它會修正那個特定的 SVG。
 
-## Q: 我手上有一份现成的 PPT，想基于它做东西，该走哪条路？
+## Q: 我手上有一份現成的 PPT，想基於它做東西，該走哪條路？
 
-把「用一份已有 PPT」拆成两个问题：**留不留它的内容**、**留不留它的设计（版式 + 视觉）**。四种组合对应三种生成路径，以及直接保留原文件这一种无需生成的结果：
+把「用一份已有 PPT」拆成兩個問題：**留不留它的內容**、**留不留它的設計（版式 + 視覺）**。四種組合對應三種生成路徑，以及直接保留原檔案這一種無需生成的結果：
 
-| 意图 | 路线 | 固定不变的东西 |
+| 意圖 | 路線 | 固定不變的東西 |
 |---|---|---|
-| 留内容 + 重做版式 | **Generate PPTX + beautify profile** | 页数、页序、每页文字、图表/表格数据 |
-| 换内容 + 留设计 | **Fill Native PPTX** | 原生页面设计；可选择、乱序、复用源页 |
-| 只留内容，设计与分页都重来 | **Generate PPTX** | 源事实；故事结构和页数都可重构 |
-| 留内容 + 留设计 | 不必生成 | 直接用原文件 |
+| 留內容 + 重做版式 | **Generate PPTX + beautify profile** | 頁數、頁序、每頁文字、圖表/表格資料 |
+| 換內容 + 留設計 | **Fill Native PPTX** | 原生頁面設計；可選擇、亂序、複用源頁 |
+| 只留內容，設計與分頁都重來 | **Generate PPTX** | 源事實；故事結構和頁數都可重構 |
+| 留內容 + 留設計 | 不必生成 | 直接用原檔案 |
 
-使用 **beautify profile** 的前提是：原 PPT 的分页本身就是输出要求的一部分。文字逐字不动、页数页序 1:1 保留，只重排版式、层级和留白，并继承原配色字体。典型说法是「把这份 PPT 美化一下 / 重新排版，内容别动」。见 [beautify profile](../../skills/ppt-master/workflows/profiles/beautify-pptx.md)。
+使用 **beautify profile** 的前提是：原 PPT 的分頁本身就是輸出要求的一部分。文字逐字不動、頁數頁序 1:1 保留，只重排版式、層級和留白，並繼承原配色字型。典型說法是「把這份 PPT 美化一下 / 重新排版，內容別動」。見 [beautify profile](../../skills/ppt-master/workflows/profiles/beautify-pptx.md)。
 
-用 **主管线** 的前提是：原 PPT 只是内容材料。流程会用 `ppt_to_md` 抽成 Markdown，并读取 `analysis/` 里的 PPTX intake 事实，再由 Strategist 自由重构大纲（合页 / 拆页 / 换序）。典型说法是「用这份 PPT 的内容重做一份更好的」或「提炼成 10 页高管汇报」。
+用 **主管線** 的前提是：原 PPT 只是內容材料。流程會用 `ppt_to_md` 抽成 Markdown，並讀取 `analysis/` 裡的 PPTX intake 事實，再由 Strategist 自由重構大綱（合頁 / 拆頁 / 換序）。典型說法是「用這份 PPT 的內容重做一份更好的」或「提煉成 10 頁高管彙報」。
 
-beautify 和主管线的一句话判别：**原来的分页是要保留的信息，还是只是前一作者的结构、可以推翻？** 保留 → beautify；推翻 → 主管线。落到硬判据就是**页数 / 页序**：只要它有任何变化——拆页、合页、删页、换序，乃至「一字不改、只把某张太挤的页拆开排得更好看」——都属于重分页，走主管线。beautify 严格 1:1。
+beautify 和主管線的一句話判別：**原來的分頁是要保留的資訊，還是隻是前一作者的結構、可以推翻？** 保留 → beautify；推翻 → 主管線。落到硬判據就是**頁數 / 頁序**：只要它有任何變化——拆頁、合頁、刪頁、換序，乃至「一字不改、只把某張太擠的頁拆開排得更好看」——都屬於重分頁，走主管線。beautify 嚴格 1:1。
 
-如果用户说法含糊，比如「把这份 PPT 做得更专业一点」「优化一下这个 deck」，AI 应先问一句：**要保留原页数、页序和每页文字，只做美化；还是把 PPT 当素材，重新梳理成一份新故事？**
+如果使用者說法含糊，比如「把這份 PPT 做得更專業一點」「最佳化一下這個 deck」，AI 應先問一句：**要保留原頁數、頁序和每頁文字，只做美化；還是把 PPT 當素材，重新梳理成一份新故事？**
 
-还有一条正交的路：如果你不是要现在产出一份 deck，而是想把这套设计**收成可复用模板**供以后反复用，走 **create-template**（见下面「如何制作自定义模板」）。
-
----
-
-## Q: 我已经有一份做好的 `.pptx`，能不能复用它的设计、只填新内容？
-
-可以——这就是 **套模板（template fill）** 路径，独立于 SVG 生成管线。把你现成的 `.pptx` 连同素材（或一个主题）给 AI，说「套模板 / 把这些填回去」。它会把你的 deck 当作原生页面库，只挑适合新内容的页面（可乱序、可重复），把新文字——以及原生表格单元格、图表数据——直接写回原始 OOXML。
-
-输出仍是 100% 原生可编辑的 PowerPoint：原设计、母版、图片、动画都保留，且只导出选中的页面。它刻意**不**改版式、不加页、不换图——一份 deck 的页面结构本身承载着逻辑（总分、对比、递进），所以应挑选结构本就契合内容的页面，而不是硬塞进去。若需要全新结构或不同页数，请改用 create-template（见下一问）。完整步骤：[套模板工作流](../../skills/ppt-master/workflows/template-fill-pptx.md)。
+還有一條正交的路：如果你不是要現在產出一份 deck，而是想把這套設計**收成可複用模板**供以後反覆用，走 **create-template**（見下面「如何製作自定義模板」）。
 
 ---
 
-## Q: 如何制作自定义模板？
+## Q: 我已經有一份做好的 `.pptx`，能不能複用它的設計、只填新內容？
 
-想把自己喜欢的 PPT 模板制作成 PPT Master 可调用的模板？按以下步骤操作：
+可以——這就是 **套模板（template fill）** 路徑，獨立於 SVG 生成管線。把你現成的 `.pptx` 連同素材（或一個主題）給 AI，說「套模板 / 把這些填回去」。它會把你的 deck 當作原生頁面庫，只挑適合新內容的頁面（可亂序、可重複），把新文字——以及原生表格單元格、圖表資料——直接寫回原始 OOXML。
 
-**第一步 — 准备参考材料**
+輸出仍是 100% 原生可編輯的 PowerPoint：原設計、母版、圖片、動畫都保留，且只匯出選中的頁面。它刻意**不**改版式、不加頁、不換圖——一份 deck 的頁面結構本身承載著邏輯（總分、對比、遞進），所以應挑選結構本就契合內容的頁面，而不是硬塞進去。若需要全新結構或不同頁數，請改用 create-template（見下一問）。完整步驟：[套模板工作流](../../skills/ppt-master/workflows/template-fill-pptx.md)。
 
-**最推荐的方式是直接给原始 `.pptx` 文件**。PPT Master 会提取包内实际存在且受支持的主题色、字体、Master/Layout、placeholder type/idx、原生形状信息和可复用图片资源。`standard` 与 `fidelity` 把来源当作视觉参考，重新设计 SVG roster 和新的 Master/Layout/slot 系统，不保留、也不蒸馏来源拓扑。`mirror` 则把这些已验证的来源事实物化到新工作区，不做语义归纳或缺口补造。由于结构层禁止 `<g>`，来源 Master/Layout 的 group wrapper 只允许机械展开成直接原子。
+---
 
-完整导入 SVG 可以保留高级 PowerPoint 形状所需的 metadata、隐藏 carrier 和预览指纹，并作为载荷后备留在临时分析工作区且保持不可变。模板创建使用带文档内 source ref 和紧凑路径/hash manifest 的轻量可编辑 IR。`standard` / `fidelity` 创作项目规范化 SVG，只有精确匹配已登记 preset 时才使用 compact authored-preset 组。Mirror 从 IR 物化最终模板，只为未改且 hash 匹配的 Slide-local/slot ref 重新接入转换器已经支持的载荷；不支持或已修改的对象保留当前 SVG fallback。
+## Q: 如何製作自定義模板？
 
-没有源 PPTX 时，截图集也能跑（`cover.png` / `toc.png` / `chapter.png` / `content.png` / `closing.png`），但保真度会明显下降。建议优先找原始 PPTX。
+想把自己喜歡的 PPT 模板製作成 PPT Master 可呼叫的模板？按以下步驟操作：
 
-**第二步 — 让 AI 创建模板**
+**第一步 — 準備參考材料**
 
-使用支持 Agent 的 AI 工具（Claude Code、Codex 等），要求它使用 **PPT Master 的 `/create-template` 工作流**，将这些参考材料转换成模板。提供的信息越详细，效果越好，例如：
+**最推薦的方式是直接給原始 `.pptx` 檔案**。PPT Master 會提取包內實際存在且受支援的主題色、字型、Master/Layout、placeholder type/idx、原生形狀資訊和可複用圖片資源。`standard` 與 `fidelity` 把來源當作視覺參考，重新設計 SVG roster 和新的 Master/Layout/slot 系統，不保留、也不蒸餾來源拓撲。`mirror` 則把這些已驗證的來源事實物化到新工作區，不做語義歸納或缺口補造。由於結構層禁止 `<g>`，來源 Master/Layout 的 group wrapper 只允許機械展開成直接原子。
 
-- 模板名称和适用场景（如政府汇报、高端咨询、产品宣讲等）
-- 期望的风格基调和配色（如"现代克制、深蓝主色调"）
-- 类别偏好（`brand` 品牌 / `general` 通用 / `scenario` 场景 / `government` 政务 / `special` 特殊）
-- 画布格式（默认 16:9，如需其他格式请注明）
-- 输出范围：进入索引的 `library`（默认）或一个已经初始化的 `project`；两者使用相同路由并省略空的可选目录
+完整匯入 SVG 可以保留高階 PowerPoint 形狀所需的 metadata、隱藏 carrier 和預覽指紋，並作為載荷後備留在臨時分析工作區且保持不可變。模板建立使用帶檔案內 source ref 和緊湊路徑/hash manifest 的輕量可編輯 IR。`standard` / `fidelity` 創作專案規範化 SVG，只有精確匹配已登記 preset 時才使用 compact authored-preset 組。Mirror 從 IR 物化最終模板，只為未改且 hash 匹配的 Slide-local/slot ref 重新接入轉換器已經支援的載荷；不支援或已修改的物件保留當前 SVG fallback。
 
-不需要一次提供所有细节——AI 代理会通过对话追问补齐缺失信息（输出范围、模板 ID、主题模式等）。
+沒有源 PPTX 時，截圖集也能跑（`cover.png` / `toc.png` / `chapter.png` / `content.png` / `closing.png`），但保真度會明顯下降。建議優先找原始 PPTX。
+
+**第二步 — 讓 AI 建立模板**
+
+使用支援 Agent 的 AI 工具（Claude Code、Codex 等），要求它使用 **PPT Master 的 `/create-template` 工作流**，將這些參考材料轉換成模板。提供的資訊越詳細，效果越好，例如：
+
+- 模板名稱和適用場景（如政府彙報、高階諮詢、產品宣講等）
+- 期望的風格基調和配色（如"現代剋制、深藍主色調"）
+- 類別偏好（`brand` 品牌 / `general` 通用 / `scenario` 場景 / `government` 政務 / `special` 特殊）
+- 畫布格式（預設 16:9，如需其他格式請註明）
+- 輸出範圍：進入索引的 `library`（預設）或一個已經初始化的 `project`；兩者使用相同路由並省略空的可選目錄
+
+不需要一次提供所有細節——AI 代理會通過對話追問補齊缺失資訊（輸出範圍、模板 ID、主題模式等）。
 
 **第三步 — 等待完成**
 
-AI 代理会自动完成后续工作——分析参考、构建布局定义并验证模板。如果你明确需要 PowerPoint 审阅文件，它还会按需生成 `exports/<id>_template_preview.pptx`。两种范围都要求 `templates/`，并使用可选的 `images/`、`icons/` 与 `exports/`：`library` 写入 `skills/ppt-master/templates/<kind>/<id>/` 并完成全局注册；`project` 写入 `projects/<name>/` 并跳过注册；空的可选目录直接省略。把这个工作区根目录交给 Step 3 即可，Step 3 不会复制 `exports/`，全局库的预览导出也由 Git 忽略。根目录平铺 `design_spec.md` 的工作区只有在 SVG 已满足当前合同时才兼容；语义旧包必须通过 `create-template` 替换，不能原地升级。
+AI 代理會自動完成後續工作——分析參考、構建佈局定義並驗證模板。如果你明確需要 PowerPoint 審閱檔案，它還會按需生成 `exports/<id>_template_preview.pptx`。兩種範圍都要求 `templates/`，並使用可選的 `images/`、`icons/` 與 `exports/`：`library` 寫入 `skills/ppt-master/templates/<kind>/<id>/` 並完成全域性註冊；`project` 寫入 `projects/<name>/` 並跳過註冊；空的可選目錄直接省略。把這個工作區根目錄交給 Step 3 即可，Step 3 不會複製 `exports/`，全域性庫的預覽匯出也由 Git 忽略。根目錄平鋪 `design_spec.md` 的工作區只有在 SVG 已滿足當前合同時才相容；語義舊包必須通過 `create-template` 替換，不能原地升級。
 
-> **提示**：对风格和使用场景描述得越具体，生成的模板就越符合你的预期。
+> **提示**：對風格和使用場景描述得越具體，生成的模板就越符合你的預期。
 
 ---
 
-> 更多问题可先查看 [skills/ppt-master/SKILL.md](../../skills/ppt-master/SKILL.md) 与 [AGENTS.md](../../AGENTS.md)
+> 更多問題可先檢視 [skills/ppt-master/SKILL.md](../../skills/ppt-master/SKILL.md) 與 [AGENTS.md](../../AGENTS.md)

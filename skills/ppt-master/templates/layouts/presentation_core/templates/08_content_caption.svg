@@ -11,19 +11,19 @@
   <g id="content-caption-title-slot" data-pptx-placeholder="title"
     data-pptx-bounds="64 112 256 104">
     <text id="content-caption-title-carrier" data-pptx-carrier="true"
-      x="64" y="180" fill="#1E293B" font-family="Arial, Microsoft YaHei, sans-serif"
+      x="64" y="180" fill="#1E293B" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="34" font-weight="700">{{PAGE_TITLE}}</text>
   </g>
   <g id="content-caption-body-slot" data-pptx-placeholder="body" data-pptx-idx="1"
     data-pptx-bounds="64 248 256 296">
     <text id="content-caption-body-carrier" data-pptx-carrier="true"
-      x="64" y="296" fill="#64748B" font-family="Arial, Microsoft YaHei, sans-serif"
+      x="64" y="296" fill="#64748B" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="22">{{CAPTION}}</text>
   </g>
   <g id="content-caption-object-slot" data-pptx-placeholder="object" data-pptx-idx="2"
     data-pptx-bounds="424 88 768 544">
     <text id="content-caption-object-carrier" data-pptx-carrier="true"
       x="424" y="126" fill="#94A3B8"
-      font-family="Arial, Microsoft YaHei, sans-serif" font-size="22">{{CONTENT_AREA}}</text>
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="22">{{CONTENT_AREA}}</text>
   </g>
 </svg>

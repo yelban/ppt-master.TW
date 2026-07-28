@@ -363,8 +363,8 @@ The table below is **a reference for the one case where you want the in-image le
 | `spec_lock typography.font_family` contains | Optional descriptor if you want to echo the SVG body |
 |---|---|
 | `KaiTi` / `FangSong` / `Georgia` / serif families | "elegant serif lettering, refined letterforms" |
-| `Microsoft YaHei` / `PingFang SC` / `Arial` / sans-serif families | "clean geometric sans-serif, modern letterforms" |
-| `SimHei` / `Impact` / `Arial Black` / display families | "bold display lettering, heavy expressive strokes" |
+| `Microsoft JhengHei` / `PingFang TC` / `Arial` / sans-serif families | "clean geometric sans-serif, modern letterforms" |
+| `Microsoft JhengHei` / `Impact` / `Arial Black` / display families | "bold display lettering, heavy expressive strokes" |
 | `Consolas` / `Courier New` / monospace families | "monospace technical lettering, fixed-width" |
 | sketch-notes / ink-notes rendering, or no family specified | "hand-lettered organic strokes, natural variation" |
 

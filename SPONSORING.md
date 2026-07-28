@@ -83,4 +83,4 @@ Terms, placement, and duration are agreed individually. Please do not open a pub
 
 ## Individual Support
 
-Individual users can support the project through [PayPal](https://paypal.me/hugohe3) or the Alipay QR code shown in [README_CN.md](README_CN.md#赞助与支持).
+Individual users can support the project through [PayPal](https://paypal.me/hugohe3) or the Alipay QR code shown in [README_CN.md](README_CN.md#贊助與支援).

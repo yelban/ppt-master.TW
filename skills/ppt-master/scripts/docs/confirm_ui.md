@@ -168,8 +168,8 @@ After Stage 1 is confirmed, create `recommendations.stage2.json` with the comple
         } },
         "typography": {
           "name_zh": "清晰无衬线",
-          "heading": { "cjk": "Microsoft YaHei", "latin": "Arial", "css": "sans-serif" },
-          "body": { "cjk": "Microsoft YaHei", "latin": "Arial", "css": "sans-serif" },
+          "heading": { "cjk": "Microsoft JhengHei", "latin": "Arial", "css": "sans-serif" },
+          "body": { "cjk": "Microsoft JhengHei", "latin": "Arial", "css": "sans-serif" },
           "body_size": 24
         },
         "image_strategy": {

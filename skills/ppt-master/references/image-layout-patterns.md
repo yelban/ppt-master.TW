@@ -206,7 +206,7 @@ Stack any of these freely on top of a Primary structure. Multiple Modifiers per 
 
 25. **Layered paper-cut stack** — clip each image layer under the image-only contract in [`shared-standards-core.md`](./shared-standards-core.md) §1.2; draw vector layers directly in their final geometry. A small conditional shadow on each layer can create physical separation.
 
-82. **One image shattered across separated shapes (Merge Shapes look)** — a *single* `<image>` clipped by **one `<path>` whose `d` contains several disjoint subpaths** (`M … Z M … Z`), so one photo appears inside several detached containers — staggered rounded slices, a gapped 2×2 grid, a rotated cross. This is the SVG equivalent of PowerPoint's Merge Shapes 结合 → 相交, and export maps it to one picture with `custGeom`.
+82. **One image shattered across separated shapes (Merge Shapes look)** — a *single* `<image>` clipped by **one `<path>` whose `d` contains several disjoint subpaths** (`M … Z M … Z`), so one photo appears inside several detached containers — staggered rounded slices, a gapped 2×2 grid, a rotated cross. This is the SVG equivalent of PowerPoint's Merge Shapes 結合 → 相交, and export maps it to one picture with `custGeom`.
 
     **Geometry**: write each container as its own subpath in one `d`. A rounded rect is `M x+r,y H x+w-r A r,r 0 0 1 x+w,y+r V y+h-r A r,r 0 0 1 x+w-r,y+h H x+r A r,r 0 0 1 x,y+h-r V y+r A r,r 0 0 1 x+r,y Z`; repeat per container, all in the same `<path>`. Keep the subpaths disjoint so no winding rule is ever needed.
 

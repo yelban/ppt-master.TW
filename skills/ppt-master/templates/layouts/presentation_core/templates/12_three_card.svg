@@ -13,25 +13,25 @@
   <g id="three-card-title-slot" data-pptx-placeholder="title"
     data-pptx-bounds="64 48 1152 80">
     <text id="three-card-title-carrier" data-pptx-carrier="true"
-      x="64" y="102" fill="#1E293B" font-family="Arial, Microsoft YaHei, sans-serif"
+      x="64" y="102" fill="#1E293B" font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="36" font-weight="700">{{PAGE_TITLE}}</text>
   </g>
   <g id="three-card-one-slot" data-pptx-placeholder="object" data-pptx-idx="1"
     data-pptx-bounds="88 192 320 424">
     <text id="three-card-one-carrier" data-pptx-carrier="true"
       x="88" y="230" fill="#64748B"
-      font-family="Arial, Microsoft YaHei, sans-serif" font-size="22">{{CARD_1}}</text>
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="22">{{CARD_1}}</text>
   </g>
   <g id="three-card-two-slot" data-pptx-placeholder="object" data-pptx-idx="2"
     data-pptx-bounds="480 192 320 424">
     <text id="three-card-two-carrier" data-pptx-carrier="true"
       x="480" y="230" fill="#64748B"
-      font-family="Arial, Microsoft YaHei, sans-serif" font-size="22">{{CARD_2}}</text>
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="22">{{CARD_2}}</text>
   </g>
   <g id="three-card-three-slot" data-pptx-placeholder="object" data-pptx-idx="3"
     data-pptx-bounds="872 192 320 424">
     <text id="three-card-three-carrier" data-pptx-carrier="true"
       x="872" y="230" fill="#64748B"
-      font-family="Arial, Microsoft YaHei, sans-serif" font-size="22">{{CARD_3}}</text>
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="22">{{CARD_3}}</text>
   </g>
 </svg>

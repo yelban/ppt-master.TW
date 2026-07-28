@@ -1254,17 +1254,17 @@ _BASELINE_LAYOUT_ROLE_TOKENS = (
     (
         "Agenda",
         frozenset({"agenda", "contents", "outline", "toc"}),
-        ("目录", "议程"),
+        ("目錄", "議程"),
     ),
     (
         "Section",
         frozenset({"chapter", "divider", "section", "transition"}),
-        ("章节", "过渡页"),
+        ("章節", "過渡頁"),
     ),
     (
         "Closing",
         frozenset({"closing", "end", "ending", "qa", "thankyou", "thanks"}),
-        ("封底", "结束", "结尾", "结语", "致谢", "谢谢"),
+        ("封底", "結束", "結尾", "結語", "致謝", "謝謝"),
     ),
 )
 

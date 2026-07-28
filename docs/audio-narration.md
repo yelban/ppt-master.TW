@@ -18,7 +18,7 @@ PPT Master can turn the speaker notes into per-slide narration via [`edge-tts`](
 ## How it works
 
 1. **Speaker notes are written as pure spoken narration.** PPT Master's notes spec deliberately produces TTS-friendly prose — no bracketed stage markers, no `Key points:` / `Duration:` meta-lines — so what is read aloud is exactly what's on the page.
-2. **AI picks the voice for you.** When you ask for narration, the AI checks the deck's primary language (`zh-CN` / `en-US` / `ja-JP` / `ko-KR` / …), pulls the selected provider's voice catalog, and recommends 3–6 candidates with a one-line tone description for each (e.g. "steady male voice for financial reporting"). It also recommends a speaking rate or provider defaults based on notes density.
+2. **AI picks the voice for you.** When you ask for narration, the AI checks the deck's primary language (`zh-TW` / `en-US` / `ja-JP` / `ko-KR` / …), pulls the selected provider's voice catalog, and recommends 3–6 candidates with a one-line tone description for each (e.g. "steady male voice for financial reporting"). It also recommends a speaking rate or provider defaults based on notes density.
 3. **One question, one answer.** You are asked once — provider, voice, rate, "embed audio back into PPTX", and "continue to video" — all with a recommended default. Reply "ok" to accept everything, or just call out the part you want to change.
 4. **Generation runs.** With edge, the script writes each page's MP3 and SRT from the same stream to `audio/` and `notes/subtitles/`; cloud providers currently write audio only. For Generate PPTX, the AI maps current SVG content groups to numbered SRT cues, rebuilds click-free animations, and re-exports the deck with audio attached. It then merges the local SRT files using timing values read from that final PPTX. When automatic video export was selected and compatible Windows PowerPoint is available, it continues through PowerPoint's native encoder and waits for the MP4 before aligning the delivery SRT. Long-audio import and automatic long-audio splitting are not supported.
 
@@ -47,7 +47,7 @@ The AI handles the rest.
 
 ## Languages
 
-Anything `edge-tts` supports — roughly 90 locales including all major Chinese variants (`zh-CN` / `zh-TW` / `zh-HK` Cantonese), English (US/UK/AU/IN), Japanese, Korean, French, German, Spanish, Portuguese, Russian, Arabic, etc. List voices for any locale yourself with:
+Anything `edge-tts` supports — roughly 90 locales including all major Chinese variants (`zh-TW` / `zh-TW` / `zh-HK` Cantonese), English (US/UK/AU/IN), Japanese, Korean, French, German, Spanish, Portuguese, Russian, Arabic, etc. List voices for any locale yourself with:
 
 ```bash
 python3 skills/ppt-master/scripts/notes_to_audio.py --list-voices --locale ja-JP
@@ -63,7 +63,7 @@ python3 skills/ppt-master/scripts/total_md_split.py <project_path>
 
 # 2A. Generate MP3/SRT pairs with edge-tts (default, no API key)
 python3 skills/ppt-master/scripts/notes_to_audio.py <project_path> \
-  --voice zh-CN-YunjianNeural --rate +0%
+  --voice zh-TW-YunjianNeural --rate +0%
 
 # 2B. Or generate MP3s with ElevenLabs (requires ELEVENLABS_API_KEY)
 export ELEVENLABS_API_KEY="your-elevenlabs-api-key"

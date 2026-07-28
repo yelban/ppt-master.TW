@@ -812,8 +812,8 @@ def _looks_like_outcome_row(row: list[str]) -> bool:
 def _regression_group_labels(row: list[str], data_cols: int) -> list[str]:
     """Infer repeated group labels for common regression-table headings."""
     compact = "".join(row)
-    if "总样本" in compact and "国有" in compact and "非国有" in compact and data_cols == 7:
-        return ["总样本"] * 3 + ["国有企业"] * 2 + ["非国有企业"] * 2
+    if "總樣本" in compact and "國有" in compact and "非國有" in compact and data_cols == 7:
+        return ["總樣本"] * 3 + ["國有企業"] * 2 + ["非國有企業"] * 2
     return [""] * data_cols
 
 
@@ -829,7 +829,7 @@ def _flatten_regression_header(rows: list[list[str]]) -> list[list[str]]:
         and _looks_like_model_row(rows[1])
     ):
         outcome = rows[0][0]
-        header = ["变量"]
+        header = ["變數"]
         header.extend(
             f"{model} {outcome}".strip()
             for model in rows[1][1:]
@@ -849,7 +849,7 @@ def _flatten_regression_header(rows: list[list[str]]) -> list[list[str]]:
 
     model_row = rows[header_offset]
     outcome_row = rows[header_offset + 1]
-    header = ["变量"]
+    header = ["變數"]
     for idx, model in enumerate(model_row[1:]):
         pieces = []
         if idx < len(groups) and groups[idx]:
@@ -864,22 +864,22 @@ def _flatten_regression_header(rows: list[list[str]]) -> list[list[str]]:
 
 def _fix_paired_sample_t_table(rows: list[list[str]]) -> list[list[str]]:
     """Collapse multi-row paired-sample T-test headings into readable columns."""
-    if not rows or not any("成对差分" in cell for cell in rows[0]):
+    if not rows or not any("成對差分" in cell for cell in rows[0]):
         return rows
-    body = [row for row in rows if row and row[0].startswith("对")]
+    body = [row for row in rows if row and row[0].startswith("對")]
     if len(body) < 1:
         return rows
     header = [
-        "配对",
-        "变量",
+        "配對",
+        "變數",
         "均值",
-        "标准差",
-        "均值的标准误",
-        "差分95%置信区间下限",
-        "差分95%置信区间上限",
+        "標準差",
+        "均值的標準誤",
+        "差分95%置信區間下限",
+        "差分95%置信區間上限",
         "t",
         "Df",
-        "Sig.(双侧)",
+        "Sig.(雙側)",
     ]
     fixed_rows = [header]
     for row in body:
@@ -889,7 +889,7 @@ def _fix_paired_sample_t_table(rows: list[list[str]]) -> list[list[str]]:
 
 def _fix_variable_definition_table(rows: list[list[str]]) -> list[list[str]]:
     """Repeat variable-category labels for common variable definition tables."""
-    if not rows or rows[0] != ["变量类型", "变量名称", "符号", "变量说明"]:
+    if not rows or rows[0] != ["變數型別", "變數名稱", "符號", "變數說明"]:
         return rows
 
     fixed = [rows[0]]
@@ -903,18 +903,18 @@ def _fix_variable_definition_table(rows: list[list[str]]) -> list[list[str]]:
             continue
 
         if symbol in {"R＆D", "Fixed", "Hc"}:
-            category = "被解释变量"
+            category = "被解釋變數"
         elif symbol == "Vat":
-            category = "解释变量"
+            category = "解釋變數"
         else:
-            category = "控制变量"
+            category = "控制變數"
         fixed.append([category, name, symbol, description])
     return fixed
 
 
 def _fix_correlation_triangle(rows: list[list[str]]) -> list[list[str]]:
     """Restore the missing last self-correlation column in triangular tables."""
-    if len(rows) < 4 or not rows[0] or rows[0][0] != "变量":
+    if len(rows) < 4 or not rows[0] or rows[0][0] != "變數":
         return rows
     body_names = [row[0] for row in rows[1:] if row and row[0]]
     header_names = rows[0][1:]
@@ -1226,13 +1226,13 @@ def _is_table_continuation_noise(line: str) -> bool:
         return True
     if re.fullmatch(r'\d+', text):
         return True
-    if "重庆大学硕士学位论文" in text:
+    if "重慶大學碩士學位論文" in text:
         return True
     continuation_labels = [
-        "营改增",
-        "深化增值税改革",
-        "国有企业",
-        "非国有企业",
+        "營改增",
+        "深化增值稅改革",
+        "國有企業",
+        "非國有企業",
     ]
     return any(label in text for label in continuation_labels)
 

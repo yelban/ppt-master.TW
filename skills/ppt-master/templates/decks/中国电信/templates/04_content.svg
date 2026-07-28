@@ -28,28 +28,28 @@
     data-pptx-bounds="40 44 146 40">
     <text id="content-section-carrier" data-pptx-carrier="true"
       x="40" y="72" fill="#FFFFFF"
-      font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="22" font-weight="700">{{SECTION_NAME}}</text>
   </g>
   <g id="content-title-slot" data-pptx-placeholder="title"
     data-pptx-bounds="228 44 714 40">
     <text id="content-title-carrier" data-pptx-carrier="true"
       x="228" y="72" fill="#2B2F33"
-      font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="24" font-weight="700">{{PAGE_TITLE}}</text>
   </g>
   <g id="content-object-slot" data-pptx-placeholder="object" data-pptx-idx="2"
     data-pptx-bounds="96 156 1088 438">
     <text id="content-object-carrier" data-pptx-carrier="true"
       x="96" y="190" fill="#9CA3AF"
-      font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="20">{{CONTENT_AREA}}</text>
   </g>
   <g id="content-source-slot" data-pptx-placeholder="footer" data-pptx-idx="3"
     data-pptx-bounds="72 658 720 28">
     <text id="content-source-carrier" data-pptx-carrier="true"
       x="72" y="678" fill="#6B7280"
-      font-family="Arial, Microsoft YaHei, sans-serif" font-size="13">{{SOURCE}}</text>
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="13">{{SOURCE}}</text>
   </g>
   <g id="content-slide-number-slot" data-pptx-placeholder="slide-number"
     data-pptx-idx="4" data-pptx-bounds="1128 658 80 28">

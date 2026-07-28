@@ -1,46 +1,46 @@
-# 文档索引
+# 檔案索引
 
 [English](../README.md) | [中文](./README.md)
 
 ---
 
-用户文档集中在 `docs/` 目录：英文文件为规范源，本目录（`docs/zh/`）是同步中文译本。AI 自身消费的工作流与技术参考位于 [`skills/ppt-master/`](../../skills/ppt-master/SKILL.md)。
+使用者檔案集中在 `docs/` 目錄：英檔案案為規範源，本目錄（`docs/zh/`）是同步中文譯本。AI 自身消費的工作流與技術參考位於 [`skills/ppt-master/`](../../skills/ppt-master/SKILL.md)。
 
 ## 快速上手
 
-| 文档 | 说明 |
+| 檔案 | 說明 |
 |---|---|
-| [快速入门](./getting-started.md) | 三步做出第一份 deck，外加模板、实时预览、动画、旁白、声音复刻的用法 |
-| [Windows 安装指南](./windows-installation.md) | Windows 用户手把手安装教程 |
-| [常见问题](./faq.md) | 模型选择、费用、排版问题排查、自定义模板——基于真实用户反馈持续更新 |
+| [快速入門](./getting-started.md) | 三步做出第一份 deck，外加模板、即時預覽、動畫、旁白、聲音復刻的用法 |
+| [Windows 安裝指南](./windows-installation.md) | Windows 使用者手把手安裝教程 |
+| [常見問題](./faq.md) | 模型選擇、費用、排版問題排查、自定義模板——基於真實使用者反饋持續更新 |
 
-## 能力专题
+## 能力專題
 
-| 文档 | 说明 |
+| 檔案 | 說明 |
 |---|---|
-| [音频旁白](./audio-narration.md) | 从演讲者备注到逐页旁白：服务商、声音复刻、时序、PPTX 嵌入 |
-| [转场与动画](./animations.md) | 页间转场与页内元素动画的默认行为和自定义方式 |
-| [模板使用指南](./templates-guide.md) | 品牌 / 版式 / 成品模板的创建与套用 |
+| [音訊旁白](./audio-narration.md) | 從演講者備註到逐頁旁白：服務商、聲音復刻、時序、PPTX 嵌入 |
+| [轉場與動畫](./animations.md) | 頁間轉場與頁內元素動畫的預設行為和自定義方式 |
+| [模板使用指南](./templates-guide.md) | 品牌 / 版式 / 成品模板的建立與套用 |
 
-## 架构与原理
+## 架構與原理
 
-| 文档 | 说明 |
+| 檔案 | 說明 |
 |---|---|
-| [技术路线](./technical-design.md) | 架构、设计哲学、为什么选 SVG → DrawingML |
-| [PowerPoint–SVG 能力映射](./powerpoint-svg-mapping.md) | PowerPoint 构造与管线之间逐项能力映射 |
-| [模板体系架构](./templates-architecture.md) | 品牌 / 版式 / 成品模板体系的设计 |
+| [技術路線](./technical-design.md) | 架構、設計哲學、為什麼選 SVG → DrawingML |
+| [PowerPoint–SVG 能力對映](./powerpoint-svg-mapping.md) | PowerPoint 構造與管線之間逐項能力對映 |
+| [模板體系架構](./templates-architecture.md) | 品牌 / 版式 / 成品模板體系的設計 |
 
-## 项目方向
+## 專案方向
 
-| 文档 | 说明 |
+| 檔案 | 說明 |
 |---|---|
-| [什么是 PPT？](./what-is-ppt.md) | 演示媒介、用户任务、传递场景、原生对象模型、模板与质量层次 |
-| [为什么选 PPT Master](./why-ppt-master.md) | 为什么选它、以及它不适合的场景 |
-| [项目定位与能力边界](./project-positioning.md) | 长期定位、产品承诺、能力边界与准入判据 |
-| [路线图](./roadmap.md) | 已交付能力、当前优先级与明确推迟的方向 |
+| [什麼是 PPT？](./what-is-ppt.md) | 演示媒介、使用者任務、傳遞場景、原生物件模型、模板與質量層次 |
+| [為什麼選 PPT Master](./why-ppt-master.md) | 為什麼選它、以及它不適合的場景 |
+| [專案定位與能力邊界](./project-positioning.md) | 長期定位、產品承諾、能力邊界與准入判據 |
+| [路線圖](./roadmap.md) | 已交付能力、當前優先順序與明確推遲的方向 |
 
-## 贡献者规则
+## 貢獻者規則
 
-| 文档 | 说明 |
+| 檔案 | 說明 |
 |---|---|
-| [风格规则](../rules/README.md)（英文） | 面向提示词参考文件与 Python 脚本的贡献者风格规则 |
+| [風格規則](../rules/README.md)（英文） | 面向提示詞參考檔案與 Python 指令碼的貢獻者風格規則 |

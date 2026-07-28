@@ -1,11 +1,11 @@
 ---
-brand_id: 中国电信
+brand_id: 中國電信
 kind: brand
 summary: China Telecom brand identity for digital infrastructure, government-enterprise solutions, transformation planning, and corporate reporting
 primary_color: "#004EA2"
 ---
 
-# China Telecom (中国电信) Brand Specification
+# China Telecom (中國電信) Brand Specification
 
 > Identity-only preset. No SVG page roster; pages are composed freely under these brand constraints.
 
@@ -13,7 +13,7 @@ primary_color: "#004EA2"
 
 | Property | Value |
 |---|---|
-| Brand Name | China Telecom / 中国电信 |
+| Brand Name | China Telecom / 中國電信 |
 | Use Cases | Digital infrastructure reports, government-enterprise solutions, transformation planning, corporate reporting, and service presentations |
 | Tone | Formal, trusted, service-oriented, technically credible |
 | Sources | Bundled China Telecom logo for literal color evidence; [China Telecom official website](https://www.chinatelecom.com.cn/), reviewed 2026-07-13 |
@@ -35,9 +35,9 @@ The primary blue is an exact pixel sample from the bundled raster logo, but rema
 
 | Role | Family | Weight |
 |---|---|---|
-| title | `"Microsoft YaHei", "微软雅黑", "SimHei", Arial, sans-serif` | 700 |
-| body | `"Microsoft YaHei", "微软雅黑", Arial, sans-serif` | 400 |
-| data | `Arial, "Microsoft YaHei", sans-serif` | 600-700 |
+| title | `"Microsoft JhengHei", "Microsoft JhengHei", "Microsoft JhengHei", Arial, sans-serif` | 700 |
+| body | `"Microsoft JhengHei", "Microsoft JhengHei", Arial, sans-serif` | 400 |
+| data | `Arial, "Microsoft JhengHei", sans-serif` | 600-700 |
 
 Use PowerPoint-safe CJK fonts by default. Keep English technical labels, network standards, and data labels in Arial where that improves scanning. This preset does not bundle or automatically embed proprietary fonts.
 
@@ -59,7 +59,7 @@ The bundled asset is the default China Telecom corporate lockup. Use it unmodifi
 ## V. Voice & Tone
 
 - Formality: formal-neutral
-- Person: organization-first, "we / 我们" only when speaking as China Telecom
+- Person: organization-first, "we / 我們" only when speaking as China Telecom
 - Emoji: avoid
 - Abbreviations: spell out organization and service names on first use; retain standard network terms such as 5G when context is clear
 - Style: emphasize service reliability, secure infrastructure, customer value, public responsibility, and measurable digital outcomes

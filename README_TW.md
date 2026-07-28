@@ -1,4 +1,4 @@
-# PPT Master — AI 生成原生可編輯 PPTX，支援任意檔案輸入
+# PPT Master — AI 生成原生 PowerPoint，支援任意檔案輸入
 
 [![Version](https://img.shields.io/github/v/release/hugohe3/ppt-master?label=version&color=blue)](https://github.com/hugohe3/ppt-master/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -13,7 +13,17 @@
 [English](./README.md) | 正體中文 | [简体中文](./README_CN.md)
 
 <details open>
-<summary>本專案由 <a href="https://www.packyapi.com/register?aff=ppt-master">PackyCode</a>、<a href="https://apikey.fun/register?aff=PPT-MASTER">APIKEY.FUN</a>、<a href="https://runapi.co/register?aff=WMLJ">RunAPI</a>、<a href="https://www.compshare.cn/coding-plan?ytag=GPU_YY-git_pptmaster0624">優雲智算</a> 等贊助方支援，得以持續免費開源。</summary>
+<summary>本專案由 <a href="https://www.kimi.com/code/?aff=ppt-master">Kimi</a>、<a href="https://www.packyapi.com/register?aff=ppt-master">PackyCode</a>、<a href="https://apikey.fun/register?aff=PPT-MASTER">APIKEY.FUN</a>、<a href="https://runapi.co/register?aff=WMLJ">RunAPI</a>、<a href="https://www.compshare.cn/coding-plan?ytag=GPU_YY-git_pptmaster0624">優雲智算</a> 等贊助方支援，得以持續免費開源。</summary>
+
+<p align="center">
+  <a href="https://www.kimi.com/code/?aff=ppt-master"><img src="https://gcdn.moonshot.cn/growth-cdn/sponsor/kimi-zh.png" alt="Kimi" width="100%"></a>
+</p>
+
+感謝 [Kimi](https://www.kimi.com/code/?aff=ppt-master) 贊助本專案！[Kimi K3](https://platform.kimi.com/docs/guide/kimi-k3-quickstart) 是全球首個開源 3T 級模型，擁有原生視覺能力與 100 萬 Token 上下文。搭配 PPT Master，K3 可以理解 PDF、DOCX、網頁等原始資料，提煉重點、規劃演示邏輯，並生成可在 PowerPoint 中繼續修改的原生可編輯 PPTX。
+
+**立即體驗 [Kimi Code](https://www.kimi.com/code/?aff=ppt-master)，或通過 Kimi 開放平臺（[中文站](https://platform.kimi.com?aff=ppt-master)｜[Global](https://platform.kimi.ai?aff=ppt-master)）使用 API。**
+
+<hr>
 
 <table>
   <tr>
@@ -36,7 +46,7 @@
 
 </details>
 
-> **AI 生成 PPT，不是 AI 套模板。** PPT Master 是一套在 AI IDE（Claude Code / Cursor / VS Code + Copilot 等）裡執行的工作流：把 PDF / DOCX / 網頁等材料交給 AI，它在你本機生成一份真正的 PowerPoint——每個元素都能在 PowerPoint 裡點開修改，資料不出本地，不鎖定任何平臺和模型。工作原理與能力邊界 → [產品定位](#產品定位)。
+> **可編輯早已是及格線——真正拉開差距的是原生深度。** PPT Master 交給你的是一份真正的 PowerPoint：母版、原生形狀、資料驅動的圖表與表格，而不是一堆扁平文本框，也不是套模板填空的結果。它還不止把幻燈片排得好看——先替你把邏輯理順，再談視覺；而這份原生深度在**持續向 PowerPoint 本身靠攏**，逐版本補齊更多原生能力。形態上，它是一套在有 Agent 能力的 AI 工具裡執行的工作流：把你的主題或材料交給 AI，就在你本機生成，資料不出本地，不鎖定任何平臺和模型。工作原理與能力邊界 → [產品定位](#產品定位)。
 
 <p align="center">
   <a href="https://hugohe3.github.io/ppt-master/"><strong>線上預覽</strong></a> ·
@@ -94,30 +104,29 @@
 
 ---
 
-丟進原材料，拿回的這份 PPT **不只是能改**：它有 PPT 原生的轉場與入場動畫，演講者備註能直接合成音訊旁白，圖表和表格還能以帶資料的 PowerPoint 原生物件形式匯出，也能參考你自己的 PPT 模板來設計——一份能直接拿去講、回頭還能改的成品。每項能力怎麼用 → [快速入門](./docs/zh/getting-started.md)。
+丟進原材料，拿回的不是一張能改的靜態版面，而是**一份帶完整 PowerPoint 行為的成品**：原生頁間轉場、可按需開啟的入場動畫（預設關閉）、演講者備註一鍵合成音訊旁白乃至影片、圖表和表格可作為帶資料的原生物件匯出，也能沿用你自己的 PPT 模板來設計——直接拿去講，回頭還能接著改。每項能力怎麼用 → [快速入門](./docs/zh/getting-started.md)。
 
 ## 產品定位
 
-**一個檔案如果在 PowerPoint 裡打不開、改不動，就不該被叫做 PPT。** 市面上的 AI PPT 工具大致分四類，PPT Master 只做最後一類：
+**可編輯如今只是及格線——真正要緊的是你能拿到多少 PowerPoint。** PPT Master 交付的是 PowerPoint 的原生物件模型本身，而且有深度：帶調節手柄的原生形狀與連線符、按需的資料驅動圖表與表格、完整的文本 / 圖片 / 填充 / 效果，點開任意元素都作為原生 PowerPoint 物件繼續編輯；走模板 / 結構化路線時，它還能為你產出帶真正母版與版式（`p:sldMaster` / `p:sldLayout` 繼承）的 deck。
 
-| 型別 | 產物形態 | 能在 PowerPoint 裡逐元素改嗎 |
-|---|---|:---:|
-| 模板填空 | 套模板的 PPTX | 部分可以，受模板限制 |
-| 圖片式 | 一頁一張大圖拼成 PPTX | ❌ 整頁是圖片 |
-| HTML 演示 | 網頁演示 | ❌ 不是 PPTX |
-| **原生可編輯（PPT Master）** | **真 DrawingML 形狀、文本框、圖表** | ✅ 每個元素都能點開改 |
+而且這份深度是**一個前進方向，不是一張固定清單。** PPT Master 的北極星是持續向 PowerPoint 本身靠攏：不斷開發、整合更多 PowerPoint 原生能力，一個版本接一個版本，縮小「AI 能替你生成的」和「你在 PowerPoint 裡手工能做出的」之間的差距。[PowerPoint ↔ SVG 對映指南](./docs/zh/powerpoint-svg-mapping.md) 逐條、誠實地記錄了這份能力今天覆蓋到哪——SmartArt 是刻意的排除，不是缺口。
 
-形態上，它不是網站也不是 App，而是一套在 AI IDE（Claude Code / Cursor / VS Code + Copilot / Codebuddy 等）裡執行的工作流（一個 "skill"）：你在 IDE 的對話方塊裡說"用這份 PDF 做一份 PPT"，AI 按這套工作流在你本機生成真正可編輯的 `.pptx`。你不寫任何程式碼，要做的只有三件事——裝 Python、裝一個 AI IDE、把資料放進來。
+形態上，它是一套在有 Agent 能力的 AI 工具裡執行的工作流（一個 "skill"）：你在對話方塊裡說"用這份 PDF 做一份 PPT"，它就按流程在你本機生成、匯出原生可編輯的 `.pptx`。你不寫任何程式碼，只做三件事——裝 Python、裝一個 AI 工具、把材料放進來。
 
-這個形態換來三個別的工具很難同時給出的承諾：
+從源材料生成新 deck 是主管線，但不是唯一路線：PPT Master 還能從你的參考資料中提煉可複用的品牌 / 版式 / 成品模板，把新內容填進你已有的 `.pptx` 並保留其設計，或為成品 deck 追加原生轉場、動畫和旁白——每條路線都有明確的保留契約。
 
-- **成本透明可控** — 工具免費開源，唯一成本是你自己的 AI 模型用量，你用多少付多少，不在此之外增加任何訂閱費用
-- **資料不出本地** — 你的檔案不應該為了做一份 PPT 就被上傳到別人的伺服器。除與 AI 模型的對話外，全流程在你的電腦上完成
-- **不鎖定平臺** — 你的工作流不應該被任何一家公司綁架。Claude Code、Cursor、VS Code Copilot 等均可驅動；Claude、GPT、Gemini、Kimi 等模型均可使用
+在這份原生深度之上，這個形態還帶來三個承諾：
+
+- **成本透明可控** — 工具免費開源，唯一成本是你自己的 AI 模型用量，不在此之外增加任何訂閱費用
+- **資料不出本地** — 除與 AI 模型的對話外，全流程在你的電腦上完成
+- **不鎖定平臺** — 任何具備 agent 能力的 AI IDE 均可驅動；Claude、GPT、Gemini、Kimi 等模型均可使用
+
+為什麼選它、以及它不適合的場景 → [為什麼選 PPT Master](./docs/zh/why-ppt-master.md)；這些承諾背後的長期能力邊界 → [專案定位與能力邊界](./docs/zh/project-positioning.md)。
 
 > [!IMPORTANT]
 > ### 這是一個工具，不是一個許願池
-> `harness + model = agent`——PPT Master 只負責工作流，產出上限由模型決定。推薦 **Claude 大上下文視窗（~100 萬 token）+ AI 生圖（`gpt-image-2`）**；其他模型能跑通流程，但有質量差距。
+> `harness + model = agent`——PPT Master 只負責工作流，產出上限由模型決定。推薦 **Kimi K3（或 Claude）大上下文視窗（~100 萬 token）+ AI 生圖（`gpt-image-2` 或 Google `gemini-3.1-flash-image`）**；其他模型能跑通流程，但有質量差距。
 >
 > 也別指望一把就拿到完美成品。它的價值是幫你把大部分枯燥的活兒幹掉，剩下的打磨交給你——做原生可編輯的 PPT，本就是為了讓你接著改，而不是甩給你一張改不動的圖。模型越便宜，要補的人工就越多；效果不理想，先升級模型，再對照[快速入門](./docs/zh/getting-started.md)和示例工程檢查用法。
 
@@ -128,6 +137,47 @@
 我是何雨果（Hugo He），投融資領域從業者（註冊會計師 · 資產評估師 · 諮詢工程師（投資）），工作中經常審閱和修改 PPT。我希望 AI 生成的幻燈片仍然能在 PowerPoint 裡繼續編輯，而不是被壓成一張張圖片——所以做了這個。
 
 未來，使用 Python 和 AI agent 的能力會越來越重要，這個專案也想展示：僅憑這兩樣，你能走多遠。零基礎上手有一段學習曲線，但走完這段，你就接上了未來——做 PPT 只是個藉口，我真正想推廣的是 Python 和 agent。
+
+---
+
+## 你可能也感興趣
+
+### <a href="https://github.com/microsoft/ResearchStudio">ResearchStudio-<img src="https://raw.githubusercontent.com/ai-nuts/Storage/main/ResearchStudio/ResearchStudio-Reel/docs/figures/reel-wordmark.png" alt="Reel" height="16"></a>
+
+> 微軟開源專案，我最近也參與其中——從**論文**到**演講影片**、**海報**與**部落格**，自動化科研傳播的**最後一公里**。
+>
+> 📦 **倉庫：**[microsoft/ResearchStudio](https://github.com/microsoft/ResearchStudio) · 📄 **論文：**[arXiv:2607.04438](https://arxiv.org/abs/2607.04438)
+
+<table align="center">
+<tr>
+<td align="center" valign="middle" width="53%">
+  <a href="https://aka.ms/ResearchStudio">
+    <img src="https://raw.githubusercontent.com/ai-nuts/Storage/main/ResearchStudio/ResearchStudio-Reel/docs/figures/reel_demo.gif" width="100%"
+    alt="ResearchStudio-Reel 演示" />
+  </a>
+</td>
+<td align="center" valign="middle" width="47%">
+  <a href="https://aka.ms/ResearchStudio">
+    <img src="https://raw.githubusercontent.com/ai-nuts/Storage/main/ResearchStudio/ResearchStudio-Reel/docs/examples/latent_diffusion_landscape/poster.png" width="100%" alt="ResearchStudio-Reel 生成的海報" />
+  </a>
+</td>
+</tr>
+</table>
+
+<details>
+<summary><strong>BibTeX</strong> —— 如果你在研究中使用了 ResearchStudio-Reel</summary>
+
+```bibtex
+@article{xiao2026researchstudioreel,
+  title   = {ResearchStudio-Reel: Automate the Last Mile of Research from Paper to Poster, Video, and Blog},
+  author  = {Lingao Xiao and Yalun Dai and Yangyu Huang and Qihao Zhao and Wenshan Wu and Hugo He and Ruishuo Chen and Jin Jiang and Qianli Ma and Jiahuan Zhang and Xin Zhang and Ying Xin and Yang Ou and Yan Xia and Scarlett Li and Longbo Huang and Zhipeng Zhang and Yang He and Yap Kim Hui and Yan Lu},
+  journal = {arXiv preprint arXiv:2607.04438},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2607.04438}
+}
+```
+
+</details>
 
 ---
 
@@ -187,7 +237,7 @@ PPT Master 在**任何具備 agent 能力**（可讀寫檔案、執行命令、�
 | **IDE 外掛 / 擴充套件** | [Claude Code](https://claude.ai/code)（VS Code / JetBrains 擴充套件）、[GitHub Copilot](https://github.com/features/copilot)、[Cline](https://cline.bot/)、通義靈碼 等 | 裝在 VS Code / JetBrains 等宿主裡使用 |
 | **CLI agent** | [Claude Code](https://claude.ai/code) CLI、[Codex CLI](https://github.com/openai/codex)、Gemini CLI 等 | 終端裡執行，適合指令碼化 / 遠端 / 伺服器場景 |
 
-> **模型推薦**：追求最佳效果選 **Claude Opus**，搭配 `gpt-image-2` 生圖；**Gemini 3.5 Flash** 目前綜合價效比很高，尤其速度很快，值得一試。
+> **模型推薦**：追求最佳效果，語言模型選 **[Kimi K3](https://www.kimi.com/code/?aff=ppt-master)**（或 Claude）驅動流程，搭配 AI 生圖 —— **`gpt-image-2`**（OpenAI）或 **`gemini-3.1-flash-image`**（Google）。本專案贊助商 Kimi Code 支援按量呼叫，很適合上手。
 
 **🔑 想用 Claude / GPT / Gemini 但還沒有渠道？** 本專案贊助商 **[PackyCode](https://www.packyapi.com/register?aff=ppt-master)**、**[APIKEY.FUN](https://apikey.fun/register?aff=PPT-MASTER)** 與 **[RunAPI](https://runapi.co/register?aff=WMLJ)** 均支援按量呼叫 Claude、GPT、Gemini 等主流模型，無需訂閱、支援國內支付，併為本專案使用者提供專屬優惠（詳情見頁首）。
 
@@ -195,17 +245,12 @@ PPT Master 在**任何具備 agent 能力**（可讀寫檔案、執行命令、�
 
 ### 3. 配置專案
 
-**方式 A — 下載 ZIP**（無需安裝 Git，適合快速體驗）：
-[GitHub](https://github.com/hugohe3/ppt-master) → **Code → Download ZIP** · [AtomGit](https://atomgit.com/hugohe3/ppt-master) → **克隆/下載 → 下載ZIP**（國內網速更快）
-
-如果你打算長期使用並持續更新，推薦使用下面的 Git clone 方式。
-
-**方式 B — Git clone**（推薦；需先安裝 [Git](https://git-scm.com/downloads)）：
+**方式 A — Git clone**（推薦；需先安裝 [Git](https://git-scm.com/downloads)）：首選這種方式，因為 clone 可以隨時拉取最新版本。
 
 ```bash
 # GitHub
 git clone https://github.com/hugohe3/ppt-master.git
-# AtomGit（国内网速更快）
+# AtomGit（中国大陆地区网速更快）
 git clone https://atomgit.com/hugohe3/ppt-master.git
 cd ppt-master
 ```
@@ -215,6 +260,11 @@ cd ppt-master
 ```bash
 pip install -r requirements.txt
 ```
+
+**方式 B — 下載 ZIP**（無需安裝 Git，適合快速體驗）：
+[GitHub](https://github.com/hugohe3/ppt-master) → **Code → Download ZIP** · [AtomGit](https://atomgit.com/hugohe3/ppt-master) → **克隆/下載 → 下載ZIP**（中國大陸地區訪問 GitHub 下載不便時用這個，網速更快）；解壓後同樣用 `pip install -r requirements.txt` 裝依賴。ZIP 沒有 Git 歷史，不能自動 `git pull`（更新見下）。
+
+如果完整倉庫下載失敗、或嫌體積太大，可以改到 [Releases](https://github.com/hugohe3/ppt-master/releases) 頁面下載純技能包 `ppt-master-skill-*.zip`（約 50 MB，功能完整，但不含內建示例 deck）。
 
 #### 日常更新
 
@@ -275,7 +325,7 @@ AI：好的，先确认设计规范：
 
 AI 全程處理——內容分析、視覺設計、SVG 生成、PPTX 匯出。
 
-> **輸出說明：** 原生形狀版 `.pptx`（可直接編輯）儲存至 `exports/<name>_<timestamp>.pptx`；`svg_output/` 始終映象到 `backup/<timestamp>/svg_output/`，便於歸檔或後續重跑。加 `--svg-snapshot` 時，額外在 `exports/` 內並排生成 SVG 快照版 pptx（詳見[常見問題](./docs/zh/faq.md)）。需要 Office 2016+。圖表和表格預設匯出為 SVG 派生的形狀（在 PowerPoint / Keynote / WPS 間畫素一致）；加 `--native-objects` 則改為匯出**帶資料、可直接編輯的 PowerPoint 原生圖表 / 表格物件**（跨軟體渲染可能略有差異），儲存為 `exports/<name>_<timestamp>_native_charts.pptx`。
+> **輸出說明：** SVG 管線統一由專案轉換器讀取 `svg_output/`，生成可直接編輯的原生 DrawingML `.pptx`，儲存至 `exports/<name>_<timestamp>.pptx`。正式交付流程會生成自包含預覽 `svg_final/`，並把 `svg_output/` 映象到 `backup/<timestamp>/svg_output/`；PowerPoint 手工“轉換為形狀”不在支援範圍。明確用於臨時測試的少量自包含頁面可改用[快速測試模式](./skills/ppt-master/workflows/profiles/quick-test.md)：只寫 SVG 頁面和一個 PPTX，不生成規劃、預覽、講稿、驗證報告或備份。圖表和表格預設匯出為 SVG 派生、可逐形狀編輯的 DrawingML 物件，優先保證 PowerPoint / Keynote / WPS 間的視覺一致性；加 `--native-charts-and-tables` 則把符合合同的組替換為帶資料來源和物件專屬編輯能力的 PowerPoint 原生 Chart/Table 物件，跨軟體渲染可能略有差異，儲存為 `exports/<name>_<timestamp>_native_charts_tables.pptx`。兩條路線都可編輯，區別在於 PowerPoint 物件模型，而不是“能否編輯”。
 
 > **已有一份想複用的 `.pptx`？** 把那份 deck 連同素材給 AI，說「套模板」即可——它會把新內容（文字、表格、圖表資料）填進你現有的設計，只匯出你挑選的頁面，且保持原生可編輯。詳見 [常見問題](./docs/zh/faq.md) 與 [套模板工作流](./skills/ppt-master/workflows/template-fill-pptx.md)。
 
@@ -312,7 +362,8 @@ PPT Master 會優先讀取當前程式環境變數，然後按順序讀取第一
 | | 檔案 | 說明 |
 |---|------|------|
 | 📘 | [快速入門](./docs/zh/getting-started.md) | 三步做出第一份 deck，外加模板、即時預覽、動畫、旁白、聲音復刻的用法（**新使用者從這裡開始**） |
-| 🆚 | [為什麼選 PPT Master](./docs/zh/why-ppt-master.md) | 與 Gamma、Copilot 等工具的對比 |
+| 🆚 | [為什麼選 PPT Master](./docs/zh/why-ppt-master.md) | 為什麼選它、以及它不適合的場景 |
+| 🧭 | [專案定位與能力邊界](./docs/zh/project-positioning.md) | 長期定位、產品承諾與能力邊界 |
 | 🪟 | [Windows 安裝指南](./docs/zh/windows-installation.md) | Windows 使用者手把手安裝教程 |
 | 📖 | [SKILL.md](./skills/ppt-master/SKILL.md) | 核心流程與規則 |
 | 📐 | [畫布格式](./skills/ppt-master/references/canvas-formats.md) | PPT 16:9、小紅書、朋友圈等 10+ 種格式 |
@@ -320,6 +371,8 @@ PPT Master 會優先讀取當前程式環境變數，然後按順序讀取第一
 | 💼 | [示例](./examples/README.md) | 所有示例專案 |
 | 🏗️ | [技術路線](./docs/zh/technical-design.md) | 架構、設計哲學、為什麼選 SVG |
 | ❓ | [常見問題](./docs/zh/faq.md) | 模型選擇、費用、排版問題排查、自定義模板 |
+
+<sub>完整檔案索引 → [`docs/zh/`](./docs/zh/README.md)</sub>
 
 ---
 
@@ -348,24 +401,14 @@ PPT Master 會優先讀取當前程式環境變數，然後按順序讀取第一
 
 ---
 
-## Star History
-
-<a href="https://star-history.com/#hugohe3/ppt-master&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=hugohe3/ppt-master&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=hugohe3/ppt-master&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=hugohe3/ppt-master&type=Date" />
- </picture>
-</a>
-
----
-
 ## 贊助與支援
 
 PPT Master 目前主要由我開發維護。每個新模板、Bug 修復、檔案更新都需要持續的資源投入，目前由以下贊助方和個人支持者共同分擔。
 
 **企業贊助方**
 
+<a href="https://www.kimi.com/code/?aff=ppt-master"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/sponsors/kimi-dark.svg"><img src="docs/assets/sponsors/kimi-light.svg" alt="Kimi" height="40" /></picture></a>
+&nbsp;
 <a href="https://www.packyapi.com/register?aff=ppt-master"><img src="docs/assets/sponsors/packycode.png" alt="PackyCode" height="40" /></a>
 &nbsp;
 <a href="https://apikey.fun/register?aff=PPT-MASTER"><img src="docs/assets/sponsors/apikey-fun.png" alt="APIKEY.FUN" height="40" /></a>
@@ -390,4 +433,4 @@ Made with ❤️ by [何雨果 Hugo He](https://www.hehugo.com/) — 如果這�
 
 <sub>官方釋出渠道：<a href="https://github.com/hugohe3/ppt-master">GitHub</a>（主倉庫）· <a href="https://atomgit.com/hugohe3/ppt-master">AtomGit</a>（映象）。其他平臺轉發版本均為非官方版本。MIT 協議，使用需保留署名。</sub>
 
-[⬆ 回到頂部](#ppt-master--ai-生成原生可編輯-pptx支援任意檔案輸入)
+[⬆ 回到頂部](#ppt-master--ai-生成原生-powerpoint支援任意檔案輸入)

@@ -6784,7 +6784,7 @@ class SVGQualityChecker:
                 "remain non-blocking"
             )
             print(f"  4. foreignObject: Use <text> + <tspan> for manual line breaks")
-            print(f"  5. Font issues: use PPT-safe exported typefaces (e.g. Microsoft YaHei / Arial / Consolas)")
+            print(f"  5. Font issues: use PPT-safe exported typefaces (e.g. Microsoft JhengHei / Arial / Consolas)")
 
     def _print_animation_summary(self):
         """Print animations.json validation issues if present."""
@@ -7240,7 +7240,7 @@ def print_usage() -> None:
     print("  python3 scripts/svg_quality_checker.py examples/project/svg_output")
     print("  python3 scripts/svg_quality_checker.py examples/project")
     print("  python3 scripts/svg_quality_checker.py templates/layouts/presentation_core/templates --template-mode")
-    print("  python3 scripts/svg_quality_checker.py templates/decks/中国电信/templates --template-mode")
+    print("  python3 scripts/svg_quality_checker.py templates/decks/中國電信/templates --template-mode")
     print("\nOptions:")
     print("  --format <ppt169|ppt43|...>   Expected canvas format")
     print("  --stage <first-page|final>     first-page checks only the first authored SVG")

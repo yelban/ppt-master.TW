@@ -21,9 +21,9 @@
     fill="#F8FAFC" stroke="#E5E7EB" stroke-width="2"
     data-pptx-layer="layout" data-pptx-editable="false"/>
   <text id="agenda-side-title" x="102" y="188" fill="#C00000"
-    font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif"
+    font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
     font-size="18" font-weight="700" data-pptx-layer="layout"
-    data-pptx-editable="false">中国电信模板</text>
+    data-pptx-editable="false">中國電信模板</text>
   <text id="agenda-side-kicker" x="102" y="218" fill="#6B7280"
     font-family="Arial, sans-serif" font-size="13"
     data-pptx-layer="layout" data-pptx-editable="false">TELECOM / GOV-ENTERPRISE</text>
@@ -33,8 +33,8 @@
     href="../images/skyline_bg.png" preserveAspectRatio="xMidYMid meet"
     data-pptx-layer="layout" data-pptx-editable="false"/>
   <text id="agenda-side-use" x="102" y="430" fill="#6B7280"
-    font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="13"
-    data-pptx-layer="layout" data-pptx-editable="false">政企汇报 / 转型规划 / 方案呈现</text>
+    font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif" font-size="13"
+    data-pptx-layer="layout" data-pptx-editable="false">政企彙報 / 轉型規劃 / 方案呈現</text>
   <text id="agenda-side-footer" x="102" y="586" fill="#111827"
     font-family="Arial, sans-serif" font-size="13" font-weight="700"
     data-pptx-layer="layout" data-pptx-editable="false">CHINA TELECOM</text>
@@ -78,35 +78,35 @@
     data-pptx-bounds="40 42 146 44">
     <text id="agenda-title-carrier" data-pptx-carrier="true"
       x="40" y="73" fill="#FFFFFF"
-      font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="24" font-weight="700">{{PAGE_TITLE}}</text>
   </g>
   <g id="agenda-item-1-slot" data-pptx-placeholder="body" data-pptx-idx="1"
     data-pptx-bounds="496 186 624 50">
     <text id="agenda-item-1-carrier" data-pptx-carrier="true"
       x="496" y="218" fill="#C00000"
-      font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="24" font-weight="700">{{TOC_ITEM_1_TITLE}}</text>
   </g>
   <g id="agenda-item-2-slot" data-pptx-placeholder="body" data-pptx-idx="2"
     data-pptx-bounds="496 290 624 50">
     <text id="agenda-item-2-carrier" data-pptx-carrier="true"
       x="496" y="322" fill="#111827"
-      font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="24" font-weight="700">{{TOC_ITEM_2_TITLE}}</text>
   </g>
   <g id="agenda-item-3-slot" data-pptx-placeholder="body" data-pptx-idx="3"
     data-pptx-bounds="496 394 624 50">
     <text id="agenda-item-3-carrier" data-pptx-carrier="true"
       x="496" y="426" fill="#111827"
-      font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="24" font-weight="700">{{TOC_ITEM_3_TITLE}}</text>
   </g>
   <g id="agenda-item-4-slot" data-pptx-placeholder="body" data-pptx-idx="4"
     data-pptx-bounds="496 498 624 50">
     <text id="agenda-item-4-carrier" data-pptx-carrier="true"
       x="496" y="530" fill="#111827"
-      font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif"
+      font-family="Microsoft JhengHei, PingFang TC, Noto Sans TC, GenSekiGothic2TW, Arial, sans-serif"
       font-size="24" font-weight="700">{{TOC_ITEM_4_TITLE}}</text>
   </g>
   <g id="agenda-slide-number-slot" data-pptx-placeholder="slide-number"
