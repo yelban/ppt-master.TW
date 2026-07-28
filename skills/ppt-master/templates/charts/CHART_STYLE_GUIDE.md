@@ -130,7 +130,7 @@
 
 ### 4.1 語義壓縮
 
-**Hard rule**: 縮小模板時保留正常換行、縮排、語義 `id` 和必要分割槽註釋。壓縮目標是減少重複資訊，不是把 XML 變成一行。
+**Hard rule**: 縮小模板時保留正常換行、縮排、語義 `id` 和必要分區註釋。壓縮目標是減少重複資訊，不是把 XML 變成一行。
 
 | 做法 | 要求 |
 |---|---|
@@ -307,7 +307,7 @@ Pie、Donut、Radar 使用對應中心和半徑格式。該註釋是工具輸入
 | `stacked_area_chart.svg` | 累計面積、圖例和統計卡片 |
 | `heatmap_chart.svg` | 時間×日期矩陣、連續色階和統計側欄 |
 | `bubble_chart.svg` | 三變數氣泡、象限、系列清單和尺寸圖例 |
-| `quadrant_text_bullets.svg` | 二軸四象限、分割槽說明和行動標籤 |
+| `quadrant_text_bullets.svg` | 二軸四象限、分區說明和行動標籤 |
 | `financial_statement_table.svg` | 財務層級、數值列和強調合計行 |
 | `box_plot_chart.svg` | 五數分佈、異常值、圖例和統計摘要 |
 | `dual_axis_line_chart.svg` | 雙軸序列、階段帶和資料標註 |
@@ -345,7 +345,7 @@ Pie、Donut、Radar 使用對應中心和半徑格式。該註釋是工具輸入
 | `comparison_columns.svg` | 並列方案列、價格層級、功能清單和推薦狀態 |
 | `bullet_chart.svg` | 定性區間、實際值、目標線和多指標對照 |
 | `comparison_table.svg` | 多方案表頭、橫向屬性行和結果強調 |
-| `client_server_flow.svg` | 客戶端與服務端分割槽、請求響應和互動方向 |
+| `client_server_flow.svg` | 客戶端與服務端分區、請求響應和互動方向 |
 | `dumbbell_chart.svg` | 雙狀態端點、變化連線、差值和專案排序 |
 | `pyramid_chart.svg` | 遞進層級、分層容量和層級說明 |
 | `vertical_pillars.svg` | 並列支柱、分類標題、要點列表和底部結論 |

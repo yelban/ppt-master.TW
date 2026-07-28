@@ -751,7 +751,7 @@ def _theme_script_from_text(text: str) -> str | None:
     return {
         "ko-KR": "Hang",
         "ja-JP": "Jpan",
-        "zh-CN": "Hans",
+        "zh-TW": "Hans",
     }.get(detect_text_lang(text))
 
 

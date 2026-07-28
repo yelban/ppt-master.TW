@@ -134,7 +134,7 @@ done
 | 產物 | 出 PDF 方式 | 特性 |
 |------|-------------|------|
 | PPTX | `soffice --headless --convert-to pdf <檔>.pptx`（需裝 LibreOffice）或 PowerPoint | 原生 DrawingML 形狀、可編輯級；需本機裝字型 |
-| `svg_final/` SVG | `rsvg-convert -f pdf -o out.pdf svg_final/*.svg` | 與螢幕預覽畫素級一致 |
+| `svg_final/` SVG | `rsvg-convert -f pdf -o out.pdf svg_final/*.svg` | 與螢幕預覽像素級一致 |
 | HTML deck | Chrome headless 列印 | 本質同上一列 |
 
 無論哪條路，**轉檔那臺機器都必須裝有簡報用到的繁中字型**，否則替換字型、版面跑掉。

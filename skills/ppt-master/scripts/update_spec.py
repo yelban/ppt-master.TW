@@ -5,7 +5,7 @@ Examples:
     python3 update_spec.py <project_path> primary=#0066AA
     python3 update_spec.py <project_path> colors.text=#111111
     python3 update_spec.py <project_path> \\
-        typography.font_family='Arial, "Microsoft YaHei", sans-serif'
+        typography.font_family='Arial, "Microsoft JhengHei", sans-serif'
 
 v2 scope:
 - `colors.*` — HEX value replacement across svg_output/*.svg (case-insensitive match).
@@ -162,7 +162,7 @@ def main() -> int:
         "assignment",
         help=(
             "section.key=value (e.g. colors.primary=#0066AA, "
-            "typography.font_family='Arial, \"Microsoft YaHei\", sans-serif'). "
+            "typography.font_family='Arial, \"Microsoft JhengHei\", sans-serif'). "
             "Bare key=value is treated as colors.key=value."
         ),
     )

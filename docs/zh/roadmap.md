@@ -68,7 +68,7 @@ Generate PPTX 路線圍繞完全可控的新形狀、文字與版式創作。結
 
 **對應 Issue**：[#99](https://github.com/hugohe3/ppt-master/issues/99)、[#100](https://github.com/hugohe3/ppt-master/issues/100) 類
 
-跨四渲染器（PowerPoint / Keynote / LibreOffice / WPS）的位置保真是專案主軸。把預設路線改成 PowerPoint 原生圖表會讓「畫素級一致性」破功——同一個 PPTX 在不同渲染器裡圖表會顯示不同佈局。圖表預設用 SVG 是 **by design**，不是能力缺失。
+跨四渲染器（PowerPoint / Keynote / LibreOffice / WPS）的位置保真是專案主軸。把預設路線改成 PowerPoint 原生圖表會讓「像素級一致性」破功——同一個 PPTX 在不同渲染器裡圖表會顯示不同佈局。圖表預設用 SVG 是 **by design**，不是能力缺失。
 
 窄例外是 `data-pptx-replace-with` marker：Design Spec §IX 頁面塊中獨立規劃、且寫明 `Native-ready: yes` 的受支援資料圖表與純文本網格表格可以攜帶 PowerPoint 原生 Chart/Table 替換 payload；`no` 與零星微型圖形保持普通 shape。§VII 只記錄真正選中的可複用參考。匯出加 `--native-charts-and-tables` 才啟用已準備的 marker——供主動用跨渲染器保真換取帶資料來源物件及圖表/表格專屬編輯模型的使用者使用；啟用後的物件會保留 deck 的 chart-area / plot / 軸線 / 網格線 / 標籤顏色與原生表格格式，不再塌回 PowerPoint 預設主題（見 [v4.0.0 釋出說明](https://github.com/hugohe3/ppt-master/releases/tag/v4.0.0)）。預設匯出路徑與可編輯的 SVG 派生形狀系統不變。
 

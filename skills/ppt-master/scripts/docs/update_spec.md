@@ -34,7 +34,7 @@ python3 skills/ppt-master/scripts/update_spec.py projects/acme_ppt169_20260301 c
 
 # change the deck-wide font family
 python3 skills/ppt-master/scripts/update_spec.py projects/acme_ppt169_20260301 \
-  'typography.font_family=Arial, "Microsoft YaHei", sans-serif'
+  'typography.font_family=Arial, "Microsoft JhengHei", sans-serif'
 ```
 
 ## v2 scope

@@ -93,7 +93,7 @@ python3 skills/ppt-master/scripts/update_repo.py
 python3 skills/ppt-master/scripts/svg_to_pptx.py <project_path> --no-merge
 ```
 
-使用 `--no-merge` 時，SVG 裡的每一視覺行都會變成一個獨立的 PowerPoint 文本框。這樣能**逐畫素保留 SVG 的版式**，適合封面、圖表、表格、以及任何對版式精度敏感的頁面。
+使用 `--no-merge` 時，SVG 裡的每一視覺行都會變成一個獨立的 PowerPoint 文本框。這樣能**逐像素保留 SVG 的版式**，適合封面、圖表、表格、以及任何對版式精度敏感的頁面。
 
 **代價**：預設合併會保留一個可編輯文本框和原始視覺行邊界；只有需要讓每一視覺行都能單獨移動時才使用 `--no-merge`。判定足夠保守——非段落型 `<text>` 會自動落回按行拆框路徑。
 
@@ -101,7 +101,7 @@ python3 skills/ppt-master/scripts/svg_to_pptx.py <project_path> --no-merge
 
 ## Q: 字號為什麼用 px 不是 pt？匯出後字號會變嗎？
 
-PPT Master 內部**全程只用 px**（無單位畫素）——確認頁、`spec_lock.md`、SVG 都是 px，沒有 pt 這一層。原因是 SVG 畫布本身就是 1280×720 px，px 是真正的排版/執行單位；只用一個單位，能避免「確認時說 20pt、寫進 SVG 又變成另一個數」這類單位混淆導致整套字號偏差。
+PPT Master 內部**全程只用 px**（無單位像素）——確認頁、`spec_lock.md`、SVG 都是 px，沒有 pt 這一層。原因是 SVG 畫布本身就是 1280×720 px，px 是真正的排版/執行單位；只用一個單位，能避免「確認時說 20pt、寫進 SVG 又變成另一個數」這類單位混淆導致整套字號偏差。
 
 PowerPoint 最終顯示的是 pt，所以**匯出時**自動把 px 換成 pt（`pt = px × 0.75`，保留 1 位小數）。例如正文 `24px` 匯出後是 `18pt`、標題 `42px` 是 `31.5pt`。所以你在 PowerPoint 裡看到 `13.5pt`、`31.5pt` 這種非整數是**正常的、有意的**，不是 bug——字號算出來是多少就是多少，不再強行湊成整數或半磅。
 
@@ -134,7 +134,7 @@ PPT Master 本身免費開源，唯一的成本來自你自己的 AI 模型用�
 
 ## Q: 生成的圖表可以編輯資料嗎？
 
-預設情況下，圖表以**自定義設計的 SVG 圖形**形式渲染，轉換為原生 PowerPoint 形狀——形狀級別完全可編輯（移動、改色、改文字、調樣式）。預設不用 Excel 驅動的圖表物件是有意為之：PowerPoint 預設圖表樣式陳舊、視覺受限於固定模板。SVG 圖表則提供出版物級的視覺質量，可以在 PowerPoint 中直接精修，且在 PowerPoint / Keynote / LibreOffice / WPS 間畫素一致。
+預設情況下，圖表以**自定義設計的 SVG 圖形**形式渲染，轉換為原生 PowerPoint 形狀——形狀級別完全可編輯（移動、改色、改文字、調樣式）。預設不用 Excel 驅動的圖表物件是有意為之：PowerPoint 預設圖表樣式陳舊、視覺受限於固定模板。SVG 圖表則提供出版物級的視覺質量，可以在 PowerPoint 中直接精修，且在 PowerPoint / Keynote / LibreOffice / WPS 間像素一致。
 
 如果你的工作流明確需要 Excel 驅動的資料編輯或 PowerPoint 的圖表/表格專屬控制，匯出時加 `--native-charts-and-tables`：受支援的資料圖表和純文本表格會以**帶資料來源的 PowerPoint 原生 Chart / Table 物件**形式匯出（儲存為 `exports/<name>_<timestamp>_native_charts_tables.pptx`，並保留這份 deck 自己的配色，而不是套用 PowerPoint 預設主題）。預設 SVG fallback 同樣會轉換成可編輯 DrawingML shape，但不具備圖表資料工作簿或圖表/表格物件模型。原生物件在 PowerPoint / Keynote / LibreOffice / WPS 間可能略有差異，因此形狀路線仍是視覺穩定性的預設選擇。
 

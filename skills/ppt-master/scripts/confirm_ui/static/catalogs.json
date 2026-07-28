@@ -362,10 +362,10 @@
         {
           "id": "pixel-art",
           "label": "pixel-art",
-          "label_zh": "畫素風",
+          "label_zh": "像素風",
           "label_en": "pixel-art",
           "label_ja": "ピクセルアート",
-          "desc_zh": "嚴格畫素網格、塊狀形體、有限色、扁平表達。",
+          "desc_zh": "嚴格像素網格、塊狀形體、有限色、扁平表達。",
           "desc_en": "Strict pixel grid, blocky shapes, limited colors, and flat treatment.",
           "desc_ja": "厳密なピクセルグリッド、ブロック状の形状、限られた色数、フラットな表現。"
         }

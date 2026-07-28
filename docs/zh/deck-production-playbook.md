@@ -1,6 +1,6 @@
 # 實戰產出手冊（給 AI agent 照著執行）
 
-本檔記錄用 Generate PPTX 路由實際做完一份簡報後，值得在下一份重複使用的操作規則。寫法是**規範式**的：直接寫「該怎麼做」，不描述專案現況。路由順序、閘門與指令的權威仍在 [`skills/ppt-master/SKILL.md`](../../skills/ppt-master/SKILL.md) 與 [`generate-pptx.md`](../../skills/ppt-master/workflows/generate-pptx.md)，本檔不重複，只補這些文件不會告訴你、但每次都會踩到的東西。
+本檔記錄用 Generate PPTX 路由實際做完一份簡報後，值得在下一份重複使用的操作規則。寫法是**規範式**的：直接寫「該怎麼做」，不描述專案現況。路由順序、閘門與指令的權威仍在 [`skills/ppt-master/SKILL.md`](../../skills/ppt-master/SKILL.md) 與 [`generate-pptx.md`](../../skills/ppt-master/workflows/generate-pptx.md)，本檔不重複，只補這些檔案不會告訴你、但每次都會踩到的東西。
 
 fork 專屬功能清單見 [`tw-fork-guide.md`](tw-fork-guide.md)；上游同步見 [`upstream-sync-runbook.md`](upstream-sync-runbook.md)。
 
@@ -45,9 +45,9 @@ fork 專屬功能清單見 [`tw-fork-guide.md`](tw-fork-guide.md)；上游同步
 
 這三條在第一頁閘門就會被抓到，屬於方法級——第一頁怎麼寫，後面 17 頁就會照抄：
 
-1. **一段散文只能有一個 `<text>`**。換行用直接子 `<tspan>`，重複 parent 的 `x`，配正的 `dy`。用兄弟 `<text>` 排視覺行會被判定為段落被拆散。語意上獨立的條列項目則本來就該各自一個 `<text>`，那個提醒可以忽略。
+1. **一段散文只能有一個 `<text>`**。換行用直接子 `<tspan>`，重複 parent 的 `x`，配正的 `dy`。用兄弟 `<text>` 排視覺行會被判定為段落被拆散。語意上獨立的列點則本來就該各自一個 `<text>`，那個提醒可以忽略。
 2. **根層的靜態框架要標角色**。直接掛在根 `<svg>` 底下的背景圖、全幅色塊、規則線，要有穩定 `id` 加 `data-pptx-role="background"` 或 `"decoration"`，否則會報「ungrouped top-level element」。不要為了消警告而多包一層 `<g>`。
-3. **模組的 `data-pptx-bounds` 不得互相重疊**。多欄版面調整欄寬時，欄位的 bounds 與分隔線位置要一起改；只改文字 `x` 而忘了改 bounds，檢查器會在另一欄報溢出。
+3. **模組的 `data-pptx-bounds` 不得互相重疊**。多欄版面調整欄寬時，欄位的 bounds 與分隔線位置要一起改；只改文字 `x` 而忘了改 bounds，檢查器會在另一欄報溢位。
 
 ---
 
@@ -66,7 +66,7 @@ fork 專屬功能清單見 [`tw-fork-guide.md`](tw-fork-guide.md)；上游同步
 rsvg-convert -w 1280 -h 720 "svg_final/<頁名>.svg" -o /tmp/check.png
 ```
 
-然後真的把 PNG 打開看。這一步不能用「checker 過了」代替。
+然後真的開啟 PNG 檢視。這一步不能用「checker 過了」代替。
 
 ---
 
@@ -103,7 +103,7 @@ python3 skills/ppt-master/scripts/image_gen.py \
   --backend openai --model gpt-image-2 --concurrency 3
 ```
 
-走 manifest 而不是單張正列式呼叫：狀態會寫回 manifest，提示詞留下稽核紀錄，重跑時只會處理 `Pending` / `Failed` 的項目。
+走 manifest 而不是單張正列式呼叫：狀態會寫回 manifest，提示詞留下稽核紀錄，重跑時只會處理狀態為 `Pending` / `Failed` 的條目。
 
 `image_size` 對應的實際解析度（`aspect_ratio` × `image_size` 決定）：
 

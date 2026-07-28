@@ -35,8 +35,8 @@ The first two rows are literal Claude asset facts. Background and neutral rows a
 
 | Role | Family | Weight |
 |---|---|---|
-| title | `Arial, "Microsoft YaHei", sans-serif` | 600–700 |
-| body | `Arial, "Microsoft YaHei", sans-serif` | 400 |
+| title | `Arial, "Microsoft JhengHei", sans-serif` | 600–700 |
+| body | `Arial, "Microsoft JhengHei", sans-serif` | 400 |
 
 > `Styrene A` and `Anthropic Sans` are references. PPT Master neither auto-embeds fonts nor follows CSS tails in PowerPoint. The rows above are the default Windows/Office export; replace them only with a user-confirmed target-installed face.
 
@@ -59,7 +59,7 @@ This preset intentionally combines Anthropic company voice with Claude product v
 ## V. Voice & Tone
 
 - Formality: professional-neutral
-- Person: we / you (English), 我们 / 你 (Chinese)
+- Person: we / you (English), 我們 / 你 (Chinese)
 - Emoji: avoid
 - Abbreviations: spell-out-first-use
 
