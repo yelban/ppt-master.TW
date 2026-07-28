@@ -65,6 +65,11 @@ SOURCE_PATH_LITERAL_RE = re.compile(
     flags=re.IGNORECASE,
 )
 
+UI_LANG_ATTRIBUTE_CALL = (
+    'document.documentElement.setAttribute("lang", LANG === "zhtw" ? "zh-TW" '
+    ': (LANG === "zh" ? "zh-CN" : (LANG === "ja" ? "ja" : "en")));'
+)
+
 FONT_FACE_MARKER_START = "/* ---- Traditional Chinese web fonts ---- */"
 FONT_FACE_MARKER_END = "/* ---- End Traditional Chinese web fonts ---- */"
 UI_FONT_STACK = (
@@ -761,6 +766,104 @@ def _derive_ui_zhtw_messages(path: Path, text: str, overrides: Overrides) -> str
     return _replace_or_insert_zhtw_messages(text, zh_range, zhtw_block)
 
 
+def _ensure_ui_zhtw_lang_plumbing(path: Path, text: str) -> str:
+    """Re-apply the zhtw language wiring the preview UIs need.
+
+    `_derive_ui_zhtw_messages` only rebuilds the MESSAGES.zhtw dictionary. The
+    switching plumbing around it (stored-value whitelist, navigator detection,
+    fallback chain, display names, selection guard, html lang attribute) is
+    fork-only code that upstream rewrites drop, which leaves a "正體中文" menu
+    entry that silently does nothing. Every patch below is idempotent and skips
+    a spot it cannot recognize, so an upstream restructure degrades to "not
+    repaired" rather than corrupting the file.
+    """
+    if not _is_ui_app_js(path):
+        return text
+
+    # Stored-value whitelist: accept a persisted "zhtw" instead of discarding it.
+    text = re.sub(
+        r'(if \()(stored === "zh")(\s*\|\|)',
+        r'\1stored === "zhtw" || \2\3',
+        text,
+        count=0 if 'stored === "zhtw"' in text else 1,
+    )
+
+    # Navigator detection: Traditional locales must win over the generic zh test.
+    if 'nav.indexOf("zh-tw")' not in text:
+        text = re.sub(
+            r'(\n(?P<indent>[ \t]*))if \(nav\.indexOf\("zh"\) === 0\) return "zh";',
+            lambda m: (
+                f'\n{m.group("indent")}if (nav.indexOf("zh-tw") === 0 || '
+                'nav.indexOf("zh-hant") === 0 || nav.indexOf("zh-hk") === 0) return "zhtw";'
+                f'\n{m.group("indent")}if (nav.indexOf("zh") === 0) return "zh";'
+            ),
+            text,
+            count=1,
+        )
+
+    # Fallback chain: zhtw readers fall back to zh before leaving Chinese.
+    fallback = re.search(r"var LANG_FALLBACK = \{(?P<body>[^}]*)\};", text)
+    if fallback is not None and "zhtw:" not in fallback.group("body"):
+        text = text.replace(
+            fallback.group(0),
+            'var LANG_FALLBACK = { zhtw: ["zhtw", "zh", "en", "ja"],'
+            + fallback.group("body").rstrip()
+            + " };",
+            1,
+        )
+
+    # Display names: name both Chinese variants so the toggle never shows "中文".
+    names = re.search(r"var LANG_NAMES = \{[^}]*\};", text)
+    if names is not None and "zhtw:" not in names.group(0):
+        text = text.replace(
+            names.group(0),
+            'var LANG_NAMES = { zhtw: "正體中文", zh: "简体中文", '
+            'en: "English", ja: "日本語" };',
+            1,
+        )
+
+    # Selection guard: an unlisted value makes the menu entry a no-op click.
+    guard = re.search(r'if \(v !== "ja"(?P<rest>[^)]*)\) return;', text)
+    if guard is not None and '"zhtw"' not in guard.group(0):
+        text = text.replace(
+            guard.group(0),
+            f'if (v !== "ja"{guard.group("rest")} && v !== "zhtw") return;',
+            1,
+        )
+
+    # Document language attribute: zhtw pages must not report themselves as zh-CN.
+    # Rewrite the whole call rather than splicing parentheses into it.
+    for start, end in reversed(_ui_lang_attribute_call_ranges(text)):
+        if 'LANG === "zhtw"' in text[start:end]:
+            continue
+        text = text[:start] + UI_LANG_ATTRIBUTE_CALL + text[end:]
+    return text
+
+
+def _ensure_ui_zhtw_menu_entry(path: Path, text: str) -> str:
+    """Keep a 正體中文 option in the preview UI language menu.
+
+    Pairs with `_ensure_ui_zhtw_lang_plumbing`: the menu entry and the switching
+    code must arrive together, or the UI offers a language it cannot apply.
+    """
+    if not _is_ui_index_html(path):
+        return text
+    for start, end in reversed(_ui_lang_menu_ranges(text)):
+        menu = text[start:end]
+        if 'data-lang="zhtw"' in menu:
+            continue
+        zh_entry = re.search(r'[ \t]*<li[^>]*data-lang="zh"[^>]*>[^<]*</li>\n?', menu)
+        if zh_entry is None:
+            continue
+        indent = re.match(r"[ \t]*", zh_entry.group(0)).group(0)
+        zhtw_entry = (
+            f'{indent}<li role="option" tabindex="0" aria-selected="false" '
+            'data-lang="zhtw">正體中文</li>\n'
+        )
+        text = text[:start] + menu.replace(zh_entry.group(0), zhtw_entry + zh_entry.group(0), 1) + text[end:]
+    return text
+
+
 def _line_ending(line: str) -> str:
     if line.endswith("\r\n"):
         return "\r\n"
@@ -967,6 +1070,8 @@ def _normalize_ui_css(path: Path, text: str) -> str:
 def _localize_once(path: Path, text: str, overrides: Overrides) -> str:
     if not PREFILTER_RE.search(text):
         text = _derive_ui_zhtw_messages(path, text, overrides)
+        text = _ensure_ui_zhtw_lang_plumbing(path, text)
+        text = _ensure_ui_zhtw_menu_entry(path, text)
         text = _normalize_ui_css(path, text)
         return _normalize_readme_nav(path, text)
 
@@ -983,6 +1088,8 @@ def _localize_once(path: Path, text: str, overrides: Overrides) -> str:
         text = _normalize_svg_font_families(text)
     text = _normalize_reference_font_guidance(path, text)
     text = _derive_ui_zhtw_messages(path, text, overrides)
+    text = _ensure_ui_zhtw_lang_plumbing(path, text)
+    text = _ensure_ui_zhtw_menu_entry(path, text)
     text = _normalize_ui_css(path, text)
     return _normalize_readme_nav(path, text)
 

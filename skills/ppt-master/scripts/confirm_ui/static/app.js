@@ -571,9 +571,10 @@
     var LANG = (function () {
         try {
             var stored = window.localStorage.getItem("ppt_lang");
-            if (stored === "zh" || stored === "en" || stored === "ja") return stored;
+            if (stored === "zhtw" || stored === "zh" || stored === "en" || stored === "ja") return stored;
         } catch (e) { /* ignore */ }
         var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+        if (nav.indexOf("zh-tw") === 0 || nav.indexOf("zh-hant") === 0 || nav.indexOf("zh-hk") === 0) return "zhtw";
         if (nav.indexOf("zh") === 0) return "zh";
         if (nav.indexOf("ja") === 0) return "ja";
         return "en";
@@ -586,7 +587,7 @@
 
     // Fallback stays LANG-relative: zh/en users never see Japanese labels,
     // ja pages fall back ja → en → zh.
-    var LANG_FALLBACK = { zh: ["zh", "en", "ja"], en: ["en", "zh", "ja"], ja: ["ja", "en", "zh"] };
+    var LANG_FALLBACK = { zhtw: ["zhtw", "zh", "en", "ja"], zh: ["zh", "en", "ja"], en: ["en", "zh", "ja"], ja: ["ja", "en", "zh"] };
     var IMAGE_COMPARISON_LABELS = {
         rendering: {
             "vector-illustration": { zh: "矢量插画", en: "Vector illustration", ja: "ベクターイラスト" },
@@ -668,13 +669,13 @@
     }
 
     function applyStaticTranslations() {
-        document.documentElement.setAttribute("lang", LANG === "zh" ? "zh-CN" : (LANG === "ja" ? "ja" : "en"));
+        document.documentElement.setAttribute("lang", LANG === "zhtw" ? "zh-TW" : (LANG === "zh" ? "zh-CN" : (LANG === "ja" ? "ja" : "en")));
         document.querySelectorAll("[data-i18n]").forEach(function (node) {
             node.textContent = t(node.getAttribute("data-i18n"));
         });
     }
 
-    var LANG_NAMES = { zh: "中文", en: "English", ja: "日本語" };
+    var LANG_NAMES = { zhtw: "正體中文", zh: "简体中文", en: "English", ja: "日本語" };
 
     function refreshLangToggle(toggleBtn) {
         // Custom dropdown (OS-independent): button shows the CURRENT language.
@@ -3079,7 +3080,7 @@
         var chooseLang = function (v) {
             setMenuOpen(false);
             toggleBtn.focus();
-            if (v !== "ja" && v !== "en" && v !== "zh") return;
+            if (v !== "ja" && v !== "en" && v !== "zh" && v !== "zhtw") return;
             if (v === LANG) return;
             LANG = v;
             try { window.localStorage.setItem("ppt_lang", LANG); } catch (e2) { /* ignore */ }

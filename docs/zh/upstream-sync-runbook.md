@@ -85,6 +85,8 @@ python3 tools/tw_localize.py --check
 | 1 | `python3 skills/ppt-master/scripts/image_gen.py --list-backends` | 輸出含 `codex` 條目（EXPERIMENTAL 區） |
 | 2 | `.venv/bin/python3 skills/ppt-master/scripts/svg_to_pptx.py --help` | 輸出含 `--html-deck` 與 `--embed-fonts`（此條需 venv，`python-pptx` 不在系統 Python） |
 | 3 | `grep -c "zhtw" skills/ppt-master/scripts/confirm_ui/static/app.js` | 大於 0（雙中文字典仍在） |
+| 3b | `grep -c 'v !== "zhtw"\|stored === "zhtw"\|nav.indexOf("zh-tw")\|zhtw: "正體中文"' skills/ppt-master/scripts/confirm_ui/static/app.js` | 等於 4（語系**切換接線**仍在——字典存在不代表選單能切，2026-07-28 那次僅檢查第 3 條而漏掉這個） |
+| 3c | `node --check skills/ppt-master/scripts/confirm_ui/static/app.js && node --check skills/ppt-master/scripts/svg_editor/static/app.js` | 兩者皆無輸出、exit 0 |
 | 4 | `grep -n "FONT_FACE_BLOCK" tools/tw_localize.py` | 有命中（webfont 注入機制仍在） |
 | 5 | `python3 -m py_compile skills/ppt-master/scripts/image_gen.py skills/ppt-master/scripts/image_backends/backend_codex.py skills/ppt-master/scripts/svg_to_pptx.py` | 無輸出、exit 0 |
 
