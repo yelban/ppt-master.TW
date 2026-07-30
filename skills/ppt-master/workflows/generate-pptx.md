@@ -21,14 +21,15 @@ For an explicit quick/fast, skip-strategy, or direct-SVG request, follow
 [`quick-generate.md`](./profiles/quick-generate.md). It runs applicable source
 conversion/research and project-local resource preparation, lets the current
 agent decide content/visual/resource details in active context, then
-hand-authors SVG and exports directly. It invokes no Strategist, Confirm UI,
-Design Spec refinement, or lock authoring.
+hand-authors SVG, runs one lockless final checker, and exports the final PPTX.
+It skips Strategist, Confirm UI, Design Spec/lock, the first-page gate, and
+`finalize_svg.py`.
 
 **Hard rule — no implicit downgrade or page cap**: page count neither selects
 nor blocks quick generation. Source preparation, images, icons, formulas, and
-their manifests remain valid. Structured template reuse, native data objects,
-Live Preview, notes, motion, narration, or visual-review delivery requires the
-default pipeline; do not silently drop those requested capabilities.
+their manifests remain valid. All exporter capabilities remain available when
+requested or agent-selected; use their existing prerequisites. Structured
+template reuse still requires the default lock-backed pipeline.
 
 ### SVG Page-Design Boundary
 
@@ -175,11 +176,11 @@ Read references/strategist.md
 | Deterministic trigger | Additional Strategist reference |
 |---|---|
 | Step 3 installed an explicit Brand/Layout/Deck workspace | `references/strategist-template.md` |
-| The core's proposed Stage 2 `image_usage` contains a source other than `none`, the user supplied an explicit non-`none` image constraint, or formula-worthy content activates formula planning | `references/strategist-image.md` before authoring image renderings, production detail, formula resources, or §VIII |
+| The core's proposed Stage 2 `image_usage` contains a source other than `none`, the user supplied an explicit non-`none` image constraint, or formula-worthy content activates formula planning | `references/strategist-image.md` + `references/image-layout-spec.md` + `references/image-layout-patterns.md` before authoring image renderings, production detail, formula resources, or §VIII |
 
-The core first chooses the proposed Stage 2 source ids. Load the image module before writing Stage 2 whenever that proposal is non-`none`; after confirmation, keep it active only for confirmed non-`none` sources or an active formula plan. A confirmed `none` path with no formula work writes no image rows. Bare template names and style language do not load the template module.
+The core chooses proposed Stage 2 source ids first. Load this bundle for a non-`none` proposal; after confirmation, retain it only for confirmed non-`none` sources or an active formula plan. Confirmed `none` without formulas writes no image rows. Bare template names and style language do not load the template module.
 
-> ⚠️ **Mandatory artifact gates**: after final confirmation, author the complete `design_spec.md` from `templates/design_spec_reference.md`. After Gate 1, run enabled refinement and wait for approval; then author `spec_lock.md` from its reference, the approved Design Spec, and context. Create each new artifact once—no placeholder scaffold; `scaffold-*` commands remain manual-only. Schemas validate structure; semantic fidelity remains mandatory.
+> ⚠️ **Mandatory artifact gates**: after final confirmation, author complete `design_spec.md` from `${SKILL_DIR}/templates/design_spec_reference.md`. After Gate 1 and any refinement approval, author `spec_lock.md` from `${SKILL_DIR}/templates/spec_lock_reference.md` plus approved Design Spec/context. Author each new artifact once without placeholders or `scaffold-*` (manual-only). Schema validity does not prove semantic fidelity.
 
 **Artifact ownership**: fact-channel and source/derived artifact boundaries are defined in [`references/artifact-ownership.md`](../references/artifact-ownership.md). This Step uses those ownership rules; it does not redefine them.
 
@@ -189,9 +190,23 @@ The core first chooses the proposed Stage 2 source ids. Load the image module be
 
 **Confirmation orchestration**: field meaning and recommendation logic belong to the active Strategist modules; [`confirm_ui.md`](../scripts/docs/confirm_ui.md) owns the JSON schema, server lifecycle, staged-result contract, port behavior, and equivalent chat fallback.
 
-⛔ **BLOCKING**: Unless explicitly delegated, final confirmation is the single always-on user gate. An enabled `refine_spec` adds the one conditional chat gate after Design Spec Gate 1. Keep Stage 1/2 handoffs in one turn; after each wait, author the next stage without chat. Author each stage once; submitted values—including blanks or unusual overrides—are authoritative.
+⛔ **BLOCKING**: Unless explicitly delegated, the three-stage Strategist confirmation is the single always-on user gate. An enabled `refine_spec` adds the one conditional chat gate after Design Spec Gate 1. In the UI branch, keep Stage 1/2 handoffs in one turn and author the next stage after each wait. In the chat branch, wait for an explicit user response at each stage. Author each stage once; submitted values—including blanks or unusual overrides—are authoritative.
 
-**Confirmation ownership and surface**: Only the user confirms. Fresh Stage 1 launches, posts the required chat handoff, then waits. Use chat on explicit chat-only/delegation, explicit handoff confirmation/revision, or launch failure/timeout plus one `result.json` re-check. Chat tools do not replace the default launch. The agent may write recommendations, operate the server, and read state, but MUST NOT call `/api/confirm`, automate submission, synthesize a payload, or write/replace `result.json`. Delegation applies only to this run: show the complete three-stage summary and never fabricate UI results. Silence confirms nothing.
+**Confirmation ownership and surface**: Only the user confirms. Before any
+server command, apply `confirm_ui.md`'s surface decision to this run's most
+recent explicit surface instruction and retain that branch as the owner
+specifies. A natural-language request or agreement to personally confirm in
+chat, or to avoid the page, selects the chat branch without a magic keyword;
+skip `--daemon`, every `--wait-only`, and UI `result.json`. Explicit delegation
+is a separate higher-priority branch. With no surface instruction, fresh Stage
+1 uses the default UI branch: launch, post the required chat handoff, then wait.
+A chat-question tool alone does not replace that default. The agent may write
+recommendations, operate the server, and read state, but MUST NOT call
+`/api/confirm`, automate submission, synthesize a payload, or write/replace
+`result.json`. Delegation applies only to this run: show the complete
+three-stage summary and never fabricate UI results. Silence confirms nothing.
+
+**UI branch files and completion evidence:**
 
 | Stage file (the active unconfirmed stage may be overwritten) | Strategist writes | Completion evidence |
 |---|---|---|
@@ -201,7 +216,9 @@ The core first chooses the proposed Stage 2 source ids. Load the image module be
 
 If the user rejects the current recommendation before confirming it, regenerate by overwriting that same stage file and have the page refresh; do not create revision-suffixed files. This never authorizes one stage file to carry another stage's payload.
 
-1. Create `confirm_ui/recommendations.stage1.json`, then run in order:
+**UI branch only** — create `confirm_ui/recommendations.stage1.json`, then:
+
+1. Run in order:
 
    ```bash
    python3 ${SKILL_DIR}/scripts/confirm_ui/server.py <project_path> --daemon
@@ -209,7 +226,7 @@ If the user rejects the current recommendation before confirming it, regenerate 
    python3 ${SKILL_DIR}/scripts/confirm_ui/server.py <project_path> --wait-only --wait-stage stage1
    ```
 
-2. Read the Stage 1 result. Derive proposed image sources in core and load `strategist-image.md` before constructing Stage 2 when its trigger fires; apply `strategist-template.md` when active. Create `confirm_ui/recommendations.stage2.json` without changing Stage 1, then wait:
+2. Read Stage 1. Derive proposed image sources, load the triggered image-planning bundle above, and apply `strategist-template.md` when active. Create `confirm_ui/recommendations.stage2.json` without changing Stage 1, then wait:
 
    ```bash
    python3 ${SKILL_DIR}/scripts/confirm_ui/server.py <project_path> --wait-only --wait-stage stage2
@@ -229,7 +246,18 @@ If the user rejects the current recommendation before confirming it, regenerate 
    python3 ${SKILL_DIR}/scripts/confirm_ui/server.py <project_path> --shutdown
    ```
 
-If the user opted out of the page but did not delegate confirmation, skip launch and run the same three stages in chat with explicit user responses. If the user explicitly delegated confirmation, consolidate the same three stages into one AI-authored summary and proceed without `result.json`. Otherwise use the always-on Stage-1 chat handoff; it keeps the current contract and direct-chat fallback visible without replacing UI confirmation.
+If the user selects chat any time after the UI server launches, immediately
+apply `confirm_ui.md`'s in-run switch procedure. Continue the unresolved current
+stage and all remaining stages in chat; do not enter UI interruption recovery
+or relaunch the server.
+
+**Chat branch** — run the same three stages in chat with explicit user
+responses, retaining one visible cumulative confirmation summary as the
+equivalent final state; do not create or require a UI result. If the user
+explicitly delegated confirmation, consolidate the same three stages into one
+AI-authored summary. Otherwise the no-selection UI branch uses the always-on
+Stage-1 chat handoff, which keeps direct-chat fallback visible without replacing
+UI confirmation.
 
 ⛔ **GATE — final state → Design Spec → conditional review → lock.** Consume every present final value once into the complete, audited `design_spec.md` under [`strategist.md`](../references/strategist.md) §6.2. Preserve each owning semantic type and all production, typography, image-source, and `image_notes` obligations; acceptance never turns a Reference/Permission into a Literal. Do not reopen `result.json`.
 
@@ -248,7 +276,7 @@ For the normal/default `continuous` path, print no split-mode reminder and proce
 
 **Mandatory — spec-refinement note** (not another Confirm UI stage): after confirmation details and any split-mode line, append one localized 💡 line offering review of the complete Design Spec before the lock; any part may be revised in chat until explicit approval. Default OFF; only explicit chat opt-in or `refine_spec: true` runs [`refine-spec`](stages/refine-spec.md) after Gate 1. Confirm UI records the toggle; chat fallback prints the same line.
 
-**Formula policy**: Stage 3 confirms `mixed`, `render-all`, or `text-only`. When the confirmed policy requires rendering formula-worthy content, load [`strategist-image.md`](../references/strategist-image.md) even if `image_usage` is `none`, and follow its formula-resource contract before filling the planning artifacts. `text-only` creates no formula image rows.
+**Formula policy**: Stage 3 confirms `mixed`, `render-all`, or `text-only`. When rendering is required, load the image-planning bundle even if `image_usage` is `none`, then follow [`strategist-image.md`](../references/strategist-image.md)'s formula-resource contract. `text-only` creates no formula image rows.
 
 **Proactive production decisions**: Stage 3 records
 `proactive_speaker_notes`, `proactive_custom_animations`, and
@@ -285,10 +313,10 @@ python3 ${SKILL_DIR}/scripts/analyze_images.py <project_path>/images
 
 For a new project, use the reference-first whole-document sequence:
 
-1. Read `templates/design_spec_reference.md`; compose I–X from retained confirmation, analysis, and context; create `<project_path>/design_spec.md` once without placeholders/examples.
+1. Read `${SKILL_DIR}/templates/design_spec_reference.md`; create complete I–X `<project_path>/design_spec.md` once from retained confirmation, analysis, and context, without placeholders/examples.
 2. Audit it field by field against retained confirmation; Gate 1 must pass.
 3. If enabled, run [`refine-spec`](stages/refine-spec.md) on that file until explicit approval; touch no lock.
-4. From `templates/spec_lock_reference.md`, the approved Design Spec, and context, create the new lock once or resynchronize stale derived state. Do not reopen `result.json` or make a new design choice.
+4. Read `${SKILL_DIR}/templates/spec_lock_reference.md`; create or resynchronize the lock once from approved Design Spec and context. Never reopen `result.json` or make a new design choice.
 5. Compare lock anchors/routing to the Design Spec; run `python3 ${SKILL_DIR}/scripts/project_manager.py validate <project_path>`.
 
 Final state → initial Design Spec mismatch, approved Design Spec/context → lock mismatch, or an unapplied revision blocks despite schema validity. `validate` does not prove fidelity. Repair from retained confirmation before refinement; during it, preserve unaffected values and apply explicit revisions. After approval, derive the lock from that Design Spec/context. Resume/refine edits existing files, never scaffolds. Fresh recovery alone may reread persisted final evidence once.
@@ -351,7 +379,7 @@ Workflow:
   - [ ] **Next**: open a fresh chat window and input `继续生成 projects/<project_name>` to enter the execution session via the [`resume-execute`](stages/resume-execute.md) stage.
   ```
 
-> On acquisition failure, follow [image-base.md](../references/image-base.md) §5 without halting. Web rows continue through materially different query/provider/license/URL strategies; after exhaustion, mark `Needs-Manual`, report, and continue.
+> On acquisition failure, follow [image-base.md](../references/image-base.md) §6 without halting. Web rows continue through materially different query/provider/license/URL strategies; after exhaustion, mark `Needs-Manual`, report, and continue.
 
 ---
 
@@ -371,22 +399,22 @@ Read the execution references for this deck's locked `mode` + `visual_style` (fr
 ```
 Read references/executor-base.md                  # REQUIRED: flat/shared execution core
 Read references/shared-standards-core.md          # REQUIRED: SVG compatibility core
+Read references/svg-effects.md                    # REQUIRED: advanced visual effects and construction vocabulary
+Read references/native-shape-authoring.md         # REQUIRED: native-shape selection and Boolean construction
 Read references/semantic-svg.md                   # REQUIRED: semantic metadata boundary
 Read references/modes/<resolved-id>.md            # one preset id, or each `mode_references` id
 Read references/visual-styles/<resolved-id>.md    # one preset id, or each `visual_style_references` id
 ```
 
-> Read only the five always-on references above plus the conditionally triggered modules below. A preset reads its one locked file. For `mode: custom` or `visual_style: custom`, read every exact file named by the optional `mode_references` / `visual_style_references`, then synthesize those sources under the corresponding behavior. If the reference field is absent, the direction is genuinely novel: read no preset file and follow the behavior directly. Never infer adjacent references or glob `modes/` / `visual-styles/`.
+> Read only the always-on references above plus the conditionally triggered modules below. A preset reads its one locked file. For `mode: custom` or `visual_style: custom`, read every exact file named by the optional `mode_references` / `visual_style_references`, then synthesize those sources under the corresponding behavior. If the reference field is absent, the direction is genuinely novel: read no preset file and follow the behavior directly. Never infer adjacent references or glob `modes/` / `visual-styles/`.
 
 | Deterministic trigger | Additional references |
 |---|---|
 | `pptx_structure.mode: structured` | `executor-structured.md` + `pptx-structure-interface.md` |
 | Any data chart/table, including mini or inset charts and sparklines | `executor-chart.md` |
 | Preset pattern or supported native chart/table | `native-data-interface.md` before drawing |
-| `spec_lock.md images` / §VIII has an image/formula row, or the template has bundled images | `executor-image.md` + `image-layout-spec.md` + `svg-image-embedding.md`; add `image-layout-patterns.md` only for a cited `#<id>` or optional composition recall |
+| `spec_lock.md images` / §VIII has an image/formula row, or the template has bundled images | `executor-image.md` + `image-layout-spec.md` + `image-layout-patterns.md` + `svg-image-embedding.md` |
 | At least one placed image has `Status: Sourced` | `executor-web-image.md` after the image branch |
-| The locked style/current page calls for noncanonical or alpha paint, dash/cap/join, tracking/decoration/outline, gradient/filter/glow/shadow, path/transform/clipping, or another constructed effect | `svg-effects.md` before authoring that value or effect |
-| §IX contains `Native shape suggestion`, or current page construction calls for a literal PowerPoint stock shape, a stock Connector contour, an explicit Merge Shapes operation or result, or a shape-built dimensional form (cylinder/pedestal, layered diagram, reflection, ground plane), or Executor is about to hand-author a freeform not already required by data geometry or the locked organic / hand-drawn style | `native-shape-authoring.md` before selecting or materializing that geometry. This trigger is image-independent: a text-only, data-only, or icon-only page reaches it the same way |
 | All SVG pages and SVG quality gates are complete, and the effective Speaker Notes outcome in `design_spec.md §I` is enabled | `executor-notes.md` before generating speaker notes |
 
 No branch is loaded by analogy. Evaluate these triggers from `spec_lock.md`, §VII/§VIII, the selected style, and the current page plan.
@@ -415,7 +443,7 @@ python3 ${SKILL_DIR}/scripts/svg_editor/server.py <project_path> --live --daemon
 
 **Visual Construction Phase**: generate SVG pages sequentially, one at a time, in one continuous pass → `<project_path>/svg_output/`
 
-Each completed SVG MUST be a standalone, complete representation of that slide's visible design. Template SVGs and locked planning artifacts may guide construction, but export must not reach back to them to add visible objects omitted from `svg_output/`. Speaker notes, animation, narration, transitions, and direct native-PPTX workflows remain separately owned artifacts/capabilities. Treat §IX `Native shape suggestion` as a candidate, not a command: inspect the actual page construction, then choose the highest-level faithful construction in this order — editable basic primitive, exact Office preset, Merge Shapes Boolean result, and only then a necessary freeform. Load and apply [`native-shape-authoring.md`](../references/native-shape-authoring.md) before materializing an adopted native treatment. Diagram relationships follow the same Shape-first order; do not infer a preset from contour similarity.
+Each completed SVG MUST be a standalone, complete representation of that slide's visible design. Template SVGs and locked planning artifacts may guide construction, but export must not reach back to them to add visible objects omitted from `svg_output/`. Speaker notes, animation, narration, transitions, and direct native-PPTX workflows remain separately owned artifacts/capabilities. Treat §IX `Native shape suggestion` as a candidate, not a command: inspect the actual page construction, then choose the highest-level faithful construction in this order — editable basic primitive, exact Office preset, Merge Shapes Boolean result, and only then a necessary freeform. Apply [`native-shape-authoring.md`](../references/native-shape-authoring.md) before materializing an adopted native treatment. Diagram relationships follow the same Shape-first order; do not infer a preset from contour similarity.
 
 **Motion-ready image composition**: Only when an explicit user motion
 instruction, the effective Custom Animations outcome in `design_spec.md §I` is

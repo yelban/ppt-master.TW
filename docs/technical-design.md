@@ -38,8 +38,9 @@ The three layers have separate responsibilities and cannot substitute for one an
 
 The diagram below covers the default Generate PPTX lifecycle, including its
 `beautify-pptx` profile. The explicit `quick-generate` profile stays inside the
-same route but bypasses its separate planning/confirmation and default delivery
-gates; source understanding and resource preparation still run as needed.
+same route but bypasses its separate planning/confirmation, first-page gate,
+and preview finalization. Source understanding and resource preparation still
+run as needed; one lockless final quality gate remains mandatory.
 Create Template has its own workspace lifecycle, while Fill Native PPTX and
 Enhance Native PPTX operate directly on OOXML; the route table later in this
 document covers all four.
@@ -107,6 +108,7 @@ Source material or topic
     -> decide content, page structure, visual system, and resources in active context
     -> prepare required images/icons/formulas and resource manifests
     -> hand-author svg_output/ under the shared SVG standards
+    -> svg_quality_checker.py --quick-generate --stage final --json
     -> svg_to_pptx.py --quick-generate
     -> exports/<name>_<timestamp>.pptx
 ```
@@ -117,7 +119,8 @@ Confirm UI, `design_spec.md`, or `spec_lock.md`.
 In the default flow, without an explicit `-o`, the native-object and narration
 flags may combine into
 `<project_name>_<timestamp>_native_charts_tables_narrated.pptx`; explicit `-o`
-preserves the caller-supplied filename. Quick generation accepts neither flag.
+preserves the caller-supplied filename. Quick generation accepts the same
+optional native-object and narration flags.
 
 ### SVG as a Constrained Page-Design Language
 
@@ -157,7 +160,7 @@ Use this table before reasoning about implementation details. Most failed runs s
 |---|---|---|
 | Topic only, or supplied material lacks facts required by the requested outcome | Generate PPTX + `topic-research` inside Step 1 | topic-only research starts immediately; source-backed research follows conversion/read and fills only identified factual gaps |
 | Source files or conversation text, deck structure may be rethought | Generate PPTX | Strategist may split, merge, drop, reorder, and redesign |
-| Explicit quick generation | Generate PPTX + `quick-generate` profile | convert/read sources, research factual gaps, and prepare required resources as needed; the current agent decides content, pages, visuals, and resources in active context, skips Strategist/confirmation/spec/lock, hand-authors SVG, and exports one PPTX directly |
+| Explicit quick generation | Generate PPTX + `quick-generate` profile | convert/read sources, research factual gaps, and prepare required resources as needed; the current agent decides content, pages, visuals, and resources in active context, skips Strategist/confirmation/spec/lock/finalize, hand-authors SVG, passes one lockless final gate, and exports the final PPTX |
 | PPTX as source material, user allows a new story/page structure | Generate PPTX via `ppt_to_md` + `pptx_intake` | PPTX identity/geometry are facts and candidates, not replica constraints |
 | Raw PPTX template plus new material/topic | Fill Native PPTX (`template-fill-pptx`) | clone/fill native slides; no SVG generation |
 | Existing PPTX, preserve page count/order/wording 1:1, improve layout | Generate PPTX + `beautify-pptx` profile | regenerate through SVG; content and pagination are locked |
@@ -188,10 +191,10 @@ Post-processing scripts convert supported SVG vector elements to DrawingML. Text
 
 `quick-generate` retains the source-understanding and resource-preparation work
 needed by the deck, but skips the separate Strategist planning/confirmation
-phase and the default report-producing gates. The current agent makes those
+phase, first-page gate, and `finalize_svg.py`. The current agent makes those
 content, page, visual, and resource decisions automatically in active context,
-then authors under the shared SVG standards and uses the same DrawingML
-converter, which performs in-memory ZIP and published-Slide-count validation.
+then authors under the shared SVG standards, runs one lockless final quality
+gate, and uses the same DrawingML converter and postflight.
 
 ---
 
@@ -223,7 +226,10 @@ source material or topic
           └─> active-context content/page/visual/resource decisions
                 └─> images/ + icons/ + formula/resource manifests [as needed]
                       └─> hand-authored svg_output/
-                            └─> svg_to_pptx.py --quick-generate -> exports/*.pptx
+                            └─> svg_quality_checker.py --quick-generate --stage final --json
+                                  └─> svg_to_pptx.py --quick-generate -> exports/*.pptx
+                                        + validation/<output_stem>.report.json
+                                        + backup/<ts>/svg_output/ [default output path]
 
 Direct OOXML routes:
 analysis/<stem>.slide_library.json + source PPTX + fill_plan.json
@@ -294,7 +300,15 @@ Two converter design choices still shape the system:
 
 ## Project Structure & Lifecycle
 
-`project_manager.py init` creates the fixed project working directories; a later default export creates a timestamped backup directory and then attempts to copy a `backup/` snapshot. The explicit [`quick-generate`](../skills/ppt-master/workflows/profiles/quick-generate.md) profile omits the planning artifacts and default delivery sidecars, but its project may still contain converted sources, analysis, images, icons, rendered formulas, and required resource manifests. It then hand-authors `svg_output/` and writes the PPTX destination directly. The default delivery lifecycle is:
+`project_manager.py init` creates the standard project working directories;
+`--quick-generate` creates only `svg_output/`, omits the project README, and
+leaves other directories on demand. The explicit
+[`quick-generate`](../skills/ppt-master/workflows/profiles/quick-generate.md)
+profile omits planning artifacts and `svg_final/`, but its project may still
+contain converted sources, analysis, images, icons, rendered formulas, and
+required resource manifests. It hand-authors `svg_output/`, writes a lockless
+final quality report, and retains the ordinary postflight and default-path
+backup around the final PPTX. The default delivery lifecycle is:
 
 | Directory | Role |
 |---|---|
@@ -419,7 +433,7 @@ Generate execution is governed by [`workflows/generate-pptx.md`](../skills/ppt-m
 
 Global stop/continue policy is authoritative in [`failure-recovery.md`](../skills/ppt-master/workflows/governance/failure-recovery.md); its concrete recovery matrix and resume pointers currently cover Generate PPTX. This section does not duplicate those rules.
 
-Three boundaries are especially important to the architecture. First, page SVGs must be hand-authored by the current main agent, one page at a time; writing a Python/Node/shell generator to emit pages is prohibited because the resulting deck loses cross-page judgment and visual continuity. Second, default-pipeline cadence is `P01 → first-page gate → uninterrupted remaining pages → final gate`. P01 is a method sample: execution emits a `gate-signal`, then carries resolved method rules into later pages; no checker call or page batch interrupts P02 through the final page. `quick-generate` retains serial hand-authoring and P01 as its visual anchor but skips both checker gates. Third, routing is deterministic: raw PPTX template requests, beautify-profile requests, native enhancement, custom-animation stages, live-preview stages, and other registered triggers are not turned into open-ended user route questions when the repository already defines the boundary.
+Three boundaries are especially important to the architecture. First, page SVGs must be hand-authored by the current main agent, one page at a time; writing a Python/Node/shell generator to emit pages is prohibited because the resulting deck loses cross-page judgment and visual continuity. Second, default-pipeline cadence is `P01 → first-page gate → uninterrupted remaining pages → final gate`. P01 is a method sample: execution emits a `gate-signal`, then carries resolved method rules into later pages; no checker call or page batch interrupts P02 through the final page. `quick-generate` retains serial hand-authoring and P01 as its visual anchor, skips the first-page gate, and runs one lockless final gate after the complete roster exists. Third, routing is deterministic: raw PPTX template requests, beautify-profile requests, native enhancement, custom-animation stages, live-preview stages, and other registered triggers are not turned into open-ended user route questions when the repository already defines the boundary.
 
 In the default pipeline, the Role Switching Protocol (mandated read of `references/<role>.md` before mode change) serves two reinforcing purposes: forcing fresh role instructions into context overrides drift from the previous mode, and the visible marker in the conversation transcript creates an audit trail so the user can see when the agent moved between modes — critical when reviewing why a particular decision was made.
 
@@ -504,16 +518,18 @@ Several architectural decisions shape this phase:
 
 ## Image-Text Layout: Primary Structures + Modifier Layers
 
-The optional library of *how an image can be placed on a slide* (full vocabulary in [`references/image-layout-patterns.md`](../skills/ppt-master/references/image-layout-patterns.md)) offers 99 stable-id techniques in two freely composable layers:
+Whenever the image/formula branch is active, its compact placement vocabulary in [`references/image-layout-patterns.md`](../skills/ppt-master/references/image-layout-patterns.md) is read alongside the layout math. It offers 100 stable-id techniques in two freely composable layers:
 
 - **Primary Structures** (container layouts / image-as-canvas + native overlay / multi-image compositions) — the page's bones. One or more per page; cross-Primary combinations like *side-by-side comparison + image-as-canvas annotation* are legitimate.
-- **Modifier Layers** (non-rectangular clips / overlays & masks / texture / special techniques) — finish. Any number per page, stacked on top of the Primary.
+- **Modifier Layers** (non-rectangular clips / overlays & cutouts / texture / special techniques) — finish. Any number per page, stacked on top of the Primary.
 
-**Why the library does not impose a catalog or layer quota.** It expands compositional choice rather than defining legal output. A page may use one or several Primary structures and any useful Modifiers, cite no id at all, or use a free-form composition when that better serves the narrative and hierarchy.
+**Why the catalog includes a combination playbook.** Capability discovery alone does not teach repeatable composition. The playbook turns a page job into a compact sequence: select the Primary skeleton, diagnose a concrete integration problem, add the smallest useful Modifier or native overlay, integrate the layers through shared geometry and style, then stop when another layer no longer earns its place. Its high-yield combinations are recall aids, not recipes that every deck must cover.
 
-**Why the layers are physically separated, not just tagged.** Patterns are organized with Primary structures first and Modifiers second so a reader who opens the optional library can navigate by construction role. Numbers remain stable identifiers (`#38` is still image-as-canvas + annotation cards regardless of where it sits in the file), so existing references across `spec_lock.md`, `design_spec.md §VIII`, executor logs, and historical examples keep resolving.
+**Why always reading the library does not impose a catalog or layer quota.** It expands compositional choice rather than defining legal output. A page may use one or several Primary structures and any useful Modifiers, cite no id at all, or use a free-form composition when that better serves the narrative and hierarchy.
 
-**Why composition intent flows through Strategist's resource list.** The `Layout pattern` column in `§VIII Image Resource List` carries one non-empty free-form suggestion and may optionally cite stable ids from the library; `Crop Policy` separately records `adaptive` or `no-crop`. This preserves a useful starting point across session re-entry without making the library or its numbering mandatory. Executor may resize, reflow, reposition, rebalance, replace the suggestion, or use another composition when that communicates better. Resource identity, must-use/content obligations, `no-crop`, and explicit user/template constraints remain binding; only changing those requires an upstream Design Spec update.
+**Why the layers are physically separated, not just tagged.** Patterns are organized with Primary structures first and Modifiers second so the active role can navigate by construction role. Numbers remain stable identifiers (`#38` is still image-as-canvas + annotation cards regardless of where it sits in the file), so existing references across `spec_lock.md`, `design_spec.md §VIII`, executor logs, and historical examples keep resolving.
+
+**Why composition intent flows through Strategist's resource list.** The `Layout pattern` column in `§VIII Image Resource List` carries one non-empty free-form suggestion and may optionally cite stable ids from the library; `Crop Policy` separately records `adaptive` or `no-crop`. This preserves a useful starting point across session re-entry without making any catalog entry or id mandatory. Executor may resize, reflow, reposition, rebalance, replace the suggestion, or use another composition when that communicates better. Resource identity, must-use/content obligations, `no-crop`, and explicit user/template constraints remain binding; only changing those requires an upstream Design Spec update.
 
 **Why true hard constraints stay upstream.** Cross-cutting SVG authoring and PPTX-compatibility exceptions live in the authority set routed by [`shared-standards.md`](../skills/ppt-master/references/shared-standards.md). The layout patterns file points to that router rather than restating the contract, so each rule still has one owning module and no stale duplicate in the pattern catalog.
 
@@ -672,11 +688,36 @@ Animating individual primitives would produce 30+ separately moving atoms per
 slide, while animating only the slide as a whole loses visual storytelling.
 Top-level groups are the natural granularity: Executor already uses
 `<g id="...">` to mark logical content blocks, so entrance, emphasis, path,
-and exit effects share the same semantic units.
+and exit effects share the same semantic units. The group identifies a
+PowerPoint shape target rather than one timeline record: the legacy
+single-effect object creates one Animation Pane row, while `effects[]` may
+create several ordered rows that all target the same shape.
 
 **Why page structure is auto-skipped.** Any top-level group with `data-pptx-layer` is static structure, and the current scanner also treats every explicit `data-pptx-placeholder` as static page framing; `background` / `header` / `footer` / `decoration` / `watermark` / `page-number` roles cover the remaining chrome. The ID-token fallback is not enabled or disabled per SVG: it applies to each top-level group that lacks layer, role, and placeholder markers, so a mixed new/legacy SVG may still use the legacy ID heuristic on only its unmarked groups. Separately, when an SVG has no top-level groups, no animation target has been found, and only one to eight root primitives qualify, those primitives form a bounded compatibility fallback. This is the scanner's actual scope; the animation reference's whole-page “marker-free legacy SVG” wording still needs separate alignment with the implementation.
 
-**Why object-level animation uses a sidecar, not SVG attributes.** SVG remains the static visual source of truth. Custom PPTX animation is export policy, so per-object overrides live in optional `animations.json` keyed by slide stem and top-level group id. This avoids polluting SVG with PowerPoint-specific metadata while still letting users tune order, effect, delay, and duration when the default global animation is not enough.
+**Why object-level animation uses a sidecar, not SVG attributes.** SVG remains
+the static visual source of truth. Custom PPTX animation is export policy, so
+per-object overrides live in optional `animations.json` keyed by slide stem and
+top-level group id. A populated group uses either the fully compatible legacy
+single-effect fields or a non-empty `effects[]` envelope, never both. Each
+resolved row owns its effect, sequence order, delay, duration, Start mode,
+and optional `trigger_shape`; the slide animation trigger supplies only the
+inherited Start mode. The generated scaffold is neutral (`effect: none`) and
+leaves groups as `{}` until motion is adopted. This keeps PowerPoint-specific
+metadata out of SVG without forcing one semantic object to have only one
+motion phase.
+
+**Why automatic modes remain entrance-only.** `auto`, `mixed`, and `random`
+answer one bounded question: how an otherwise generic reveal should enter.
+They do not invent emphasis, movement, or exit intent. Those three categories,
+and an explicitly selected entrance, use canonical effects in the sidecar so
+the authoring decision remains inspectable.
+
+**Why the target model stops at top-level shape effects.** The generated model
+does not infer paragraph/text-range builds, author custom freeform motion
+paths, sequence native Chart/SmartArt internals, or emit media playback
+commands. Native motion-path presets remain valid object effects; media
+playback remains in the audio/video workflows.
 
 **Why recorded narration drives auto-advance from clip duration.** Recorded-narration mode targets video export, where no presenter clicks through the deck. It probes each clip's real duration and sets slide auto-advance to `audio duration + --narration-padding`; padding defaults to 0.5 seconds so the tail is not cut off. It does not use estimated reading speed or a fixed per-slide duration.
 
@@ -686,7 +727,8 @@ object-level click events. The recorded narration path writes page-level audio
 and slide auto-advance timings only, so click-driven object effects would leave
 the export dependent on extra manual PowerPoint rehearsal. Decks exported with
 `--recorded-narration` must therefore use click-free object animations
-(`after-previous` or `with-previous`).
+(`after-previous` or `with-previous`) on every resolved row; this also excludes
+`trigger_shape`.
 
 **Why native video export is a separate command.** Audio synthesis and PPTX
 packaging are cross-platform project operations; PowerPoint video encoding is a

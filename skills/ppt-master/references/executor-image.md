@@ -27,9 +27,24 @@ Handle images by status; enum and lifecycle: [`svg-image-embedding.md`](svg-imag
 
 **Template-bundled images**: [`apply-template-workspace.md`](../workflows/stages/apply-template-workspace.md) copies them into project `images/`. Outside `mirror`, reference `../images/<name>` and never copy a template SVG's bare sibling href: the rendered page lives in `svg_output/`. `mirror` ([`executor-structured.md`](./executor-structured.md) §1.1) keeps hrefs verbatim; export resolves them against `images/`.
 
-**Reference — layout catalog is optional recall**: Load [`image-layout-patterns.md`](./image-layout-patterns.md) for a cited `#<id>` or useful recall; free-form suggestions need no lookup.
-
-**Default — action-bearing image composition (may override only for an upstream-documented restraint or explicit user/template/content boundary)**: On a `page_role: hero_page` or otherwise image-led page, realize the suggestion or replace it with another concrete image/content or image/shape relationship. Position, size, routine crop, and a legibility-only scrim alone do not constitute that relationship. A direct split or full-bleed treatment remains valid only when matching §IX `Layout` / `Images` records deliberate restraint or an explicit boundary requires it. Preserve role/source, must-use, crop/content, and explicit user/template constraints; expression-only changes need no upstream rewrite.
+**Default — active image integration (may override when plain placement is
+stronger)**: Treat loaded [`image-layout-patterns.md`](./image-layout-patterns.md)
+as vocabulary and [`image-layout-spec.md`](./image-layout-spec.md) as math, not
+a quota or lock. Run the catalog's §5 playbook before drawing; its combinations
+are recall aids, not coverage targets. For every image-bearing page, derive the
+image/content or image/shape relationship from the communication job, hierarchy,
+copy, asset
+ratio/focus, and deck rhythm. Before drawing, evaluate useful modifiers across
+reveal/crop/registration, tone/contrast, framing/depth, and native overlay.
+Adopt a legal modifier, effect, or Boolean construction when it materially
+improves focus, hierarchy, image-copy integration, legibility, or style; use
+the already-loaded [`svg-effects.md`](./svg-effects.md) and
+[`native-shape-authoring.md`](./native-shape-authoring.md) to realize it. This
+is an opportunity pass, not an effect quota. Deepen, simplify, replace, or
+combine suggestions without mechanically reproducing their names; plain
+split/frame/full bleed remains valid when strongest. Preserve role/source,
+must-use, crop/content, and explicit user/template constraints; expression-only
+changes need no upstream rewrite.
 
 **Reference — motion-ready image layering, not a constraint**: For adopted §IX or an explicit focus, comparison, evidence, reveal-order, or cross-page requirement, decide during SVG authoring whether the final composition needs separate visible units. Keep ordinary stable framing/background static and wrap each independently revealed or continuing Slide-local unit in a descriptive direct-root `<g id>`; structured atoms/slots retain their boundaries. Existing units or a page transition may suffice. The motion stage owns effects, pairing, order, and timing.
 

@@ -80,6 +80,7 @@ from .template_structure import (
     template_prototype_errors,
 )
 from ..animation_config import (
+    animation_group_effect_entries,
     load_animation_config,
     validate_animation_config,
     validate_animation_config_errors,
@@ -312,6 +313,38 @@ def _quality_report_context(
     }
 
 
+def _quality_gate_status(
+    quality: dict[str, object],
+) -> tuple[str, int]:
+    """Return final-gate status and introduced-warning count."""
+    categories = quality.get('categories')
+    blocking_count = None
+    introduced_warning_count = 0
+    if isinstance(categories, dict):
+        blocking = categories.get('blocking')
+        if isinstance(blocking, dict):
+            blocking_count = blocking.get('count')
+        introduced = categories.get('introduced')
+        if (
+            isinstance(introduced, dict)
+            and isinstance(introduced.get('count'), int)
+        ):
+            introduced_warning_count = int(introduced['count'])
+    if quality.get('status') != 'loaded':
+        return str(quality.get('status') or 'not-provided'), introduced_warning_count
+    if quality.get('stage') != 'final':
+        return 'non-final', introduced_warning_count
+    if not isinstance(blocking_count, int):
+        return 'unverified', introduced_warning_count
+    if blocking_count > 0:
+        return 'failed', introduced_warning_count
+    if quality.get('source_match') == 'mismatch':
+        return 'stale', introduced_warning_count
+    if quality.get('source_match') != 'passed':
+        return 'unverified', introduced_warning_count
+    return 'passed', introduced_warning_count
+
+
 def _postflight_warning_summaries(
     *,
     quality_gate: str,
@@ -368,30 +401,7 @@ def _write_postflight_report(
     source_audit = _source_resource_audit(svg_files)
     source_fingerprint = _svg_source_fingerprint(svg_files)
     quality = _quality_report_context(project_path, source_fingerprint)
-    quality_categories = quality.get('categories')
-    blocking_count = None
-    introduced_warning_count = 0
-    if isinstance(quality_categories, dict):
-        blocking = quality_categories.get('blocking')
-        if isinstance(blocking, dict):
-            blocking_count = blocking.get('count')
-        introduced = quality_categories.get('introduced')
-        if isinstance(introduced, dict) and isinstance(introduced.get('count'), int):
-            introduced_warning_count = int(introduced['count'])
-    if quality.get('status') != 'loaded':
-        quality_gate = str(quality.get('status') or 'not-provided')
-    elif quality.get('stage') != 'final':
-        quality_gate = 'non-final'
-    elif not isinstance(blocking_count, int):
-        quality_gate = 'unverified'
-    elif blocking_count > 0:
-        quality_gate = 'failed'
-    elif quality.get('source_match') == 'mismatch':
-        quality_gate = 'stale'
-    elif quality.get('source_match') != 'passed':
-        quality_gate = 'unverified'
-    else:
-        quality_gate = 'passed'
+    quality_gate, introduced_warning_count = _quality_gate_status(quality)
     unresolved_tokens = source_audit['unresolved_template_tokens']
     external_image_count = source_audit['images']['external']
     generic_only_font_stacks = source_audit['fonts']['generic_only_stacks']
@@ -550,31 +560,6 @@ def _print_postflight_receipt(receipt: _PostflightReceipt) -> None:
         print(f'  [POSTFLIGHT][WARNING] {warning}')
     print(f'  [PPTX] {receipt.output_path}')
     print(f'  [REPORT] {receipt.report_path}')
-
-
-def _validate_quick_generate_output(
-    output_path: Path,
-    *,
-    expected_slide_count: int,
-) -> dict[str, object]:
-    """Validate a quick-generated PPTX without writing a report sidecar."""
-    try:
-        package = _package_part_counts(output_path)
-    except (OSError, zipfile.BadZipFile) as exc:
-        raise PptxPostflightValidationError(
-            f"quick-generated PPTX is not a readable ZIP package: {exc}"
-        ) from exc
-    if package['zip_integrity'] != 'passed':
-        raise PptxPostflightValidationError(
-            "quick-generated PPTX ZIP integrity failed at "
-            f"{package['corrupt_member']}"
-        )
-    if package['slides'] != expected_slide_count:
-        raise PptxPostflightValidationError(
-            "Quick-generated Slide count does not match authored SVG count: "
-            f"{package['slides']} != {expected_slide_count}"
-        )
-    return package
 
 
 def _declared_pptx_structure_mode(project_path: Path) -> str | None:
@@ -745,36 +730,50 @@ def _recorded_narration_on_click_slides(
         slide_animation = animation
         if not animation_cli_overrides.get('animation') and 'effect' in anim_cfg:
             slide_animation = normalize_animation_effect(anim_cfg.get('effect'))
-        groups_cfg = _as_dict(slide_cfg.get('groups'))
-        has_explicit_animation = any(
-            isinstance(group_cfg, dict)
-            and 'effect' in group_cfg
-            and normalize_animation_effect(group_cfg.get('effect')) is not None
-            for group_cfg in groups_cfg.values()
-        )
-        if slide_animation is None and not has_explicit_animation:
-            continue
-        has_interactive_animation = any(
-            isinstance(group_cfg, dict)
-            and isinstance(group_cfg.get('trigger_shape'), str)
-            and bool(group_cfg['trigger_shape'].strip())
-            and (
-                (
-                    'effect' in group_cfg
-                    and normalize_animation_effect(group_cfg.get('effect')) is not None
-                )
-                or ('effect' not in group_cfg and slide_animation is not None)
-            )
-            for group_cfg in groups_cfg.values()
-        )
-        if has_interactive_animation:
-            blocked.append(svg_path.stem)
-            continue
-
         slide_trigger = animation_trigger
-        if not animation_cli_overrides.get('animation_trigger') and anim_cfg.get('trigger'):
+        if (
+            not animation_cli_overrides.get('animation_trigger')
+            and anim_cfg.get('trigger')
+        ):
             slide_trigger = normalize_animation_trigger(anim_cfg.get('trigger'))
-        if slide_trigger == 'on-click':
+
+        groups_cfg = _as_dict(slide_cfg.get('groups'))
+        has_interactive_animation = False
+        for group_id, group_cfg in groups_cfg.items():
+            if not isinstance(group_cfg, dict):
+                continue
+            group_path = (
+                f'slides[{json.dumps(svg_path.stem, ensure_ascii=False)}]'
+                f'.groups[{json.dumps(str(group_id), ensure_ascii=False)}]'
+            )
+            for _effect_path, effect_cfg in animation_group_effect_entries(
+                group_cfg,
+                path=group_path,
+            ):
+                row_effect = (
+                    normalize_animation_effect(effect_cfg.get('effect'))
+                    if 'effect' in effect_cfg
+                    else slide_animation
+                )
+                if row_effect is None:
+                    continue
+                row_trigger = (
+                    normalize_animation_trigger(effect_cfg.get('trigger'))
+                    if effect_cfg.get('trigger')
+                    else slide_trigger
+                )
+                if effect_cfg.get('trigger_shape') is not None:
+                    has_interactive_animation = True
+                    break
+                if row_trigger == 'on-click':
+                    has_interactive_animation = True
+                    break
+            if has_interactive_animation:
+                break
+
+        if has_interactive_animation or (
+            slide_animation is not None and slide_trigger == 'on-click'
+        ):
             blocked.append(svg_path.stem)
     return blocked
 
@@ -815,7 +814,7 @@ Examples:
     %(prog)s examples/ppt169_demo                         # Default: native pptx -> exports/, svg_output -> backup/<ts>/
     %(prog)s examples/ppt169_demo -o out.pptx            # Explicit path (no backup/)
     %(prog)s examples/ppt169_demo --html-deck            # Also emit browsable inline-SVG HTML
-    %(prog)s projects/quick_generate_demo --quick-generate # Direct: svg_output/ -> PPTX, no export sidecars
+    %(prog)s projects/quick_generate_demo --quick-generate # Lockless flat export with normal postflight
 
     # Disable transition / change transition effect
     %(prog)s examples/ppt169_demo -t none
@@ -852,16 +851,18 @@ Per-element object animation (-a/--animation, native shapes mode):
              after-previous (default)  cascade on slide entry;
                                        gap = --animation-stagger seconds
            mixed (compatible mode name) cycles a larger 16-preset canonical
-           PowerPoint pool by group order; random samples from the same pool.
-           Use "-a none" to disable
-           element builds explicitly.
+           PowerPoint entrance pool by group order; random samples from the
+           same entrance pool. Use explicit canonical keys for emphasis,
+           motion-path, or exit duties. Use "-a none" to disable element
+           builds explicitly.
 
-Speaker notes (enabled by default):
+Speaker notes:
     - Automatically reads Markdown notes files from the notes/ directory
     - Supports two naming conventions:
       1. Match by filename (recommended): 01_cover.md corresponds to 01_cover.svg
       2. Match by index: slide01.md corresponds to the 1st SVG (backward compatible)
-    - Use --no-notes to disable
+    - Enabled by default outside Quick Generate; use --no-notes to disable
+    - Disabled by default in Quick Generate; use --with-notes to enable
 
 Recorded narration:
     %(prog)s examples/ppt169_demo --recorded-narration audio \\
@@ -896,11 +897,10 @@ Recorded narration:
         '--quick-generate',
         action='store_true',
         help=(
-            'Direct export of an authored SVG roster from svg_output/. Infer '
-            'one consistent canvas from the SVGs, use a flat '
-            'package with converter defaults, and skip spec_lock.md, notes, '
-            'animations, backup, conversion trace, and validation report '
-            'artifacts.'
+            'Export a Quick Generate SVG roster from svg_output/ without '
+            'spec_lock.md. Require a matching final quality report, infer one '
+            'consistent canvas, use a flat package with converter defaults, '
+            'and support normal export capabilities.'
         ),
     )
 
@@ -1041,9 +1041,10 @@ Recorded narration:
                              '(map effect from group id — image-like ids cycle a '
                              'richer canonical pool for visual variation, fallback '
                              'cycles entrance_fade/entrance_wipe/entrance_fly/'
-                             'entrance_zoom), "mixed" (canonical 16-preset pool), or '
-                             '"random". Legacy short names remain accepted only for '
-                             'compatibility.')
+                             'entrance_zoom), "mixed" (canonical 16-preset entrance '
+                             'pool), or "random" (the same entrance pool). Use '
+                             'explicit keys for emphasis/path/exit. Legacy short '
+                             'names remain accepted only for compatibility.')
     parser.add_argument('--animation-duration', type=positive_float, default=None,
                         help='Per-element object-animation duration in seconds '
                              '(default: 0.4; instantaneous native presets keep their '
@@ -1079,8 +1080,17 @@ Recorded narration:
         ),
     )
 
-    parser.add_argument('--no-notes', action='store_true',
-                        help='Disable speaker notes embedding (enabled by default)')
+    notes_mode = parser.add_mutually_exclusive_group()
+    notes_mode.add_argument(
+        '--with-notes',
+        action='store_true',
+        help='Embed speaker notes. Required to opt in during Quick Generate.',
+    )
+    notes_mode.add_argument(
+        '--no-notes',
+        action='store_true',
+        help='Disable speaker notes embedding (enabled by default outside Quick Generate)',
+    )
     parser.add_argument('--narration-audio-dir', type=str, default=None,
                         help='Low-level audio embedding from this directory; allows partial matches. '
                              'Default-flow exports get the _narrated name suffix.')
@@ -1137,32 +1147,6 @@ Recorded narration:
             conflicts.append('--source must be omitted or output')
         if args.pptx_structure not in {None, 'flat'}:
             conflicts.append('--pptx-structure must be omitted or flat')
-        if args.conversion_trace is not None:
-            conflicts.append('--conversion-trace')
-        if args.native_objects:
-            conflicts.append('--native-charts-and-tables')
-        if args.animation_config:
-            conflicts.append('--animation-config')
-        if args.recorded_narration:
-            conflicts.append('--recorded-narration')
-        if args.narration_audio_dir:
-            conflicts.append('--narration-audio-dir')
-        if args.use_narration_timings:
-            conflicts.append('--use-narration-timings')
-        if args.auto_advance is not None:
-            conflicts.append('--auto-advance')
-        if args.transition is not None or args.transition_duration is not None:
-            conflicts.append('transition overrides')
-        if any(
-            value is not None
-            for value in (
-                args.animation,
-                args.animation_duration,
-                args.animation_trigger,
-                args.animation_stagger,
-            )
-        ):
-            conflicts.append('animation overrides')
         if conflicts:
             print(
                 "Error: --quick-generate cannot be combined with: "
@@ -1170,8 +1154,8 @@ Recorded narration:
                 file=sys.stderr,
             )
             return 1
-        args.no_notes = True
-        args.no_animations = True
+        if not args.with_notes:
+            args.no_notes = True
         args.pptx_structure = 'flat'
 
     project_path = Path(args.project_path)
@@ -1333,6 +1317,23 @@ Recorded narration:
             print("Error: No SVG files found", file=sys.stderr)
         return 1
 
+    if args.quick_generate:
+        source_fingerprint = _svg_source_fingerprint(native_files)
+        quality = _quality_report_context(project_path, source_fingerprint)
+        quality_gate, _ = _quality_gate_status(quality)
+        if quality_gate != 'passed':
+            print(
+                "Error: --quick-generate requires a passing final SVG quality "
+                f"report for the current svg_output/; found {quality_gate}.",
+                file=sys.stderr,
+            )
+            print(
+                "Run: python3 skills/ppt-master/scripts/svg_quality_checker.py "
+                f'"{project_path}" --quick-generate --stage final --json',
+                file=sys.stderr,
+            )
+            return 1
+
     # Compatibility kwargs remain until the builder's old baseline-specific
     # parameters are removed. Structured export never activates either path.
     structured_baseline = False
@@ -1450,9 +1451,8 @@ Recorded narration:
         narrated_tag = "_narrated" if (args.recorded_narration or args.narration_audio_dir) else ""
         native_path = exports_dir / f"{project_name}_{timestamp}{native_tag}{narrated_tag}.pptx"
         html_path = exports_dir / f"{project_name}_{timestamp}.html"
-        # Preserve the authored svg_output/ beside every default-flow export.
-        if not args.quick_generate:
-            backup_dir = project_path / "backup" / timestamp
+        # Preserve the authored svg_output/ beside every default-path export.
+        backup_dir = project_path / "backup" / timestamp
 
     native_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -1859,7 +1859,7 @@ Recorded narration:
     # are still stamped at export; only the authored fields stay blank.
     doc_metadata = None
     metadata_path = project_path / 'metadata.json'
-    if metadata_path.is_file() and not args.quick_generate:
+    if metadata_path.is_file():
         try:
             loaded = json.loads(metadata_path.read_text(encoding='utf-8'))
         except (json.JSONDecodeError, OSError) as exc:
@@ -2000,31 +2000,6 @@ Recorded narration:
             print(f"  HTML deck: {written_html}")
 
     if success:
-        if args.quick_generate:
-            try:
-                package = _validate_quick_generate_output(
-                    native_path,
-                    expected_slide_count=len(native_files),
-                )
-            except PptxPostflightValidationError as exc:
-                print(
-                    "Error: quick-generated PPTX failed in-memory validation and "
-                    f"must not be used: {exc}",
-                    file=sys.stderr,
-                )
-                print(
-                    f"  Invalid output remains at: {native_path}",
-                    file=sys.stderr,
-                )
-                return 1
-            if verbose:
-                print(
-                    "  [QUICK-GENERATE] "
-                    f"status=passed slides={package['slides']} "
-                    "export_sidecars=none"
-                )
-                print(f"  [PPTX] {native_path}")
-            return 0
         try:
             receipt = _write_postflight_report(
                 output_path=native_path,
