@@ -9,7 +9,11 @@ Image tools cover formula rendering, prompt-based AI generation, web image searc
 
 ## `latex_render.py`
 
-Manifest-driven LaTeX formula renderer. Strategist writes `images/formula_manifest.json` after the Typography confirmation; this script renders only those declared formulas to transparent PNGs and writes dimensions back into the manifest.
+Manifest-driven LaTeX formula renderer. Default Generate has Strategist write
+`images/formula_manifest.json` after Typography confirmation; Quick Generate
+has the current agent write the same resource manifest without confirmation.
+This script renders only those declared formulas to transparent PNGs and writes
+dimensions back into the manifest.
 
 ```bash
 python3 scripts/latex_render.py <project_path>
@@ -37,18 +41,21 @@ Manifest shape:
 }
 ```
 
-Output files land directly under `project/images/`. Formula filenames should use a shared `formula_` prefix, e.g. `formula_001.png`. The default provider chain is `codecogs,quicklatex,mathpad,wikimedia`; each provider is tried automatically until one succeeds, and the winning provider is recorded back into the manifest. `--providers` or manifest-level `providers` may override the order, but all four are available as no-key fallbacks. Formula PNGs are transparent by default. `background` is the temporary render matte and local background-removal reference; set `transparent: false` only when an opaque final formula asset is intentional. The script does not scan `spec_lock.md` or source documents for `$...$`; formula selection is a Strategist decision.
+Output files land directly under `project/images/`. Formula filenames should use a shared `formula_` prefix, e.g. `formula_001.png`. The default provider chain is `codecogs,quicklatex,mathpad,wikimedia`; each provider is tried automatically until one succeeds, and the winning provider is recorded back into the manifest. `--providers` or manifest-level `providers` may override the order, but all four are available as no-key fallbacks. Formula PNGs are transparent by default. `background` is the temporary render matte and local background-removal reference; set `transparent: false` only when an opaque final formula asset is intentional. The script does not scan `spec_lock.md` or source documents for `$...$`; formula selection belongs to the active resource owner.
 
 ## `image_gen.py`
 
 Unified image generation entry point.
 
-This script is the **Path A** API/proxy executor for generated images. In the
-PPT pipeline, always check `design_spec.md §I / AI Image Acquisition Path`
-before running manifest mode: only `api` / `auto` permits Path A;
-`host-native` uses the host's image tool directly and `manual` uses the
-read-only Markdown sidecar. For a project manifest, a missing or unknown value
-fails closed and returns to Generate Step 4 recovery.
+This script is the **Path A** API/proxy executor for generated images. Default
+Generate checks `design_spec.md §I / AI Image Acquisition Path` before manifest
+mode: only `api` / `auto` permits Path A; a missing or unknown value fails
+closed and returns to Step 4 recovery. Quick Generate has no Design Spec: use
+the explicit active-context path when supplied, otherwise `auto` selects the
+A → B → C chain defined in
+[`image-generator.md`](../../references/image-generator.md) §7 without asking.
+In either profile, `host-native` uses the host image tool directly and `manual`
+uses the read-only Markdown sidecar.
 
 ```bash
 python3 scripts/image_gen.py "A modern futuristic workspace"
@@ -196,7 +203,7 @@ python3 scripts/analyze_images.py <project_path>/images --canvas ppt43
 
 Without `--canvas`, the tool resolves the project format and falls back to `ppt169`; the flag is an explicit override. The atomic CSV records EXIF-corrected native dimensions/`AspectRatio`, optional source `SourceDisplayRatio`, format, and actual transparent-pixel presence. Native ratio—not source display metadata—drives bitmap layout/crop. An empty folder rewrites a header-only report; unreadable supported files still refresh the report and produce a non-zero exit.
 
-Use this as the default inventory and geometry source; it does not perform semantic image understanding. Generate planning follows the Strategist's context-first boundary: source context, captions / alt text / titles, filenames, user notes, and existing resource records come first. Only a specific asset whose meaning or safe placement remains materially ambiguous may be inspected, and the workflow never bulk-opens the image folder.
+Use this as the default inventory and geometry source; it does not perform semantic image understanding. Generate planning follows the Strategist's context-first boundary: source context, captions / alt text / titles, filenames, user notes, and existing resource records come first. Only an already-selected provided/web asset whose focal-safe crop, overlay contrast, or quiet region remains materially ambiguous may be inspected for that placement; this never reopens selection or provenance, never bulk-opens the image folder, and never restores routine readback of AI-generated images.
 
 ## `image_search.py`
 
@@ -219,18 +226,18 @@ Providers (Pexels / Pixabay are tried first when keyed; Openverse and Wikimedia 
 | `openverse` | zero-config | fallback aggregator: Wikimedia + Flickr + museums + rawpixel |
 | `wikimedia` | zero-config | educational, scientific, geographic, historical |
 
-Default search chain (when `--provider` is unset): configured Pexels, configured Pixabay, Openverse, then Wikimedia. Missing keyed credentials are silently skipped. For polished visual decks, configure at least one keyed provider.
+Default search chain (when `--provider` is unset): configured Pexels, configured Pixabay, Openverse, then Wikimedia. Missing keyed credentials are silently skipped. Keyed providers broaden stock-photo coverage but are optional; zero-config providers remain valid.
 
 `image_search.py` uses the same `.env` lookup order as `image_gen.py`, so skill installs can keep `PEXELS_API_KEY` / `PIXABAY_API_KEY` in `~/.ppt-master/.env`.
 
 Query guidance:
 
-Keep the Design Spec §VIII `Reference` as the full visual/crop intent; write a separate 1–4 word concrete provider query for this CLI.
+Keep the Design Spec §VIII `Reference` as the full visual/crop intent; write a separate concise provider query for this CLI. Start with the shortest phrase that preserves identity, but retain exact multi-word names and necessary disambiguators beyond four words.
 
 | Case | Pattern |
 |---|---|
 | Generic stock concept | `boardroom meeting` |
-| China-specific landmark | 1–4 official place/identity words |
+| China-specific landmark | Precise official place/identity name plus necessary geography |
 | Avoid | Negative prompt wording such as `not tourist snapshot` |
 
 License filter:
@@ -269,7 +276,7 @@ Output:
 
 Allowed licenses (default): CC0, Public Domain, Pexels License, Pixabay Content License, CC BY, CC BY-SA. Auto-rejected: CC BY-NC, CC BY-ND, CC BY-NC-SA, CC BY-NC-ND, all rights reserved, unknown.
 
-The full role-level reference (intent → query translation, on-slide attribution visual specification) is in [`references/image-searcher.md`](../../references/image-searcher.md).
+The full role-level reference (intent → query translation, on-slide attribution contract) is in [`references/image-searcher.md`](../../references/image-searcher.md).
 
 ## `gemini_watermark_remover.py`
 

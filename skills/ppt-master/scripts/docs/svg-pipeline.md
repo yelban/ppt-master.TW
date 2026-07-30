@@ -254,7 +254,7 @@ for operation, first, second, expected_error in rejections:
 
 run_tool("svg_quality_checker.py", svg_output, "--format", "ppt169")
 pptx = project / "boolean-smoke.pptx"
-run_tool("svg_to_pptx.py", project, "--quick-test", "-o", pptx)
+run_tool("svg_to_pptx.py", project, "--quick-generate", "-o", pptx)
 with zipfile.ZipFile(pptx) as archive:
     slides = [
         name
@@ -468,6 +468,8 @@ Do not confuse this tool with `extract_svg_assets.py`:
 Run these steps one at a time. Wait for each command to exit successfully before
 starting the next command.
 
+When the effective Speaker Notes outcome in `design_spec.md §I` is enabled, run:
+
 ```bash
 python3 scripts/total_md_split.py <project_path>
 ```
@@ -483,6 +485,10 @@ After `finalize_svg.py` exits successfully, run:
 ```bash
 python3 scripts/svg_to_pptx.py <project_path>
 ```
+
+When Speaker Notes is disabled, skip `total_md_split.py` and use
+`python3 scripts/svg_to_pptx.py <project_path> --no-notes` for the final
+command. This prevents stale files under `notes/` from being embedded.
 
 Do not start another post-processing command while the current command is still
 running. The canonical gates and success criteria are owned by
@@ -506,6 +512,10 @@ Convert project SVGs into PPTX.
 
 ```bash
 python3 scripts/svg_to_pptx.py <project_path>
+# Explicit compact image export:
+python3 scripts/svg_to_pptx.py <project_path> --image-sizing display --image-scale 2 --image-quality 85
+# Force original image bytes:
+python3 scripts/svg_to_pptx.py <project_path> --no-image-optimize
 python3 scripts/svg_to_pptx.py <project_path> --native-charts-and-tables
 python3 scripts/svg_to_pptx.py <project_path> --pptx-structure structured  # deck/layout template override
 python3 scripts/svg_to_pptx.py <project_path> --pptx-structure flat  # free-design/brand-only override
@@ -517,11 +527,18 @@ python3 scripts/svg_to_pptx.py <project_path> --no-notes
 python3 scripts/svg_to_pptx.py <project_path> -t none
 python3 scripts/svg_to_pptx.py <project_path> --auto-advance 3
 python3 scripts/svg_to_pptx.py <project_path> --animation mixed --animation-duration 0.8
-python3 scripts/svg_to_pptx.py <project_path> --no-merge   # strict line-fidelity mode (see below)
+python3 scripts/svg_to_pptx.py <project_path> --reflow-text  # opt-in PowerPoint reflow
+python3 scripts/svg_to_pptx.py <project_path> --no-merge    # one text frame per visual line
 python3 scripts/svg_to_pptx.py <project_path> --recorded-narration audio
 python3 scripts/svg_to_pptx.py <project_path> --recorded-narration audio --animation-config animations.json
 python3 scripts/svg_to_pptx.py <project_path> --recorded-narration audio --no-animations
 ```
+
+Native image export defaults to `--image-sizing cap`: it preserves source bytes
+when no resize or EXIF geometry normalization is required, and re-encodes only
+images that require one of those transformations. The `display` command above
+is an explicit compact export; `--no-image-optimize` disables all native image
+optimization and forces original bytes.
 
 The normal command reads `pptx_structure.mode` from `spec_lock.md`. For legacy
 projects whose lock exists but predates that field, export emits one compatibility
@@ -529,33 +546,44 @@ warning and uses `flat`; no SVG regeneration is required. A missing `spec_lock.m
 an explicit legacy/unknown mode, or a requested `structured` export without an
 explicit current structured contract remains blocking.
 
-Disposable few-page converter/layout tests may use the explicit
-[`quick-test`](../../workflows/profiles/quick-test.md) profile:
+Explicit direct generation may use the
+[`quick-generate`](../../workflows/profiles/quick-generate.md) profile after the
+current agent has converted/read sources, researched identified factual gaps,
+and prepared the required images, icons, formulas, and resource manifests as
+needed. That profile skips Strategist, Confirm UI, `design_spec.md`, and
+`spec_lock.md`; it does not skip the resources required by the authored pages:
 
 ```bash
-python3 scripts/svg_to_pptx.py <project_path> --quick-test
+python3 scripts/svg_to_pptx.py <project_path> --quick-generate
 ```
 
-This test-only flag reads `svg_output/` directly, infers one consistent canvas,
-uses flat converter-default package scaffolding, disables notes and motion, and
-does not read or require `spec_lock.md`. It writes the PPTX only: no
-`backup/`, conversion trace, or `validation/` report. ZIP integrity and Slide
-count are checked in memory and reported through
-`[QUICK-TEST] status=passed`. The flag rejects options that would add native
-data objects, motion, narration, alternate SVG sources, or diagnostic sidecars.
+This direct-export flag takes `svg_output/` as its authored page source, resolves
+valid project-local resources referenced by those pages, infers one consistent
+canvas, uses flat converter-default package scaffolding, disables notes and
+motion, and does not read or require `spec_lock.md`. The exporter itself writes
+the PPTX only: no `backup/`, conversion trace, or `validation/` report. Existing
+source, analysis, image/icon/formula, and resource-manifest artifacts are
+allowed and remain untouched. ZIP integrity and Slide count are checked in
+memory; non-quiet runs report
+`[QUICK-GENERATE] status=passed`. The flag rejects options that would add native
+data objects, motion, narration, alternate SVG sources, or export diagnostic
+sidecars.
+The receipt proves only ZIP integrity and equality between discovered SVG and
+published Slide counts; it is not an SVG-quality, visual, factual, or normal
+postflight approval.
 
 For generated-project narration, follow the
 [`generate-audio`](../../workflows/stages/generate-audio.md) stage. It owns voice
 selection, audio generation, and the narrated re-export workflow.
 
 Behavior:
-- Default output (normal flow, no `-o`):
+- Default output (default Generate flow, no `-o`):
   - `exports/<project_name>_<timestamp>.pptx` — native editable pptx (canonical output)
   - `validation/<project_name>_<timestamp>.report.json` — package postflight, quality-gate linkage, unresolved resource audit, and published part counts
   - `backup/<timestamp>/svg_output/` — copy of Executor SVG source, always written so the pptx can be rebuilt via `finalize_svg → svg_to_pptx` without re-running the LLM
 - `exports/` contains only final PPTX deliverables; machine-readable quality and postflight reports belong in `validation/`.
-- Normal flow always runs `finalize_svg.py` before export. This directory is the self-contained SVG visual preview; it is not packaged as a second PPTX. Quick-test deliberately skips it.
-- In normal flow, explicit `-o/--output` changes the native PPTX destination and skips `backup/`; its postflight report still uses the output stem under the project `validation/` directory. Quick-test writes no report.
+- The default Generate flow always runs `finalize_svg.py` before export. This directory is the self-contained SVG visual preview; it is not packaged as a second PPTX. Quick-generate deliberately skips it.
+- In the default Generate flow, explicit `-o/--output` changes the native PPTX destination and skips `backup/`; its postflight report still uses the output stem under the project `validation/` directory. Quick-generate writes no report.
 - Postflight reruns ZIP integrity and published Slide count. Internal relationships,
   structured-package validation, transitions, and animations are enforced before the
   builder publishes the PPTX and are reported as `enforced-at-build`, not as repeated
@@ -565,11 +593,11 @@ Behavior:
   requires a custom installation. A recommended stack such as
   `"Microsoft JhengHei", Arial, sans-serif` does not warn merely because it ends with a
   generic fallback.
-- Paragraph merging is enabled by default and trades some SVG line-layout fidelity for PowerPoint editability:
-  - Default: mergeable paragraph blocks (same x, dy clustered around one base line-height) collapse into one editable text frame. Equal effective font sizes may join as flowing prose; a font-size change, list marker, or accepted larger gap starts a new `<a:p>` with precise `<a:lnSpc>` / `<a:spcBef>`. Resizing the box reflows text inside it without erasing those paragraph boundaries.
-  - With `--no-merge`: every dy-stacked `<tspan>` becomes its own text frame — exact SVG line layout is preserved but a 12-line paragraph is 12 separate textboxes
-  - Side effect: PowerPoint may wrap merged paragraphs to a different line count than the SVG source. Long body text (abstracts, multi-paragraph sections, reference lists) usually benefits from the default; pages with tight typographic alignment (covers, charts, tables) usually want `--no-merge`
-  - Mergeable detection is conservative: only fires when the children form a clean paragraph block; mixed-layout `<text>` falls through to the default per-line path
+- Multiline text export modes:
+  - Default: one editable frame retains authored breaks and disables PowerPoint wrapping. An ordinary generated frame uses PowerPoint's native resize-shape-to-fit-text behavior, so deleting a retained break expands the frame instead of leaving text outside it; imported exact frames and structured multiline placeholder carriers retain fixed-size behavior.
+  - `--reflow-text`: eligible same-size lines become flowing prose that PowerPoint may rewrap; a font-size change, list marker, or accepted larger gap remains a paragraph boundary. Legacy `--merge-paragraphs` aliases this mode.
+  - `--no-merge`: each dy-stacked line becomes an independent frame with its own placement.
+  - Detection is conservative: mixed-layout `<text>` falls back to per-line frames. Use `--reflow-text` only for resizable body copy and `--no-merge` only for independent line objects or absolute line positions.
 - Native release export reads `svg_output/`. `-s final` is an explicit diagnostic override for comparing conversion behavior against post-processed SVGs; it does not change artifact ownership or create a supported release path.
 - `svg_final/` may be opened directly or inserted into PowerPoint as an SVG picture. PowerPoint's manual Convert-to-Shape operation is outside the compatibility contract.
 - On every SVG-authoring route, each file in `svg_output/` is the complete visible
@@ -594,16 +622,20 @@ Behavior:
 - After normal-flow publication, native export writes `validation/<output_stem>.report.json`. The report distinguishes authored Slides from internal Layout definitions, reruns ZIP integrity and published Slide-count checks, records slide/layout/master/notes part counts, labels relationship/structured/transition/animation validation as enforced at build time, links the final SVG quality report only when its SHA-256 source fingerprint matches the exact export inputs, and surfaces stale/unverified gates, unresolved template tokens, generic-only font stacks, and external image references. A matching final quality report with introduced warnings yields `passed-with-warnings` and a `quality_introduced_warnings=<N>` receipt instead of a clean `passed` claim.
 - By default, a successful command also prints a compact receipt instead of requiring a report read: `[POSTFLIGHT] status=<...> quality_gate=<...> slides=<N> warning_categories=<N>`, followed by one compact line per warning category and the `[PPTX]` / `[REPORT]` paths. Resource-warning lines carry counts; a non-passing quality gate carries its status. Routine agents use this receipt and do not load either complete validation JSON into model context. Full reports remain cold audit artifacts; failure investigation and explicit audits extract only the required fields. `--quiet` keeps suppressing successful-run output.
 - Before publishing structured template output, export reopens the temporary PPTX and validates the Slide → Layout → Master graph and registrations, Layout identity, placeholder identity, reusable bounds, and prompt/level-one sizes. A mismatch aborts publication. Flat release instead validates its single referenced Master/Layout shell and exact date/footer/slide-number hook roster before packaging.
-- SVG clip paths are still restricted for authored SVGs, but nested crop wrappers generated by PPTX import are mapped back to native picture crop / geometry when possible.
-- Normal flow embeds speaker notes automatically unless `--no-notes` is used; quick-test always disables them
+- Authored SVG clip-path restrictions remain. Crop wrappers use an
+  overflow-hidden viewport; preview-safe shape clips target the inner image in
+  viewBox coordinates, while legacy imported wrapper clips remain compatible.
+  Both map to native picture crop/geometry when possible.
+- The default Generate flow embeds speaker notes automatically unless `--no-notes` is used; quick-generate always disables them
 - Recorded narration is opt-in:
   - `notes_to_audio.py` uses `edge-tts` by default, or a configured cloud TTS provider (`elevenlabs`, `minimax`, `qwen`, `cosyvoice`), and generates one audio file per slide into `audio/`
   - Narration text is read strictly from the matching `notes/*.md` file; the script only skips Markdown heading lines (`# ...`) and does not summarize, rewrite, or filter delivery notes
   - `--recorded-narration audio` prepares PowerPoint's "recorded timings and narrations": every slide must have matching `m4a` / `mp3` / `wav` audio, `ffprobe` must read every duration, and `--animation-trigger on-click` is rejected
   - `--recorded-narration audio` keeps speaker notes, embeds each matching audio file, and writes slide auto-advance timings from audio duration
-  - Narrated export defaults to `<project>/narration_animations.json`; pass `--animation-config animations.json` for the canonical presentation animation, or `--no-animations` to remove object animations and page-transition motion while retaining narration and slide timings
+  - When either animation sidecar exists, narrated export defaults to `<project>/narration_animations.json`; a canonical `animations.json` without that derived file remains a blocking synchronization error
+  - Without animation sidecars, Generate narration reads base-report deck motion via `--inherit-motion-from`; direct low-level omission keeps legacy `fade` / no object builds. Use `--animation-config animations.json` for canonical animation, or `--no-animations` to remove object/page motion while retaining narration timings
   - Non-narrated export keeps the existing optional `<project>/animations.json` default
-  - Narration timing is merged into the existing slide timing DOM; object-animation rows and the resolved page transition are preserved rather than regenerated
+  - Narration timing merges into the existing slide timing DOM. While motion remains enabled, object-animation rows and the resolved page transition are preserved rather than regenerated; inherited `-a none` suppresses object rows, and `--no-animations` removes both motion layers
   - `--narration-audio-dir audio` is the lower-level embedding path: it embeds whatever files match and allows partial audio coverage
   - Either narration flag names the default-flow export `<project_name>_<timestamp>_narrated.pptx`, telling it apart from silent exports in the same directory
   - This is intended for direct PowerPoint video export with "Use recorded timings and narrations"

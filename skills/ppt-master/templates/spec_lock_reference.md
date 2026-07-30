@@ -1,6 +1,6 @@
 # Execution Lock Structure
 
-`spec_lock.md` is the compact execution contract from audited `design_spec.md` plus current context. It keeps stable cross-page anchors and routes, not every page-local paint or typeface. This file owns authoring structure; [`schemas/spec_lock.schema.json`](./schemas/spec_lock.schema.json) owns grammar.
+`spec_lock.md` projects cross-page anchors/routes from audited `design_spec.md` and context; it excludes local paint/type. This file owns structure; [`schemas/spec_lock.schema.json`](./schemas/spec_lock.schema.json) owns grammar.
 
 ## 1. Author the complete artifact
 
@@ -19,7 +19,7 @@ After Generate Step 4 Gate 1, read the completed Design Spec and current page/re
 | Section | Required keys | Notes |
 | --- | --- | --- |
 | `canvas` | `viewBox`, `format` | `format` is the canonical display name (for example `PPT 16:9`); `viewBox` is the matching exact geometry |
-| `communication` | `audience`, `objective`, `core_message` | Compact execution projection; `objective` combines intent and audience outcome; `consumption_mode` is optional off PPT canvases |
+| `communication` | `primary_language`, `audience`, `objective`, `core_message` | New lock: canonical BCP-47; old lock may omit it. Reject `und` and Chinese without script/region. `objective` merges intent/outcome; `consumption_mode` is optional off PPT |
 | `mode` | `mode` | Preset or `custom` |
 | `visual_style` | `visual_style` | Preset or `custom` |
 | `colors` | Stable semantic color roles | Core identity and recurring roles only; contextual SVG paints need no row; `image_rendering` appears only for AI images |
@@ -72,7 +72,7 @@ Structured section value shapes:
 
 Project each §VII `Page | Template | Usage` row's first two fields into `page_charts`; Usage stays in the Design Spec. This is a page-local reference, not a type/geometry lock. Keys must exist in `charts/charts_index.json`; no-match stays in §IX.
 
-Typography projection is role-for-role, not a lossy summary:
+Typography projection excludes Character/upgrade References:
 
 | Design Spec §IV declaration | `spec_lock.md` field |
 | --- | --- |
@@ -92,7 +92,7 @@ New locks always write `title_family` and `body_family`, even when their values 
 - `icons.library` records the primary stylistic library selected from `chunk-filled`, `tabler-filled`, `tabler-outline`, or `phosphor-duotone`, or `none` when no generic bundled icons are selected. Selected `simple-icons/*` brand marks may appear alone or alongside it in `inventory` without becoming a stylistic library. The inventory records planned bundled choices, while every SVG already under `<project_path>/icons/` remains valid prepared execution material.
 - `objective` grammar: one concise sentence preserving the deck goal and audience success condition.
 - `image_rendering` grammar: one catalog id, or `custom` with `image_rendering_behavior`.
-- `images`: `- <key>: <path> | source=<via> | pattern=<layout> | crop=<adaptive|no-crop>`; e.g. `- p04: images/a.png | source=user | pattern=#2 Left image | crop=no-crop`. Use the canonical `images/<filename>` path; `source` and `crop` exactly project §VIII, while `pattern` preserves its ordered catalog ids or normalized custom prose. The pattern remains a recommendation for Executor recall, not a geometry or realization lock. Omit unplaced sheets.
+- `images`: `- <key>: <path> | source=<via> | pattern=<layout> | crop=<adaptive|no-crop>`; e.g. `- p04: images/a.png | source=user | pattern=full-height image beside the evidence | crop=no-crop`. Use the canonical `images/<filename>` path; `source` and `crop` exactly project §VIII, while `pattern` preserves its non-empty normalized free-form suggestion and any optional catalog ids. The pattern remains a recommendation for Executor recall, not a geometry or realization lock. Omit unplaced sheets.
 - Custom reference grammar: comma-separated exact catalog ids with no duplicates. Reference fields are valid only for `custom`; omit them for a genuinely novel direction.
 - `stroke_width` grammar: `1.5`, `2`, or `3`; present only for `tabler-outline`.
 - `page_rhythm` grammar: `P` + at least two digits (`P01`, `P100`) followed by `anchor|dense|breathing`.

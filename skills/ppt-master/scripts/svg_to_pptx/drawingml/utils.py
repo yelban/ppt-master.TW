@@ -22,6 +22,7 @@ from pptx_shapes import (
     svg_preset_preview_fingerprint,
     validate_ooxml_xfrm,
 )
+from language_tags import language_base, language_uses_rtl
 
 from .context import AffineMatrix, ConvertContext, IDENTITY_MATRIX
 
@@ -48,25 +49,25 @@ INHERITABLE_ATTRS = [
 
 # Known East Asian fonts
 EA_FONTS = {
-    'PingFang TC', 'PingFang TC', 'PingFang HK',
-    'Microsoft JhengHei', 'Microsoft JhengHei',
-    'PMingLiU', 'Microsoft JhengHei', 'FangSong', 'KaiTi', 'STKaiti',
+    'PingFang SC', 'PingFang TC', 'PingFang HK',
+    'Microsoft YaHei', 'Microsoft JhengHei',
+    'SimSun', 'SimHei', 'FangSong', 'KaiTi', 'STKaiti',
     'STHeiti', 'STSong', 'STFangsong', 'STXihei', 'STZhongsong',
-    'Hiragino Sans', 'PingFang TC', 'Hiragino Mincho ProN',
+    'Hiragino Sans', 'Hiragino Sans GB', 'Hiragino Mincho ProN',
     'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro',
     'Hiragino Mincho Pro',
     'Noto Sans SC', 'Noto Sans TC', 'Noto Serif SC', 'Noto Serif TC',
     'Noto Sans CJK SC',
     'Noto Sans JP', 'Noto Serif JP', 'Noto Sans CJK JP',
-    'Noto Sans TC', 'Source Han Sans TC',
+    'Source Han Sans SC', 'Source Han Sans TC',
     'Source Han Serif SC', 'Source Han Serif TC',
     'Source Han Sans JP', 'Source Han Serif JP',
     'WenQuanYi Micro Hei', 'WenQuanYi Zen Hei',
     'YouYuan', 'LiSu', 'HuaWenKaiTi',
     'Songti SC', 'Songti TC',
     # Windows 10/11 + Office default / common Simplified Chinese
-    'DengXian', 'DengXian Light', 'DengXian Bold', 'Microsoft JhengHei UI',
-    # Office display Chinese (華文 / 方正) — usually title-only, not on every client
+    'DengXian', 'DengXian Light', 'DengXian Bold', 'Microsoft YaHei UI',
+    # Office display Chinese (华文 / 方正) — usually title-only, not on every client
     'STXingkai', 'STLiti', 'STXinwei', 'STHupo', 'STCaiyun',
     'FZShuTi', 'FZYaoti',
     # Common Traditional Chinese (Office)
@@ -84,37 +85,37 @@ SYSTEM_FONTS = {'system-ui', '-apple-system', 'BlinkMacSystemFont'}
 
 # macOS/Linux-only fonts -> Windows equivalents
 FONT_FALLBACK_WIN = {
-    'PingFang TC': 'Microsoft JhengHei',
+    'PingFang SC': 'Microsoft YaHei',
     'PingFang TC': 'Microsoft JhengHei',
     'PingFang HK': 'Microsoft JhengHei',
-    'Hiragino Sans': 'Microsoft JhengHei',
-    'PingFang TC': 'Microsoft JhengHei',
-    'Hiragino Mincho ProN': 'PMingLiU',
-    'STHeiti': 'Microsoft JhengHei',
-    'STSong': 'PMingLiU',
+    'Hiragino Sans': 'Microsoft YaHei',
+    'Hiragino Sans GB': 'Microsoft YaHei',
+    'Hiragino Mincho ProN': 'SimSun',
+    'STHeiti': 'SimHei',
+    'STSong': 'SimSun',
     'STKaiti': 'KaiTi',
     'STFangsong': 'FangSong',
-    'STXihei': 'Microsoft JhengHei',
-    'STZhongsong': 'PMingLiU',
-    'Songti SC': 'PMingLiU',
-    'Songti TC': 'PMingLiU',
-    'Noto Sans SC': 'Microsoft JhengHei',
-    'Noto Sans CJK SC': 'Microsoft JhengHei',
+    'STXihei': 'Microsoft YaHei',
+    'STZhongsong': 'SimSun',
+    'Songti SC': 'SimSun',
+    'Songti TC': 'SimSun',
+    'Noto Sans SC': 'Microsoft YaHei',
+    'Noto Sans CJK SC': 'Microsoft YaHei',
     'Noto Sans TC': 'Microsoft JhengHei',
-    'Noto Serif SC': 'PMingLiU',
-    'Noto Serif TC': 'PMingLiU',
+    'Noto Serif SC': 'SimSun',
+    'Noto Serif TC': 'SimSun',
     # Japanese: keep as-is if user specified (PowerPoint will fallback if uninstalled)
     # 'Noto Sans JP': → keep as 'Noto Sans JP' (do not map)
     # 'メイリオ': → keep as 'メイリオ' (Meiryo alias)
     'メイリオ': 'Meiryo',
-    'Noto Sans TC': 'Microsoft JhengHei',
+    'Source Han Sans SC': 'Microsoft YaHei',
     'Source Han Sans TC': 'Microsoft JhengHei',
-    'Source Han Serif SC': 'PMingLiU',
-    'Source Han Serif TC': 'PMingLiU',
+    'Source Han Serif SC': 'SimSun',
+    'Source Han Serif TC': 'SimSun',
     'Source Han Sans JP': 'Noto Sans JP',
     'Source Han Serif JP': 'Noto Serif JP',
-    'WenQuanYi Micro Hei': 'Microsoft JhengHei',
-    'WenQuanYi Zen Hei': 'Microsoft JhengHei',
+    'WenQuanYi Micro Hei': 'Microsoft YaHei',
+    'WenQuanYi Zen Hei': 'Microsoft YaHei',
     # Latin fonts (macOS / Linux / Web -> Windows)
     'SF Pro': 'Segoe UI',
     'SF Pro Display': 'Segoe UI',
@@ -141,10 +142,10 @@ GENERIC_FONT_MAP = {
 }
 
 # When the latin font is serif and no EA font is specified,
-# prefer PMingLiU (serif CJK) over Microsoft JhengHei (sans-serif CJK).
+# prefer SimSun (serif CJK) over Microsoft YaHei (sans-serif CJK).
 _SERIF_LATIN = {
     'Times New Roman', 'Georgia', 'Garamond', 'Palatino', 'Palatino Linotype',
-    'Book Antiqua', 'Cambria', 'PMingLiU', 'Liberation Serif', 'DejaVu Serif',
+    'Book Antiqua', 'Cambria', 'SimSun', 'Liberation Serif', 'DejaVu Serif',
 }
 
 # Common Office/OS faces accepted without a custom-font warning on their
@@ -2914,7 +2915,7 @@ def parse_font_family(font_family_str: str) -> dict[str, str]:
     Windows. macOS/Linux-only fonts are mapped via FONT_FALLBACK_WIN.
     """
     if not font_family_str:
-        return {'latin': 'Segoe UI', 'ea': 'Microsoft JhengHei'}
+        return {'latin': 'Segoe UI', 'ea': 'Microsoft YaHei'}
 
     fonts = [f.strip().strip("'\"") for f in font_family_str.split(',')]
     latin_font = None
@@ -2942,7 +2943,7 @@ def parse_font_family(font_family_str: str) -> dict[str, str]:
 
     # EA must always be a CJK-capable font
     if not ea_font:
-        ea_font = 'PMingLiU' if final_latin in _SERIF_LATIN else 'Microsoft JhengHei'
+        ea_font = 'SimSun' if final_latin in _SERIF_LATIN else 'Microsoft YaHei'
 
     return {'latin': final_latin, 'ea': ea_font}
 
@@ -3017,8 +3018,50 @@ def is_cjk_char(ch: str) -> bool:
     )
 
 
-def detect_text_lang(text: str) -> str:
-    """Return a DrawingML language tag for a text run."""
+def _contains_codepoint_range(
+    text: str,
+    ranges: tuple[tuple[int, int], ...],
+) -> bool:
+    """Return whether text contains a code point in one of the ranges."""
+    return any(
+        start <= ord(ch) <= end
+        for ch in text
+        for start, end in ranges
+    )
+
+
+def _default_language_for_script(
+    default_language: str | None,
+    bases: frozenset[str],
+    fallback: str,
+) -> str:
+    """Prefer the project language when it belongs to the detected script."""
+    if default_language and language_base(default_language) in bases:
+        return default_language
+    return fallback
+
+
+def text_has_rtl_characters(text: str) -> bool:
+    """Return whether text contains a strong right-to-left character."""
+    return any(unicodedata.bidirectional(ch) in {'R', 'AL'} for ch in text)
+
+
+def text_uses_rtl(text: str, default_language: str | None = None) -> bool:
+    """Resolve paragraph direction from its first strong character or project."""
+    for char in text:
+        direction = unicodedata.bidirectional(char)
+        if direction in {'R', 'AL'}:
+            return True
+        if direction == 'L':
+            return False
+    return bool(default_language and language_uses_rtl(default_language))
+
+
+def detect_text_lang(
+    text: str,
+    default_language: str | None = None,
+) -> str:
+    """Return a DrawingML language tag, preferring the project contract."""
     has_hangul = False
     has_kana = False
     has_east_asian_text = False
@@ -3031,10 +3074,81 @@ def detect_text_lang(text: str) -> str:
         )
         has_east_asian_text = has_east_asian_text or is_cjk_char(ch)
     if has_hangul:
-        return 'ko-KR'
+        return _default_language_for_script(
+            default_language,
+            frozenset({'ko'}),
+            'ko-KR',
+        )
     if has_kana:
-        return 'ja-JP'
-    return 'zh-TW' if has_east_asian_text else 'en-US'
+        return _default_language_for_script(
+            default_language,
+            frozenset({'ja'}),
+            'ja-JP',
+        )
+    if has_east_asian_text:
+        return _default_language_for_script(
+            default_language,
+            frozenset({'zh', 'ja', 'ko'}),
+            'zh-CN',
+        )
+    if _contains_codepoint_range(text, (
+        (0x0600, 0x06FF),
+        (0x0750, 0x077F),
+        (0x08A0, 0x08FF),
+        (0xFB50, 0xFDFF),
+        (0xFE70, 0xFEFF),
+        (0x1EE00, 0x1EEFF),
+    )):
+        return _default_language_for_script(
+            default_language,
+            frozenset({'ar', 'fa', 'ps', 'sd', 'ug', 'ur'}),
+            'ar-SA',
+        )
+    if _contains_codepoint_range(text, (
+        (0x0590, 0x05FF),
+        (0xFB1D, 0xFB4F),
+    )):
+        return _default_language_for_script(
+            default_language,
+            frozenset({'he', 'yi'}),
+            'he-IL',
+        )
+    if _contains_codepoint_range(text, (
+        (0x0900, 0x097F),
+        (0xA8E0, 0xA8FF),
+    )):
+        return _default_language_for_script(
+            default_language,
+            frozenset({'hi', 'mr', 'ne', 'sa'}),
+            'hi-IN',
+        )
+    if _contains_codepoint_range(text, ((0x0E00, 0x0E7F),)):
+        return _default_language_for_script(
+            default_language,
+            frozenset({'th'}),
+            'th-TH',
+        )
+    if _contains_codepoint_range(text, (
+        (0x0400, 0x052F),
+        (0x1C80, 0x1C8F),
+        (0x2DE0, 0x2DFF),
+        (0xA640, 0xA69F),
+    )):
+        return _default_language_for_script(
+            default_language,
+            frozenset({'be', 'bg', 'kk', 'ky', 'mk', 'mn', 'ru', 'sr', 'uk'}),
+            'ru-RU',
+        )
+    if _contains_codepoint_range(text, (
+        (0x0370, 0x03FF),
+        (0x1F00, 0x1FFF),
+    )):
+        return _default_language_for_script(
+            default_language,
+            frozenset({'el'}),
+            'el-GR',
+        )
+    return default_language or 'en-US'
 
 
 def _is_grapheme_extend(ch: str) -> bool:
@@ -3157,7 +3271,7 @@ def split_project_text_clusters(text: str) -> list[str]:
 def resolve_text_run_fonts(text: str, fonts: dict[str, str]) -> dict[str, str]:
     """Return DrawingML latin/ea/cs typefaces for one text run."""
     latin = fonts['latin']
-    if detect_text_lang(text) != 'en-US':
+    if any(is_cjk_char(ch) for ch in text):
         ea = fonts['ea']
     else:
         ea = latin

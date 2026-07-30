@@ -45,12 +45,13 @@ python3 scripts/update_repo.py
 | Area | Primary scripts | Documentation |
 |------|-----------------|---------------|
 | Conversion | `source_to_md.py`, `source_to_md/pdf_to_md.py`, `source_to_md/doc_to_md.py`, `source_to_md/excel_to_md.py`, `source_to_md/ppt_to_md.py`, `source_to_md/web_to_md.py`, `pptx_intake.py`, `pptx_to_svg.py` | [docs/conversion.md](./docs/conversion.md) |
-| Project management | `project_manager.py`, `page_context.py`, `batch_validate.py`, `generate_examples_index.py`, `error_helper.py`, `pptx_template_import.py`, `template_fill_pptx.py`, `native_enhance_pptx.py` | [docs/project.md](./docs/project.md) |
+| Project management | `project_manager.py`, `page_context.py`, `batch_validate.py`, `generate_examples_index.py`, `error_helper.py`, `pptx_template_import.py`, `template_fill_pptx.py`, `native_enhance_pptx.py`, `pptx_delivery_check.py` | [docs/project.md](./docs/project.md) |
 | SVG pipeline | `preset_shape_svg.py`, `shape_boolean_svg.py`, `svg_authoring_view.py`, `compact_svg_coordinates.py`, `mirror_template_materialize.py`, `finalize_svg.py`, `svg_to_pptx.py`, `template_preview_pptx.py`, `total_md_split.py`, `svg_quality_checker.py`, `extract_svg_assets.py`, `extract_svg_pictures.py`, `animation_config.py`, `notes_to_audio.py`, `narration_sync.py` | [docs/svg-pipeline.md](./docs/svg-pipeline.md); [native shape authoring](../references/native-shape-authoring.md) |
 | PPTX transitions | `pptx_transitions.py` | [docs/pptx-transitions.md](./docs/pptx-transitions.md) |
 | PPTX animations | `pptx_animations.py`, `animation_config.py` | [docs/pptx-animations.md](./docs/pptx-animations.md) |
 | Spec maintenance | `update_spec.py`, `chart_recall.py` | [docs/update_spec.md](./docs/update_spec.md); [docs/chart-recall.md](./docs/chart-recall.md) |
 | Image tools | `image_gen.py`, `latex_render.py`, `analyze_images.py`, `gemini_watermark_remover.py` | [docs/image.md](./docs/image.md) |
+| Maintenance smokes | Inline temporary-project commands | [advanced image and motion](./docs/advanced-image-motion-smoke.md); [mask and gradient](./docs/mask-gradient-smoke.md); [multilingual text](./docs/multilingual-text-smoke.md) |
 | Repo maintenance | `update_repo.py` | README install/update section |
 | Troubleshooting | validation, preview, export, dependency issues | [docs/troubleshooting.md](./docs/troubleshooting.md) |
 
@@ -174,7 +175,7 @@ python3 scripts/template_fill_pptx.py apply <project_path>/sources/<source.pptx>
 python3 scripts/template_fill_pptx.py validate <project_path>
 ```
 
-`apply` requires `fill_plan.json` to have top-level `"status": "confirmed"` unless `--force` is passed. It automatically writes `filled_YYYYMMDD_HHMMSS.pptx` unless the output stem already ends with a timestamp. It applies a `fade` page transition by default; `--transition <effect>` accepts a canonical effect in the shared native gallery registry documented by [`docs/pptx-transitions.md`](docs/pptx-transitions.md), while old names remain accepted only as compatibility inputs, and `--transition-duration <seconds>` changes its duration. `--transition none` removes the visual effect, `--transition keep` preserves the source transitions, and a per-slide `transition` field in the plan overrides whatever the CLI selects. The object form accepts effect-specific native `effect_options`.
+`apply` requires `fill_plan.json` to have top-level `"status": "confirmed"` unless `--force` is passed. It automatically writes `filled_YYYYMMDD_HHMMSS.pptx` unless the output stem already ends with a timestamp. It preserves source page transitions by default; `--transition <effect>` accepts a canonical effect in the shared native gallery registry documented by [`docs/pptx-transitions.md`](docs/pptx-transitions.md), while old names remain accepted only as compatibility inputs, and `--transition-duration <seconds>` changes a replacement effect's duration. `--transition none` removes the visual effect, `--transition keep` states the preservation policy explicitly, and a per-slide `transition` field in the plan overrides whatever the CLI selects. The object form accepts effect-specific native `effect_options`.
 
 Native existing-PPTX enhancement (direct PPTX, no SVG conversion):
 
@@ -183,6 +184,7 @@ python3 scripts/native_enhance_pptx.py init <source.pptx> --name <project_slug>
 python3 scripts/native_enhance_pptx.py plan <project_path>
 python3 scripts/native_enhance_pptx.py validate <project_path>
 python3 scripts/native_enhance_pptx.py apply <project_path>
+python3 scripts/pptx_delivery_check.py <finished.pptx>
 ```
 
 Native preset shape authoring (one registry-backed fragment on stdout):
@@ -249,12 +251,17 @@ the existing references without progressively wrapping more parent geometry.
 Post-processing and export:
 
 ```bash
+# Run only when the Design Spec's effective Speaker Notes outcome is enabled.
 python3 scripts/total_md_split.py <project_path>
 python3 scripts/finalize_svg.py <project_path>
 python3 scripts/svg_to_pptx.py <project_path>
 ```
 
-`finalize_svg.py` optimizes raster images by default using `2x` display pixels and max `2560px`. Native `svg_to_pptx.py` defaults to `--image-sizing cap`: oversized full sources normally reduce toward `2560px`, but cropped or stretched placements (including imported picture crops) retain enough source pixels to avoid undersupplying the visible frame. Use `svg_to_pptx.py --image-sizing display --image-scale 2` only for aggressive size reduction, or `--no-image-optimize` when the native PPTX must embed original image bytes.
+When Speaker Notes is disabled, skip `total_md_split.py` and append
+`--no-notes` to `svg_to_pptx.py` so stale files under `notes/` cannot be
+embedded.
+
+`finalize_svg.py` optimizes ordinary raster images by default using `2x` display pixels and max `2560px`; validated nested crop transports retain source pixel dimensions because their inner `1×1` image is source-unit geometry rather than a rendered-pixel budget. Native `svg_to_pptx.py` defaults to `--image-sizing cap`: images that need neither resizing nor EXIF geometry normalization retain their original bytes, while oversized single-frame raster sources are re-encoded after resizing toward `2560px`. Cropped or stretched placements (including imported picture crops) retain enough source pixels to avoid undersupplying the visible frame. Use `svg_to_pptx.py --image-sizing display --image-scale 2 --image-quality 85` for an explicit compact export, or `--no-image-optimize` to force original image bytes.
 
 `finalize_svg.py` remains mandatory because it creates the self-contained `svg_final/` visual preview. Those SVGs may be opened directly or inserted into PowerPoint as SVG pictures. The only supported generated-PPTX path is `svg_output/` through the project SVG-to-DrawingML converter; `-s final` is diagnostic-only, and PowerPoint's manual Convert-to-Shape operation is unsupported.
 

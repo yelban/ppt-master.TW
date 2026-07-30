@@ -13,7 +13,7 @@
 English | [正體中文](./README_TW.md) | [简体中文](./README_CN.md)
 
 <details open>
-<summary>This project is kept free and open source with the support of <a href="https://www.kimi.com/code/?aff=ppt-master">Kimi</a>, <a href="https://www.packyapi.com/register?aff=ppt-master">PackyCode</a>, <a href="https://apikey.fun/register?aff=PPT-MASTER">APIKEY.FUN</a>, <a href="https://runapi.co/register?aff=WMLJ">RunAPI</a>, <a href="https://www.compshare.cn/coding-plan?ytag=GPU_YY-git_pptmaster0624">YouYun ZhiSuan</a> and other sponsors.</summary>
+<summary>This project is kept free and open source with the support of <a href="https://www.kimi.com/code/?aff=ppt-master">Kimi</a>, <a href="https://www.packyapi.ai/register?aff=ppt-master">PackyCode</a>, <a href="https://apikey.fun/register?aff=PPT-MASTER">APIKEY.FUN</a>, <a href="https://runapi.co/register?aff=WMLJ">RunAPI</a>, <a href="https://www.compshare.cn/coding-plan?ytag=GPU_YY-git_pptmaster0624">YouYun ZhiSuan</a> and other sponsors.</summary>
 
 <p align="center">
   <a href="https://www.kimi.com/code/?aff=ppt-master"><img src="https://gcdn.moonshot.cn/growth-cdn/sponsor/kimi-en.png" alt="Kimi" width="100%"></a>
@@ -27,8 +27,8 @@ Thanks to [Kimi](https://www.kimi.com/code/?aff=ppt-master) for sponsoring this 
 
 <table>
   <tr>
-    <td width="180"><a href="https://www.packyapi.com/register?aff=ppt-master"><img src="docs/assets/sponsors/packycode.png" alt="PackyCode" width="150"></a></td>
-    <td>Thanks to PackyCode for sponsoring this project! PackyCode is a reliable and efficient API relay service provider, offering relay services for Claude Code, Codex, Gemini, and more. PackyCode provides special discounts for our project users: register using <a href="https://www.packyapi.com/register?aff=ppt-master">this link</a> and enter the promo code <strong>ppt-master</strong> during recharge to get 10% off.</td>
+    <td width="180"><a href="https://www.packyapi.ai/register?aff=ppt-master"><img src="docs/assets/sponsors/packycode.png" alt="PackyCode" width="150"></a></td>
+    <td>Thanks to PackyCode for sponsoring this project! PackyCode is a reliable and efficient API relay service provider, offering relay services for Claude Code, Codex, Gemini, and more. PackyCode provides special discounts for our project users: register using <a href="https://www.packyapi.ai/register?aff=ppt-master">this link</a> and enter the promo code <strong>ppt-master</strong> during recharge to get 10% off.</td>
   </tr>
   <tr>
     <td width="180"><a href="https://apikey.fun/register?aff=PPT-MASTER"><img src="docs/assets/sponsors/apikey-fun.png" alt="APIKEY.FUN" width="150"></a></td>
@@ -235,7 +235,7 @@ Never used one of these? Don't worry — in this project they play exactly one r
 
 > **Model recommendation**: for the best results, use **[Kimi K3](https://www.kimi.com/code/?aff=ppt-master)** (or Claude) to drive the pipeline, paired with AI image generation — **`gpt-image-2`** (OpenAI) or **`gemini-3.1-flash-image`** (Google). Kimi Code, the project sponsor, is a great pick for pay-as-you-go access.
 
-**🔑 Want to use Claude / GPT / Gemini but don't have access yet?** Project sponsors **[PackyCode](https://www.packyapi.com/register?aff=ppt-master)**, **[APIKEY.FUN](https://apikey.fun/register?aff=PPT-MASTER)** and **[RunAPI](https://runapi.co/register?aff=WMLJ)** offer pay-as-you-go access to Claude, GPT, Gemini and more — no subscription required, with exclusive discounts for our users (details at the top of this page).
+**🔑 Want to use Claude / GPT / Gemini but don't have access yet?** Project sponsors **[PackyCode](https://www.packyapi.ai/register?aff=ppt-master)**, **[APIKEY.FUN](https://apikey.fun/register?aff=PPT-MASTER)** and **[RunAPI](https://runapi.co/register?aff=WMLJ)** offer pay-as-you-go access to Claude, GPT, Gemini and more — no subscription required, with exclusive discounts for our users (details at the top of this page).
 
 **🔀 Juggling several providers?** Once you hold keys from more than one of them, [cc-switch](https://github.com/farion1231/cc-switch) — a cross-platform desktop app — lets you one-click switch API providers for Claude Code, Codex, Gemini CLI and more, no manual config editing.
 
@@ -303,7 +303,8 @@ You: Please create a PPT from projects/q3-report/sources/report.pdf
 You: Please turn the following into a PPT: [paste your content here...]
 ```
 
-Either way, the AI will first confirm the design spec:
+By default—unless you explicitly request quick generation—the AI first confirms
+the design spec:
 
 ```
 AI:  Sure. Let's confirm the design spec:
@@ -315,7 +316,7 @@ AI:  Sure. Let's confirm the design spec:
 
 The AI handles everything — content analysis, visual design, SVG generation, and PPTX export.
 
-> **Output:** The SVG pipeline has one PPTX converter: it reads `svg_output/` and writes a directly editable native DrawingML deck to `exports/<name>_<timestamp>.pptx`. The normal delivery flow runs `finalize_svg.py`, produces self-contained previews in `svg_final/`, and snapshots `svg_output/` to `backup/<timestamp>/svg_output/`; PowerPoint's manual **Convert to Shape** command is outside the supported contract. Explicit disposable few-page tests may instead use [quick-test mode](./skills/ppt-master/workflows/profiles/quick-test.md), which writes only the authored SVGs and one PPTX—no planning, preview, notes, validation, or backup artifacts. By default charts and tables export as individually editable SVG-derived DrawingML shapes, which prioritize cross-app visual consistency. Pass `--native-charts-and-tables` to replace eligible groups with PowerPoint-native Chart/Table objects backed by data, which provide **Edit Data** and object-specific controls but may render differently across apps; this variant is saved as `exports/<name>_<timestamp>_native_charts_tables.pptx`. Both routes are editable—the distinction is the PowerPoint object model, not editability itself.
+> **Output:** The SVG pipeline has one PPTX converter: it reads `svg_output/` and writes a directly editable native DrawingML deck to `exports/<name>_<timestamp>.pptx`. The default Generate flow runs `finalize_svg.py`, produces self-contained previews in `svg_final/`, and snapshots `svg_output/` to `backup/<timestamp>/svg_output/`; PowerPoint's manual **Convert to Shape** command is outside the supported contract. Explicit [quick generation](./skills/ppt-master/workflows/profiles/quick-generate.md) still converts sources, researches factual gaps, and prepares required images, icons, formulas, and resource manifests when needed. The current agent makes the content, page, visual, and resource decisions in context, skips Strategist, confirmation, `design_spec.md`, and `spec_lock.md`, then hand-authors the SVG pages and exports one PPTX without preview, notes, validation reports, or backup artifacts. By default charts and tables export as individually editable SVG-derived DrawingML shapes, which prioritize cross-app visual consistency. In the default flow, pass `--native-charts-and-tables` to replace eligible groups with PowerPoint-native Chart/Table objects backed by data, which provide **Edit Data** and object-specific controls but may render differently across apps; this variant is saved as `exports/<name>_<timestamp>_native_charts_tables.pptx`. The quick exporter does not accept native-object flags. Both chart/table export variants are editable—the distinction is the PowerPoint object model, not editability itself.
 
 > **Already have a `.pptx` you want to reuse?** Hand the AI that deck plus your material and ask it to "fill this deck with the new content" — it fills text, table, and chart data into your existing design and exports only the pages you pick, staying natively editable. See the [FAQ](./docs/faq.md) and [template-fill workflow](./skills/ppt-master/workflows/template-fill-pptx.md).
 
@@ -399,7 +400,7 @@ PPT Master is currently built and maintained primarily by me. Every new template
 
 <a href="https://www.kimi.com/code/?aff=ppt-master"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/sponsors/kimi-dark.svg"><img src="docs/assets/sponsors/kimi-light.svg" alt="Kimi" height="40" /></picture></a>
 &nbsp;
-<a href="https://www.packyapi.com/register?aff=ppt-master"><img src="docs/assets/sponsors/packycode.png" alt="PackyCode" height="40" /></a>
+<a href="https://www.packyapi.ai/register?aff=ppt-master"><img src="docs/assets/sponsors/packycode.png" alt="PackyCode" height="40" /></a>
 &nbsp;
 <a href="https://apikey.fun/register?aff=PPT-MASTER"><img src="docs/assets/sponsors/apikey-fun.png" alt="APIKEY.FUN" height="40" /></a>
 &nbsp;
