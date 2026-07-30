@@ -59,7 +59,7 @@ def extract_leading_number(text: str) -> int | None:
     if m:
         return int(m.group(1))
 
-    # Try 2: Common prefixes (Slide X, Page X, 第X頁)
+    # Try 2: Common prefixes (Slide X, Page X, 第X页)
     # Case insensitive for English
     text_lower = text.lower().strip()
 
@@ -68,7 +68,7 @@ def extract_leading_number(text: str) -> int | None:
     if m:
         return int(m.group(1))
 
-    # 第X頁/張
+    # 第X页/张
     m = re.match(r'^第\s*(\d{1,3})\s*[页张]', text_lower)
     if m:
         return int(m.group(1))

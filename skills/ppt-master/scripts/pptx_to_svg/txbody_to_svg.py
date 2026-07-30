@@ -751,7 +751,7 @@ def _theme_script_from_text(text: str) -> str | None:
     return {
         "ko-KR": "Hang",
         "ja-JP": "Jpan",
-        "zh-TW": "Hans",
+        "zh-CN": "Hans",
     }.get(detect_text_lang(text))
 
 
@@ -972,7 +972,7 @@ def _char_width(ch: str, font_size: float, bold: bool) -> float:
         w = font_size * 0.55
     # Bold Latin generally expands a little. CJK glyphs keep their em advance
     # in common PPT fonts; applying the bold multiplier causes short Chinese
-    # titles such as "少年強國說" to wrap even though PowerPoint keeps them on
+    # titles such as "少年强国说" to wrap even though PowerPoint keeps them on
     # one line.
     if bold and not _is_cjk(ch):
         w *= 1.05
