@@ -29,9 +29,15 @@ git diff
 
 覆蓋表會避開 en/ja i18n 內容、URL、路徑與程式碼指令區塊。
 
-## 雙中文 UI 字典
+## 雙中文 UI 字典（2026-07 起改為 overlay 模式）
 
-`confirm_ui/static/app.js` 與 `svg_editor/static/app.js` 會保留上游 `MESSAGES.zh` 作為簡體中文來源，`tw_localize.py` 會保護這個區塊不做繁化，並在每次執行時用 OpenCC `s2twp` 加覆蓋表重新衍生 `MESSAGES.zhtw`。因此繁中文案修正一律加入 `tw_localize_overrides.json`，不要手工維護 `zhtw` 副本。
+fork 政策已改為「不再對上游內容跑全量繁化，zh-TW 只存在於 web UI 層」，UI 的正體中文改為手工維護、貼近上游：
+
+- `confirm_ui/static/app.js` 與 `svg_editor/static/app.js` 保留上游 `MESSAGES.zh` 原文不動，`MESSAGES.zhtw` 是 fork 直接維護的字典區塊；`t()` 依 `LANG_FALLBACK` 鏈查詢，zhtw 缺鍵時自動退回 zh。
+- `confirm_ui/static/catalogs.json` 與上游逐位元組相同，**不要**為了繁化去改它。正體標籤放在 sidecar `catalogs.zhtw.json`，由 `app.js` 的 `applyZhtwCatalogOverlay()` 在載入時注入 `*_zhtw` 欄位（`visual_styles` 依上游 group 標籤巢狀，`_image_comparison` 區塊修補 app.js 內的 `IMAGE_COMPARISON_LABELS`）。
+- 每次上游同步後執行 `python3 tools/ui_zhtw_overlay.py`：回報 overlay 缺譯（上游新增或改動的 zh 字串）、失效項目（上游已移除）與兩個 app.js 的 `MESSAGES` 鍵位落差；`--derive` 會用 OpenCC 印出草稿翻譯供人工審閱後併入。此檢查不通過（exit 1）就代表 zhtw 介面會出現簡體 fallback 或原始鍵名。
+
+`tw_localize.py` 的 `derive_ui_zhtw_messages` 流程已停用，保留僅供歷史參考。
 
 ## README 衍生
 

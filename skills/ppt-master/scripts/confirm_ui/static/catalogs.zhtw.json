@@ -1,0 +1,336 @@
+{
+  "_comment": "zh-TW overlay for catalogs.json. Never edit catalogs.json for zh-TW; keys here are section -> item id (visual_styles: upstream group label -> item id, _group for group fields) -> injected *_zhtw fields. _image_comparison patches IMAGE_COMPARISON_LABELS in app.js. Maintained by tools/ui_zhtw_overlay.py check.",
+  "canvas": {
+    "ppt169": {
+      "use_zhtw": "現代投影 / 線上演示"
+    },
+    "ppt43": {
+      "use_zhtw": "傳統投影"
+    },
+    "wechat": {
+      "label_zhtw": "公眾號頭圖 2.35:1",
+      "use_zhtw": "微信公眾號文章封面"
+    },
+    "xiaohongshu": {
+      "label_zhtw": "小紅書 3:4",
+      "use_zhtw": "知識分享 / 種草封面"
+    },
+    "moments": {
+      "label_zhtw": "社群方圖 1:1",
+      "use_zhtw": "社群媒體方圖"
+    },
+    "story": {
+      "label_zhtw": "直式 9:16",
+      "use_zhtw": "短影音 / 直式封面"
+    },
+    "banner": {
+      "label_zhtw": "橫幅 16:9",
+      "use_zhtw": "網頁橫幅 / 大型螢幕"
+    },
+    "a4": {
+      "use_zhtw": "列印 / 檔案匯出"
+    }
+  },
+  "modes": {
+    "pyramid": {
+      "desc_zhtw": "結論先行、相互獨立且完全窮盡的論證、每個資料都帶比較。適合決策、分析、策略、報告。"
+    },
+    "narrative": {
+      "label_zhtw": "敘事",
+      "desc_zhtw": "情境、張力、解決方案形成故事弧線，保留懸念與轉折。適合路演、案例、品牌、融資。"
+    },
+    "instructional": {
+      "label_zhtw": "教學",
+      "desc_zhtw": "概念拆解、分步推進、並列講解。適合教育訓練、教學、科普、知識分享。"
+    },
+    "showcase": {
+      "desc_zhtw": "視覺主導，大圖、大數和情緒節奏優先。適合發表、品牌秀、活動。"
+    },
+    "briefing": {
+      "label_zhtw": "簡報",
+      "desc_zhtw": "中性完整、便於速覽，採用主題式標題和均勻權重。適合週報、參考材料、常見問題、會議包。"
+    }
+  },
+  "visual_styles": {
+    "Corporate / product": {
+      "_group": {
+        "group_zhtw": "企業 / 產品"
+      },
+      "swiss-minimal": {
+        "label_zhtw": "瑞士極簡",
+        "desc_zhtw": "網格鎖定、銳利層級、大留白、少裝飾。"
+      },
+      "soft-rounded": {
+        "label_zhtw": "柔和圓角",
+        "desc_zhtw": "圓角卡片、柔和投影、親和現代。"
+      },
+      "glassmorphism": {
+        "label_zhtw": "玻璃擬態",
+        "desc_zhtw": "半透明玻璃面板、漸變光感、漂浮層次。"
+      },
+      "dark-tech": {
+        "desc_zhtw": "深色畫布、發光強調、幾何精確。"
+      },
+      "blueprint": {
+        "label_zhtw": "藍圖",
+        "desc_zhtw": "深底藍圖線稿、等距結構、工程標註。"
+      }
+    },
+    "Editorial / publication": {
+      "_group": {
+        "group_zhtw": "編輯 / 出版"
+      },
+      "editorial": {
+        "label_zhtw": "編輯出版",
+        "desc_zhtw": "雜誌式層級、欄線、襯線與無襯線交織。"
+      },
+      "photo-editorial": {
+        "label_zhtw": "攝影編輯",
+        "desc_zhtw": "滿版攝影主導，文字點綴與圖注配合。"
+      },
+      "data-journalism": {
+        "label_zhtw": "資料新聞",
+        "desc_zhtw": "多欄微圖表、側欄、來源線、資訊密度高。"
+      },
+      "brutalist": {
+        "label_zhtw": "粗野主義",
+        "desc_zhtw": "報紙密度、粗線框、原始結構、扁平表達。"
+      }
+    },
+    "Expressive / print": {
+      "_group": {
+        "group_zhtw": "表現 / 印刷"
+      },
+      "memphis": {
+        "desc_zhtw": "撞色塊、幾何碎片、粗描邊。"
+      },
+      "zine": {
+        "desc_zhtw": "孔版印刷錯位、半調、有限色、印刷顆粒。"
+      },
+      "vintage-poster": {
+        "label_zhtw": "復古海報",
+        "desc_zhtw": "中世紀扁平色塊、半調、復古幾何暖意。"
+      },
+      "paper-cut": {
+        "label_zhtw": "剪紙",
+        "desc_zhtw": "層疊剪紙、層間柔影、手作質感。"
+      }
+    },
+    "Hand-drawn / brush": {
+      "_group": {
+        "group_zhtw": "手繪 / 筆觸"
+      },
+      "sketch-notes": {
+        "label_zhtw": "手繪筆記",
+        "desc_zhtw": "暖紙底、塗鴉線條、柔和彩塊。"
+      },
+      "ink-notes": {
+        "label_zhtw": "墨跡筆記",
+        "desc_zhtw": "淺底、黑色手寫墨跡、稀疏語義強調。"
+      },
+      "chalkboard": {
+        "desc_zhtw": "深板岩底、粉筆筆觸、粉彩強調。"
+      },
+      "ink-wash": {
+        "desc_zhtw": "宣紙留白、筆觸、印章、靜氣，新中式表達。"
+      }
+    },
+    "Specialty": {
+      "_group": {
+        "group_zhtw": "特殊風格"
+      },
+      "pixel-art": {
+        "label_zhtw": "像素風",
+        "desc_zhtw": "嚴格像素網格、塊狀形體、有限色、扁平表達。"
+      }
+    }
+  },
+  "icons": {
+    "chunk-filled": {
+      "label_zhtw": "幾何實心圖示",
+      "desc_zhtw": "實心、直線幾何、銳利厚重，適合科技、工程、企業結構圖。"
+    },
+    "tabler-filled": {
+      "label_zhtw": "圓潤實心圖示",
+      "desc_zhtw": "實心、圓潤曲線、中等視覺重量，適合親和現代風格。"
+    },
+    "tabler-outline": {
+      "label_zhtw": "線性描邊圖示",
+      "desc_zhtw": "線性描邊，輕盈精緻，適合螢幕閱讀和編輯型圖示。"
+    },
+    "phosphor-duotone": {
+      "label_zhtw": "雙色層次圖示",
+      "desc_zhtw": "雙色層次、中等重量，適合現代產品和平台類表達。"
+    },
+    "emoji": {
+      "label_zhtw": "表情符號",
+      "desc_zhtw": "系統表情符號，適合輕量、社交、教學或快速識別場景；正式企業 / 諮詢風謹慎使用。"
+    },
+    "none": {
+      "label_zhtw": "不用圖示"
+    }
+  },
+  "image_usage": {
+    "ai": {
+      "label_zhtw": "生成配圖"
+    },
+    "web": {
+      "label_zhtw": "網路來源"
+    },
+    "provided": {
+      "label_zhtw": "使用者提供"
+    },
+    "placeholder": {
+      "label_zhtw": "佔位圖"
+    },
+    "none": {
+      "label_zhtw": "不使用圖片"
+    }
+  },
+  "image_ai_path": {
+    "auto": {
+      "label_zhtw": "自動選擇"
+    },
+    "api": {
+      "label_zhtw": "API 後端",
+      "desc_zhtw": "強制走 API 後端，第 5 步執行 image_gen.py（需已配置 IMAGE_BACKEND）。"
+    },
+    "host-native": {
+      "desc_zhtw": "強制使用當前環境的原生影像工具生成（即使配置了 IMAGE_BACKEND 也跳過 API）；需宿主提供原生影像工具（Codex / Claude Code 等）。"
+    },
+    "manual": {
+      "label_zhtw": "離線手動",
+      "desc_zhtw": "機制：寫入圖片提示詞檔案；使用者在外部生成後放入專案圖片目錄。"
+    }
+  },
+  "formula_policy": {
+    "mixed": {
+      "desc_zhtw": "複雜公式渲染為圖片；簡單行內公式保持為可編輯文字或字元。"
+    },
+    "render-all": {
+      "desc_zhtw": "所有需要按公式處理的表示式都渲染為圖片。"
+    },
+    "text-only": {
+      "label_zhtw": "僅文字",
+      "desc_zhtw": "不渲染公式；表示式保持為可編輯文字或字元。"
+    }
+  },
+  "generation_mode": {
+    "continuous": {
+      "label_zhtw": "連續模式"
+    }
+  },
+  "delivery_purpose": {
+    "text": {
+      "label_zhtw": "文字型 · 近讀",
+      "desc_zhtw": "頁面脫離講者也能獨立讀懂：使用完整句、短段落、圖注、表格和必要細節；bullet 只用於真正並列的項目。"
+    },
+    "balanced": {
+      "label_zhtw": "均衡 · 商務",
+      "desc_zhtw": "頁面與講者共同承擔資訊：一條主結論配合簡短說明、結構化證據或必要列表，適合路演和業務評審。"
+    },
+    "presentation": {
+      "label_zhtw": "展示型 · 演講",
+      "desc_zhtw": "講者與視覺承擔主要表達：一頁一意，以簡短主張、關鍵詞、大圖或大數字為主，解釋進入講述或備註，避免段落堆積。"
+    }
+  },
+  "_image_comparison": {
+    "rendering": {
+      "vector-illustration": "向量插畫",
+      "flat": "扁平插畫",
+      "digital-dashboard": "數位儀表板",
+      "corporate-photo": "企業攝影",
+      "blueprint": "藍圖線稿",
+      "editorial": "編輯雜誌",
+      "sketch-notes": "手繪筆記",
+      "ink-notes": "墨線筆記",
+      "chalkboard": "粉筆黑板",
+      "warm-scene": "暖調場景",
+      "screen-print": "網版印刷",
+      "fantasy-animation": "幻想動畫",
+      "pixel-art": "像素藝術",
+      "nature": "自然有機",
+      "minimalist-swiss": "瑞士極簡",
+      "glassmorphism": "玻璃擬態",
+      "vintage-poster": "復古海報",
+      "paper-cut": "剪紙拼貼"
+    }
+  },
+  "fonts": {
+    "Microsoft YaHei": {
+      "label_zhtw": "微軟雅黑"
+    },
+    "DengXian": {
+      "label_zhtw": "等線"
+    },
+    "STXihei": {
+      "label_zhtw": "華文細黑"
+    },
+    "SimHei": {
+      "label_zhtw": "黑體"
+    },
+    "SimSun": {
+      "label_zhtw": "宋體"
+    },
+    "NSimSun": {
+      "label_zhtw": "新宋體"
+    },
+    "STZhongsong": {
+      "label_zhtw": "華文中宋"
+    },
+    "STFangsong": {
+      "label_zhtw": "華文仿宋"
+    },
+    "KaiTi": {
+      "label_zhtw": "楷體"
+    },
+    "STKaiti": {
+      "label_zhtw": "華文楷體"
+    },
+    "STXingkai": {
+      "label_zhtw": "華文行楷"
+    },
+    "STXinwei": {
+      "label_zhtw": "華文新魏"
+    },
+    "Microsoft JhengHei": {
+      "label_zhtw": "微軟正黑體"
+    },
+    "PMingLiU": {
+      "label_zhtw": "新細明體"
+    },
+    "MingLiU": {
+      "label_zhtw": "細明體"
+    },
+    "MingLiU_HKSCS": {
+      "label_zhtw": "細明體 HKSCS"
+    },
+    "DFKai-SB": {
+      "label_zhtw": "標楷體"
+    },
+    "Yu Gothic": {
+      "label_zhtw": "游哥特體"
+    },
+    "BIZ UDGothic": {
+      "label_zhtw": "BIZ UD哥特體"
+    },
+    "BIZ UDPGothic": {
+      "label_zhtw": "BIZ UDP哥特體"
+    },
+    "MS Gothic": {
+      "label_zhtw": "MS 哥特體"
+    },
+    "MS PGothic": {
+      "label_zhtw": "MS P哥特體"
+    },
+    "Yu Mincho": {
+      "label_zhtw": "游明朝體"
+    },
+    "MS Mincho": {
+      "label_zhtw": "MS 明朝體"
+    },
+    "MS PMincho": {
+      "label_zhtw": "MS P明朝體"
+    }
+  }
+}

@@ -573,7 +573,22 @@
             size_role_subtitle: "副標題",
             size_role_annotation: "註釋",
             custom_typography: "自定義字型方案",
-            custom_typography_placeholder: "輸入字型方案，如：標題用楷體；正文用Microsoft JhengHei…",
+            sec_proactive_execution: "主動執行",
+            proactive_execution_hint: "這些預設開關只在你沒有明確要求時生效；你最新的明確指令始終優先。",
+            proactive_speaker_notes: "主動產生演講者備註",
+            proactive_speaker_notes_desc: "預設開啟。無需另行要求，Agent 也會產生演講者備註。",
+            proactive_custom_animations: "主動製作自訂動畫",
+            proactive_custom_animations_desc: "預設關閉。策略師的動畫建議仍會保留；開啟後，Agent 可在沒有另行要求時實際製作自訂動畫。",
+            proactive_narration_audio: "主動產生旁白音訊",
+            proactive_narration_audio_desc: "預設關閉。這裡保留原始選擇，不改寫演講者備註開關；策略師會在設計規範中解析旁白所需的最終備註狀態。",
+            font_selection: "字型選擇",
+            primary_language_font: "主要語言字型",
+            english_font: "英文字型",
+            font_picker_hint: "選擇推薦方案會同步下方字型；修改任一下拉選單或手動字型後會標記為已自訂。",
+            other_installed_font: "其他已安裝字型…",
+            other_font_placeholder: "輸入精確的已安裝字型名稱",
+            customized: "已自訂",
+            custom_typography_repair: "請補全目前專案所需的具體字型名稱後繼續。",
             custom_color: "自定義配色",
             custom_color_placeholder: "用文字描述配色，如：深藍主色、暖橙強調、白色背景——或直接貼上 HEX 值…",
             role_background: "背景",
@@ -626,8 +641,12 @@
     })();
 
     function t(key) {
-        var dict = MESSAGES[LANG] || MESSAGES.en;
-        return dict[key] != null ? dict[key] : key;
+        var order = LANG_FALLBACK[LANG] || LANG_FALLBACK.en;
+        for (var i = 0; i < order.length; i++) {
+            var dict = MESSAGES[order[i]];
+            if (dict && dict[key] != null) return dict[key];
+        }
+        return key;
     }
 
     // Fallback stays LANG-relative: zh/en users never see Japanese labels,
@@ -639,7 +658,7 @@
             flat: { zh: "扁平插画", en: "Flat illustration", ja: "フラットイラスト" },
             "3d-isometric": { zh: "3D 等距", en: "3D isometric", ja: "3Dアイソメトリック" },
             "digital-dashboard": { zh: "数字仪表盘", en: "Digital dashboard", ja: "デジタルダッシュボード" },
-            "corporate-photo": { zh: "企業攝影", en: "Corporate photo", ja: "企業写真" },
+            "corporate-photo": { zh: "企业摄影", en: "Corporate photo", ja: "企業写真" },
             blueprint: { zh: "蓝图线稿", en: "Blueprint", ja: "ブループリント" },
             editorial: { zh: "编辑杂志", en: "Editorial", ja: "エディトリアル" },
             "sketch-notes": { zh: "手绘笔记", en: "Sketch notes", ja: "スケッチノート" },
@@ -3511,9 +3530,53 @@
         });
     }
 
+    // zh-TW lives in a sidecar overlay so upstream catalogs.json stays untouched.
+    // Sections map item id -> injected *_zhtw fields (visual_styles nests by
+    // upstream group label, "_group" for group-level fields); "_image_comparison"
+    // patches IMAGE_COMPARISON_LABELS. Missing entries fall back to zh via
+    // LANG_FALLBACK, so a stale or absent overlay degrades gracefully.
+    function applyZhtwCatalogOverlay(cat, overlay) {
+        if (!overlay || typeof overlay !== "object") return;
+        Object.keys(overlay).forEach(function (section) {
+            if (section === "_comment") return;
+            if (section === "_image_comparison") {
+                Object.keys(overlay[section]).forEach(function (kind) {
+                    var table = IMAGE_COMPARISON_LABELS[kind];
+                    if (!table) return;
+                    Object.keys(overlay[section][kind]).forEach(function (id) {
+                        if (table[id]) table[id].zhtw = overlay[section][kind][id];
+                    });
+                });
+                return;
+            }
+            var target = cat && cat[section];
+            if (!Array.isArray(target)) return;
+            var entries = overlay[section];
+            if (section === "visual_styles") {
+                target.forEach(function (group) {
+                    var gOverlay = group && entries[group.group];
+                    if (!gOverlay) return;
+                    if (gOverlay._group) Object.assign(group, gOverlay._group);
+                    (group.items || []).forEach(function (item) {
+                        if (item && gOverlay[item.id]) Object.assign(item, gOverlay[item.id]);
+                    });
+                });
+                return;
+            }
+            target.forEach(function (item) {
+                if (item && item.id != null && entries[item.id]) Object.assign(item, entries[item.id]);
+            });
+        });
+    }
+
     function loadCatalogs() {
         return fetchJson("/api/catalogs", "catalogs")
-            .catch(function () { return fetchJson("/static/catalogs.json", "static catalogs"); });
+            .catch(function () { return fetchJson("/static/catalogs.json", "static catalogs"); })
+            .then(function (cat) {
+                return fetchJson("/static/catalogs.zhtw.json", "zh-TW overlay")
+                    .then(function (overlay) { applyZhtwCatalogOverlay(cat, overlay); return cat; })
+                    .catch(function () { return cat; });
+            });
     }
 
     function loadIconPreviews() {
